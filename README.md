@@ -39,25 +39,27 @@ HTML tests (Do these 3 html tests only after your html has changed significantly
 
 ###Write specifications first
 
-What is your project ? Why ? For who ? How?
+What is your project ? Why ? For who ? How? What does it do, what does it not do ?
 
 How is it going to work ? Business strategy ? Hobby ?
+
+You can win a lot of time here, because changing the specification is easier than changing code. Writing the specification documents will force you to think about use scenarios and edge case before you write code. That saves a lot of code edits.
 
 
 ###Before you start
 
 open all documentation you need
 
-Pro tip: instead of opening the documentation manually every time, save all in a bookmark folder, that way you can open it all with 1 click. Another tip you can save somedocumentation on a local storage, to open it very fast and off-line too. 
+Pro tip: instead of opening the documentation manually every time, save all in a bookmark folder, that way you can open it all with 1 click. Another tip you can save some documentation on a local storage, to open it very fast and off-line too. 
 
 [rambda](http://ramdajs.com/docs/),
 [jasmine-test](http://jasmine.github.io/edge/introduction.html),
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript),
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects),
 [HTML and DOM](https://developers.whatwg.org/),
 [jslint errors](http://jslinterrors.com/)
 
 
-###Start
+###Cycle
 
 1. Discuss and Think (what, why, how, todo)
 2. Edit code
@@ -72,6 +74,7 @@ Pro tip: instead of opening the documentation manually every time, save all in a
 Optimize, decorate, enhance
 
 In a Web Application, think about minifying files, and offline scenarios
+You can include minifying if you and your team knows about sourcemaps.
 
 
 

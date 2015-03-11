@@ -1,7 +1,7 @@
 /* --Basic Constructor--
 good:
 * easy to read
-* available in ES5
+* available in ES5-
 
 bad:
 * methods are not shared between instances
@@ -12,16 +12,7 @@ bad:
 conclusion:
 * do not use
 */
-/* --Constructor with Prototypes--
-good:
-* shared methods are createdd only once, even for subclasses
 
-bad:
-* uses this and new
-
-conclusion:
-* 
-*/
 let [Player, UnfairPlayer] = (function () {
     "use strict";
     let Player = function (spec) {

@@ -5,6 +5,6 @@ But before you do, you should consider if a singleton is better. Because Singlet
 
 ###Preferences
 
-Simple > Complex
-Singleton > Class
-Composition > Inheritance
+* Simple > Complex
+* Singleton > Class
+* Composition > Inheritance

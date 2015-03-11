@@ -1,12 +1,12 @@
 /* --Constructor with class--
 good:
-* shared methods are createdd only once, even for subclasses
+* shared methods are created only once, even for subclasses
 * clean, standard syntax
 * easiest to read
 * you can only invoke a class via new, not via a function call which makes new and this safe again
 
 bad:
-* specification for this syntax are only finished in 2015
+* specifications for this syntax are only finished in 2015
 
 conclusion:
 * the syntax is very similar to Python's syntax and maybe the choice #1

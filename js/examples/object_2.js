@@ -1,9 +1,10 @@
 /* --Constructor with Prototypes--
 good:
-* shared methods are createdd only once, even for subclasses
+* shared methods are created only once, even for subclasses
 
 bad:
-* uses this and new
+* uses this and new --> danger
+* prototype side effects
 
 conclusion:
 * 

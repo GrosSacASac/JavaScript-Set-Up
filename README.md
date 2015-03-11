@@ -103,4 +103,8 @@ _imported programs_ may have other licenses:
 
 [Normalize.css (MIT)](https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
 
+<<<<<<< HEAD
 [more](/)
+=======
+[more](/)
+>>>>>>> origin/master

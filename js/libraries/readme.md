@@ -4,7 +4,7 @@
 ###dom99 and js99
 
 DOM99 will walk the DOM and do an action if an element has an attribute like
-   `<tag data99="_directive_" > bla bla </tag>`
+   `<tag data-99="_directive_" > bla bla </tag>`
    
 the directive can do 3 things :
 
@@ -55,9 +55,9 @@ DOM-2 is already a lot better but still inherits problems from DOM-0. You are st
 
 The dom99 takes the powerful good parts of the HTML and the DOM-2 way without their bad counterparts. To build your graphical user interface, all you have to do is write 
 
-    <p data99="click-explode">This is a water-bomb</p>
-    <input data-99="input-isGoodPassword" type="password" max="64">
-    <p data99="click-explode">This is another water-bomb</p>
+    <p data-99="click-explode">This is a water-bomb</p>
+    <input data-99="blur-isGoodPassword" type="password" max="64">
+    <p data-99="click-explode">This is another water-bomb</p>
     
 The above example is expressive, powerful, scalable, simple. And now comes the best part: js99.js when executed returns an object like this
 
@@ -66,12 +66,12 @@ The above example is expressive, powerful, scalable, simple. And now comes the b
         "isGoodPassword": isGoodPassword
     });
     
-You write the event listener functions before the return, all in one place. Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure:
+You write the event listener functions before the return, all in one place. Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
 
 HTML Document <--> dom99 <--> js99 <--> JavaScript files
 
 
 ###operators
 
-todo ...
+to do ...
 

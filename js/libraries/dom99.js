@@ -2,6 +2,8 @@
 use DOM99.linkJsAndDom();
 */const DOM99 = (function () {
     "use strict";
+    //it must start with "data-" see
+    //https://docs.webplatform.org/wiki/html/attributes/data-*
     const dom99Prefix = "data-99",
           dom99AfterValue = "done";
     

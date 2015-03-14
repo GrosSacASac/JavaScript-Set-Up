@@ -2,6 +2,7 @@
 
 Here is the set up I will be using for my future JavaScript projects. ➳
 
+You may need [babel](http://babeljs.io/).
 
 
 ##Libraries
@@ -74,8 +75,8 @@ Pro tip: instead of opening the documentation manually every time, save all in a
 5. Check the [checklist](checklist.md)
 6. Commit your changes
 7. Drink water
-7. Pause at least 5 minutes (no screen, walk)
-7. Repeat
+8. Pause at least 5 minutes (no screen, walk)
+9. Repeat
 
 
 ###End/Production

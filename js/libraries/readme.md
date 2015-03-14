@@ -35,7 +35,7 @@ When you debug your JavaScript, you want to look in your js files. This can make
         };
     </script>
     
-For every element in your page you are going to use heavy stuff , select and assign an event listener. What happens if you want to change your id for some reason, think about `<a href=#x2></a>` that also use id. Same for class name. These are html attributes that are used for other stuff (styling, linking) and therefore might be changed to satisfy these other uses better, thus breaking your code. To remove an event listener you must assign a do-nothing function. It's not so easy to add another event listener for the same event.
+For every element in your page you are going to use heavy stuff , select and assign an event listener. What happens if you want to change your id for some reason, think about `<a href="#x2"></a>` that also use ids. Same for class name. These are html attributes that are used for other stuff (styling, linking) and therefore might be changed to satisfy these other uses better, thus breaking your code. To remove an event listener you must assign a do-nothing function. It's not so easy to add another event listener for the same event.
 
 
 #####DOM-2 :
@@ -59,15 +59,19 @@ The dom99 takes the powerful good parts of the HTML and the DOM-2 way without th
     <input data-99="input-isGoodPassword" type="password" max="64">
     <p data99="click-explode">This is another water-bomb</p>
     
-The above example is expressive, powerful, scalable, simple. And now comes the best part: js99
-js99.js when executed returns an object like this
+The above example is expressive, powerful, scalable, simple. And now comes the best part: js99.js when executed returns an object like this
 
     return Object.freeze({
-        "explode": explode,
+        "explode": explode, //explode is a function
         "isGoodPassword": isGoodPassword
     });
     
 You write the event listener functions before the return, all in one place. Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure:
 
 HTML Document <--> dom99 <--> js99 <--> JavaScript files
+
+
+###operators
+
+todo ...
 

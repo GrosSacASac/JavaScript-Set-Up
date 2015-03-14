@@ -14,8 +14,9 @@ Here is the set up I will be using for my future JavaScript projects. ➳
 
 _insert your own rules here_
  
-I use 4 space to indent
-use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation if you are writing an API/library.
+I use 4 space to indent.
+
+You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation especially if you are writing a big API/library.
 
 
 ##Linting and testing

@@ -23,8 +23,8 @@ let [Player, UnfairPlayer] = (function () {
             let secret = {};
 
             //public members
-            this.name = spec.name;
-            this.hitPoints = spec.hitPoints;
+            {this.name, this.hitPoints} = spec,
+            //not 100% sure if this. unpacking works as expected 
             this.experience = 0; //default value
             this.printCounter = 0;
         }

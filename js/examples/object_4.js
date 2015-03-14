@@ -7,6 +7,7 @@ good:
 * no prototype
 * no real inheritance, only composition that can look similar
 * constructor function are functions again, they simply return a value
+* pure function
 * ad safe compatibility
 
 bad:
@@ -25,8 +26,7 @@ let [player, unfairPlayer] = (function () {
     let player = function (spec) {
         // let for everything
         let secret = {},
-            name = spec.name,
-            hitPoints = spec.hitPoints,
+            {name, hitPoints} = spec,
             experience = 0, //default value
             printCounter = 0;
 
@@ -36,6 +36,7 @@ let [player, unfairPlayer] = (function () {
             return `\n${name}\n${hitPoints}\n${experience}
                     toStringCall = ${printCounter}`;
         };
+        
         let addHitPoints = function (value) {
             hitPoints += value;
         };

@@ -1,16 +1,31 @@
 <html>
 <meta charset="utf-8">
+<link rel="stylesheet" href="css/examples/demo.css">
 
-    <p>Drink water</p>
-    <input data-99="input-alert">
-    <p data-99="click-explode">This is a water-bomb</p>
-    <input data-99="blur-isGoodPassword" type="password" max="64">
-    <p data-99="click-explode">This is another water-bomb</p>
-
+    <p>Drink water</p><br>
+    
+    <main data-99-bind="keyup-calculate">
+        <label for="a">Try it</label><br>
+        <input data-99-var="a" id="a" type="number">
+        <span> X </span>
+        <input data-99-var="b" type="number">
+        <span> = </span>
+        <span data-99-var="result"></span>
+        
+        <br><br>
+        
+        <span data-99-var="result"></span>
+        <span> = </span>
+        <input data-99-var="b" type="number">
+        <span> X </span>
+        <input data-99-var="a" type="number">
+    </main>
+    
+    
 <!-- imported libraries -->
 <script src="js/libraries/imports/ramda.js"></script>
 
-<!-- our libraries -->
+<!-- our libraries compiled to es5 -->
 <script src="js/librarieses5/operators.js"></script>
 <script src="js/librarieses5/js99.js"></script>
 <script src="js/librarieses5/dom99.js"></script>

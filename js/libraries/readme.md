@@ -4,13 +4,13 @@
 ###dom99 and js99
 
 DOM99 will walk the DOM and do an action if an element has an attribute like
-   `<tag data-99="_directive_" > bla bla </tag>`
+   `<tag data-99-_type_="_directive_" > bla bla </tag>`
    
 the directive can do 3 things :
 
-* do as the value of an element is always the same as a js variable and vice-versa(not implemented yet)
-* add an event listener to that element
-* pre load resources for a later use (not implemented yet)
+* data-99-var :  data binding between DOM element and js variable
+* data-99-node : pre-selecting a node for later
+* data-99-bind : add an event listener to that element, that listener can access nodes previously selected as well as compute with live values from data-99-var
 
 that's it, dom99 does nothing more.
 
@@ -55,20 +55,30 @@ DOM-2 is already a lot better but still inherits problems from DOM-0. You are st
 
 The dom99 takes the powerful good parts of the HTML and the DOM-2 way without their bad counterparts. To build your graphical user interface, all you have to do is write 
 
-    <p data-99="click-explode">This is a water-bomb</p>
-    <input data-99="blur-isGoodPassword" type="password" max="64">
-    <p data-99="click-explode">This is another water-bomb</p>
+    <main data-99-bind="keyup-calculate">
+        <label for="a">Try it</label><br>
+        <input data-99-var="a" id="a" type="number">
+        <span> X </span>
+        <input data-99-var="b" type="number">
+        <span> = </span>
+        <span data-99-var="result"></span>
+        
+        <br><br>
+        
+        <span data-99-var="result"></span>
+        <span> = </span>
+        <input data-99-var="b" type="number">
+        <span> X </span>
+        <input data-99-var="a" type="number">
+    </main>
+        
+The above example is expressive, powerful, scalable, simple. And now comes the best part: js99.js. [Try-it](http://rawgit.com/GrosSacASac/JavaScript-Set-Up/master/index.html)
     
-The above example is expressive, powerful, scalable, simple. And now comes the best part: js99.js when executed returns an object like this
+All event listener functions in one place in js99 . Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
 
-    return Object.freeze({
-        "explode": explode, //explode is a function
-        "isGoodPassword": isGoodPassword
-    });
-    
-You write the event listener functions before the return, all in one place. Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
+HTML Document <--> dom99 <--> js99 <--> Pure JavaScript
 
-HTML Document <--> dom99 <--> js99 <--> JavaScript files
+You can execute all dom99 directives at once with `DOM99.linkJsAndDom();` once all your scripts are ready. You can also run it with newly generated elements with `DOM99.linkJsAndDom(startNode);`.
 
 
 ###operators

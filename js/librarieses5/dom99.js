@@ -6,7 +6,9 @@ use DOM99.linkJsAndDom();
     "use strict";
     //it must start with "data-" see
     //https://docs.webplatform.org/wiki/html/attributes/data-*
-    var dom99Prefix = "data-99",
+    var dom99PrefixBind = "data-99-bind",
+        dom99PrefixVar = "data-99-var",
+        dom99PrefixNode = "data-99-node",
         dom99AfterValue = "done";
 
     var walkTheDom = (function (_walkTheDom) {
@@ -56,35 +58,78 @@ use DOM99.linkJsAndDom();
         addEventListener(node, type, tempFunction, useCapture);
     };
 
-    var executeData99Directive = function executeData99Directive(node, directive) {
-        var tokens = directive.split("-");
-        addEventListener(node, tokens[0], JS99[tokens[1]]);
+    var executeData99Bind = function executeData99Bind(node, directiveTokens) {
+        if (JS99[directiveTokens[1]]) {
+            addEventListener(node, directiveTokens[0], JS99[directiveTokens[1]]);
+        } else {
+            throw new Error("Function " + directiveTokens[1] + " not found in JS99");
+        }
     };
 
-    var tryExecuteData99Directive = function tryExecuteData99Directive(node) {
-        if (node.hasAttribute && node.hasAttribute(dom99Prefix) && node.getAttribute(dom99Prefix) !== dom99AfterValue) {
+    var executeData99Var = function executeData99Var(node, directiveTokens) {
+        // two-way bind
 
-            executeData99Directive(node, node.getAttribute(dom99Prefix));
+        if (!Array.isArray(JS99._varListeners_[directiveTokens[0]])) {
+            (function () {
+                var x = undefined; //holds the value
+                JS99._varListeners_[directiveTokens[0]] = [node];
+                Object.defineProperty(JS99._vars_, directiveTokens[0], {
+                    get: function get() {
+                        return x;
+                    },
+                    set: function set(newValue) {
+                        x = newValue;
+                        JS99._varListeners_[directiveTokens[0]].forEach(function (node) {
+                            if (node.value !== undefined) {
+                                node.value = newValue;
+                            } else {
+                                node.textContent = newValue;
+                            }
+                        });
+                    },
+                    enumerable: true });
+            })();
+        } else {
+            JS99._varListeners_[directiveTokens[0]].push(node);
+        }
+
+        JS99._vars_[directiveTokens[0]] = node.value;
+        addEventListener(node, "input", function (event) {
+            JS99._vars_[directiveTokens[0]] = event.target.value;
+        });
+    };
+
+    var executeData99Node = function executeData99Node(node, directiveTokens) {
+        //node that is used in other events
+        if (!JS99._nodes_[directiveTokens[0]]) {
+            JS99._nodes_[directiveTokens[0]] = node;
+        } else {
+            throw new Error("cannot have 2 nodes with the same name");
+        }
+    };
+
+    var tryExecuteData99Directive = function tryExecuteData99Directive(node, prefix, execution) {
+        if (node.hasAttribute(prefix) && node.getAttribute(prefix) !== dom99AfterValue) {
+            execution(node, node.getAttribute(prefix).split("-"));
             //ensure the directive is only executed once
-            node.setAttribute(dom99Prefix, dom99AfterValue);
+            node.setAttribute(prefix, dom99AfterValue);
+        }
+    };
+
+    var tryExecuteData99Directives = function tryExecuteData99Directives(node) {
+        if (node.hasAttribute) {
+            tryExecuteData99Directive(node, dom99PrefixBind, executeData99Bind);
+            tryExecuteData99Directive(node, dom99PrefixVar, executeData99Var);
+            tryExecuteData99Directive(node, dom99PrefixNode, executeData99Node);
         }
     };
 
     var linkJsAndDom = function linkJsAndDom() {
-        walkTheDom(document.body, tryExecuteData99Directive);
+        var startNode = arguments[0] === undefined ? document.body : arguments[0];
+
+        walkTheDom(startNode, tryExecuteData99Directives);
     };
     return Object.freeze({
         linkJsAndDom: linkJsAndDom
     });
 })();
-
-/*usage:
-in html 
-data (must for custom attributes)
-- (token separator)
-99 (confirms that the attribute is for the 99 library)
-input (type of event)
-functionName (the event listener)
-                0     1
-<input data-99="input-alert">
-*/

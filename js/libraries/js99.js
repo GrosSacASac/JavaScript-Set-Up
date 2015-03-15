@@ -1,26 +1,23 @@
 const JS99 = (function () {
     "use strict";
-    const alert99 = function (event) {
-        alert(event.target.value);
+    let _vars_ = {},
+        _varListeners_ = {},
+        _nodes_ = {};
+        
+    //define your event Listener here.
+    //You can use _vars_ and _container_
+    
+    
+    
+    const calculate = function (event) {
+        _vars_["result"] = parseInt(_vars_["a"], 10) * parseInt(_vars_["b"], 10);
     };
     
-    const explode = function (event) {
-        alert("boom");
-    };
-    
-    const isGoodPassword = function (event) {
-        if (event.target.value.length < 8) {
-            alert("this Password is not secure");
-        }
-        //add more rules here ...
-    };
     return Object.freeze({
-        "alert": alert99,
-        "explode": explode,
-        "isGoodPassword": isGoodPassword
+        _vars_,
+        _varListeners_,
+        _nodes_,
+        
+        calculate
     });
 }());
-
-/*usage:
-
-*/

@@ -37,6 +37,7 @@ use DOM99.linkJsAndDom();
         node.addEventListener(type, aFunction, useCapture);
     };
 
+    //not used yet
     var onceAddEventListener = function onceAddEventListener(node, type, aFunction) {
         var useCapture = arguments[3] === undefined ? false : arguments[3];
 
@@ -59,8 +60,12 @@ use DOM99.linkJsAndDom();
     };
 
     var executeData99Bind = function executeData99Bind(node, directiveTokens) {
+        //format: directiveTokens[0] comma separated event types
+        //directiveTokens[1] the name of the function
         if (JS99[directiveTokens[1]]) {
-            addEventListener(node, directiveTokens[0], JS99[directiveTokens[1]]);
+            directiveTokens[0].split(",").forEach(function (eventType) {
+                addEventListener(node, eventType, JS99[directiveTokens[1]]);
+            });
         } else {
             throw new Error("Function " + directiveTokens[1] + " not found in JS99");
         }

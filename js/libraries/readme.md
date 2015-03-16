@@ -72,7 +72,15 @@ The dom99 takes the powerful good parts of the HTML and the DOM-2 way without th
         <input data-99-var="a" type="number">
     </main>
         
-The above example is expressive, powerful, scalable, simple. And now comes the best part: js99.js. [Try-it](http://rawgit.com/GrosSacASac/JavaScript-Set-Up/master/index.html)
+The above example is expressive, powerful, scalable, simple. [Try-it](http://rawgit.com/GrosSacASac/JavaScript-Set-Up/master/index.html). It uses `data-99-var` and `data-99-bind`. The first input always has the same value as the last, because they share the same variable "a". The `main` element  makes sure that whenever there is a `keyup` event the calculate function is called. 
+
+######calculate(event)
+
+    const calculate = function (event) {
+        _vars_["result"] = parseInt(_vars_["a"], 10) * parseInt(_vars_["b"], 10);
+    };   
+    
+And now comes the best part: js99.js. 
     
 All event listener functions in one place in js99 . Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
 

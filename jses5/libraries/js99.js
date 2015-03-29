@@ -1,9 +1,11 @@
-const JS99 = (function () {
+"use strict";
+
+var JS99 = (function () {
     "use strict";
-    let vars = {},
+    var vars = {},
         varListeners = {},
         nodes = {};
-        
+
     /* 
       You can use JS99.vars and JS99.nodes in your program
       varListeners contains arrays of nodes , each array contains all nodes
@@ -22,11 +24,11 @@ const JS99 = (function () {
       
       You can define your event Listener here for small experiments.
     */
-    
+
     /*change multiple vars at once. Shortcut function
     example
     
-        JS99.changeVars({
+        JS99.change({
             a: "3",
             b: "1",
             c: "always a string"
@@ -39,19 +41,21 @@ const JS99 = (function () {
         JS99.vars.c = "always a string";
     
     */
-    const changeVars = function (details) {
-        let key;
-        for (key of Object.keys(details)) {
+    var change = function change(details) {
+        var key = undefined;
+        for (var _iterator = Object.keys(details)[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
+            key = _step.value;
+
             if (vars.hasOwnProperty(key)) {
                 vars[key] = details[key];
             }
         }
     };
-    
+
     return {
-        vars,
-        varListeners,
-        nodes,
-        changeVars
+        vars: vars,
+        varListeners: varListeners,
+        nodes: nodes,
+        change: change
     };
-}());
+})();

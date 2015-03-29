@@ -34,7 +34,7 @@ HTML tests (Do these 3 html tests only after your html has changed significantly
 
 [Performance](http://yslow.org/)
 
-
+GUI test with [gremlins.js](https://github.com/marmelab/gremlins.js)
 
 ##Work flow
 

@@ -55,7 +55,7 @@ DOM-2 is already a lot better but still inherits problems from DOM-0. You are st
 
 The dom99 takes the powerful good parts of the HTML and the DOM-2 way without their bad counterparts. To build your graphical user interface, all you have to do is write 
 
-    <main data-99-bind="keyup-calculate">
+    <main data-99-bind="keyup,click-calculate">
         <label for="a">Try it</label><br>
         <input data-99-var="a" id="a" type="number">
         <span> X </span>
@@ -77,12 +77,12 @@ The above example is expressive, powerful, scalable, simple. [Try-it](http://raw
 ######calculate(event)
 
     const calculate = function (event) {
-        _vars_["result"] = parseInt(_vars_["a"], 10) * parseInt(_vars_["b"], 10);
-    };   
+        JS99.vars.result = parseInt(JS99.vars.a, 10) * parseInt(JS99.vars.b, 10);
+    }; 
     
-And now comes the best part: js99.js. 
+JS99 is the global object where you store event listeners. DOM99 will use what it finds in JS99 to add the event listeners. 
     
-All event listener functions in one place in js99 . Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
+All event listener functions in one place just before linking them with the document. Reuse other event listener functions effectively that way. The object returned by js99 is then used by dom99. Here's a figure that shows how components are coupled together:
 
 HTML Document <--> dom99 <--> js99 <--> Pure JavaScript
 

@@ -91,5 +91,20 @@ You can execute all dom99 directives at once with `DOM99.linkJsAndDom();` once a
 
 ###operators
 
-to do ...
+operators.js produces a global F
 
+F contains binary operators as function.
+
+####Why ?
+
+Sometimes you want to pass a function to another function. In JavaScript you can't pass an operator at that moment. But you can pass that operator equivalents function in an anonymous form. The problem is that it doesn't scale well in some situation: The same function maybe created multiple times across your program.
+
+####Example
+
+    var li = [1,2,3,4,5,6,7],
+        li2 = li.reduce(F["+"], 0);
+    console.log(li2); // --> the sum
+
+####What operators are defined as function ?
+
+    +, -, *, /, **, ===

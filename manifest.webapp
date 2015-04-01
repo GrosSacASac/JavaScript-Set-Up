@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "name": "NAME",
+    "short_name": "",
+    "description": "",
+    "launch_path": "",
+    "start_url": "",
+    "icons": {
+        "16": "/images/icons/16.png",
+        "32": "/images/icons/32.png",
+    }, 
+    "developer": {
+        "name": "Walle Cyril",
+        "url": "https://github.com/GrosSacASac"
+    },
+    "lang":"",
+    "default_locale": "",
+    "fullscreen": "true",
+    "appcache_path": "",
+    "orientation": ["portrait"]
+}

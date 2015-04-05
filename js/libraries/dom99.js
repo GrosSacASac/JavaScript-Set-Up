@@ -108,7 +108,12 @@ const DOM99 = (function () {
     const linkJsAndDom = function (startNode=document.body) {
         walkTheDom(startNode, tryExecuteData99Directives);
     };
+    
+    const doTranslations = function (startNode=document.body) {
+        ;
+    };
     return Object.freeze({
-        linkJsAndDom
+        linkJsAndDom,
+        doTranslations
     });
 }());

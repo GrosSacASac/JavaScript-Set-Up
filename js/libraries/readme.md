@@ -1,7 +1,7 @@
-##Libraries
+#Libraries
 
 
-###dom99 and js99
+##dom99 and js99
 
 DOM99 will walk the DOM and do an action if an element has an attribute like
    `<tag data-99-_type_="_directive_" > bla bla </tag>`
@@ -89,7 +89,7 @@ HTML Document <--> dom99 <--> js99 <--> Pure JavaScript
 You can execute all dom99 directives at once with `DOM99.linkJsAndDom();` once all your scripts are ready. You can also run it with newly generated elements with `DOM99.linkJsAndDom(startNode);`.
 
 
-###operators
+##operators
 
 operators.js produces a global F
 
@@ -97,7 +97,7 @@ F contains binary operators as function.
 
 ####Why ?
 
-Sometimes you want to pass a function to another function. In JavaScript you can't pass an operator at that moment. But you can pass that operator equivalents function in an anonymous form. The problem is that it doesn't scale well in some situation: The same function maybe created multiple times across your program.
+Sometimes you want to pass a function to another function. In JavaScript you can't pass an operator at that moment. But you can pass that operator equivalents function in an anonymous form. The problem is that it doesn't scale well in some situation: The same function maybe created multiple times across your program. You have to rewrite it multiple times.
 
 ####Example
 

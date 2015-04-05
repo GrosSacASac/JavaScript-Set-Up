@@ -15,12 +15,13 @@ bad:
 * at the end we have an instance + singleton but we only really want the instance
 * if we want the singleton to be created with arguments we have to
 * pipeline parameters trough getInstance, then init, and not at the top
+* iternally the instance is not a const
 
 conclusion:
 * hard to read
 * and taking advantage of the good points is rare in practice 
 */
-let game = (function () {
+const game = (function () {
     "use strict";
     
     // reference to the singleton
@@ -62,6 +63,6 @@ let game = (function () {
 }());
 
 /*usage:
-game1 = game.getInstance();
-game.setScore(30);
+const game1 = game.getInstance();
+game1.setScore(30);
 */

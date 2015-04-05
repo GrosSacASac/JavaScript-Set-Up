@@ -2,11 +2,12 @@
 good:
 * simple
 * elegant flow : we create everything, then expose some, that's it !
-* at any point of time we have access to everything we need and nothing
+* at any point of time we have access to everything we need and nothing more
 * closed to change, open to extension
 
 bad:
 * no delayed creation
+* cannot change or add behavior later on
 
 conclusion:
 * elegant solution

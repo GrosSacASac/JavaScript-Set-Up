@@ -19,7 +19,7 @@ conclusion:
 * bad for the rest
 */
 "use strict";
-game = {
+const game = {
     score: 0,
     setScore: function (newScore) {
         this.score = newScore;

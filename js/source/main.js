@@ -15,10 +15,18 @@
     // 2 store event handlers in JS99
     JS99.calculate = calculate;
     
-    // 3 Link the document and the event handlers
+    // 3 do the translations
+    /* aquire the wanted lang in #en from the URL
+       defaults to the user's own locale 
+    if (location.hash) {
+        location.hash.substr(1);	
+    }*/
+    DOM99.doTranslations();
+    
+    // 4 Link the document and the event handlers
     DOM99.linkJsAndDom(); //now we listen to events
 
-    // 4 initialize
+    // 5 initialize
     JS99.changeVars({
         a: String(2),
         b: String(4),

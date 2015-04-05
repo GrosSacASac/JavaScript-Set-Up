@@ -8,7 +8,7 @@ This specification defines tools, systems and good practices in the globalizatio
 
 ##Status of This document
 
-* version: 0.0.1
+* version: 0.0.2
 * English
 
 
@@ -18,14 +18,14 @@ todo:built the table of content
     
 ##Audience
 
-This text is for a computer programmer, translators or any person involved with a global product.
+This text is for software developers, translators or any person involved with a global product.
 
 To understand the entirety of this document, one is can help to know at least two natural language, semantics, basic natural language processing, culture shock, character encoding.
 
 
 ##Introduction
 
-todo
+Globalization enables us to make a program available for the world, this is good, the bad parts is that it can take a long time to internationalize a given program. That's why you should handle internationalization from the very beginning with the best practices and tools described in this document.
 
 
 ###Definitions
@@ -95,13 +95,13 @@ I have to __browse__ the core source code to edit strings.
 
 No literal magic any more.
 
-    age_of_majority = 18
-    question_age = "How old are you ? "
+    age_of_majority_in_years = 18
+    question_age_in_years = "How old are you ? "
     majority_yes = "You are in the age of a majority."
     majority_not = "You are not in the age of a majority."
     
-    age = int(input(question_age))
-    if age < age_of_majority:
+    age = int(input(question_age_in_years))
+    if age < age_of_majority_in_years:
         print(majority_not)
     else:
         print(majority_yes)
@@ -111,13 +111,13 @@ I have to create a copy of the source code for each locale.
 
 #####1.2
 
-Now we have two files. The translator now only has to change locale.py. Now the business logic and the interface are truly separated. The `age_of_majority` is also moved because it is a cultural variable. 
+Now we have two files. The translator now only has to change locale.py. Now the business logic and the interface are truly separated. The `age_of_majority_in_years` is also moved because it is a cultural variable. 
 
 
 ######localeEn.py
 
-    age_of_majority = 18
-    question_age = "How old are you ? "
+    age_of_majority_in_years = 18
+    question_age_in_years = "How old are you ? "
     majority_yes = "You are in the age of a majority."
     majority_not = "You are not in the age of a majority."
     
@@ -126,8 +126,8 @@ Now we have two files. The translator now only has to change locale.py. Now the 
 
     import localeEn as L
     
-    age = int(input(L.question_age))
-    if age < L.age_of_majority:
+    age = int(input(L.question_age_in_years))
+    if age < L.age_of_majority_in_years:
         print(L.majority_not)
     else:
         print(L.majority_yes)
@@ -142,8 +142,8 @@ Now we have three files. The program, the locale and the interface between these
 
 ######localeEn.py
 
-    age_of_majority = 18
-    question_age = "How old are you ? "
+    age_of_majority_in_years = 18
+    question_age_in_years = "How old are you ? "
     majority_yes = "You are in the age of a majority."
     majority_not = "You are not in the age of a majority."
     
@@ -159,8 +159,8 @@ Now we have three files. The program, the locale and the interface between these
 
     from locales import localize as L
     
-    age = int(input(L("question_age")))
-    if age < L("age_of_majority"):
+    age = int(input(L("question_age_in_years")))
+    if age < L("age_of_majority_in_years"):
         print(L("majority_not"))
     else:
         print(L("majority_yes"))
@@ -181,8 +181,8 @@ The locales.py interface takes care of compiling majority_yes and others to basi
 
 ######localeEn.py
     
-    age_of_majority = 18
-    question_age = "How old are you ? "
+    age_of_majority_in_years = 18
+    question_age_in_years = "How old are you ? "
     
     majority = "You are{"bool":[" not"]} in the age of a majority."
     
@@ -201,10 +201,34 @@ The locales.py interface takes care of compiling majority_yes and others to basi
 
     from locales import localize as L
     
-    age = int(input(L("question_age")))
-    if age < L("age_of_majority"):
+    age = int(input(L("question_age_in_years")))
+    if age < L("age_of_majority_in_years"):
         print(L("majority_not"))
     else:
         print(L("majority_yes"))
     
+Looks good right ? But in some culture the majority is not decided by age, so what do we do ? This should be explicitly decided in the specification. The new specification is 1 Ask age, 2 inform whether the user __could__ be in the age of majority. Even further, we ask the age in years, but what if this unit to measure time is different ? What if the majority is modular ( you gain rights and musts continuously) ? That is why the translator must have access to the specification, and must get attention when the specification is not precise enough.
 
+
+###Golden Rules
+
+The same way, writing tests for a program can ensure long term progressive quality, these golden rules will ensure smooth globalization.
+
+* Abstract away language, region and culture specific details from the main program.
+* Translators must have access to a functional specification they understand.
+* Translators must have enough context information to do translations without ambiguity.
+* Work flow is not blocked by missing localized content.
+* For user-input evaluation use appropriate normalization techniques.
+* Presentation does not assume text size.
+* Normalize everything that comes in and localize everything that comes out.
+
+
+##External links
+
+* https://www.gnu.org/software/gettext/manual/gettext.html
+* http://www.w3.org/standards/webdesign/i18n
+* http://www.gala-global.org/why-localize
+* http://www.i18nguy.com/
+* https://msdn.microsoft.com/en-us/library/cc194756.aspx
+
+###Globalization frameworks

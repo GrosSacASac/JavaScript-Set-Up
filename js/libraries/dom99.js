@@ -48,7 +48,7 @@ const DOM99 = (function () {
         
         if (!JS99.varListeners[directiveTokens[0]] ||
             !Array.isArray(JS99.varListeners[directiveTokens[0]])) {
-            let x; //holds the value
+            let x; // holds the value
             JS99.varListeners[directiveTokens[0]] = [node];
             Object.defineProperty(JS99.vars, directiveTokens[0], {
                 get: function () {
@@ -80,7 +80,7 @@ const DOM99 = (function () {
     };
     
     const executeData99Node = function (node, directiveTokens) {
-        //node that is used in other events
+        // node that is used in other events
         if (!JS99.nodes[directiveTokens[0]]) {
             JS99.nodes[directiveTokens[0]] = node;
         } else {
@@ -92,7 +92,7 @@ const DOM99 = (function () {
         if (node.hasAttribute(prefix) &&
             node.getAttribute(prefix) !== dom99AfterValue) {
             execution(node, node.getAttribute(prefix).split("-"));
-            //ensure the directive is only executed once
+            // ensure the directive is only executed once
             node.setAttribute(prefix, dom99AfterValue);
         }
     };

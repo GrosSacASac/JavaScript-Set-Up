@@ -256,7 +256,7 @@ JSON format is well suited for data with massive key-value pairs, it is usable b
 
     {
       "[number]Age of majority in years": "18",
-      "How old are you ? ": "not",
+      "How old are you ? ": "How old are you ? ",
       "majority": "You are{'bool':[' not']} in the age of a majority.",
       
       "You are in the age of a majority.": {
@@ -302,8 +302,11 @@ As a translator you should read the specification of the format. These specifica
 #####Gettext
 
 comments are preceeded by #
+
 the key is left to msgid
+
 the value is left to msgstr
+
 
     # comments
     msgid "This sentence must be translated."
@@ -312,8 +315,11 @@ the value is left to msgstr
 #####PIIG
 
 comments are in the key in angle brackets ([ ])
+
 the key is before the colon (:)
+
 the value is after the colon
+
 where before is up and left
 
     {

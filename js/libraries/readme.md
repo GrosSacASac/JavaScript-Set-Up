@@ -72,7 +72,7 @@ The dom99 takes the powerful good parts of the HTML and the DOM-2 way without th
         <input data-99-var="a" type="number">
     </main>
         
-The above example is expressive, powerful, scalable, simple. [Try-it](http://rawgit.com/GrosSacASac/JavaScript-Set-Up/master/index.html). It uses `data-99-var` and `data-99-bind`. The first input always has the same value as the last, because they share the same variable "a". The `main` element  makes sure that whenever there is a `keyup` event the calculate function is called. 
+The above example is expressive, powerful, scalable, simple. [Try-it](http://rawgit.com/GrosSacASac/JavaScript-Set-Up/master/index.html). It uses `data-99-var` and `data-99-bind`. The first input always has the same value as the last, because they share the same logical variable "a". The `main` element  makes sure that whenever there is a `keyup` event the calculate function is called. 
 
 ######calculate(event)
 
@@ -88,6 +88,9 @@ HTML Document <--> dom99 <--> js99 <--> Pure JavaScript
 
 You can execute all dom99 directives at once with `DOM99.linkJsAndDom();` once all your scripts are ready. You can also run it with newly generated elements with `DOM99.linkJsAndDom(startNode);`.
 
+###known issues, warning:
+
+having data-99-var="x" and data-99-bind="keyup,click-functionThatUsesX" can have the funtion use the old x value then updating x.
 
 ##operators
 

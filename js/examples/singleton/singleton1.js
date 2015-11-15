@@ -6,7 +6,7 @@ good:
 * this may help save memory before we use it 
 * especially if we need to define the singleton long before using it
 * (note that good js engines can optimize out such things in the other 
-* singleton techniques by temporarly generating equivalent code)
+* singleton techniques by temporary generating equivalent code)
 * can be extended with special sublassing techniques (not recommended)
 * the singleton could contain metadata in at the right place
 
@@ -15,7 +15,7 @@ bad:
 * at the end we have an instance + singleton but we only really want the instance
 * if we want the singleton to be created with arguments we have to
 * pipeline parameters trough getInstance, then init, and not at the top
-* iternally the instance is not a const
+* internally the instance is not a const
 
 conclusion:
 * hard to read

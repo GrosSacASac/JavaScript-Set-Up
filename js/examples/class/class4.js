@@ -5,10 +5,9 @@ good:
 * immutability
 * no side effect
 * no prototype
-* no real inheritance, only composition that can look similar
+* no real inheritance, only composition 
 * constructor function are functions again, they simply return a value
 * pure function
-* ad safe compatibility ?
 
 bad:
 * each method is created again for each instance, do not use for a massive number of instance > 1000?0

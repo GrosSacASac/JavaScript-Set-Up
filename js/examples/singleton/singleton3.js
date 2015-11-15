@@ -7,7 +7,6 @@ good:
 
 bad:
 * no delayed creation
-* cannot change or add behavior later on
 
 conclusion:
 * elegant solution

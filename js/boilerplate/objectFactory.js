@@ -1,6 +1,6 @@
 /* description
 */
-const class1 = function (spec) {
+const objectFactory = function (spec) {
     "use strict";
 
     let x;

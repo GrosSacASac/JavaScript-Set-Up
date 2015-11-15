@@ -10,7 +10,8 @@ All my example fill the minimal requirements to be called a class or a singleton
 
 ###Preferences
 
-* Simple > Complex
-* Singleton > Class
-* Composition > Inheritance
+* Simple
 * Open to extension, closed to change
+* Scales well
+* Intuitive
+* Secure

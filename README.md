@@ -2,31 +2,29 @@
 
 Here is the set up I will be using for my future JavaScript projects. ➳
 
-You may need [babel](http://babeljs.io/).
 
 
 ##Libraries
 
-[Ramda](https://github.com/ramda/ramda)
+[Ramda](https://github.com/ramda/ramda) Functional JavaScript
+[DOM99](https://github.com/GrosSacASac/DOM99) UI
 
 
 
 ##Conventions
 
-_insert your own rules here_
- 
-I use 4 space to indent.
+use lint rules that everyone uses
 
-You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation especially if you are writing a big API/library.
+You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation .
 
 
 ##Linting and testing
 
-JavaScript linting with [JSLint](https://github.com/douglascrockford/JSLint)
+JavaScript linting
 
 JavaScript tests with [Jasmine](https://github.com/jasmine/jasmine). You have to write tests yourself.
 
-HTML tests (Do these 3 html tests only after your html has changed significantly.)
+HTML tests 
 
 [Basic syntax](http://validator.w3.org/)
 
@@ -34,7 +32,7 @@ HTML tests (Do these 3 html tests only after your html has changed significantly
 
 [Performance](http://yslow.org/)
 
-GUI test with [gremlins.js](https://github.com/marmelab/gremlins.js)
+Random UI test with [gremlins.js](https://github.com/marmelab/gremlins.js)
 
 ##Work flow
 
@@ -49,43 +47,43 @@ How is it going to work ? Business strategy ? Hobby ?
 
 You can win a lot of time here, because changing the specification is easier than changing code. Writing the specification documents will force you to think about use scenarios and edge case before you write code. That saves a lot of code edits.
 
+Draw screens like a comic with arrows and stuff.
+(Screen 1, User clicks there, this popup happens etc etc)
+
 
 ###Before you start
 
-* Open all documentation you need
+* Open documentation
 
-Pro tip: instead of opening the documentation manually every time, save all in a bookmark folder, that way you can open it all with 1 click. Another tip you can save some documentation on a local storage, to open it very fast and off-line too. 
 ([rambda](http://ramdajs.com/docs/),
 [jasmine-test](http://jasmine.github.io/edge/introduction.html),
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects),
-[JavaScript+](http://babeljs.io/docs/learn-es6/),
-[HTML and DOM](https://developers.whatwg.org/),
-[jslint errors](http://jslinterrors.com/))
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
+[HTML and DOM](https://developers.whatwg.org/)
 
-* Chose a good productive text editor
+* Chose a good productive text editor/IDE
 
-* Configure your keyboard with macros, you should be able to write `function () {}` and `if () {}` with only one key press.
+* Configure your keyboard with macros
 
 ###Cycle
 
-1. Discuss and Think (what, why, how, to do)
+1. Discuss and Think (what, why, how)
 2. Edit code
-3. Write tests that run against new code written if it makes sense
-4. [JSlint](http://new.jslint.com/jslint.html), go to 2 if errors or warning
+3. Write tests that run against new code written if that makes sense
+4. Lint
 5. Check the [checklist](checklist.md)
 6. Commit your changes
 7. Drink water
-8. Pause at least 5 minutes (no screen, walk)
-9. Repeat
+8. Pause at least 5 minutes (no screens, walk, breath)
 
 
 ###End/Production
 
 Optimize, decorate, enhance
 
-In a Web Application, think about minifying files, and off-line scenarios
+Minify files, build bundles, browserify.
 You can include minifying in the cycle if you and your team knows about source maps.
 
+[Babel](http://babeljs.io/) for transpiling.
 
 
 ##Are you completely new to JavaScript ?
@@ -109,12 +107,5 @@ This project is free and open source. [See License](LICENSE.txt)
 
 _imported programs_ however, may have other licenses:
 
-[Ramda license (MIT)](https://github.com/ramda/ramda/blob/master/LICENSE.txt)
-
 [Jasmine license (MIT)](https://github.com/jasmine/jasmine/blob/master/MIT.LICENSE)
-
-[JSLint license (MIT)](https://github.com/douglascrockford/JSLint)
-
-[Normalize.css (MIT)](https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
-
 

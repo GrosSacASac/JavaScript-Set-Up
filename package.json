@@ -1,0 +1,11 @@
+{
+  "description": "description",
+  "license": "CC0-1.0",
+  "name": "name",
+  "version": "1.0.0",
+  "dependencies": {
+    "ramda": "x",
+    "dom99": "x",
+    "jasmine": "x"
+  }
+}

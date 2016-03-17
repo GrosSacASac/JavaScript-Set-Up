@@ -6,7 +6,7 @@ const singleton1 = (function () {
     let x;
     
     
-    return {
+    return Object.freeze({
         
-    };
+    });
 }());

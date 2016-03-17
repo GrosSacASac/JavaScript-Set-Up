@@ -1,1 +1,0 @@
-Intl.NumberFormat("ar").format(10000000000000.15);

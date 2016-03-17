@@ -1,4 +1,5 @@
-const F = (function () {
+//operators.js
+export default(function () {
     "use strict";
     return {
         '+': function (a, b) {

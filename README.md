@@ -1,6 +1,11 @@
 ##Hello
 
-Here is the set up I will be using for my future JavaScript projects. ➳
+###Note
+
+This document is not 100% up to date, but most tips are still relevant.
+
+
+Set up for JavaScript projects. ➳
 
 
 

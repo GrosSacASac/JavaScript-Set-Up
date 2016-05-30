@@ -19,11 +19,6 @@ bad:
 * store class wide methods as constructors field, which is uncommon practice (it works because functions are objects)
 
 conclusion:
-* this will cause the least bugs, private variables and public members are exactly identified,
-* to edit a property in the  instance  pass new specifications to the constructor and forget the old instance see [1]
-* __or__ define getter + setter in the public exposure [2], makes composition harder
-* __or__ do not use Object.freeze and directly erase [3] WARNING: doing so will make your program less explicit, less pure, more error prone, harder to debug.
-* note because constructor are like normal function and do not require new write them like normal function first letter small caps
 * 
 */
 
@@ -43,7 +38,7 @@ let [Player, unfairPlayer] = (function () {
         };
     };
 
-    Player.toString = function (player) {
+    Player.toString = function (player) { // explicit instance parameter
         player.printCounter += 1;
         return `\n${player.name}\n${player.hitPoints}\n${player.experience}
                 toStringCall = ${player.printCounter}`;

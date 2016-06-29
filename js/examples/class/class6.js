@@ -16,7 +16,8 @@ good:
 
 bad:
 
-* store class wide methods as constructors field, which is uncommon practice (it works because functions are objects)
+* A class is at least an object with a "create" property that points to a function.
+* Makes the class defintion slightly heavier for very small classes
 
 conclusion:
 * 
@@ -24,7 +25,9 @@ conclusion:
 
 let [Player, UnfairPlayer] = (function () {
     "use strict";
-    let Player = function (constructorParameters) {
+    let Player = {};
+    
+    Player.create = function (constructorParameters) {
         //no privates
         let {name, hitPoints} = constructorParameters,
             experience = 0, // default value
@@ -45,8 +48,10 @@ let [Player, UnfairPlayer] = (function () {
     };
     
 
-    let UnfairPlayer = function (constructorParameters) {
-        let thisPlayer = Player(constructorParameters);
+    let UnfairPlayer = {};
+    
+    UnfairPlayer.create = function (constructorParameters) {
+        let thisPlayer = Player.create(constructorParameters);
 
         thisPlayer.hitPoints *= 2;
         
@@ -63,7 +68,7 @@ let [Player, UnfairPlayer] = (function () {
 
 /*Example*/
 // Create:
-let player1 = Player({name: "Gru", hitPoints: 100});
+let player1 = Player.create({name: "Gru", hitPoints: 100});
 // Use:
 console.log(Player.toString(player1));
 player1.hitPoints += -50; //ouch ! //[2]
@@ -72,7 +77,7 @@ player1.hitPoints += -50; //ouch ! //[2]
 console.log(Player.toString(player1));
 
 // Create:
-let player2 = UnfairPlayer({name: "Lord Zoo", hitPoints: 100});
+let player2 = UnfairPlayer.create({name: "Lord Zoo", hitPoints: 100});
 // Use:
 console.log(UnfairPlayer.toString(player2));
 player2.hitPoints += 20; //water is good !

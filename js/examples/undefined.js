@@ -41,12 +41,10 @@ toTest.push((function () {}()));
 const arrayWithEmptySlots = new Array(5);
 toTest.push(arrayWithEmptySlots[0]);
 // or 
-toTest.push((Array(1))[0]); // 1liner
+toTest.push((Array(1))[0]); // 1liner, new is not needed
 
 
 //7 are there other ways ?
 
 /*Now tests the results*/
-console.log("all above should be true: " + toTest.every(function (maybeUndefined) {
-    return isUndefinedSafe(maybeUndefined);
-})); // should print true
+console.log("all above should be true: " + toTest.every(isUndefinedSafe)); // should print true

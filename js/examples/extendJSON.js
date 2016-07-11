@@ -46,5 +46,5 @@ const stringifiedObject = JSONX.stringify(originalObject);
 
 const newObject = JSONX.parse(stringifiedObject);
 
-console.log(originalObject, newObject);
+console.log(originalObject, newObject);//compare by inspecting in console
 

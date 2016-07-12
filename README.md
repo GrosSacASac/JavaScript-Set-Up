@@ -25,7 +25,9 @@ You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate docum
 
 ##Linting and testing
 
-JavaScript linting
+JavaScript linting,
+
+make sure objects are what you think with https://github.com/sbansal6/schema-enforcer or Typescript.
 
 JavaScript tests with [Jasmine](https://github.com/jasmine/jasmine). You have to write tests yourself.
 
@@ -110,7 +112,6 @@ Learn how JavaScript work first, then come back. Here are some good links:
 
 This project is free and open source. [See License](LICENSE.txt)
 
-_imported programs_ however, may have other licenses:
+other project mentioned here, may have other licenses
 
-[Jasmine license (MIT)](https://github.com/jasmine/jasmine/blob/master/MIT.LICENSE)
 

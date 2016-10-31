@@ -12,7 +12,7 @@ const listFromSet2 = function (aSet) {
     return Array.from(aSet);
 };
 
-const listFromSet3 = Array.from; //best
+const listFromSet3 = Array.from;
 
 let s = new Set();
 

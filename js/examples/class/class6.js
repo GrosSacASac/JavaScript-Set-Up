@@ -13,6 +13,7 @@ good:
 * you can store the methods in other variables, because it doesn t depend on the this
 * compatible with high order functions
 * explicit hierarchies
+* class methods and instance custom function member are explicitly different in the calling programm
 
 bad:
 

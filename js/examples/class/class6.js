@@ -14,11 +14,15 @@ good:
 * compatible with high order functions
 * explicit hierarchies
 * class methods and instance custom function member are explicitly different in the calling program
+* can be transfered as JSON over the network with no additional overhead
 
 bad:
 
 * A class is at least an object with a "create" property that points to a function.
 * Makes the class defintion slightly heavier for very small classes
+* Is not a widely used technique in legacy code. And sometimes it is better to use the original style 
+
+to recognize that an instance is from a particular Object we can add the is function to the class. It can check all required properties or a special internal _is field.
 
 conclusion:
 * 

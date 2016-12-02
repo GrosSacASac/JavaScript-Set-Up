@@ -44,3 +44,5 @@ elseIfObject[boolean1]();
 /*if else using function*/
 
 /*if else using switch*/
+
+/*if else using ? : operator*/

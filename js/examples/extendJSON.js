@@ -48,3 +48,4 @@ const newObject = JSONX.parse(stringifiedObject);
 
 console.log(originalObject, newObject);//compare by inspecting in console
 
+//addtional tips: don't use JSONP! it violates the principle : don't trust what you don't control

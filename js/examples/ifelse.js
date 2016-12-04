@@ -45,4 +45,8 @@ elseIfObject[boolean1]();
 
 /*if else using switch*/
 
-/*if else using ? : operator*/
+/*if else using ? : operator
+result becomes a if input is truethy and b otherwise
+this can be abused by putting a function call instead of a and b effectively
+ making it a full if else statement equivalent*/
+const result = input ? a: b;

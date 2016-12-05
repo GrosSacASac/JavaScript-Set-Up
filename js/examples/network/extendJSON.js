@@ -1,4 +1,6 @@
-/*how to extend JSON ?*/
+/*how to extend JSON ? by example
+
+Atomic WARNING: do not do this at home !*/
 "use strict";
 
 
@@ -16,7 +18,7 @@ JSONX.parse = function (JSONXString) {
     return JSON.parse(JSONXString, function(key, value) {
         //this is a safe check as JSON parse does not produce string wrapped into objects
         if (typeof value === "string" && value.startsWith("function (")) {
-            return eval(`(${value})`);
+            return eval(`(${value})`); // could use new Function ?
         }
         
         return value; // no special extra parsing

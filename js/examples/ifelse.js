@@ -41,7 +41,10 @@ elseIfObject[boolean1]();
 
 //...
 
-/*if else using function*/
+/*if else using || and && and function wrap*/
+
+((boolean1 && (function () {/*statements1;*/}())) ||/*else*/
+    (function () {/*statements2;*/}()))
 
 /*if else using switch*/
 
@@ -50,3 +53,5 @@ result becomes a if input is truethy and b otherwise
 this can be abused by putting a function call instead of a and b effectively
  making it a full if else statement equivalent*/
 const result = input ? a: b;
+
+

@@ -9,9 +9,9 @@ good:
 * "constructor" function are pure 
 * compatible with object pools
 * scales well
-* methods can be pure functions
-* you can store the methods in other variables, because it doesn t depend on the this
-* compatible with high order functions
+* methods can be pure functions or mutating functions
+* you can store the methods in other variables, because it doesn't depend on the this
+* compatible with high order functions. Factory pattern for free
 * explicit hierarchies
 * class methods and instance custom function member are explicitly different in the calling program
 * can be transferred as JSON over the network with no additional overhead

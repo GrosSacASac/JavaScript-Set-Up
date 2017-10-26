@@ -1,5 +1,6 @@
 //operators.js
-export default(function () {
+// Also look at the Reflect API
+export default (function () {
     "use strict";
     return {
         '+': function (a, b) {

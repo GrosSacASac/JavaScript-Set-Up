@@ -8,9 +8,10 @@ good:
 bad:
 * no delayed creation
 * need to explicitly use shared variables inside
+* complexity for privates variables
 
 conclusion:
-* elegant solution, to avoid getters and setters everywhere
+* elegant solution, to avoid getters and setters everywhere, while having private
 */
 const game = (function () {
     "use strict";

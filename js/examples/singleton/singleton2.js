@@ -4,6 +4,7 @@ good:
 * 
 
 bad:
+* not delayed
 * uses this
 * forcing us to use apply, bind or => techniques to nest function depending
 * on this

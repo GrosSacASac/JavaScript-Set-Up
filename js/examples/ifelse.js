@@ -41,6 +41,15 @@ elseIfObject[boolean1]();
 
 //...
 
+/*if else using || and && for assignement*/
+
+const user = (users && users[0]) || null;
+const variable = (condition && ifThing) || ElseThing;
+
+/*if else using || and && with function*/
+
+((boolean1 && functionIf()) || functionElse ());
+
 /*if else using || and && and function wrap*/
 
 ((boolean1 && (function () {/*statements1;*/}())) ||/*else*/

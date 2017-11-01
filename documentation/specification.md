@@ -1,11 +1,4 @@
-##Goal
+# Goal
 
-Have a generic directory for starting fast when writing html+js programs
+Notes, examples, templates, tips, links for web dev.
 
-##How
-
-* package.json usable with npm
-* examples
-* boilerplates
-* links
- 

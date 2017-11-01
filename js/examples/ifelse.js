@@ -63,4 +63,6 @@ this can be abused by putting a function call instead of a and b effectively
  making it a full if else statement equivalent*/
 const result = input ? a: b;
 
+// switch 
+
 

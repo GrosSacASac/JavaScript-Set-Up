@@ -1,0 +1,83 @@
+# SVG
+
+## Embed
+
+ * <iframe>
+ * <img>
+ * css background image
+ * <svg> inline inside html
+    does not require xmlns
+ 
+## Definitions
+
+<svg> root element
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 128 128"
+        in this order defines startX, startY, width(x) and height(y).
+        same as x="" y="" width="" height=""
+
+<g> group element
+    usefull to group and apply collevtive tranforms
+    cannot apply transforms on nested <svg> itself
+    
+    transform="rotate(45 50 50)"
+        degree, x, y
+    style="stroke: #0000ff; stroke-width: 4px; fill: #ff0000"
+        inherited style
+
+<rect> rectangle
+    x, y means width, height
+    rx, ry for rounding
+    rx only is shortcut for rx=ry=value
+
+<circle> circle
+    cx, cy means centerX, centerY
+    r for Radius
+    
+<ellipse> a bit like circle
+    r is replaced by rx and ry
+
+<line>
+    x1, x2, y1, y2
+
+<polyline> similar to line
+    will create a line also between last and first point
+    however the implicit line is not stroke
+    but it is possible to force it by putting first and last point the same
+    or use <polygon>
+    and fill the figure
+    
+    points="0,0  30,0  15,30"
+    like x1, y1 x2, y2 x3, y3
+
+<polygon>
+    connects last point to the first
+    rest is the same as <polyline>
+
+<path>
+    d=""
+    
+<desc> description
+
+style attribute
+    use none for no color (transparent)
+    stroke: #0000ff
+    stroke-width: 4px
+    stroke-dasharray: 10 5 // visible length, invisible Length
+    stroke-opacity: 0.5
+    fill: #ff0000
+    fill-opacity: 0.5
+## Content Type
+
+image/svg+xml
+
+
+## Free SVG icons
+
+https://iconmonstr.com/
+
+
+## Tutorial
+
+http://tutorials.jenkov.com/svg/svg-icons.html

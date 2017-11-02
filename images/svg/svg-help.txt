@@ -4,7 +4,11 @@
 
  * <iframe>
  * <img>
- * css background image
+ * css background image with
+        background-image: url('/relative-svg-url.svg');
+        background-position: x y;
+        background-size: x y;
+        background-repeat: no-repeat;
  * <svg> inline inside html
     does not require xmlns
  
@@ -57,6 +61,23 @@
 
 <path>
     d=""
+    
+    d contains commands to draw
+    each command is prefixed with a letter
+    each command starts where the previous ended
+    M should be used first to move to the starting point
+        M for Move
+        A for Angle (absolute coordinates)
+        afor Angle (relative) 
+            Parameters
+            radiusX,radiusY 
+            x-axis-rotation usually 0
+            largeArc 0 or 1,
+            mirrored 0 or 1
+            x2, y2
+        L for Line (absolute coordinates)
+        l for line (relative) 
+        
     
 <desc> description
 

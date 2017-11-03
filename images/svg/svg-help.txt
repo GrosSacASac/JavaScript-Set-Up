@@ -68,7 +68,7 @@
     M should be used first to move to the starting point
         M for Move
         A for Angle (absolute coordinates)
-        afor Angle (relative) 
+        a for Angle (relative) 
             Parameters
             radiusX,radiusY 
             x-axis-rotation usually 0
@@ -77,6 +77,16 @@
             x2, y2
         L for Line (absolute coordinates)
         l for line (relative) 
+        Q for quadratic bezier curve (absolute)
+        q  (relative)
+            control point x, y
+            x2, y2
+        C for cubic bezier curve (absolute)
+        c  (relative)
+            control point1 x, y
+            control point2 x, y
+            x2, y2
+            
         
     
 <desc> description

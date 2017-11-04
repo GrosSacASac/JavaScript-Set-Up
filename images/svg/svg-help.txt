@@ -91,6 +91,12 @@
     
 <desc> description
 
+
+<text x="20"  y="40">TEXT</text>
+    x=
+    y= (bottom of the text)
+
+
 style attribute
     use none for no color (transparent)
     stroke: #0000ff
@@ -99,6 +105,8 @@ style attribute
     stroke-opacity: 0.5
     fill: #ff0000
     fill-opacity: 0.5
+
+
 ## Content Type
 
 image/svg+xml

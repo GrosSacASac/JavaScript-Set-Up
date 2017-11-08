@@ -12,54 +12,60 @@
  * <svg> inline inside html
     does not require xmlns
  
+
 ## Definitions
 
-<svg> root element
+<svg></svg> root element
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 128 128"
         in this order defines startX, startY, width(x) and height(y).
         same as x="" y="" width="" height=""
 
-<g> group element
-    usefull to group and apply collevtive tranforms
-    cannot apply transforms on nested <svg> itself
+<g></g> group element
+    usefull to group and apply collective tranforms
+    cannot apply transforms on nested <svg> itself (can with svg 2)
     
     transform="rotate(45 50 50)"
         degree, x, y
     style="stroke: #0000ff; stroke-width: 4px; fill: #ff0000"
         inherited style
 
-<rect> rectangle
-    x, y means width, height
+<rect/> rectangle
+    x, y, width, height
     rx, ry for rounding
     rx only is shortcut for rx=ry=value
 
-<circle> circle
+<image/>
+    x, y, width, height
+    xlink:href="" same as src in html img
+
+
+<circle/> circle
     cx, cy means centerX, centerY
     r for Radius
     
-<ellipse> a bit like circle
+<ellipse/> a bit like circle
     r is replaced by rx and ry
 
-<line>
+<line/>
     x1, x2, y1, y2
 
-<polyline> similar to line
+<polyline/> similar to line
     will create a line also between last and first point
     however the implicit line is not stroke
     but it is possible to force it by putting first and last point the same
-    or use <polygon>
+    or use <polygon/>
     and fill the figure
     
     points="0,0  30,0  15,30"
     like x1, y1 x2, y2 x3, y3
 
-<polygon>
+<polygon/>
     connects last point to the first
     rest is the same as <polyline>
 
-<path>
+<path/>
     d=""
     
     d contains commands to draw
@@ -89,10 +95,10 @@
             
         
     
-<desc> description
+<desc></desc> description
 
 
-<text x="20"  y="40">TEXT</text>
+<text>TEXT</text>
     x=
     y= (bottom of the text)
     textLength= to force maximum text length

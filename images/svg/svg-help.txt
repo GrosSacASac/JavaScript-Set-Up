@@ -98,13 +98,26 @@
             
         
     
-<desc></desc> description
+<desc></desc> description (meta)
 
 
 <text>TEXT</text>
     x=
     y= (bottom of the text)
     textLength= to force maximum text length
+    
+<defs></defs>
+    non rendered definitions for the documents, like <head> in HTML,
+    can contain <pattern>, <linearGradient> etc
+
+<pattern></pattern>
+    id=""
+    x=""
+    y=""
+    width=""
+    height=""
+    defines a pattern that can be later used in a fill attribute
+    put any number of basic shapes inside the pattern to define it
 
 
 style attribute
@@ -113,7 +126,7 @@ style attribute
     stroke-width: 4px
     stroke-dasharray: 10 5 // visible length, invisible Length
     stroke-opacity: 0.5
-    fill: #ff0000
+    fill: #ff0000 or url(#patternId)
     fill-opacity: 0.5
     text-anchor: start or middle or end
 

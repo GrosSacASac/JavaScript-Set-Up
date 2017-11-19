@@ -96,8 +96,11 @@
         z or Z
             draws line from current position to the beginning
             
-        
+
+<a></a>
+    xlink:href=""
     
+
 <desc></desc> description (meta)
 
 
@@ -105,6 +108,17 @@
     x=
     y= (bottom of the text)
     textLength= to force maximum text length
+
+<tspan></tspan>
+    x=""
+    dx=""
+    Can be used inside <text>
+    like <span> in HTML
+    
+<textPath></textPath>
+    xlink:href="#path_id" id from a <path>
+    Can be used inside <text>
+    like <span> in HTML
     
 <defs></defs>
     non rendered definitions for the documents, like <head> in HTML,
@@ -119,8 +133,43 @@
     defines a pattern that can be later used in a fill attribute
     put any number of basic shapes inside the pattern to define it
 
+    
+<clipPath></clipPath>
+    id=""
+    defines a pattern that will be used to select an area to be painted
+    use clip-path="url(#clippathid" on another element to apply it
 
-style attribute
+    
+<symbol></symbol>
+    id=""
+    viewBox=""
+    preserveAspectRatio=""
+    almost the same as group but can also have
+    viewBox and preserveAspectRatio
+    
+    
+<use/>
+    xlink:href="#idOfGroup"
+    x=""
+    y=""
+    use a copy of a group (<g>) or
+    symbol (<symbol>)
+    that has been defined in defs before
+
+
+<style></style>
+    type="text/css"
+    src=""
+    sometimes need to use CDATA for XML parsing
+      <![CDATA[
+
+        rect {
+           stroke: #eee;
+        }
+
+      ]]>
+    
+style attributes
     use none for no color (transparent)
     stroke: #0000ff
     stroke-width: 4px

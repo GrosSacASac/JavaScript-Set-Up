@@ -1,0 +1,7 @@
+head, title {
+    display: block;
+}
+
+also style
+
+ and combo for contenteditable attribute.

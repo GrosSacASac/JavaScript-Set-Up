@@ -6,7 +6,7 @@
 4. Do Not repeat yourself.
 5. Write Readable code. Simple short modular scalable code.
 6. Throw error early
-7. Language conventions. Avoid using shortcuts and avoid acronyms. 
+7. Language conventions. Avoid using short-cuts and avoid acronyms. 
 8. Optimize your optimization is as important as optimization itself. Define what is important first: memory, cpu or easy to understand ?
 9. Write tests for every non trivial function.
 10. Separation of concerns

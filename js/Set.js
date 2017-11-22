@@ -1,8 +1,11 @@
-//Type casting and conversion
+// Set is a type introduced in ES2015
+
+// Conversions
 
 const listFromSet = function (aSet) {
-    let result = [];
-    for (let item of aSet) {
+    const result = [];
+    let item;
+    for (item of aSet) {
         result.push(item);
     }
     return result;

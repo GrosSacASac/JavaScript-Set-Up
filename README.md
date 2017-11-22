@@ -43,16 +43,14 @@ Random UI test with [gremlins.js](https://github.com/marmelab/gremlins.js)
 
 ## Are you completely new to JavaScript ?
 
-Learn how JavaScript work first, then come back. Here are some good links (2014):
+Learn how JavaScript work first, then come back. Here are some good links:
 
-* [Eloquent Javascript](http://eloquentjavascript.net/) ❤
-* [Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) ❤
+* [Eloquent Javascript](http://eloquentjavascript.net/)
 * [Javascript-allongé](https://leanpub.com/javascript-allonge/read)
-* [webplatform.org](http://www.webplatform.org/)
 * [jstherightway](http://jstherightway.org/#getting-started)
 * [A_re-introduction_to_JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A re introduction to JavaScript)
 * [Crockford on JavaScript - Section 8: Programming Style & Your Brain ](https://www.youtube.com/watch?v=taaEzHI9xyY)[video]
-* [My JavaScript examples](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/examples)
+* [JavaScript examples](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/)
 
 
 

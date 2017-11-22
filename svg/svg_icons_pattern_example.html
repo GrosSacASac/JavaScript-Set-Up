@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Use svg to create and use icons</title>
+        <!--<link rel="stylesheet" href="doc.css">-->
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" href="favicon.png">
+        <style>
+            /* hidden is not supported on svg yet */
+            svg[hidden] {
+                display: none;
+            }
+        </style>
+    </head>
+<body>
+    
+<svg id="svg-icons" hidden>
+    <defs>
+        <!-- Using svg-->
+        <svg viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" id="school-icon">
+            <path d="M23 24h-22v-2h1v-7h-2l3-9h5.429l2.571-2.203v-3.797h5l-1 1.491 1 1.509h-4l3.571 3h5.429l3 9h-2v7h1v2zm-12-5h-1v4h1v-4zm3 0h-1v4h1v-4zm6-4h-16v7h4v-5h8v5h4v-7zm-15 4h2v2h-2v-2zm14 0v2h-2v-2h2zm-14-3h2v2h-2v-2zm12 0h2v2h-2v-2zm.905-8l-1.297 1.513-4.608-3.949-4.608 3.949-1.297-1.513h-1.653l-1.667 5h18.45l-1.667-5h-1.653zm-5.905-.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5zm0 1.5h-.763v1.8h1.763v-.8h-1v-1z"/>
+        </svg>
+        <!-- Using symbol-->
+        <symbol viewBox="0 0 24 24" id="iconmonstr">
+            <path d="M16.5 2.75c-.965 0-1.75.785-1.75 1.75s.785 1.75 1.75 1.75 1.75-.785 1.75-1.75-.785-1.75-1.75-1.75zm0-2.75c2.481 0 4.5 2.019 4.5 4.5s-2.019 4.5-4.5 4.5-4.5-2.019-4.5-4.5 2.019-4.5 4.5-4.5zm-5.5 17.01s2.539 3.087 4.022 4.944c1.163 1.454 2.025 2.046 3.462 2.046 1.411 0 2.516-1.065 2.516-2.309 0-.539-.183-1.111-.594-1.646-1.52-1.973-2.406-3.035-2.406-3.035h-7zm-3.136-.01h-2.864c-.551 0-1-.449-1-1s.449-1 1-1h13.279c.893 0 1.4.248 1.963.958.96 1.211 2.505 3.163 2.562 3.251.736-.87 1.196-1.98 1.196-3.209 0-2.761-2.239-5-5-5h-14c-2.761 0-5 2.239-5 5s2.239 5 5 5h6.141c-1.144-1.405-3.277-4-3.277-4zm.05-12.5l2.086 2.086-1.414 1.414-2.086-2.086-2.086 2.086-1.414-1.414 2.086-2.086-2.086-2.086 1.414-1.414 2.086 2.086 2.086-2.086 1.414 1.414-2.086 2.086z"/>
+        </symbol>
+    </defs>
+</svg>
+
+<h1>Use svg to create and use icons</h1>
+
+<p>
+    My house: 
+    <svg width="24" height="24" role="img" alt="house">
+        <use xlink:href="#school-icon"></use>
+    </svg>.
+</p>
+<p>
+    Another house: 
+    <svg width="24" height="24" role="img" alt="house">
+        <use xlink:href="#school-icon"></use>
+    </svg>. It is reusing the same icon with <code>svg &lt;use&gt;</code>
+</p>
+
+<p>Icons from
+    <a href="https://iconmonstr.com/">
+        <svg width="24" height="24" role="decoration">
+            <use xlink:href="#iconmonstr"></use>
+        </svg>
+        iconmonstr
+    </a>
+</p>
+
+</body>
+</html>

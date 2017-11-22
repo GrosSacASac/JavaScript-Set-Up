@@ -187,9 +187,13 @@ image/svg+xml
 
 ## Free SVG icons
 
-https://iconmonstr.com/
+ * https://iconmonstr.com/
+ * https://www.flaticon.com/search?word=space%20ship
+ * http://svgicons.sparkk.fr/
 
 
-## Tutorial
+## Tutorials
 
-http://tutorials.jenkov.com/svg/svg-icons.html
+ * svg_icons_pattern.md
+ * http://tutorials.jenkov.com/svg/index.html
+ * https://www.sitepoint.com/build-svg-icons/

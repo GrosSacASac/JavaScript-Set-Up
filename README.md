@@ -1,13 +1,8 @@
-##Hello
+# Hello
 
-###Note
+Have a look at the files inside html, js, css.
 
-This document is not 100% up to date, but most tips are still relevant.
-
-
-Set up for JavaScript projects. ➳
-
-##Libraries
+## Some Libraries
 
 [Ramda](https://github.com/ramda/ramda) Functional JavaScript Library
 
@@ -15,14 +10,14 @@ Set up for JavaScript projects. ➳
 
 
 
-##Conventions
+## Conventions
 
-use lint rules that everyone uses
+Use lint rules that everyone uses.
 
-You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation .
+You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation.
 
 
-##Linting and testing
+## Linting and testing
 
 JavaScript linting,
 
@@ -46,7 +41,7 @@ Random UI test with [gremlins.js](https://github.com/marmelab/gremlins.js)
 [Babel](http://babeljs.io/) for transpiling.
 
 
-##Are you completely new to JavaScript ?
+## Are you completely new to JavaScript ?
 
 Learn how JavaScript work first, then come back. Here are some good links (2014):
 
@@ -61,7 +56,13 @@ Learn how JavaScript work first, then come back. Here are some good links (2014)
 
 
 
-###License
+
+## Note
+
+These documents are not all 100% up to date, but most tips are still relevant.
+
+
+## License
 
 This project is free and open source. [See License](LICENSE.txt)
 

@@ -48,7 +48,6 @@ Learn how JavaScript work first, then come back. Here are some good links:
 * [Eloquent Javascript](http://eloquentjavascript.net/)
 * [Javascript-allongé](https://leanpub.com/javascript-allonge/read)
 * [jstherightway](http://jstherightway.org/#getting-started)
-* [A_re-introduction_to_JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A re introduction to JavaScript)
 * [Crockford on JavaScript - Section 8: Programming Style & Your Brain ](https://www.youtube.com/watch?v=taaEzHI9xyY)[video]
 * [JavaScript examples](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/)
 

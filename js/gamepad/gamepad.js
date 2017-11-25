@@ -1,10 +1,4 @@
 /*
- * Gamepad API Test
- * Written in 2013 by Ted Mielczarek <ted@mielczarek.org>
- *
- * To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
- *
- * You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
 
 const gamePadSupport = (
@@ -61,12 +55,19 @@ const customRound = function (x, precision) {
       scangamepads();
       let j;
       Object.values(controllers).forEach(function (controller) {
-        /*
+        
         for (var i=0; i<controller.buttons.length; i++) {
           
           const {value, pressed} = controller.buttons[i];
+          if (pressed) {
+            if (player.action) {
+                player.action += ` and ${i}`;
+            } else {
+                player.action = `Pressed button ${i}`;
+            }
+          }
         }
-        */
+        
 
         for (var i=0; i<controller.axes.length; i++) {
             let value = controller.axes[i];
@@ -86,6 +87,10 @@ const customRound = function (x, precision) {
       });
       player.element.style.left = `${player.x}px`;
       player.element.style.top = `${player.y}px`;
+      if (player.action) {
+        player.element.textContent = player.action;
+        player.action = undefined;
+      }
       requestAnimationFrame(loop);
     }
 

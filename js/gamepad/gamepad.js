@@ -24,7 +24,7 @@ const playerElement = document.getElementById("player");
         The closer to value to 1, the better it is for GamePads
         that are slightly de-calibrated or old */
         MIN_AXES_VALUE : 0.20,
-        MAX_CONTROLLERS: 8
+        MAX_CONTROLLERS: 16
     };
     
     const lastInput = {
@@ -47,17 +47,16 @@ const playerElement = document.getElementById("player");
     const controllers = {}; // todo make this more like lastInput.controllers
 
     const scanGamepadsChrome = function () {
-      // required for chrome
-      // in chrome the gamepad object is only a snapshot (frozen)
-      // to get the last value we have to navigator.getGamepads()
-      // in ff this should have no observable effect
-      const gamepads = navigator.getGamepads();
-      for (let i = 0; i < gamepads.length; i += 1) {
-        if (gamepads[i]) {
-            controllers[gamepads[i].index] = gamepads[i];
+        // required for chrome
+        // in chrome the gamepad object is only a snapshot (frozen)
+        // to get the last value we have to navigator.getGamepads()
+        // in ff this should have no observable effect
+        const gamepads = navigator.getGamepads();
+        for (let i = 0; i < gamepads.length; i += 1) {
+            if (gamepads[i]) {
+                controllers[gamepads[i].index] = gamepads[i];
+            }
         }
-      }
-      
     }
 
     const getLastInput = function () {
@@ -70,7 +69,6 @@ const playerElement = document.getElementById("player");
                 if (Math.abs(value) < SETTINGS.MIN_AXES_VALUE) {
                     value = 0;
                 }
-                console.log(value);
                 axes.push(value);
             }
             lastInput.controllers[controller.index] = {
@@ -82,7 +80,8 @@ const playerElement = document.getElementById("player");
     
     const updateGameState = function () {
         // reads lastInput and updates the game state
-        const controllerPlayer1 = lastInput.controllers[0]
+        const controllerPlayer1 = lastInput.controllers[0];
+        player.action = undefined;
         for (let i = 0; i < controllerPlayer1.buttons.length; i += 1) {
             const {value, pressed} = controllerPlayer1.buttons[i];
             if (pressed) {
@@ -114,7 +113,6 @@ const playerElement = document.getElementById("player");
         player.element.style.top = `${player.y}px`;
         if (player.action) {
             player.element.textContent = player.action;
-            player.action = undefined;
         }
     };
     

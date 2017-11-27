@@ -1,4 +1,7 @@
 
+#temporarily ignore
+design/
+
 x64/
 build/
 [Bb]in/

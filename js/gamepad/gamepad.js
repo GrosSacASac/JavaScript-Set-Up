@@ -57,7 +57,7 @@ const playerElement = document.getElementById("player");
                 controllers[gamepads[i].index] = gamepads[i];
             }
         }
-    }
+    };
 
     const getLastInput = function () {
         // updates lastInput, with normalized input

@@ -39,7 +39,7 @@ const playerElement = document.getElementById("player");
         y: 0,
         minY: 0,
         maxY: innerHeight - 100 /* leave space for object height */,
-        speed: 7,
+        speed: 8,
         action: undefined,
         element: playerElement
     };
@@ -63,6 +63,11 @@ const playerElement = document.getElementById("player");
         // updates lastInput, with normalized input
         scanGamepadsChrome();
         Object.values(controllers).forEach(function (controller) {
+            // console.log(controller.hapticActuators); // array
+            // https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator/type
+            // controller.hapticActuators[0].type
+            // https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator/pulse
+            // controller.hapticActuators[0].pulse(value, duration) // value between 0 and 1
             const axes = [];  
             for (let i = 0; i < controller.axes.length; i += 1) {
                 let value = controller.axes[i]; /* -1.0 to +1.0 */

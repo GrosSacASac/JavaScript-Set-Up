@@ -9,6 +9,8 @@ assumption main-as-module.js and main-as-script.js
 
 advantage is that there is no js file that needs to be inlined
  at the top of the html
+
+issue: does not work with multiple indepent files without renaming the global used
  
 conclusion: worse for Safari10 better for everyone else
 

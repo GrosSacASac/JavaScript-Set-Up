@@ -53,12 +53,12 @@ Serving a file that are is very close to the original source files also makes th
 
 ### Disadvantages
 
-Serving different js files like ES3 ES5 and ES2015 also requires feature detection(See below).
+Serving different js files like ES3 ES5 and ES2015 also requires feature detection.
 
 
 ## Multiple front ends
 
-Manually create multiple front ends (HTML, JS, CSS) and each of those has its own js build. This pattern can be used for other media capabilities: such as mobile/desktop. For client-side feature detection, there are 2 strategies: Use the build with more requirement and inside an if statement in a script detect if downgrade is required (down grade if required). Or, by default serve a low requirement front end and inside an if statement in a script detect if an upgrade is possible (upgrade when possible)
+Manually create multiple front ends (HTML, JS, CSS) and each of those has its own js build. This pattern can be used for other media capabilities: such as mobile/desktop. For client-side feature detection, there are 2 strategies: Use the build with more requirement and inside an if statement in a script detect if downgrade is required. Or, by default serve a low requirement front end, and inside an if statement in a script detect if an upgrade is possible.
 
 ### Advantages
 
@@ -69,7 +69,7 @@ Can make assumptions such as: The device that does not have recent features will
 
 ### Disadvantages
 
-Time cost is higher. Requires feature detection.
+Development time is higher. Requires feature detection. Experience maybe less consistent.
 
 
 
@@ -84,7 +84,7 @@ No detection is usually paired with Transpile everything
 ### Server side feature detection
 
 
-When a user loads a web-page its computer will make a HTTP request to the server. That HTTP request contains information that the server can read before sending a response: URL, Cookies, User-Agent, Accept-Encoding, Accept etc. Those information can be used to guess what features are available on the requesting user-agent. The big problem is that this technique is not reliable on its own.
+When a user loads a web-page its computer will make a HTTP request to the server. That HTTP request contains information that the server can read before sending a response: URL, Cookies, User-Agent, Accept-Encoding, Accept etc. Those information can be used to guess what features are available on the requesting user-agent. The big problem is that this technique is very fragile used on its own. The main reason is that most browsers lie about User-Agent.
 
 ### Client side feature detection
 
@@ -188,3 +188,4 @@ Submit an issue or a pull request.
  * [babel transpiler standard, extensible](https://babeljs.io/)
  * [bublé transpiler efficient, zero configuration](https://buble.surge.sh/guide/)
  * [Safari 10 nomodule fix](https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc)
+ * [History of the browser user-agent string](https://webaim.org/blog/user-agent-string-history/)

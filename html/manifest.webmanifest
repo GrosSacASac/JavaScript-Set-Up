@@ -1,5 +1,5 @@
 {
-    "version": "1.0",
+    "version": "1.0.0",
     "name": "NAME",
     "short_name": "",
     "description": "",
@@ -10,8 +10,8 @@
         "32": "/images/icons/32.png",
     }, 
     "developer": {
-        "name": "Walle Cyril",
-        "url": "https://github.com/GrosSacASac"
+        "name": "NAME",
+        "url": "URL"
     },
     "lang":"",
     "default_locale": "",

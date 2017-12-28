@@ -1,21 +1,30 @@
 {
-    "version": "1.0.0",
-    "name": "NAME",
-    "short_name": "",
-    "description": "",
-    "launch_path": "",
-    "start_url": "",
-    "icons": {
-        "16": "/images/icons/16.png",
-        "32": "/images/icons/32.png",
-    }, 
-    "developer": {
-        "name": "NAME",
-        "url": "URL"
-    },
+    "version": "",
+    "dir": "",
     "lang":"",
     "default_locale": "",
-    "fullscreen": "true",
-    "appcache_path": "",
-    "orientation": ["portrait"]
+    "name": "",
+    "short_name": "",
+    "description": "",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "images/logo-optimized2.svg",
+            "sizes": "16x16",
+            "type": "image/svg+xml"
+        }
+    ],
+    "display": "fullscreen",
+    "orientation": "any",
+    "start_url": "",
+    "theme_color": "orange",
+    "background_color": "yellow",
+    "categories": "",
+    "screenshots": [],
+    "iarc_rating_id": "undefined",
+    "developer": {
+        "name": "",
+        "url": ""
+    },
+    "launch_path": "/"
 }

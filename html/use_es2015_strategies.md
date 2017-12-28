@@ -1,11 +1,11 @@
-# Strategies for using ES2015+
+# Strategies for using ES2015+ for the browser
 
 There are various ways to deliver a functioning web app while using ES2015+ JavaScript as a development language.
 
 
 ## Build overview
 
-
+ * Transpile nothing
  * Transpile everything
  * Multiple builds
  * Multiple front ends
@@ -24,9 +24,9 @@ There are various ways to deliver a functioning web app while using ES2015+ Java
 
 ## Build
 
-## Transpile everything
+## Transpile nothing
 
-Generate a single ES5 file (depending on your target).
+Only build and minify in the build step. Makes sense when target audience uses new browsers, or when the web app relies on features that are only available in new browsers anyway.
 
 
 ### Advantages
@@ -36,7 +36,23 @@ Easiest to set up and understand.
 
 ### Disadvantages
 
-Probably a certain number of users use a modern browser that understands modern ES2015+ syntax and download unnecessary polyfills and more, which slows down page load compared to Multiple builds.
+The developer has to manually track sets of features that are available in a high enough percentage to be used. Older browser will not be supported unless a fallback is used.
+
+
+## Transpile everything
+
+
+Generate a single ES5 file (depending on your target).
+
+
+### Advantages
+
+Easy to set up and understand.
+
+
+### Disadvantages
+
+Probably a certain number of users use a modern browser that understands modern ES2015+ syntax and download unnecessary polyfills and more, which slows down page load compared to Multiple builds. Also some features, may be inefficient after transpilation like `for of loops`.
 
 
 
@@ -176,6 +192,12 @@ A polyfill in JavaScript is a back-port of a standard feature for not yet up to 
 ## Contribution
 
 Submit an issue or a pull request.
+
+
+
+## Notes
+
+Written in late 2017. Might be obsolete in 2020-2025
 
 
 ## Links

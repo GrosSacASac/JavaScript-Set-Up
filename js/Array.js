@@ -16,8 +16,14 @@ const seventhItem = array[6];
 // get the length
 const length = array.length;
 
-// add at the end 
+// add 1 thing at the end 
 array.push("something");
+
+// add multiple things at the end 
+array.push(4, 88, 99);
+
+// add an array at the end (inlines the array)
+array.push(...[4, 88, 99]);
 
 // add at the begining
 array.unshift("JS");

@@ -18,6 +18,8 @@ Deprecated in favour of service worker. Works with legacy browsers. Declarative.
 
 ## Browser plugins
 
+## Hybrid Web-Native
 
+Electron, PhoneGap, Ionic
 
 

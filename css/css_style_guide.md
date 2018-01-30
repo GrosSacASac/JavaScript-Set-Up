@@ -32,4 +32,10 @@ Put the most important ones first
 3. Font
 4. Colors
 
+### Values:
+
+No units with `0` as value.
+
+
+
 ## Media Queries

@@ -4,8 +4,5 @@
   "name": "name",
   "version": "1.0.0",
   "dependencies": {
-    "ramda": "x",
-    "dom99": "x",
-    "jasmine": "x"
   }
 }

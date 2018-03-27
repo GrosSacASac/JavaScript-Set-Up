@@ -8,11 +8,11 @@ There is a sender and a receiver. The receiver, in our case, a web browser can p
 
 ## Timing Controls
 
-The web server can control the timings, in other words, control when a HTML tag is being displayed. To demonstrade this capability: [TODO EXMAPLE SIMPLE TEXT STREAMING]. In this example the response is split into individual letters with ```.split(``)```. They are then send one by one with a delay using `setInterval()`. The visual effect is living text being written, streamed.
+The web server can control the timings, in other words, control when a HTML tag is being displayed. To demonstrade this capability: `npm run demo1`. In this example the response is split into individual letters with ```.split(``)```. They are then send one by one with a delay using `setInterval()`. The visual effect is living text being written, streamed.
 
 ## Leveraging HTML Streaming for Real Time Web Apps
 
-Extending the previous example, it is possible to display any real time data that the server receives while the connection is open. To demonstrate this, two routes are created: `controller` and `viewer`. Controller contains an `<input type="number">` that uses web sockets to send its last value when it change. Viewer, displays that last value using HTML streaming. The problem is that old values are still in there, because old nodes are not removed.
+Extending the previous example, it is possible to display any real time data that the server receives while the connection is open. To demonstrate this, two routes are created: `controller` and `viewer`. Controller contains an `<input type="number">` that uses web sockets to send its last value when it change. Viewer, displays that last value using HTML streaming *without* web sockets. The problem is that old values are still in there, because old nodes are not removed.
 
 ## Using CSS to hide previous values
 
@@ -40,11 +40,13 @@ Without html streaming <img src="diagrams/without.svg" alt="without">
 
 The content of `<td>` is not rendered at all until the entire row has been received.
 
-## Limitation
+## Limitations
 
 The page loading indicator keeps spinning.
 
 Service worker pass through is limited.
+
+Incompatibility with existing tools.
 
 ### Timeouts
 

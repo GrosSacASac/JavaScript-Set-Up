@@ -1,0 +1,20 @@
+{
+  "name": "html-streaming",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo1": "node index.js",
+    "demo2": "node second-demo.js",
+    "demo3": "node slide-show.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dom99": "^8.2.16",
+    "express": "^4.16.2",
+    "node-fetch": "^2.1.1",
+    "public-instagram": "^0.6.1"
+  }
+}

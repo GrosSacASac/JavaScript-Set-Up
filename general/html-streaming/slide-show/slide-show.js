@@ -1,11 +1,19 @@
 "use strict";
 
+const fs = require(`fs`);
 const express = require(`express`);
 const app = express();
+
 
 const PORT = 8080;
 const TIME_OUT_LIMIT = 1000 * 60 * 60;
 
+const css = fs.readFileSync(`./slide-show/css.css`);
+
+const headLoaded = fs.readFileSync(`./slide-show/headLoaded.js`);
+
+const withSVG = fs.readFileSync(`./diagrams/with.svg`);
+const withoutSVG = fs.readFileSync(`./diagrams/without.svg`);
 
 const htmlStart = `<!doctype html>
 <html lang="en">
@@ -13,55 +21,11 @@ const htmlStart = `<!doctype html>
     <meta charset="utf-8">
     <title>html streaming</title>
     <meta name="viewport" content="width=device-width">
-    <style>
-
-section {
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-
-section:last-of-type {
-    animation: comin 1.4s ease 0s;
-    left: 0;
-    opacity: 1;
-}
-
-@keyframes comin {
-    0% {
-      left: 100%;
-    }
-    100% {
-      left: 0;
-    }
-}
-
-section:not(:last-of-type) {
-   animation: comout 1.4s ease 0s;
-   left: -100%;
-   opacity: 0;
-}
-
-@keyframes comout {
-    0% {
-      left: 0;
-      opacity: 1;
-    }
-    100% {
-      left: -100%;
-      opacity: 0;
-    }
-}
-</style>
-    <script>
-        var headLoaded = Date.now();
-        document.addEventListener("DOMContentLoaded", function() {
-           console.log((Date.now() - headLoaded) / 1000);
-         });
-    </script>
+    <style>${css}</style>
+    <script>${headLoaded}</script>
 </head>
 <body>
-<h1>Viewer</h1>`;
+<h1>HTML Streaming</h1>`;
 
 const htmlEnd = `
 </body>
@@ -76,13 +40,60 @@ const slides = [
         <p>presentation by Cyril Walle</p>
     </section>`,
     `<section>
-        <h2>2</h2>
-        <p>22222222222222</p>
+        <h2>HTML Streaming</h2>
+        <p>means the browsers start parsing before having it all</p>
     </section>`,
     `<section>
-        <h2>3</h2>
-        <p>33333333333</p>
+        <h2>Timing Controls</h2>
+        <p>Control when a HTML tag is being displayed</p>
     </section>`,
+    `<section>
+        <h2>Real Time</h2>
+        <p>Send data as it becomes available</p>
+    </section>`,
+    `<section>
+        <h2>Using CSS to hide previous values</h2>
+        <p><pre><code>p:not(:last-of-type) {
+    display: none;
+}</code></pre></p>
+    </section>`,
+    `<section>
+        <h2>Using CSS to hide previous values</h2>
+        <p><pre><code>p:not(:last-of-type) {
+    display: none;
+}</code></pre></p>
+    </section>`,
+    `<section>
+        <h2>HTML Streaming to send data as soon as possible</h2>
+        <p>${withSVG}</p>
+    </section>`,
+    `<section>
+        <h2>Without</h2>
+        <p>${withoutSVG}</p>
+    </section>`,
+    `<section>
+        <h2>Limitations</h2>
+        <p>The page loading indicator keeps spinning.</p>
+        <p>Service worker pass through is limited.</p>
+        <p>Incompatibility with existing tools.</p>
+        <p>CSS selector last-of-type appears buggy sometimes.</p>
+        <p>Additional work to make inputs.</p>
+    </section>`,
+    `<section>
+        <h2>Timeouts</h2>
+        <p><code>location.href = location.href;</code></p><p><code>meta http-equiv="refresh" content="230"</code></p>
+        <p><code>server.timeout = TIME_OUT_LIMIT;</code></p>
+    </section>`,
+    `<section>
+        <h2>Sources</h2>
+        <p><a href="https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/">https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/</a>
+        </p><p><a href="https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page">https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page</a>
+        </p><p><a href="https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading">https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading</a></p>
+    </section>`,
+    `<section>
+        <h2>Thanks</h2>
+        <p></p>
+    </section>`
 ];
 const subScribers = [];
 app.get(`/`,

@@ -1,0 +1,43 @@
+
+section {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+section:last-of-type {
+    animation: comin 1.4s ease 0s;
+    left: 0;
+    opacity: 1;
+}
+
+@keyframes comin {
+    0% {
+      left: 100%;
+    }
+    100% {
+      left: 0;
+    }
+}
+
+section:not(:last-of-type) {
+   animation: comout 1.4s ease 0s;
+   left: -100%;
+   opacity: 0;
+}
+
+@keyframes comout {
+    0% {
+      left: 0;
+      opacity: 1;
+    }
+    100% {
+      left: -100%;
+      opacity: 0;
+    }
+}
+body {
+    margin: 30px;
+    font-size: 24px;
+    text-align: center;
+}

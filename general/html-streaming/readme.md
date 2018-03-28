@@ -12,7 +12,7 @@ The web server can control the timings, in other words, control when a HTML tag 
 
 ## Leveraging HTML Streaming for Real Time Web Apps
 
-Extending the previous example, it is possible to display any real time data that the server receives while the connection is open. To demonstrate this, two routes are created: `controller` and `viewer`. Controller contains an `<input type="number">` that uses web sockets to send its last value when it change. Viewer, displays that last value using HTML streaming *without* web sockets. The problem is that old values are still in there, because old nodes are not removed.
+Extending the previous example, it is possible to display any real time data that the server receives while the connection is open. To demonstrate this, two routes are created: `controller` and `viewer`. Controller contains an `<input type="number">` that uses web sockets to send its last value when it change. Viewer, displays that last value using HTML streaming *without* web sockets. The problem is that old values are still in there, because old nodes are not removed. `npm run demo2`
 
 ## Using CSS to hide previous values
 
@@ -48,6 +48,10 @@ Service worker pass through is limited.
 
 Incompatibility with existing tools.
 
+CSS selector last-of-type appears buggy sometimes.
+
+Additional work to make inputs.
+
 ### Timeouts
 
 HTTP streaming stops after a certain amount of time, for example after 120 seconds after the last TCP frame was received. So this is a problem if there are long pauses in between two `response.write`
@@ -61,3 +65,4 @@ In NodeJS the HTTP timeout can be extedend with `server.timeout = TIME_OUT_LIMIT
 
 https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/
 https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page
+https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading

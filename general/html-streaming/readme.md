@@ -66,3 +66,11 @@ In NodeJS the HTTP timeout can be extedend with `server.timeout = TIME_OUT_LIMIT
 https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/
 https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page
 https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading
+
+## Going Beyond
+
+Is it possible to refresh the page without JavaScript ?
+
+What are the costs/benefits of HTML streaming on low tier devices and Internet of Things ?
+
+More concrete use cases ?

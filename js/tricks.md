@@ -27,9 +27,17 @@ const minMax = function (numbers) {
     const localResult = Math.max(...numbers);
     results.push(localResult);
   }
-  return results
+  return results;
 };
 
 ```
 
+
+Array destructuring syntax can be used to swap variables;
+
+```
+let a = 5;
+let b = 2;
+[a, b] = [b, a];
+```
 

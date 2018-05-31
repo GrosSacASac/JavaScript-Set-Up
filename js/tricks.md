@@ -1,6 +1,6 @@
 # JS tricks
 
-`Object.assign` is useful on arrays.
+## `Object.assign` is also useful on arrays
 
 ```
 const initialScores = [0, 0, 0];
@@ -11,7 +11,7 @@ const scores = [5, 2, 7];
 Object.assign(scores, initialScores);
 ```
 
-`{}` can be used to create local scopes anywhere
+## `{}` can be used to create local scopes anywhere
 
 ```
 const minMax = function (numbers) {
@@ -33,7 +33,7 @@ const minMax = function (numbers) {
 ```
 
 
-Array destructuring syntax can be used to swap variables;
+## Array destructuring syntax can be used to swap variables
 
 ```
 let a = 5;
@@ -42,14 +42,14 @@ let b = 2;
 ```
 
 
-Remove duplicates from an array
+## `new Set` to remove duplicates from an array
 
 ```
 let a = [5, 4, 4, 4, 3];
 a = [...(new Set(a))];
 ```
 
-Object.seal and Object.freeze to ensure that an external object does not exceed an Interface
+## `Object.seal` to ensure that a passed object does not exceed an interface
 
 ```
 const requestInterface = {
@@ -78,7 +78,7 @@ handleRequest({
 });
 ```
 
-default assignement syntax to log for required parameters
+## Default assignement syntax to log for required parameters
 
 ```
 const required = function () {
@@ -94,7 +94,7 @@ const slowVector3 = function (vector3 = required()) {
 slowVector3() --> Error: required parameter missing
 ```
 
-It works really well with destructuring too
+## Required parameters + destructuring
 
 
 ```

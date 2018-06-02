@@ -24,7 +24,6 @@ s.add(6);
 s.add(7);
 
 let l = listFromSet(s);
-let l2 =  listFromSet2(s);
-let l3 =  listFromSet3(s);
-
-console.log(s, l, l2, l3);
+let l2 = listFromSet2(s);
+let l3 = listFromSet3(s);
+let l4 = [...s];

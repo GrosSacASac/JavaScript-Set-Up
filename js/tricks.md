@@ -3,12 +3,13 @@
 ## `Object.assign` is also useful on arrays
 
 ```
-const initialScores = [0, 0, 0];
-// player a, player b, total games
-const scores = [5, 2, 7];
+const initialScores = [0, 0];
+// player a, player b, total games played
+const state = [5, 2, 7];
 
-// reset scores
-Object.assign(scores, initialScores);
+// reset scores only
+Object.assign(state , initialScores);
+// state = [0, 0, 7];
 ```
 
 ## `{}` can be used to create local scopes anywhere

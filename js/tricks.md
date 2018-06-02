@@ -111,3 +111,18 @@ const slowVector3 = function ([x = required("x"), y = required("y"), z = require
 slowVector3([6, 8]); --> Error: required parameter z missing 
 ```
 
+
+## Proxy
+
+```
+const handler = {
+    /** Intercepts: getting properties */
+    get(target, propKey, receiver) {
+        console.log(`GET ${target}  ${propKey}  ${receiver}`);
+        return Reflect.get(target, propKey, receiver);
+    },
+
+};
+
+```
+

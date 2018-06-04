@@ -5,7 +5,7 @@
 let anObject;
 
 // same
-anObject = Object.create(Object);
+anObject = Object.create(Object.prototype);
 anObject = Object();
 anObject = {};
 

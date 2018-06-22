@@ -5,7 +5,8 @@ let array;
 
 // same 
 array = [];
-array = Array();
+array = Array.of();
+array = Array(); // avoid because it is unsafe
 
 // set
 array[5] = "Hi";

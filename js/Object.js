@@ -22,7 +22,7 @@ anObject = {
 anObject["key"] = "value";
 
 // assign multiple
-Object.assing(anObject, {
+Object.assign(anObject, {
     "key1": "value1",
     "key2": "value2"
 });
@@ -55,6 +55,7 @@ Object.entries(anObject).forEach(function ([key, value]) {
 anObject.hasOwnProperty("key");
 
 // has safe, works even when anObject has a key "hasOwnProperty"
+// alsow works for Objects without prototype
 Object.prototype.hasOwnProperty.call(anObject, "key");
 
 // remove a value

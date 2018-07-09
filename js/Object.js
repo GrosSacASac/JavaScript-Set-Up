@@ -51,12 +51,19 @@ Object.entries(anObject).forEach(function ([key, value]) {
 
 });
 
+// iterate over the object and its full prototype chain
+let key;
+for (key in anObject) {
+    anObject[key]; // value
+}
+
 // has a key
 anObject.hasOwnProperty("key");
 
 // has safe, works even when anObject has a key "hasOwnProperty"
-// alsow works for Objects without prototype
+// also works for Objects without prototype
 Object.prototype.hasOwnProperty.call(anObject, "key");
+Reflect.has(anObject, "key")
 
 // remove a value
 anObject["key"] = undefined;

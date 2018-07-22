@@ -1,23 +1,31 @@
 import {d} from "../node_modules/dom99/source/dom99.js";
-import {generateRandomWorld, drawWorld, updateWorld} from "./world.js";
+import {generateRandomWorld, generateSimpleWorld, drawWorld, updateWorld} from "./world.js";
 import {reduceDraw, initializeCanvas} from "./canvas.js";
 
+let drawEverything;
 
-const drawEverything = reduceDraw(d.elements.canvas, [
-    drawWorld
-]);
+const world = generateSimpleWorld(800, 400) || generateRandomWorld(800, 400);
 
-const world = generateRandomWorld();
-
+let animationFrameId = 0;
 const loop = function () {
-    requestAnimationFrame(loop);
+    animationFrameId = requestAnimationFrame(loop);
     drawEverything(world);
     updateWorld(world);
 };
 
 d.start(
     {
+        playPause: function () {
+            if (animationFrameId === 0) {
+                animationFrameId = requestAnimationFrame(loop);
+                d.feed(`playPause`, `Pause`);
+            } else {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = 0;
+                d.feed(`playPause`, `Play`);
+            }
 
+        }
     }, // functions
     {
 
@@ -29,5 +37,8 @@ d.start(
 
         d.elements.loadingHint.remove();
         initializeCanvas(d.elements.canvas);
-        requestAnimationFrame(loop);
+        drawEverything = reduceDraw(d.elements.canvas, [
+            drawWorld
+        ]);
+        animationFrameId = requestAnimationFrame(loop);
 });

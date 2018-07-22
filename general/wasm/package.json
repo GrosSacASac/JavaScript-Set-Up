@@ -9,6 +9,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
+    "collisions": "^2.0.13",
     "dom99": "^14.4.0",
     "utilsac": "^7.0.0"
   }

@@ -1,4 +1,10 @@
-export {generateRandomWorld, drawWorld, updateWorld};
+
+/*
+A world is a rectangle
+Inside a world there are living creatures with
+speed, direction, etc
+*/
+export {generateRandomWorld, drawWorld, updateWorld, generateSimpleWorld};
 
 import {
     randomPositiveInt,
@@ -8,6 +14,7 @@ import {
 import {
     fillArrayWithFunctionResult
 } from "../node_modules/utilsac/utility.js";
+import {Collisions, Circle, Polygon, Point} from "../node_modules/collisions/src/Collisions.mjs";
 
 
 /*
@@ -19,11 +26,24 @@ const drawWorld = function (context, world) {
     });
 };
 
-/*
-A world is a rectangle
-Inside a world there are living creatures with
-speed, direction, etc
-*/
+
+
+const generateSimpleWorld = function (width = 300, height = 300) {
+    const world = {
+        width,
+        height,
+        creatures : [{
+            width: 30,
+            height: 20,
+            speedX: 0.5,
+            speedY: 0.1,
+            x: 15,
+            y: 15
+        }]
+    };
+    return world;
+};
+
 const generateRandomWorld = function (width = 300, height = 300) {
     const populationSize = 25;
     const world = {
@@ -38,6 +58,8 @@ const generateRandomWorld = function (width = 300, height = 300) {
     populationSize);
     return world;
 };
+
+
 
 const generateRandomCreature = function (maxX, maxY) {
     const maxSize = 5;

@@ -55,7 +55,8 @@ const generateRandomWorld = function (width = 300, height = 300) {
         function () {
             return generateRandomCreature(world.width, world.height);
         },
-    populationSize);
+        populationSize
+    );
     return world;
 };
 

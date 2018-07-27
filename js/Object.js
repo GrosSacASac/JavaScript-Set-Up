@@ -54,8 +54,18 @@ Object.entries(anObject).forEach(function ([key, value]) {
 // iterate over the object and its full prototype chain
 let key;
 for (key in anObject) {
-    anObject[key]; // value
+    const value = anObject[key];
 }
+
+// iterate over all own Properties including Symbols and non-enumerables (anti-pattern)
+Reflect.ownKeys(anObject).forEach(function (key) {
+	const value = anObject[key];
+});
+
+// iterate over own Properties including non-enumerables (anti-pattern)
+Object.getOwnPropertyNames(anObject).forEach(function (key) {
+	const value = anObject[key];
+});
 
 // has a key
 anObject.hasOwnProperty("key");
@@ -63,7 +73,10 @@ anObject.hasOwnProperty("key");
 // has safe, works even when anObject has a key "hasOwnProperty"
 // also works for Objects without prototype
 Object.prototype.hasOwnProperty.call(anObject, "key");
-Reflect.has(anObject, "key")
+
+// has a key, or it can be found in the prototype chain
+"key" in anObject;
+Reflect.has(anObject, "key");
 
 // remove a value
 anObject["key"] = undefined;

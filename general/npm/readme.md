@@ -4,6 +4,8 @@
 
 installs everything from packagelock or package if not found
 
+   --ignore-scripts disables running scripts like postinstall defined in the target package.json, download only
+
 
 ## `npm i pac`
 

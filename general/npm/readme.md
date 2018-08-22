@@ -22,3 +22,7 @@ forces update pac to latest version and will be saved in package.json (and lock)
 ## `npm outdated`
 
 overview of outdated packages
+
+## update npm or other global package to the latest version
+
+`npm i npm@latest -g` or `npm i npm@latest -g`

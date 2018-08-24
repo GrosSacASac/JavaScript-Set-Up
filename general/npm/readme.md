@@ -25,4 +25,4 @@ overview of outdated packages
 
 ## update npm or other global package to the latest version
 
-`npm i npm@latest -g` or `npm i npm@latest -g`
+`npm i npm@latest -g` or `npm i other@latest -g`

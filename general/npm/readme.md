@@ -26,3 +26,7 @@ overview of outdated packages
 ## update npm or other global package to the latest version
 
 `npm i npm@latest -g` or `npm i other@latest -g`
+
+## `npm uninstall`
+
+`npm uninstall pac` removes pac from node_modules and package.json and packagelock. Alternatively remove a package from package.json manually and `npm prune` to remove it from node_modules after.

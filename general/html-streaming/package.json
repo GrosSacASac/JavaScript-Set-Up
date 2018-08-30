@@ -8,16 +8,13 @@
     "demo1": "node index.js",
     "demo2": "node second-demo.js",
     "build-demo3": "rollup slide-show/slide-controller.js --output.format es --name \"slidecontroller\" --output.file slide-show/built-slide-controller.js",
-    "demo3": "node slide-show/slide-show.js",
-    "start": "node slide-show/slide-show.js"
+    "demo3": "node slide-show/slide-show.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dom99": "^8.2.16",
-    "express": "^4.16.2",
-    "node-fetch": "^2.1.1",
-    "public-instagram": "^0.6.1"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "rollup": "^0.57.1"

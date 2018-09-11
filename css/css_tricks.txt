@@ -1,7 +1,7 @@
-head, title {
+head, title, style {
     display: block;
 }
-
-also style
-
  and combo for contenteditable attribute.
+ 
+ cursor: none;
+ 

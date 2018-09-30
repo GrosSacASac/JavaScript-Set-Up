@@ -13,7 +13,7 @@ installs pac at latest version according to package.json defined range or latest
 
 ## `npm update`
 
-updates all package to a version according to package.json defined range will be saved in package.json (and lock)
+updates all packages to versions according to package.json defined range. Will be saved in package.json lock only
 
 ## `npm i pac@latest`
 

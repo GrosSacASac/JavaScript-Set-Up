@@ -7,10 +7,13 @@ Here, some js techniques
 
 
 
-# Preferences
+## Preferences
 
 * Simple
 * Open to extension, closed to change
 * Scales well
 * Intuitive
 * Secure Default
+
+
+[Clean code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)

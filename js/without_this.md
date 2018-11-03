@@ -6,3 +6,5 @@ It is possible to write Object oriented and functional JavaScript entirely witho
 Every function can return an object
 
 Every function can take an instance as first argument explicitly
+
+Every function can compose or combine results of other functions

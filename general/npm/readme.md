@@ -28,7 +28,7 @@ updates all packages to versions according to package.json defined range. Will b
 
 ## `npm i pac@latest`
 
-forces install or update "pac" to latest version and will be saved in package.json and package-lock. Some package have custom tags as well like `@preview` or `@next` for example
+forces install or update "pac" to latest version and will be saved in package.json and package-lock. Check changelogs for compatibility before. Some package have custom tags as well like `@preview` or `@next` for example.
 
 ## `npm outdated`
 

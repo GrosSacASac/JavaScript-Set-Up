@@ -11,6 +11,8 @@ installs everything from package-lock or package if not found, package.json has 
    `-D` as devDependency
    
    `-g` run command globally
+   
+   `--production` install only production dependencies (not devDependencies)
 
 
 ## `npm i pac`

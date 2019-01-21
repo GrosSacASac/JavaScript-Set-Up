@@ -6,11 +6,11 @@ latest is the default tag for the latest version of a package on npm.
 
 installs everything from package-lock or package if not found, package.json has priority if in conflict with lock file (in that case package-lock will be updated as well)
 
-   --ignore-scripts disables running scripts like postinstall defined in the target package.json, download only
+   `--ignore-scripts` disables running scripts like postinstall defined in the target package.json, download only
    
-   -D as devDependency
+   `-D` as devDependency
    
-   -g run command globally
+   `-g` run command globally
 
 
 ## `npm i pac`

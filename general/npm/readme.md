@@ -2,22 +2,28 @@
 
 ## `npm i`
 
-installs everything from packagelock or package if not found
+installs everything from package-lock or package if not found, package.json has priority if in conflict with lock file (in that case package-lock will be updated as well)
 
    --ignore-scripts disables running scripts like postinstall defined in the target package.json, download only
+   -D as devDependency
 
 
 ## `npm i pac`
 
-installs pac at latest version according to package.json defined range or latest if it is not there yet and will be saved in package.json (and lock)
+installs or updates"pac" at highest compatible version according to package.json defined range or latest if it is not there yet and will be saved in package.json package-lock
+
+## `npm update pac`
+
+installs or updates"pac" at highest compatible version according to package.json defined range or latest if it is not there yet and will be saved in package.json package-lock
 
 ## `npm update`
 
-updates all packages to versions according to package.json defined range. Will be saved in package.json lock only
+Avoid using it, prefer updating 1 by 1 for stability.
+updates all packages to versions according to package.json defined range. Will be saved in package.json and package-lock
 
 ## `npm i pac@latest`
 
-forces update pac to latest version and will be saved in package.json (and lock)
+forces install or update "pac" to latest version and will be saved in package.json and package-lock
 
 ## `npm outdated`
 

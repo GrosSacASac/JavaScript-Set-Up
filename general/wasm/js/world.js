@@ -12,7 +12,7 @@ import {
     randomFloat
 } from "../node_modules/utilsac/random.js";
 import {
-    fillArrayWithFunctionResult
+    arrayWithResults
 } from "../node_modules/utilsac/utility.js";
 import {Collisions, Circle, Polygon, Point} from "../node_modules/collisions/src/Collisions.mjs";
 
@@ -51,7 +51,7 @@ const generateRandomWorld = function (width = 300, height = 300) {
         height,
         creatures : undefined
     };
-    world.creatures = fillArrayWithFunctionResult(
+    world.creatures = arrayWithResults(
         function () {
             return generateRandomCreature(world.width, world.height);
         },

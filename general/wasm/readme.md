@@ -1,5 +1,7 @@
 # wasm
 
+not yet finished
+
 ## to do
 
 use colision system

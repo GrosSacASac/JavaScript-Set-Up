@@ -10,7 +10,7 @@
   "devDependencies": {},
   "dependencies": {
     "collisions": "^2.0.13",
-    "dom99": "^14.4.0",
-    "utilsac": "^7.0.0"
+    "dom99": "^17.3.2",
+    "utilsac": "^9.7.0"
   }
 }

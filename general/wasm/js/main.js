@@ -1,4 +1,4 @@
-import {d} from "../node_modules/dom99/source/dom99.js";
+import * as d from "../node_modules/dom99/source/dom99.js";
 import {generateRandomWorld, generateSimpleWorld, drawWorld, updateWorld} from "./world.js";
 import {reduceDraw, initializeCanvas} from "./canvas.js";
 

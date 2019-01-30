@@ -1,8 +1,8 @@
 old/
-node_modules/
+node_modules
 #temporarily ignore
 design/
-
+built-slide-controller.js
 x64/
 build/
 [Bb]in/

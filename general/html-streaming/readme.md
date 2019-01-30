@@ -69,8 +69,9 @@ https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-whi
 
 ## Going Beyond
 
-Is it possible to refresh the page without JavaScript ?
+Is it possible to refresh the page without JavaScript ? Yes see demo3
 
 What are the costs/benefits of HTML streaming on low tier devices and Internet of Things ?
 
 More concrete use cases ?
+

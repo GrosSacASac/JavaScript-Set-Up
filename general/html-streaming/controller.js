@@ -1,4 +1,4 @@
-import d from "./dom99.js";
+import * as d from "./dom99.js";
 
 d.functions.numberChange = function (event) {
     fetch(`/updateNumber`, {
@@ -11,4 +11,4 @@ d.functions.numberChange = function (event) {
     });
 };
 
-d.activate();
+d.start();

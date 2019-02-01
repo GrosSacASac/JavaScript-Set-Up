@@ -1,20 +1,7 @@
 # Hello
 
-Have a look at the files inside html, js, css.
+Have a look at the files inside
 
-## Some Libraries
-
-[Ramda](https://github.com/ramda/ramda) Functional JavaScript Library
-
-[DOM99](https://github.com/GrosSacASac/DOM99) UI Framework
-
-
-
-## Conventions
-
-Use lint rules that everyone uses.
-
-You may use [JSDocs comments](https://github.com/jsdoc3/jsdoc) to generate documentation.
 
 
 ## Linting and testing
@@ -23,13 +10,13 @@ JavaScript linting,
 
 make sure objects are what you think with https://github.com/sbansal6/schema-enforcer or Typescript.
 
-JavaScript tests with [Jasmine](https://github.com/jasmine/jasmine)
+JavaScript tests with [Jasmine](https://github.com/jasmine/jasmine) or Ava or mocha/chai
 
 HTML tests 
 
-[Basic syntax](http://validator.w3.org/)
+[Basic syntax](http://validator.w3.org/) or https://html5.validator.nu/
 
-[User experience](https://www.modern.ie/en-us)
+User experience with light-house
 
 [Performance](http://yslow.org/)
 
@@ -53,11 +40,6 @@ Learn how JavaScript work first, then come back. Here are some good links:
 * [JavaScript examples](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/)
 
 
-
-
-## Note
-
-These documents are not all 100% up to date, but most tips are still relevant.
 
 
 ## License

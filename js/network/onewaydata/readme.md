@@ -9,6 +9,10 @@ Status: Draft
 
 See [examples](./examples)
 
+## install
+
+npm i onewaydata
+
 ## todo
 
 send :keepaliveping every 15s ?
@@ -24,7 +28,7 @@ import {
   RECONNECT_EVENT,
   CONNECT_EVENT,
   DISCONNECT_EVENT
-} from "../sse.js";
+} from "onewaydata";
 
 const server = ...
 

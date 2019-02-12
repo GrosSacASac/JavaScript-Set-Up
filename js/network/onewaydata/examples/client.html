@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<div>
+  <h2>EventSource</h2>
+  <ol id="messages">
+  </ul>
+</div>
+
+<script>
+const ol = document.getElementById("messages");
+const eventSource = new EventSource("./sse");
+eventSource.addEventListener("message", function (event) {
+  const li = document.createElement("LI");
+  li.appendChild(document.createTextNode(event.data));
+  ol.appendChild(li);
+});     
+</script>
+</body>
+</html>

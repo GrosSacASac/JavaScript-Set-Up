@@ -1,0 +1,22 @@
+{
+  "name": "onewaydata",
+  "version": "1.0.1",
+  "module": "sse.js",
+  "dependencies": {
+    "event-e3": "^7.0.3"
+  },
+  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
+  },
+  "files": [
+    "sse.js",
+    "readme.md",
+    "examples/start.js",
+    "examples/server.js",
+    "examples/client.html",
+    "examples/package.json",
+    "examples/package-lock.json"
+  ]
+}

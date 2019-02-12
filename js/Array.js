@@ -49,7 +49,15 @@ const removedFirstPart = array.shift();
 const specificPosition = 5; // remove the 6th element in the array
 array.splice(specificPosition, 1);
 
-// remove a specific item (once)
+// remove a specific item once, if the item is not there it removes the last 
 const itemToBeRemoved = "removeMe";
 const specificItemPosition = array.indexOf(itemToBeRemoved);
 array.splice(specificItemPosition, 1);
+
+
+// remove a specific item once, safe
+const itemToBeRemoved = "removeMe";
+const specificItemPosition = array.indexOf(itemToBeRemoved);
+if (specificItemPosition !== -1) {
+    array.splice(specificItemPosition, 1);
+}

@@ -1,6 +1,6 @@
 {
   "name": "onewaydata",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "module": "sse.js",
   "dependencies": {
     "event-e3": "^7.0.3"

@@ -1,6 +1,6 @@
 {
   "name": "onewaydata",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "module": "sse.js",
   "license": "CC0-1.0",
   "dependencies": {

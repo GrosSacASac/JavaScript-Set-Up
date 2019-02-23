@@ -77,7 +77,7 @@ const createEventStream = (server, options) => {
             });
         }
 
-        socket.once('close', () => {
+        socket.once(`close`, () => {
             const index = responses.indexOf(response);
             if (index !== -1) {
                 responses.splice(index, 1);
@@ -88,7 +88,7 @@ const createEventStream = (server, options) => {
     };
 
     const close = () => {
-        server.off('request', onRequest);
+        server.off(`request`, onRequest);
         responses.forEach(response => {
             response.end();
         });
@@ -110,7 +110,7 @@ const createEventStream = (server, options) => {
         });
     };
 
-    server.on('request', onRequest);
+    server.on(`request`, onRequest);
 
     return Object.assign(eventStream, {
         send,

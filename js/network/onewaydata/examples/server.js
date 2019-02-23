@@ -11,21 +11,21 @@ import {
 
 const PORT = 8080;
 const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    fs.createReadStream("./client.html").pipe(res);
+  if (req.url === `/`) {
+    fs.createReadStream(`./client.html`).pipe(res);
   }
 });
 
-const eventStream = createEventStream(server, {path: "/sse"});
+const eventStream = createEventStream(server, {path: `/sse`});
 
 eventStream.on(CONNECT_EVENT, () => {
-  console.log('someone connected')
+  console.log(`someone connected`)
 });
 eventStream.on(DISCONNECT_EVENT, () => {
-  console.log('someone disconnected')
+  console.log(`someone disconnected`)
 });
 eventStream.on(RECONNECT_EVENT, () => {
-  console.log('someone reconnected')
+  console.log(`someone reconnected`)
 });
 
 server.listen(PORT);

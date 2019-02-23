@@ -46,3 +46,8 @@ eventStream.on(RECONNECT_EVENT, () => {
 
 eventStream.send(`something`);
 ```
+
+
+### License
+
+[CC0](./license.txt)

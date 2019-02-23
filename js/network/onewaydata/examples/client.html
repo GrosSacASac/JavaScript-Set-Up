@@ -12,10 +12,10 @@
 </div>
 
 <script>
-const ol = document.getElementById("messages");
-const eventSource = new EventSource("./sse");
-eventSource.addEventListener("message", function (event) {
-  const li = document.createElement("LI");
+const ol = document.getElementById(`messages`);
+const eventSource = new EventSource(`./sse`);
+eventSource.addEventListener(`message`, function (event) {
+  const li = document.createElement(`li`);
   li.appendChild(document.createTextNode(event.data));
   ol.appendChild(li);
 });     

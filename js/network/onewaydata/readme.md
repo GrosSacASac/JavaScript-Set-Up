@@ -23,7 +23,7 @@ allow to send events (EVENT)
 
 ```js
 import {
-  reateEventStream,
+  createEventStream,
   sendOne,
   RECONNECT_EVENT,
   CONNECT_EVENT,
@@ -32,17 +32,17 @@ import {
 
 const server = ...
 
-const eventStream = createEventStream(server, {path: "/sse"});
+const eventStream = createEventStream(server, {path: `/sse`});
 
 eventStream.on(CONNECT_EVENT, () => {
-  console.log('someone connected');
+  console.log(`someone connected`);
 });
 eventStream.on(DISCONNECT_EVENT, () => {
-  console.log('someone disconnected');
+  console.log(`someone disconnected`);
 });
 eventStream.on(RECONNECT_EVENT, () => {
-  console.log('someone reconnected');
+  console.log(`someone reconnected`);
 });
 
-eventStream.send(++i);
+eventStream.send(`something`);
 ```

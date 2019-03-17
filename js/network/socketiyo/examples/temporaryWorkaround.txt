@@ -4,3 +4,5 @@ var bufferutil = undefined;
 var stream = _interopDefault(require('stream'));
 var utf8Validate = undefined;
 
+consider opening an issue or try
+https://github.com/glixlur/rollup-plugin-ignore

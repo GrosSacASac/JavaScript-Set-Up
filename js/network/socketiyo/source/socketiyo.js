@@ -13,90 +13,77 @@ const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
-wss.on(`connection`, function connection(ws) {
-    ws.on("message", function incoming(message) {
-        console.log(`received`, message);
-        const parsed = JSON.parse(message);
-    });
-
-    ws.on(`close`, function (code, reason) {
-        console.log(`closed, reason:`, reason || code.reason);
-        handleLeave(ws);
-    });
-
-});
+const formatSend = (data, channel) => {
+	const toSend = { channel, data };
+	return JSON.stringify(toSend);
+};
 
 
 const attachWebSocketServer = (httpServer, ws) => {
-	const wss = new ws.Server({ server: httpServer })
+	const wss = new ws.Server({ server: httpServer });
 
-	const websocketServerFacade = EventEmitter({})
-	const connectionsPool = new Map()
+	const websocketServerFacade = EventEmitter({});
+	const connectionsPool = new Set();
 
-	websocketServerFacade.send = (channel, to, data) => {
-		const socket = connectionsPool.get(to)
-		if (!socket) {
-			console.debug(
-				`Did not send message ${data}, the connection to that socket does not exist anymore`
-			)
-			return
-		}
+	websocketServerFacade.send = (socket, data, channel=``) => {
+		console.log(`Sending on channel: ${channel}\nData: ${data}`);
+		socket.send(formatSend(data, channel));
+	};
 
-		const toSend = { channel, data }
-		const stringifiedData = JSON.stringify(toSend)
-
-		socket.send(stringifiedData)
-
-		console.log(`Sending on channel: ${channel}\nData: ${stringifiedData}`)
-	}
+	websocketServerFacade.sendAll = (data, channel=``) => {
+		console.log(`Sending to all on channel: ${channel}\nData: ${data}`);
+		const toSend = formatSend(data, channel);
+		connectionsPool.forEach(socket => {
+			socket.send(toSend);
+		});
+	};
 
 	const connect = socket => {
 		if (connectionsPool.size >= maxClients) {
-			console.warn('limit reached, dropping websocket client')
-			socket.close()
-			return
+			console.warn(`limit reached, dropping websocket client`);
+			socket.close();
+			return;
 		}
-		const symbol = Symbol()
-		connectionsPool.set(symbol, socket)
-		const listenBound = listen.bind(undefined, symbol)
-		socket.on('message', listenBound)
-		socket.on('close', () => {
-			socket.off('message', listenBound)
-			connectionsPool.delete(symbol)
-			websocketServerFacade.emit(DISCONNECT, symbol)
-		})
-	}
+		connectionsPool.add(socket);
+		websocketServerFacade.emit(CONNECT, socket);
+		socket.on(`message`, listen.bind(undefined, socket))
+		socket.on(`close`, () => {
+			socket.off(`message`, listenBound);
+			connectionsPool.delete(socket);
+			websocketServerFacade.emit(DISCONNECT, socket);
+		});
+	};
 
 	const listen = (from, message) => {
-		let error = validateLength(message)
+		let error = validateLength(message);
 		if (error) {
-			console.error(error)
-			return
+			console.error(error);
+			return;
 		}
 
-		let parsed
+		let parsed;
 		try {
-			parsed = JSON.parse(message)
+			parsed = JSON.parse(message);
 		} catch (error) {
-			console.error(`invalid JSON received from websocket ${error}`)
-			console.debug(message)
-			return
+			console.error(`invalid JSON received from websocket ${error}`);
+			console.debug(message);
+			return;
 		}
 
-		error = validateFormat(parsed)
+		error = validateFormat(parsed);
 		if (error) {
-			console.error(error)
-			return
+			console.error(error);
+			return;
 		}
 
-		console.log(`receiving data: ${message}`)
-		const { channel, data } = parsed
+		console.log(`receiving data: ${message}`);
+		const { channel, data } = parsed;
 		websocketServerFacade.emit(channel, {
 			data,
 			from,
-		})
-	}
-	wss.on('connection', connect)
+		});
+	};
+	wss.on(`connection`, connect);
 	return websocketServerFacade;
 }
 

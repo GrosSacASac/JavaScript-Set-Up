@@ -1,0 +1,17 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "scripts": {
+    "buildExampleServer": "rollup --config ./rollup.config.js",
+    "exampleServer": "node ./built/exampleServerReady.js"
+  },
+  "devDependencies": {
+    "rollup": "^1.6.0",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1"
+  },
+  "dependencies": {
+    "ws": "^6.2.0"
+  },
+  "private": true
+}

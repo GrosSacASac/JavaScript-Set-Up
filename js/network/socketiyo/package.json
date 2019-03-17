@@ -1,7 +1,7 @@
 {
   "name": "socketiyo",
-  "version": "1.0.0",
-  "module": "socketiyo.js",
+  "version": "2.0.1",
+  "module": "./source/socketiyo.js",
   "license": "CC0-1.0",
   "dependencies": {
     "event-e3": "^7.0.3"

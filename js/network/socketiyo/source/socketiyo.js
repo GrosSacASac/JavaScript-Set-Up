@@ -20,7 +20,6 @@ const formatSend = (data, channel) => {
 	return JSON.stringify(toSend);
 };
 
-
 const attachWebSocketServer = (httpServer, ws) => {
 	const wss = new ws.Server({ server: httpServer });
 
@@ -37,6 +36,16 @@ const attachWebSocketServer = (httpServer, ws) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			socket.send(toSend);
+		});
+	};
+
+	websocketServerFacade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
+		console.log(`Sending to all except one on channel: ${channel}\nData: ${data}`);
+		const toSend = formatSend(data, channel);
+		connectionsPool.forEach(socket => {
+			if (socket !== exceptionSocket) {
+				socket.send(toSend);
+			}
 		});
 	};
 
@@ -87,5 +96,4 @@ const attachWebSocketServer = (httpServer, ws) => {
 	};
 	wss.on(`connection`, connect);
 	return websocketServerFacade;
-}
-
+};

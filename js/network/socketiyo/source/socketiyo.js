@@ -14,10 +14,20 @@ const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
 const DEFAULT_CHANNEL = ``;
+const SUBSCRIBE_CHANNEL_ACTION = `SUBSCRIBE_CHANNEL_ACTION`;
+const UNSUBSCRIBE_CHANNEL_ACTION = `UNSUBSCRIBE_CHANNEL_ACTION`;
 
 const formatSend = (data, channel) => {
 	const toSend = { channel, data };
 	return JSON.stringify(toSend);
+};
+
+const isSocketInChannel = (socket, channel) => {
+	return channel === DEFAULT_CHANNEL || socket.channels.has(channel);
+}
+
+const enhanceSocket = socket => {
+	socket.channels = new Set();
 };
 
 const attachWebSocketServer = (httpServer, ws) => {
@@ -28,14 +38,19 @@ const attachWebSocketServer = (httpServer, ws) => {
 
 	websocketServerFacade.send = (socket, data, channel=DEFAULT_CHANNEL) => {
 		console.log(`Sending on channel: ${channel}\nData: ${data}`);
-		socket.send(formatSend(data, channel));
+		if (isSocketInChannel(socket, channel)) {
+			socket.send(formatSend(data, channel));
+		}
+		
 	};
 
 	websocketServerFacade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
 		console.log(`Sending to all on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
-			socket.send(toSend);
+			if (isSocketInChannel(socket, channel)) {
+				socket.send(toSend);
+			}
 		});
 	};
 
@@ -44,7 +59,9 @@ const attachWebSocketServer = (httpServer, ws) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (socket !== exceptionSocket) {
-				socket.send(toSend);
+				if (isSocketInChannel(socket, channel)) {
+					socket.send(toSend);
+				}
 			}
 		});
 	};
@@ -55,6 +72,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 			socket.close();
 			return;
 		}
+		enhanceSocket(socket);
 		connectionsPool.add(socket);
 		websocketServerFacade.emit(CONNECT, socket);
 		socket.on(`message`, listen.bind(undefined, socket))
@@ -87,8 +105,18 @@ const attachWebSocketServer = (httpServer, ws) => {
 			return;
 		}
 
-		console.log(`receiving data: ${message}`);
-		const { channel, data } = parsed;
+		const { channel, data, action } = parsed;
+		if (action === SUBSCRIBE_CHANNEL_ACTION) {
+			console.log(`subscribing to channel ${channel}`);
+			socket.channels.add(channel);
+			return;
+		}
+		if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
+			console.log(`unsubscribing to channel ${channel}`);
+			socket.channels.delete(channel);
+			return;
+		}
+		console.log(`receiving data: ${parsed}`);
 		websocketServerFacade.emit(channel, {
 			data,
 			from,

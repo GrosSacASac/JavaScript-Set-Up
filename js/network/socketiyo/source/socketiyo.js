@@ -2,7 +2,8 @@ export {
     attachWebSocketServer,
     CONNECT,
     DISCONNECT,
-    ERROR
+	ERROR,
+	DEFAULT_CHANNEL
 };
 import {validateFormat, validateLength} from "./validate.js";
 import {maxClients, maxLength} from "./defaultOptions.js";
@@ -12,6 +13,7 @@ import EventEmitter from "event-e3";
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
+const DEFAULT_CHANNEL = ``;
 
 const formatSend = (data, channel) => {
 	const toSend = { channel, data };
@@ -25,12 +27,12 @@ const attachWebSocketServer = (httpServer, ws) => {
 	const websocketServerFacade = EventEmitter({});
 	const connectionsPool = new Set();
 
-	websocketServerFacade.send = (socket, data, channel=``) => {
+	websocketServerFacade.send = (socket, data, channel=DEFAULT_CHANNEL) => {
 		console.log(`Sending on channel: ${channel}\nData: ${data}`);
 		socket.send(formatSend(data, channel));
 	};
 
-	websocketServerFacade.sendAll = (data, channel=``) => {
+	websocketServerFacade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
 		console.log(`Sending to all on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {

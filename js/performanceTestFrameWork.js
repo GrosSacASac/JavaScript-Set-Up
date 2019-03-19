@@ -1,5 +1,4 @@
-/*
-usage xtest
+/* usage
 const xtest = {
 	name: 'xtest',
 	code: (shared, finish) => {
@@ -10,11 +9,10 @@ const xtest = {
 };
 
 const testSuite = performanceTestFrameWork.create({
-	tests: [xtest, /*otherTests*/],
+	tests: [xtest, otherTests],
 	maxTime: 150
 });
-performanceTestFrameWork.runAll(testSuite);
-*/
+performanceTestFrameWork.runAll(testSuite); */
 'use strict';
 const {
   performance

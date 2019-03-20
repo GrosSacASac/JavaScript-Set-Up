@@ -1,20 +1,18 @@
-/*
-usage xtest
+/* usage
 const xtest = {
 	name: 'xtest',
 	code: (shared, finish) => {
-            // do something
+                // do something
 			finish(); // finishes the test
 		};
 	}
 };
 
-const promisesTest = performanceTestFrameWork.create({
+const testSuite = performanceTestFrameWork.create({
 	tests: [xtest, otherTests],
 	maxTime: 150
 });
-performanceTestFrameWork.runAll(promisesTest);
-*/
+performanceTestFrameWork.runAll(testSuite); */
 'use strict';
 const {
   performance

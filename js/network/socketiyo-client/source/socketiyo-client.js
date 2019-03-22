@@ -5,45 +5,39 @@ export {
 	ERROR,
 	DEFAULT_CHANNEL
 };
-import EventEmitter from "event-e3";
+import {EmitterListener, onSubscribe, onUnsubscribe} from "event-e3/source/EmitterListener";
+import {
+	formatSend,
+	SUBSCRIBE_CHANNEL_ACTION,
+	UNSUBSCRIBE_CHANNEL_ACTION,
+	DEFAULT_CHANNEL
+} from "socketiyo-shared";
 
-const createConnection = (options) => {
-    const {url} = options;
-	const connection = new WebSocket(url);
-	const facade = EventEmitter({});
-    connection.addEventListener(`message`, (x) => {
-		const parsed = JSON.parse(x.data);
-        facade.emit(DEFAULT_CHANNEL, parsed.data);
-	});
-	facade.send = 0;
-	facade.subscribe = 0;
-	facade.unsubscribe = 0;
-	facade.send = 0;
-    return facade;
-};
 
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
-const DEFAULT_CHANNEL = ``;
-const SUBSCRIBE_CHANNEL_ACTION = `SUBSCRIBE_CHANNEL_ACTION`;
-const UNSUBSCRIBE_CHANNEL_ACTION = `UNSUBSCRIBE_CHANNEL_ACTION`;
 
-const formatSend = (data, channel) => {
-	const toSend = { channel, data };
-	return JSON.stringify(toSend);
+const createConnection = (options) => {
+    const {url} = options;
+	const connection = new WebSocket(url);
+	const facade = new EmitterListener();
+    connection.addEventListener(`message`, (x) => {
+		const parsed = JSON.parse(x.data);
+        facade.emit(pased.channel, parsed.data);
+	});
+	facade.send = (x, channel=DEFAULT_CHANNEL) => {
+		connection.send(formatSend(x, channel));
+	};
+	const outsideSubscriptionSet = new Set(); // add in event-e3
+	facade.on(onSubscribe, ({eventName}) => {
+
+	});
+	facade.on(onUnsubscribe, 0)
+    return facade;
 };
 
-		// const { channel, data, action } = parsed;
-		// if (action === SUBSCRIBE_CHANNEL_ACTION) {
-		// 	console.log(`subscribing to channel ${channel}`);
-		// 	socket.channels.add(channel);
-		// 	return;
-		// }
-		// if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
-		// 	console.log(`unsubscribing to channel ${channel}`);
-		// 	socket.channels.delete(channel);
-		// 	return;
-		// }
 
+// 	console.log(`subscribing to channel ${channel}`);
+// 	console.log(`unsubscribing to channel ${channel}`);
 

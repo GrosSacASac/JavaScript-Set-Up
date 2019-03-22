@@ -8,19 +8,17 @@ export {
 import {validateFormat, validateLength} from "./validate.js";
 import {maxClients, maxLength} from "./defaultOptions.js";
 import EventEmitter from "event-e3";
+import {
+	formatSend,
+	SUBSCRIBE_CHANNEL_ACTION,
+	UNSUBSCRIBE_CHANNEL_ACTION,
+	DEFAULT_CHANNEL
+} from "socketiyo-shared";
 
 
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
-const DEFAULT_CHANNEL = ``;
-const SUBSCRIBE_CHANNEL_ACTION = `SUBSCRIBE_CHANNEL_ACTION`;
-const UNSUBSCRIBE_CHANNEL_ACTION = `UNSUBSCRIBE_CHANNEL_ACTION`;
-
-const formatSend = (data, channel) => {
-	const toSend = { channel, data };
-	return JSON.stringify(toSend);
-};
 
 const isSocketInChannel = (socket, channel) => {
 	return channel === DEFAULT_CHANNEL || socket.channels.has(channel);

@@ -5,13 +5,23 @@ export {
 	ERROR,
 	DEFAULT_CHANNEL
 };
-import {EmitterListener, onSubscribe, onUnsubscribe} from "event-e3/source/EmitterListener";
 import {
+	RegularListener,
+    onFirstSubscribeString,
+    onLastUnsubscribeString,
+} from "../node_modules/event-e3/source/RegularListener.js";
+import {
+	isString
+} from "../node_modules/event-e3/source/isString.js";
+
+import {
+	packData,
+	unpackData,
 	formatSend,
 	SUBSCRIBE_CHANNEL_ACTION,
 	UNSUBSCRIBE_CHANNEL_ACTION,
 	DEFAULT_CHANNEL
-} from "socketiyo-shared";
+} from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
 
 const CONNECT = Symbol();
@@ -19,25 +29,65 @@ const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
 const createConnection = (options) => {
-    const {url} = options;
-	const connection = new WebSocket(url);
-	const facade = new EmitterListener();
-    connection.addEventListener(`message`, (x) => {
-		const parsed = JSON.parse(x.data);
-        facade.emit(pased.channel, parsed.data);
-	});
-	facade.send = (x, channel=DEFAULT_CHANNEL) => {
-		connection.send(formatSend(x, channel));
+	const {url} = options;
+	let {autoReconnect = true} = options;
+	let connection;
+	let delayedUntilOpen = [];
+	const facade = new RegularListener();
+	const reconnect = () => {
+		console.log(`reconnecting`)
+		connection = new WebSocket(url);
+		connection.addEventListener(`message`, (x) => {
+			console.log(41, x);
+			const parsed = unpackData(x.data);
+			facade.emit(parsed.channel, parsed.data);
+		});
+		connection.addEventListener(`close`, (x) => {
+			facade.emit(DISCONNECT, x);
+			if (autoReconnect) {
+				setTimeout(reconnect, 1000);
+			}
+		});
+		connection.addEventListener(`error`, (x) => {
+			facade.emit(DISCONNECT, x);
+			facade.emit(ERROR, x);
+		});
+		connection.addEventListener(`open`, () => {
+			facade.emit(CONNECT, undefined);
+		});
 	};
-	const outsideSubscriptionSet = new Set(); // add in event-e3
-	facade.on(onSubscribe, ({eventName}) => {
-
+	const safeSend = (x) => {
+		if (connection.readyState === WebSocket.OPEN) {
+			connection.send(x);
+		} else {
+			delayedUntilOpen.push(x)
+		}
+	};
+	facade.send = (x, channel=DEFAULT_CHANNEL) => {
+		safeSend(formatSend(x, channel));
+	};
+	facade.close = () => {
+		autoReconnect = false;
+		connection.close();
+		facade.off();
+		delayedUntilOpen = undefined;
+	};
+	facade.on(onFirstSubscribeString, eventName => {
+		console.log(`subscribing to channel ${eventName}`);
+		safeSend(packData({
+			channel: eventName,
+			action: SUBSCRIBE_CHANNEL_ACTION
+		}));
 	});
-	facade.on(onUnsubscribe, 0)
+	facade.on(onLastUnsubscribeString, eventName => {
+		console.log(`unsubscribing to channel ${eventName}`);
+		safeSend(packData({
+			channel: eventName,
+			action: SUBSCRIBE_CHANNEL_ACTION
+		}));
+	});
+	reconnect();
     return facade;
 };
 
-
-// 	console.log(`subscribing to channel ${channel}`);
-// 	console.log(`unsubscribing to channel ${channel}`);
 

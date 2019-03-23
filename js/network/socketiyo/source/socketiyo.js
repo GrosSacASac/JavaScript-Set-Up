@@ -9,6 +9,8 @@ import {validateFormat, validateLength} from "./validate.js";
 import {maxClients, maxLength} from "./defaultOptions.js";
 import EventEmitter from "event-e3";
 import {
+	packData,
+	unpackData,
 	formatSend,
 	SUBSCRIBE_CHANNEL_ACTION,
 	UNSUBSCRIBE_CHANNEL_ACTION,
@@ -90,7 +92,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 
 		let parsed;
 		try {
-			parsed = JSON.parse(message);
+			parsed = unpackData(message);
 		} catch (error) {
 			console.error(`invalid JSON received from websocket ${error}`);
 			console.debug(message);

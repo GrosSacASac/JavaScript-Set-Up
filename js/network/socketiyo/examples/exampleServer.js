@@ -10,3 +10,8 @@ const socketiYoServer = attachWebSocketServer(httpServer, ws);
 setInterval(() => {
     socketiYoServer.sendAll(Date.now());
 }, 1500);
+
+
+setTimeout(() => {
+    socketiYoServer.sendAll(`It is over`, `game/end`);
+}, 6000);

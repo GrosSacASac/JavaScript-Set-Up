@@ -2,6 +2,10 @@
   "name": "examples",
   "version": "1.0.0",
   "scripts": {
+    "serve": "serve ../."
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "serve": "^10.1.2"
+  }
 }

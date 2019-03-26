@@ -79,7 +79,8 @@ const actions = {
     // }
 };
 
-const updateGame = (state) => {
+const updateGame = (action, state) => {
+    action(state);
     const [x, y] = state.position;
     state.dangers.forEach(([dangerX, dangerY]) => {
         if (x === dangerX && y === dangerY) {
@@ -155,8 +156,7 @@ const step = () => {
     const hashedState = hashState(state);
     const scoreBefore = state.score;
     const action = intelligence.decide(hashedState, actions);
-    action(state);
-    updateGame(state); // reward
+    updateGame(action, state); // reward and changes state
     // draw(state);
     const hashedStateAfter = hashState(state);
     const scoreAfter = state.score;

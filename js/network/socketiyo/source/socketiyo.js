@@ -24,7 +24,7 @@ const ERROR = Symbol();
 
 const isSocketInChannel = (socket, channel) => {
 	return channel === DEFAULT_CHANNEL || socket.channels.has(channel);
-}
+};
 
 const enhanceSocket = socket => {
 	socket.channels = new Set();
@@ -75,7 +75,8 @@ const attachWebSocketServer = (httpServer, ws) => {
 		enhanceSocket(socket);
 		connectionsPool.add(socket);
 		websocketServerFacade.emit(CONNECT, socket);
-		socket.on(`message`, listen.bind(undefined, socket))
+		const listenBound = listen.bind(undefined, socket);
+		socket.on(`message`, listenBound);
 		socket.on(`close`, () => {
 			socket.off(`message`, listenBound);
 			connectionsPool.delete(socket);
@@ -83,7 +84,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 		});
 	};
 
-	const listen = (from, message) => {
+	const listen = (socket, message) => {
 		let error = validateLength(message);
 		if (error) {
 			console.error(error);
@@ -119,7 +120,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 		console.log(`receiving data: ${parsed}`);
 		websocketServerFacade.emit(channel, {
 			data,
-			from,
+			from: socket,
 		});
 	};
 	wss.on(`connection`, connect);

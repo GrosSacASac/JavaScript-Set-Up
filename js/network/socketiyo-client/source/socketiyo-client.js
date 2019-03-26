@@ -23,7 +23,7 @@ import {
 	DEFAULT_CHANNEL
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
-
+const reconnectionDelay = 3000;
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
@@ -45,7 +45,7 @@ const createConnection = (options) => {
 		connection.addEventListener(`close`, (x) => {
 			facade.emit(DISCONNECT, x);
 			if (autoReconnect) {
-				setTimeout(reconnect, 1000);
+				setTimeout(reconnect, reconnectionDelay);
 			}
 		});
 		connection.addEventListener(`error`, (x) => {
@@ -54,6 +54,13 @@ const createConnection = (options) => {
 		});
 		connection.addEventListener(`open`, () => {
 			facade.emit(CONNECT, undefined);
+			facade.eventNamesStrings().forEach(eventName => {
+				console.log(`subscribing to channel ${eventName}`);
+				connection.send(packData({
+					channel: eventName,
+					action: SUBSCRIBE_CHANNEL_ACTION
+				}));
+			});
 		});
 	};
 	const safeSend = (x) => {
@@ -62,6 +69,11 @@ const createConnection = (options) => {
 		} else {
 			delayedUntilOpen.push(x)
 		}
+	};
+	const sendOrDrop = (x) => {
+		if (connection.readyState === WebSocket.OPEN) {
+			connection.send(x);
+		} /* else drop */
 	};
 	facade.send = (x, channel=DEFAULT_CHANNEL) => {
 		safeSend(formatSend(x, channel));
@@ -74,14 +86,14 @@ const createConnection = (options) => {
 	};
 	facade.on(onFirstSubscribeString, eventName => {
 		console.log(`subscribing to channel ${eventName}`);
-		safeSend(packData({
+		sendOrDrop(packData({
 			channel: eventName,
 			action: SUBSCRIBE_CHANNEL_ACTION
 		}));
 	});
 	facade.on(onLastUnsubscribeString, eventName => {
 		console.log(`unsubscribing to channel ${eventName}`);
-		safeSend(packData({
+		sendOrDrop(packData({
 			channel: eventName,
 			action: SUBSCRIBE_CHANNEL_ACTION
 		}));

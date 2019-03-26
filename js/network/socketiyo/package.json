@@ -1,10 +1,10 @@
 {
   "name": "socketiyo",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "module": "./source/socketiyo.js",
   "license": "CC0-1.0",
   "dependencies": {
-    "event-e3": "^7.4.1",
+    "event-e3": "^7.5.2",
     "socketiyo-shared": "^1.1.1"
   },
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",

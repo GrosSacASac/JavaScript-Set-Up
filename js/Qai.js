@@ -95,47 +95,55 @@ const updateGame = (action, state) => {
     });
 };
 
+
 const intelligence = {
+    defaultQuality: 0,
     learnFactor: 0.5,
     discountFactor: 0.9,
     exploreBonus: 0.04,
     decide: (hashedState, actionNames) => {
         let qualityForState = intelligence.qualityMap[hashedState];
         if (!qualityForState) {
-            // first time in this situation
-            intelligence.qualityMap[hashedState] = actionNames.map(actionName => {
-                return [0, actionName];
-            });
-            qualityForState = intelligence.qualityMap[hashedState];
-            // console.log(qualityForState)
+            return actionNames[0] // take first (random)
         }
         const [highestQuality, highestQualityActionName] = qualityForState.sort(([qualityA], [qualityB]) => {
             return qualityB - qualityA;
         })[0];
 
-        // console.log(119,highestQuality, qualityForState)
         return highestQualityActionName;
     },
     qualityMap: {
-
+        // [[quality, actionName]]
     },
-    learn:(previousHashedState, hashedStateAfter, reward) => {
-        // still sorted
-        const qualityForState = intelligence.qualityMap[previousHashedState];
+    learn: (previousHashedState, hashedStateAfter, previousAction, actionNames, reward) => {
+        let qualityForState = intelligence.qualityMap[previousHashedState];
+        if (!qualityForState) {
+            // there was no quality map for this set of state and actions
+            qualityForState = actionNames.map(actionName => {
+                return [intelligence.defaultQuality, actionName];
+            });
+            intelligence.qualityMap[previousHashedState] = qualityForState;
+        }
+
+        
+        const previousActionIndex = qualityForState.findIndex(([quality, actionName]) => {
+            return actionName === previousAction;
+        });
+        
         if (previousHashedState === hashedStateAfter) {
-            qualityForState[0][0] += -intelligence.exploreBonus;
+            qualityForState[previousActionIndex][0] += -intelligence.exploreBonus;
             return;
         }
         const nextQualityForState = intelligence.qualityMap[hashedStateAfter];
-        let nextMaxQualityForState = 0;
-        let nextHighestQualityActionName = 'unused';
+        let nextMaxQualityForState = intelligence.defaultQuality; 
+        let _ = '';
         if (nextQualityForState) {
-            [nextMaxQualityForState, nextHighestQualityActionName] = nextQualityForState.sort(([qualityA], [qualityB]) => {
+            [nextMaxQualityForState, _] = nextQualityForState.sort(([qualityA], [qualityB]) => {
                 return qualityB - qualityA;
             })[0];
         }
-        // console.log(144, nextQualityForState, nextMaxQualityForState);
-        qualityForState[0][0] += intelligence.learnFactor * (
+
+        qualityForState[previousActionIndex][0] += intelligence.learnFactor * (
             reward +
             intelligence.discountFactor * (nextMaxQualityForState - qualityForState[0][0])
         ) -intelligence.exploreBonus;
@@ -157,11 +165,11 @@ const step = () => {
     const actionName = intelligence.decide(hashedState, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
-    // draw(state);
+    draw(state);
     const hashedStateAfter = hashState(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(hashedState, hashedStateAfter, reward);
+    intelligence.learn(hashedState, hashedStateAfter, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         setTimeout(step, DELAY)

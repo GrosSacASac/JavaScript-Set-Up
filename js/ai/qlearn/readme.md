@@ -1,6 +1,8 @@
 # qlearn
 
-Do not use this library if a situation is not going to happen twice.
+Do not use this library if a situation is not going to happen twice. Or if the possible actions is infinite.
+
+The strength of qlearn is its simplicity, and its independence towards the decision taker.
 
 ## concepts
 
@@ -55,6 +57,7 @@ The actionName will be random if this hashedState was never encountered before.
 
 Will use `.qualityMap`.
 
+
 ```
 const actionName = intelligence(hashedState, actionNames);
 ```
@@ -66,6 +69,8 @@ Use it as soon as reward is available after `.decide()`.
 previousHashedState and hashedStateAfter may be equal if the action taken had no effect.
 
 Will update `.qualityMap`.
+
+Note: It is possible to learn even if the decision of the `previousAction` did not come from `.decide()`, for example: If a human decides, the `.learn()` can still be used.
 
 ```
 intelligence.learn(

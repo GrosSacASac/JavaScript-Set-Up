@@ -1,6 +1,6 @@
 "use strict";
 const MAX_FRAMES = 1000;
-const DELAY = 0;
+const DELAY = 100;
 
 let frame = 0;
 const draw = (state) => {
@@ -10,9 +10,13 @@ const draw = (state) => {
         for (let x = 0; x <= state.maxX; x++) {
             if (state.position[0] === x && state.position[1] === y) {
                 line.push(`*`);
-            } else if (state.dangers[0][0] === x && state.dangers[0][1] === y) {
+            } else if (state.dangers.some(([dx, dy]) => {
+                return dx === x && dy === y;
+            })) {
                 line.push(`X`);
-            } else if (state.rewards[0][0] === x && state.rewards[0][1] === y) {
+            } else if (state.rewards.some(([dx, dy]) => {
+                return dx === x && dy === y;
+            })) {
                 line.push(`@`);
             } else {
                 line.push(` `);

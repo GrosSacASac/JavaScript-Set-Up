@@ -2,7 +2,7 @@ import {createIntelligence} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 
-const MAX_FRAMES = 500;
+const MAX_FRAMES = 1000;
 const DELAY = 100;
 
 let frame = 0;

@@ -1,0 +1,19 @@
+{
+  "name": "qlearn",
+  "version": "1.0.0",
+  "module": "./source/qlearn.js",
+  "license": "CC0-1.0",
+  "dependencies": {
+
+  },
+  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
+  },
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ]
+}

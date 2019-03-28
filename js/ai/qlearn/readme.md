@@ -29,6 +29,7 @@ npm i qlearn
 
 ```
 import {createIntelligence} from "qlearn";
+import {createIntelligence} from "https://unpkg.com/qlearn@1.0.2/source/qlearn.js";
 ```
 
 ## usage

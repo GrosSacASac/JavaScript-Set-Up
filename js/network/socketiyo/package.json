@@ -1,6 +1,6 @@
 {
   "name": "socketiyo",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "module": "./source/socketiyo.js",
   "license": "CC0-1.0",
   "dependencies": {

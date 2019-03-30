@@ -85,6 +85,9 @@ const createConnection = (options) => {
 		delayedUntilOpen = undefined;
 	};
 	facade.on(onFirstSubscribeString, eventName => {
+		if (eventName === DEFAULT_CHANNEL) {
+			return;
+		}
 		console.log(`subscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,

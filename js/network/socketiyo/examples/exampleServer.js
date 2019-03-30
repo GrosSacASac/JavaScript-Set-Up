@@ -39,5 +39,5 @@ socketiYoServer.on(ERROR, error => {
 });
 
 socketiYoServer.on(`game/input`, ({socket, data}) => {
-    console.log(`${socket} send use ${data}`);
+    console.log(`${socket} send us ${data}`);
 });

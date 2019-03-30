@@ -1,10 +1,6 @@
 # socketiyo-client
 
-client for [socketiyo](../socketiyo/readme.md)
-
-Status: draft
-
-Concept inspired by socket.io
+client for [socketiyo](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo)
 
 
 

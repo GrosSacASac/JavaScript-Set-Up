@@ -1,3 +1,5 @@
-export {maxClients, maxLength}
-const maxClients = 10 ** 6
-const maxLength = 10 ** 9
+export {maxClients, maxLength};
+
+
+const maxClients = 10 ** 6;
+const maxLength = 10 ** 9;

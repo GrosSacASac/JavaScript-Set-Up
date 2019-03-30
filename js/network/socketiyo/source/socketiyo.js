@@ -120,7 +120,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 		console.log(`receiving data: ${parsed}`);
 		websocketServerFacade.emit(channel, {
 			data,
-			from: socket,
+			socket,
 		});
 	};
 	wss.on(`connection`, connect);

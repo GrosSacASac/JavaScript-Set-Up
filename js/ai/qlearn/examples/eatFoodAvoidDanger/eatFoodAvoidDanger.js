@@ -10,7 +10,7 @@ let frame = 0;
 const intelligence = createIntelligence();
 
 const hashState = (state) => {
-    // we omit actions because they are static
+    // we omit actions because they are always the same 
     return `${state.position}`;
 };
 
@@ -81,7 +81,7 @@ const step = () => {
     const actionName = intelligence.decide(hashedState, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
-    draw(state, frame);
+    //draw(state, frame);
     const hashedStateAfter = hashState(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;

@@ -16,7 +16,7 @@ An action that is taken should have an effect on the state, and sometimes the re
 
 ### reward
 
-Rewards will be used to correct the behaviour of the intelligence over time
+Rewards will be used to correct the behaviour of the intelligence over time. Use negative rewards for punishment.
 
 
 ## install
@@ -101,17 +101,25 @@ intelligence.defaultQuality = 0;
 
 ### `.learnFactor`
 
+`0 < learnFactor < 1 `
+
 ```
 intelligence.learnFactor = 0.5;
 ```
 
 ### `.discountFactor`
 
+
+`0 < discountFactor < 1 `
+
 ```
 intelligence.discountFactor = 0.9;
 ```
 
 ### `.exploreBonus`
+
+A positive number to encourage exploration, a negative number to discourage exploration.
+Ideally orders of magnitude smaller than a normal reward.
 
 ```
 intelligence.exploreBonus = 0.04;

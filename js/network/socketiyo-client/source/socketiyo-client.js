@@ -95,6 +95,9 @@ const createConnection = (options) => {
 		}));
 	});
 	facade.on(onLastUnsubscribeString, eventName => {
+		if (eventName === DEFAULT_CHANNEL) {
+			return;
+		}
 		console.log(`unsubscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,

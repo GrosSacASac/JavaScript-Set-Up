@@ -21,6 +21,16 @@ Regular events and library events cannot be confused.
 
 ## Usage
 
+### Install
+
+#### client side
+
+`npm i socketiyo-client`
+
+#### server side
+
+`npm i socketiyo`
+
 ...
 
 ### License

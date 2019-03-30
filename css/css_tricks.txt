@@ -5,3 +5,6 @@ head, title, style {
  
  cursor: none;
  
+anything:after {
+    content:attr(abbr);
+}

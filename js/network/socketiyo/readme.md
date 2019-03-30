@@ -31,7 +31,49 @@ Regular events and library events cannot be confused.
 
 `npm i socketiyo`
 
-...
+```
+import {
+    attachWebSocketServer,
+    CONNECT,
+    DISCONNECT,
+	ERROR,
+	DEFAULT_CHANNEL,
+} from "../source/socketiyo.js";
+
+/* httpServer, ws are not provided, see examples */
+const socketiYoServer = attachWebSocketServer(httpServer, ws);
+
+
+/* send the current time on the default channel to everyone */
+setInterval(() => {
+    socketiYoServer.sendAll(Date.now());
+}, 1500);
+
+/* send It is over to anyone on the game/end channel*/
+setTimeout(() => {
+    socketiYoServer.sendAll(`It is over`, `game/end`);
+}, 10000);
+
+socketiYoServer.on(CONNECT, socket => {
+    console.log(`${socket} connected`);
+    /* send welcome to the socket*/
+    socketiYoServer.send(socket, {message: `welcome`});
+    /* alert others as well */
+    socketiYoServer.sendAllExceptOne(socket, {message: `new connection`});
+});
+
+socketiYoServer.on(DISCONNECT, socket => {
+    console.log(`${socket} disconnected`);
+});
+
+socketiYoServer.on(ERROR, error => {
+    console.error(error);
+});
+
+socketiYoServer.on(`game/input`, ({socket, data}) => {
+    console.log(`${socket} send use ${data}`);
+});
+```
 
 ### License
 

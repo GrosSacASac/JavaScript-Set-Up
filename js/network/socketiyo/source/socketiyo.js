@@ -30,14 +30,14 @@ const enhanceSocket = socket => {
 	socket.channels = new Set();
 };
 
-const attachWebSocketServer = (httpServer, ws) => {
+const attachWebSocketServer = (httpServer, ws, logger=console) => {
 	const wss = new ws.Server({ server: httpServer });
 
 	const websocketServerFacade = EventEmitter({});
 	const connectionsPool = new Set();
 
 	websocketServerFacade.send = (socket, data, channel=DEFAULT_CHANNEL) => {
-		console.log(`Sending on channel: ${channel}\nData: ${data}`);
+		logger.log(`Sending on channel: ${channel}\nData: ${data}`);
 		if (isSocketInChannel(socket, channel)) {
 			socket.send(formatSend(data, channel));
 		}
@@ -45,7 +45,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 	};
 
 	websocketServerFacade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
-		console.log(`Sending to all on channel: ${channel}\nData: ${data}`);
+		logger.log(`Sending to all on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (isSocketInChannel(socket, channel)) {
@@ -55,7 +55,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 	};
 
 	websocketServerFacade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
-		console.log(`Sending to all except one on channel: ${channel}\nData: ${data}`);
+		logger.log(`Sending to all except one on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (socket !== exceptionSocket) {
@@ -68,7 +68,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 
 	const connect = socket => {
 		if (connectionsPool.size >= maxClients) {
-			console.warn(`limit reached, dropping websocket client`);
+			logger.warn(`limit reached, dropping websocket client`);
 			socket.close();
 			return;
 		}
@@ -87,7 +87,7 @@ const attachWebSocketServer = (httpServer, ws) => {
 	const listen = (socket, message) => {
 		let error = validateLength(message);
 		if (error) {
-			console.error(error);
+			logger.error(error);
 			return;
 		}
 
@@ -95,29 +95,29 @@ const attachWebSocketServer = (httpServer, ws) => {
 		try {
 			parsed = unpackData(message);
 		} catch (error) {
-			console.error(`invalid JSON received from websocket ${error}`);
-			console.debug(message);
+			logger.error(`invalid JSON received from websocket ${error}`);
+			logger.debug(message);
 			return;
 		}
 
 		error = validateFormat(parsed);
 		if (error) {
-			console.error(error);
+			logger.error(error);
 			return;
 		}
 
 		const { channel, data, action } = parsed;
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {
-			console.log(`subscribing to channel ${channel}`);
+			logger.log(`subscribing to channel ${channel}`);
 			socket.channels.add(channel);
 			return;
 		}
 		if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
-			console.log(`unsubscribing to channel ${channel}`);
+			logger.log(`unsubscribing to channel ${channel}`);
 			socket.channels.delete(channel);
 			return;
 		}
-		console.log(`receiving data: ${parsed}`);
+		logger.log(`receiving data: ${parsed}`);
 		websocketServerFacade.emit(channel, {
 			data,
 			socket,

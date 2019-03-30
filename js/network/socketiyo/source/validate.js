@@ -5,10 +5,10 @@ const validateFormat = parsedMessage => {
 	if (!isObject(parsedMessage)) {
 		return 'message should be an object';
 	}
-	if (!parsedMessage.channel) {
+	if (!Object.prototype.hasOwnProperty.call(parsedMessage, `channel`)) {
 		return 'message should have a channel';
 	}
-}
+};
 
 const validateLength = (message, maxLength) => {
 	if (message.length >= maxLength) {

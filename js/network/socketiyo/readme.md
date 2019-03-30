@@ -19,6 +19,8 @@ No disconnection detection on the server yet.
 
 Regular events and library events cannot be confused.
 
+Does not decorate the sockets with custom methods, instead of having a broadcast method on each socket, there is a static send all except one, that takes a socket as first argument.
+
 ## Usage
 
 ### Install
@@ -31,6 +33,10 @@ Regular events and library events cannot be confused.
 
 `npm i socketiyo`
 
+### `attachWebSocketServer`
+
+the third argument is optional and could be any object that has at least `error, warn, log, debug`. It could be a winston instance.
+
 ```
 import {
     attachWebSocketServer,
@@ -41,7 +47,7 @@ import {
 } from "../source/socketiyo.js";
 
 /* httpServer, ws are not provided, see examples */
-const socketiYoServer = attachWebSocketServer(httpServer, ws);
+const socketiYoServer = attachWebSocketServer(httpServer, ws, console);
 
 
 /* send the current time on the default channel to everyone */

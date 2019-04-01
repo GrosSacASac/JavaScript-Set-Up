@@ -26,33 +26,40 @@ const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
 const createConnection = (options) => {
-	const {url} = options;
+	const {url, logger = console} = options;
 	let {autoReconnect = true} = options;
 	let connection;
 	let delayedUntilOpen = [];
 	const facade = new RegularListener();
 	const reconnect = () => {
-		console.log(`reconnecting`)
+		logger.log(`reconnecting`)
 		connection = new WebSocket(url);
-		connection.addEventListener(`message`, (x) => {
-			console.log(41, x);
+		connection.addEventListener(`message`, x => {
+			logger.debug(`received message`);
+			logger.debug(x);
 			const parsed = unpackData(x.data);
 			facade.emit(parsed.channel, parsed.data);
 		});
 		connection.addEventListener(`close`, (x) => {
+			logger.debug(`connection closed`);
 			facade.emit(DISCONNECT, x);
 			if (autoReconnect) {
 				setTimeout(reconnect, reconnectionDelay);
 			}
 		});
-		connection.addEventListener(`error`, (x) => {
-			facade.emit(DISCONNECT, x);
-			facade.emit(ERROR, x);
+		connection.addEventListener(`error`, error => {
+			logger.error(error);
+			facade.emit(ERROR, error);
+			try {
+				connection.close();
+			} catch (connectionCloseError) {
+
+			}
 		});
 		connection.addEventListener(`open`, () => {
+			logger.log(`connection opened`);
 			facade.emit(CONNECT, undefined);
 			facade.eventNamesStrings().forEach(eventName => {
-				console.log(`subscribing to channel ${eventName}`);
 				connection.send(packData({
 					channel: eventName,
 					action: SUBSCRIBE_CHANNEL_ACTION
@@ -85,7 +92,7 @@ const createConnection = (options) => {
 		if (eventName === DEFAULT_CHANNEL) {
 			return;
 		}
-		console.log(`subscribing to channel ${eventName}`);
+		logger.log(`subscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,
 			action: SUBSCRIBE_CHANNEL_ACTION
@@ -95,7 +102,7 @@ const createConnection = (options) => {
 		if (eventName === DEFAULT_CHANNEL) {
 			return;
 		}
-		console.log(`unsubscribing to channel ${eventName}`);
+		logger.log(`unsubscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,
 			action: UNSUBSCRIBE_CHANNEL_ACTION

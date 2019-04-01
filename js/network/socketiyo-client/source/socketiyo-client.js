@@ -10,9 +10,6 @@ import {
     onFirstSubscribeString,
     onLastUnsubscribeString,
 } from "../node_modules/event-e3/source/RegularListener.js";
-import {
-	isString
-} from "../node_modules/event-e3/source/isString.js";
 
 import {
 	packData,
@@ -101,7 +98,7 @@ const createConnection = (options) => {
 		console.log(`unsubscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,
-			action: SUBSCRIBE_CHANNEL_ACTION
+			action: UNSUBSCRIBE_CHANNEL_ACTION
 		}));
 	});
 	reconnect();

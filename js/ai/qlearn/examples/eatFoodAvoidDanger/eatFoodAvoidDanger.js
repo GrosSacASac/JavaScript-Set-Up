@@ -1,9 +1,11 @@
 import {createIntelligence} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
+import {scheduleNext} from "./scheduleNext.js";
 
 const MAX_FRAMES = 1000;
 const DELAY = 100;
+const display = false;
 
 let frame = 0;
 
@@ -81,14 +83,16 @@ const step = () => {
     const actionName = intelligence.decide(hashedState, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
-    //draw(state, frame);
+	if (display) {
+        draw(state, frame);
+	}
     const hashedStateAfter = hashState(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
     intelligence.learn(hashedState, hashedStateAfter, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
-        requestAnimationFrame(step);
+        scheduleNext(step);
     } else {
         report(intelligence.qualityMap, state, frame);
     }

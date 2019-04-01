@@ -1,5 +1,5 @@
 /* Knowledge about Object */
-"use strict";
+
 
 /* How to create an empty Object ? */
 let anObject;

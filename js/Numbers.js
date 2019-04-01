@@ -1,5 +1,3 @@
-
-"use strict";
 let n;
 
 n = 5;

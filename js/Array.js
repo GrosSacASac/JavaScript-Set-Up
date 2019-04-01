@@ -1,5 +1,4 @@
 /* Array */
-"use strict";
 /*How to create an empty Array ?*/
 let array;
 

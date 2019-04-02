@@ -3,7 +3,7 @@ import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const MAX_FRAMES = 1000;
+const MAX_FRAMES = 2000;
 const display = true;
 
 let frame = 0;
@@ -23,37 +23,29 @@ const isValidPosition = (w, max) => {
 };
 
 const actions = {
-    moveLeft: (state) => {
-        const [x] = state.position;
+    moveLeft: (state, actor) => {
+        const [x] = actor;
         const futureX = x - 1;
         if (!isValidPosition(futureX, state.maxX)) {
             return;
         }
-        state.position[0] = futureX;
+        actor[0] = futureX;
     },
-    moveRight: (state) => {
-        const [x] = state.position;
+    moveRight: (state, actor) => {
+        const [x] = actor;
         const futureX = x + 1;
         if (!isValidPosition(futureX, state.maxX)) {
             return;
         }
-        state.position[0] = futureX;
+        actor[0] = futureX;
     },
 };
 
 const updateGame = (action, state) => {
-    action(state);
+    action(state, state.position);
     const [x, y] = state.position;
     /* missiles go down, if they touch the player it is a hit,
     if their position is not valid, it means they are out of the frame */
-    console.log(state.missiles);
-    console.log(state.missiles.forEach);
-    console.log(typeof (([dangerX, dangerY]) => {
-        // todo volume based collision
-        if (x === dangerX && y === dangerY) {
-            state.score -= 1;
-        }
-    }));
     state.missiles.forEach(([dangerX, dangerY]) => {
         // todo volume based collision
         if (x === dangerX && y === dangerY) {
@@ -70,6 +62,12 @@ const updateGame = (action, state) => {
     // the enemy emits a missile every n frames
     if (frame % 4 === 0) {
         state.missiles.push(state.positionEnemy.slice());
+    }
+    // move enemy from left to right periodically
+    if (frame % 60 > 30) {
+        actions.moveLeft(state, state.positionEnemy);
+    } else {
+        actions.moveRight(state, state.positionEnemy);
     }
 };
 

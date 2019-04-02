@@ -4,7 +4,8 @@ let scheduleNext;
 if (window.requestAnimationFrame) {
 	scheduleNext = requestAnimationFrame;
 } else {
+	const DELAY = 1;
 	scheduleNext = (callback) => {
-		setTimeout(callback, 1);
+		setTimeout(callback, DELAY);
 	};
 }

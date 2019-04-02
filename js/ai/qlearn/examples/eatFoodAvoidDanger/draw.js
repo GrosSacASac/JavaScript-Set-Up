@@ -25,8 +25,8 @@ const draw = (state, frame) => {
 };
 
 const report = (qualityMap, state, frame) => {
-    console.log(qualityMap)
-    console.log(`total frames ${frame}`)
-    console.log(`times touched rewards ${state.rewardsTouched.length}` );
+    console.log(qualityMap);
+    console.log(`total frames ${frame}`);
+    console.log(`times touched rewards ${state.rewardsTouched.length}`);
     console.log(`times touched danger ${state.dangersTouched.length} at frames: ${state.dangersTouched}`);
 };

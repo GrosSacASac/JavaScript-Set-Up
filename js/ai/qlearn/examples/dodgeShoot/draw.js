@@ -2,7 +2,7 @@ export {draw, report};
 
 
 const draw = (state, frame) => {
-    console.log(`----- ${frame} ------ `);
+    console.log(`-------- ${frame} -------- `);
     for (let y = state.maxY; y >= 0; y--) {
         let line = [`|`];
         for (let x = 0; x <= state.maxX; x++) {
@@ -14,6 +14,8 @@ const draw = (state, frame) => {
                 return dx === x && dy === y;
             })) {
                 line.push(`|`);
+            } else {
+                line.push(` `);
             }
         }
         console.log(line.join(` `));
@@ -21,8 +23,7 @@ const draw = (state, frame) => {
 };
 
 const report = (qualityMap, state, frame) => {
-    console.log(qualityMap)
-    console.log(`total frames ${frame}`)
-    console.log(`times touched rewards ${state.rewardsTouched.length}` );
-    console.log(`times touched danger ${state.dangersTouched.length} at frames: ${state.dangersTouched}`);
+    console.log(JSON.stringify(qualityMap, null, 2));
+    console.log(`total frames ${frame}`);
+    console.log(`score ${state.score}` );
 };

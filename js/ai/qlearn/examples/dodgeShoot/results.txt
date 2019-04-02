@@ -1,0 +1,13 @@
+score results
+frames 2000, bordWidth 4:
+
+qLearn  222
+random 137
+random 128
+random 128
+
+with negative reward:
+qLearn -58
+random -138
+random -146
+random -116

@@ -3,7 +3,7 @@ import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const MAX_FRAMES = 2000;
+const MAX_FRAMES = 16000;
 const display = true;
 
 let frame = 0;
@@ -13,6 +13,7 @@ const intelligence = createIntelligence();
 const hashState = (state) => {
     // we omit actions because they are always the same 
     // consider only the first for now
+    // todo try with distance
     let missileInformation = state.missiles[0][1];
     
     return `${state.position}${missileInformation}`;
@@ -49,7 +50,7 @@ const updateGame = (action, state) => {
     state.missiles.forEach(([dangerX, dangerY]) => {
         // todo volume based collision
         if (x === dangerX && y === dangerY) {
-            state.score -= 1;
+            state.score += -1;
         }
     });
     state.missiles = state.missiles.filter(([dangerX, dangerY]) => {
@@ -71,6 +72,10 @@ const updateGame = (action, state) => {
     }
 };
 
+const randomDecide = (_, actionNames) => {
+    return actionNames[Math.floor(Math.random() * actionNames.length)];
+};
+
 
 const state = initialState;
 const actionNames = Object.keys(actions);
@@ -78,6 +83,7 @@ const step = () => {
     const hashedState = hashState(state);
     const scoreBefore = state.score;
     const actionName = intelligence.decide(hashedState, actionNames);
+    // const actionName = randomDecide(hashedState, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
 	if (display) {

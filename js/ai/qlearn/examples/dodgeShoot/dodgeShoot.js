@@ -4,22 +4,27 @@ import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const useIntelligence = false;
-const MAX_FRAMES = 2000;
-const display = true;
+const useIntelligence = true;
+const MAX_FRAMES = 200000;
+const display = false;
 
 let frame = 0;
 
 const intelligence = createIntelligence();
 
-const reduceStateAndAction = (state) => {
+const reduceStateAndActionSeeNearestOnly = (state) => {
     // we omit actions because they are always the same 
-    // consider only the first for now
-    // todo try with distance
     let missileInformation = state.missiles[0][1];
     
     return `${state.position}${missileInformation}`;
 };
+
+const reduceStateAndActionSeeAll = (state) => {
+    return `${state.position}${state.missiles}`;
+};
+
+// todo try with distance    
+const reduceStateAndAction = reduceStateAndActionSeeNearestOnly;
 
 const isValidPosition = (w, max) => {
   return w >=0 && w <= max;

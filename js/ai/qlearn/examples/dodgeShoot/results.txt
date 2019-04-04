@@ -7,7 +7,20 @@ random 128
 random 128
 
 with negative reward:
-qLearn -58
+qLearn(See all) -18
+qLearn(See first) -58
 random -138
 random -146
 random -116
+
+frames 20000:
+qLearn(See all) -189
+qLearn(See first) -586
+random -1277
+
+frames 200000:
+qLearn(See all) 
+qLearn(See first)
+random
+
+

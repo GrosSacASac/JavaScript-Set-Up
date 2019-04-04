@@ -3,14 +3,14 @@ import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const MAX_FRAMES = 16000;
+const MAX_FRAMES = 200000;
 const display = true;
 
 let frame = 0;
 
 const intelligence = createIntelligence();
 
-const hashState = (state) => {
+const reduceStateAndAction = (state) => {
     // we omit actions because they are always the same 
     // consider only the first for now
     // todo try with distance
@@ -80,19 +80,19 @@ const randomDecide = (_, actionNames) => {
 const state = initialState;
 const actionNames = Object.keys(actions);
 const step = () => {
-    const hashedState = hashState(state);
+    const stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;
-    const actionName = intelligence.decide(hashedState, actionNames);
-    // const actionName = randomDecide(hashedState, actionNames);
+    const actionName = intelligence.decide(stateActions, actionNames);
+    // const actionName = randomDecide(stateActions, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
 	if (display) {
         draw(state, frame);
 	}
-    const hashedStateAfter = hashState(state);
+    const stateActions = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(hashedState, hashedStateAfter, actionName, actionNames, reward);
+    intelligence.learn(stateActions, stateActions, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

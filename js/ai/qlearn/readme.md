@@ -1,18 +1,22 @@
 # qlearn
 
-Do not use this library if a situation is not going to happen twice. Or if the possible actions is infinite.
+Reinforcement learning library, based on the Quality learning technique
 
 The strength of qlearn is its simplicity, and its independence towards the decision taker.
 
+## when to not use
+
+If a situation is not going to happen twice. Or if the set of actions is infinite.
+
 ## concepts
 
-### hashedState
+### Set of state and actions
 
-Hashed State is a string that uniquely idendifies a state and a set of action. What it means is that two situation where the possible actions are the same, and the observed state is the same, should have the same hashedState.
+The library expects as input a reduced set of state and action as a String. Create a value that is minimal, sorted and canonical. When the set of actions are always the same omit it. Two situation where the possible actions are the same, and the observed state is the same, should have the same set of state and actions. Short is `stateActions`
 
 ### actions
 
-An action that is taken should have an effect on the state, and sometimes the reward. `.decide() and .learn()` take an array of action names, not the actions themselves.
+An action that is taken should have an effect on the state, and sometimes a reward. `.decide() and .learn()` take an array of action names, not the actions themselves.
 
 ### reward
 
@@ -54,20 +58,20 @@ Object.assign(intelligence, {
 
 ### `.decide()`
 
-The actionName will be random if this hashedState was never encountered before.
+The actionName will be random if this set of state and actions was never encountered before.
 
 Will use `.qualityMap`.
 
 
 ```
-const actionName = intelligence(hashedState, actionNames);
+const actionName = intelligence.decide(stateAction, actionNames);
 ```
 
 ### `.learn()`
 
 Use it as soon as reward is available after `.decide()`.
 
-previousHashedState and hashedStateAfter may be equal if the action taken had no effect.
+previous set of state and actions and set of state and actions may be equal if the action taken had no consequences.
 
 Will update `.qualityMap`.
 
@@ -75,7 +79,7 @@ Note: It is possible to learn even if the decision of the `previousAction` did n
 
 ```
 intelligence.learn(
-    previousHashedState, hashedStateAfter,
+    previousStateActions, stateActions,
     previousAction, actionNames, reward
 );
 ```

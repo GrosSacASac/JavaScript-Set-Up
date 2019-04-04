@@ -9,8 +9,8 @@ const createIntelligence = () => {
         qualityMap: {
             // [[quality, actionName]]
         },
-        decide: (hashedState, actionNames) => {
-            let qualityForState = intelligence.qualityMap[hashedState];
+        decide: (stateActions, actionNames) => {
+            let qualityForState = intelligence.qualityMap[stateActions];
             if (!qualityForState) {
                 return actionNames[0] // take first (random)
             }
@@ -20,25 +20,25 @@ const createIntelligence = () => {
     
             return highestQualityActionName;
         },
-        learn: (previousHashedState, hashedStateAfter, previousAction, actionNames, reward) => {
-            let qualityForState = intelligence.qualityMap[previousHashedState];
+        learn: (previousStateActions, stateActions, previousAction, actionNames, reward) => {
+            let qualityForState = intelligence.qualityMap[previousStateActions];
             if (!qualityForState) {
                 // there was no quality map for this set of state and actions
                 qualityForState = actionNames.map(actionName => {
                     return [intelligence.defaultQuality, actionName];
                 });
-                intelligence.qualityMap[previousHashedState] = qualityForState;
+                intelligence.qualityMap[previousStateActions] = qualityForState;
             }
     
             const previousActionIndex = qualityForState.findIndex(([, actionName]) => {
                 return actionName === previousAction;
             });
             
-            if (previousHashedState === hashedStateAfter) {
+            if (previousStateActions === stateActions) {
                 qualityForState[previousActionIndex][0] += -intelligence.exploreBonus;
                 return;
             }
-            const nextQualityForState = intelligence.qualityMap[hashedStateAfter];
+            const nextQualityForState = intelligence.qualityMap[stateActions];
             let nextMaxQualityForState = intelligence.defaultQuality; 
             if (nextQualityForState) {
                 [nextMaxQualityForState] = nextQualityForState.sort(([qualityA], [qualityB]) => {

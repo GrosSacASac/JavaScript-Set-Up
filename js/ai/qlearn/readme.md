@@ -129,6 +129,16 @@ Ideally orders of magnitude smaller than a normal reward.
 intelligence.exploreBonus = 0.04;
 ```
 
+## extras
+
+### randomDecide
+
+Same interface as `intelligence.decide` it decides randomly
+
+```
+import {randomDecide} from "qlearn/source/randomDecide.js";
+```
+
 ## Related
 
 https://github.com/acupajoe/node-qlearning

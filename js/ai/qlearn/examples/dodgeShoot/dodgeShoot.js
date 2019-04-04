@@ -4,7 +4,7 @@ import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const useIntelligence = true;
+const useIntelligence = false;
 const MAX_FRAMES = 200000;
 const display = false;
 
@@ -24,7 +24,7 @@ const reduceStateAndActionSeeAll = (state) => {
 };
 
 // todo try with distance    
-const reduceStateAndAction = reduceStateAndActionSeeNearestOnly;
+const reduceStateAndAction = reduceStateAndActionSeeAll;
 
 const isValidPosition = (w, max) => {
   return w >=0 && w <= max;

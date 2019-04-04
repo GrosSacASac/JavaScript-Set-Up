@@ -19,8 +19,8 @@ qLearn(See first) -586
 random -1277
 
 frames 200000:
-qLearn(See all) 
-qLearn(See first)
-random
+qLearn(See all) -1892
+qLearn(See first) -5690
+random -12523
 
 

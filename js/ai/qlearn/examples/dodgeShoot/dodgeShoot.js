@@ -1,9 +1,11 @@
+import {randomDecide} from "../../source/randomDecide.js"
 import {createIntelligence} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
-const MAX_FRAMES = 200000;
+const useIntelligence = false;
+const MAX_FRAMES = 2000;
 const display = true;
 
 let frame = 0;
@@ -72,27 +74,27 @@ const updateGame = (action, state) => {
     }
 };
 
-const randomDecide = (_, actionNames) => {
-    return actionNames[Math.floor(Math.random() * actionNames.length)];
-};
-
-
 const state = initialState;
 const actionNames = Object.keys(actions);
 const step = () => {
-    const stateActions = reduceStateAndAction(state);
+    let stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;
-    const actionName = intelligence.decide(stateActions, actionNames);
-    // const actionName = randomDecide(stateActions, actionNames);
+    let actionName
+    if (useIntelligence) {
+        actionName = intelligence.decide(stateActions, actionNames);
+    } else {
+        actionName = randomDecide(stateActions, actionNames);
+    }
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
 	if (display) {
         draw(state, frame);
-	}
-    const stateActions = reduceStateAndAction(state);
+    }
+    const previousStateActions = stateActions;
+    stateActions = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(stateActions, stateActions, actionName, actionNames, reward);
+    intelligence.learn(previousStateActions, stateActions, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

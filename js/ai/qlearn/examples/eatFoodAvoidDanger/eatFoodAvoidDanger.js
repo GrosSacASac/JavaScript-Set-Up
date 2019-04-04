@@ -4,7 +4,6 @@ import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
 
 const MAX_FRAMES = 1000;
-const DELAY = 100;
 const display = false;
 
 let frame = 0;
@@ -86,10 +85,10 @@ const step = () => {
 	if (display) {
         draw(state, frame);
 	}
-    const stateActions = reduceStateAndAction(state);
+    const stateActionsAfter = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(stateActions, stateActions, actionName, actionNames, reward);
+    intelligence.learn(stateActions, stateActionsAfter, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

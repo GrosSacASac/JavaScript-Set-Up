@@ -3,28 +3,21 @@ import {createIntelligence} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
+import {
+    reduceStateAndActionSeeAll,
+    reduceStateAndActionSeeNearestOnly,
+    reduceStateAndActionSeeAllDistance,
+} from "./reduceState.js";
 
-const useIntelligence = false;
+const reduceStateAndAction = reduceStateAndActionSeeAllDistance;
+const useIntelligence = true;
 const MAX_FRAMES = 200000;
 const display = false;
 
 let frame = 0;
 
 const intelligence = createIntelligence();
-
-const reduceStateAndActionSeeNearestOnly = (state) => {
-    // we omit actions because they are always the same 
-    let missileInformation = state.missiles[0][1];
     
-    return `${state.position}${missileInformation}`;
-};
-
-const reduceStateAndActionSeeAll = (state) => {
-    return `${state.position}${state.missiles}`;
-};
-
-// todo try with distance    
-const reduceStateAndAction = reduceStateAndActionSeeAll;
 
 const isValidPosition = (w, max) => {
   return w >=0 && w <= max;
@@ -81,6 +74,7 @@ const updateGame = (action, state) => {
 
 const state = initialState;
 const actionNames = Object.keys(actions);
+
 const step = () => {
     let stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;

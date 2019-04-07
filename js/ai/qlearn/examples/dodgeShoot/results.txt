@@ -9,6 +9,7 @@ random 128
 with negative reward:
 qLearn(See all) -18
 qLearn(See first) -58
+qLearn(See all distance) -79
 random -138
 random -146
 random -116
@@ -16,11 +17,13 @@ random -116
 frames 20000:
 qLearn(See all) -189
 qLearn(See first) -586
+qLearn(See all distance) -497
 random -1277
 
 frames 200000:
 qLearn(See all) -1892
 qLearn(See first) -5690
+qLearn(See all distance) -4868
 random -12523
 
 

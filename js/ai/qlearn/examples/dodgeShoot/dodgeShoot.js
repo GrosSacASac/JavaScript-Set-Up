@@ -9,10 +9,11 @@ import {
     reduceStateAndActionSeeAllDistance,
 } from "./reduceState.js";
 
-const reduceStateAndAction = reduceStateAndActionSeeAllDistance;
+const reduceStateAndAction = reduceStateAndActionSeeAll;
 const useIntelligence = true;
-const MAX_FRAMES = 200000;
-const display = false;
+const MAX_FRAMES = 20000;
+const display = true;
+const collisionReward = 1 || -1
 
 let frame = 0;
 
@@ -50,7 +51,7 @@ const updateGame = (action, state) => {
     state.missiles.forEach(([dangerX, dangerY]) => {
         // todo volume based collision
         if (x === dangerX && y === dangerY) {
-            state.score += -1;
+            state.score += collisionReward;
         }
     });
     state.missiles = state.missiles.filter(([dangerX, dangerY]) => {

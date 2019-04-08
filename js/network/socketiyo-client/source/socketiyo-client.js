@@ -60,10 +60,7 @@ const createConnection = (options) => {
 			logger.log(`connection opened`);
 			facade.emit(CONNECT, undefined);
 			facade.eventNamesStrings().forEach(eventName => {
-				connection.send(packData({
-					channel: eventName,
-					action: SUBSCRIBE_CHANNEL_ACTION
-				}));
+				facade.emit(onFirstSubscribeString, eventName);
 			});
 		});
 	};

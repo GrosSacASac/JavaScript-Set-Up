@@ -45,9 +45,16 @@ import {
 	ERROR,
 	DEFAULT_CHANNEL,
 } from "../source/socketiyo.js";
+import {
+    maxClients, maxLength, maxChannels, maxChannelLength
+} from "../source/defaultOptions.js";
 
 /* httpServer, ws are not provided, see examples */
-const socketiYoServer = attachWebSocketServer(httpServer, ws, console);
+const socketiYoServer = attachWebSocketServer({
+    httpServer,
+    ws,
+    maxClients, maxLength, maxChannels, maxChannelLength
+});
 
 
 /* send the current time on the default channel to everyone */

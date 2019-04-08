@@ -5,8 +5,7 @@ export {
 	ERROR,
 	DEFAULT_CHANNEL
 };
-import {validateFormat, validateLength} from "./validate.js";
-import {maxClients, maxLength} from "./defaultOptions.js";
+import {validateFormat, validateLength, validateChannel} from "./validate.js";
 import EventEmitter from "event-e3";
 import {
 	packData,
@@ -30,7 +29,10 @@ const enhanceSocket = socket => {
 	socket.channels = new Set();
 };
 
-const attachWebSocketServer = (httpServer, ws, logger=console) => {
+const attachWebSocketServer = (options) => {
+	const {httpServer, ws, logger=console} = options;
+	const {maxClients, maxLength, maxChannels, maxChannelLength} = options;
+
 	const wss = new ws.Server({ server: httpServer });
 
 	const websocketServerFacade = EventEmitter({});
@@ -68,7 +70,7 @@ const attachWebSocketServer = (httpServer, ws, logger=console) => {
 
 	const connect = socket => {
 		if (connectionsPool.size >= maxClients) {
-			logger.warn(`limit reached, dropping websocket client`);
+			logger.warn(`${maxClients} connection limit reached, dropping websocket client`);
 			socket.close();
 			return;
 		}
@@ -85,7 +87,7 @@ const attachWebSocketServer = (httpServer, ws, logger=console) => {
 	};
 
 	const listen = (socket, message) => {
-		let error = validateLength(message);
+		let error = validateLength(message, maxLength);
 		if (error) {
 			logger.error(error);
 			return;
@@ -95,7 +97,7 @@ const attachWebSocketServer = (httpServer, ws, logger=console) => {
 		try {
 			parsed = unpackData(message);
 		} catch (error) {
-			logger.error(`invalid JSON received from websocket ${error}`);
+			logger.error(`invalid data received from websocket ${error}`);
 			logger.debug(message);
 			return;
 		}
@@ -108,6 +110,15 @@ const attachWebSocketServer = (httpServer, ws, logger=console) => {
 
 		const { channel, data, action } = parsed;
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {
+			error = validateChannel(channel, maxChannelLength);
+			if (error) {
+				logger.error(error);
+				return;
+			}
+			if (socket.channels.size >= maxChannels) {
+				logger.error(`Max channels subscription reached ${maxChannels}`);
+				return;
+			}
 			logger.log(`subscribing to channel ${channel}`);
 			socket.channels.add(channel);
 			return;

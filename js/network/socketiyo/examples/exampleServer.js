@@ -11,13 +11,13 @@ import {
 import {createHttpServer} from "./createHttpServer.js";
 import ws from "ws";
 
+
 const httpServer = createHttpServer();
 const socketiYoServer = attachWebSocketServer({
     httpServer,
     ws,
     maxClients, maxLength, maxChannels, maxChannelLength
 });
-
 
 /* send the current time on the default channel to everyone */
 setInterval(() => {

@@ -5,8 +5,14 @@ import {
 	ERROR,
     DEFAULT_CHANNEL
 } from "../source/socketiyo-client.js";
+import {reconnectionDelay, autoReconnect} from "../source/defaultOptions.js"
 
-const socketiyoConnection = createConnection({url: `ws://localhost:8080/`});
+
+const socketiyoConnection = createConnection({
+    url: `ws://localhost:8080/`,
+    reconnectionDelay,
+    autoReconnect,
+});
 
 socketiyoConnection.on(DEFAULT_CHANNEL, (x) => {
     console.log(x);

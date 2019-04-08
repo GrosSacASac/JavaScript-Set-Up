@@ -5,12 +5,12 @@ export {
 	ERROR,
 	DEFAULT_CHANNEL
 };
+
 import {
 	RegularListener,
     onFirstSubscribeString,
     onLastUnsubscribeString,
 } from "../node_modules/event-e3/source/RegularListener.js";
-
 import {
 	packData,
 	unpackData,
@@ -20,14 +20,15 @@ import {
 	DEFAULT_CHANNEL
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
-const reconnectionDelay = 3000;
+
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
 const createConnection = (options) => {
 	const {url, logger = console} = options;
-	let {autoReconnect = true} = options;
+	const {reconnectionDelay} = options;
+	let {autoReconnect} = options;
 	let connection;
 	let delayedUntilOpen = [];
 	const facade = new RegularListener();

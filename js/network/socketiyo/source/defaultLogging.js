@@ -5,7 +5,8 @@ import {
 	ERROR,
 	OVER_LOAD,
 	MESSAGE_FORMAT_ERROR,
-	VALIDATE_CHANNEL,
+	VALIDATE_CHANNEL_ERROR,
+	VALIDATE_MESSAGE_ERROR,
 	MAX_CHANNELS_ERROR,
 } from "./socketiyo.js";
 
@@ -37,7 +38,7 @@ const useDefaultLogging = ({socketiYoServer, logger=console}) => {
         logger.debug(message);
     });
     
-    socketiYoServer.on(VALIDATE_CHANNEL, error => {
+    socketiYoServer.on(VALIDATE_CHANNEL_ERROR, error => {
         logger.warn(error);
     });
 

@@ -5,7 +5,8 @@ export {
 	ERROR,
 	OVER_LOAD,
 	MESSAGE_FORMAT_ERROR,
-	VALIDATE_CHANNEL,
+	VALIDATE_CHANNEL_ERROR,
+	VALIDATE_MESSAGE_ERROR,
 	MAX_CHANNELS_ERROR,
 	DEFAULT_CHANNEL,
 };
@@ -27,7 +28,7 @@ const ERROR = Symbol();
 const OVER_LOAD = Symbol();
 const VALIDATE_MESSAGE_ERROR = Symbol();
 const MESSAGE_FORMAT_ERROR = Symbol();
-const VALIDATE_CHANNEL = Symbol();
+const VALIDATE_CHANNEL_ERROR = Symbol();
 const MAX_CHANNELS_ERROR = Symbol();
 
 const isSocketInChannel = (socket, channel) => {
@@ -116,7 +117,7 @@ const attachWebSocketServer = (options) => {
 
 		error = validateChannel(channel, maxChannelLength);
 		if (error) {
-			websocketServerFacade.emit(VALIDATE_CHANNEL, error);
+			websocketServerFacade.emit(VALIDATE_CHANNEL_ERROR, error);
 			return;
 		}
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {

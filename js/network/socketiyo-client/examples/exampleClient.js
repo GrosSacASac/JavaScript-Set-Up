@@ -6,6 +6,7 @@ import {
     DEFAULT_CHANNEL
 } from "../source/socketiyo-client.js";
 import {reconnectionDelay, autoReconnect} from "../source/defaultOptions.js"
+import {useDefaultLogging} from "../source/defaultLogging.js"
 
 
 const socketiyoConnection = createConnection({
@@ -13,6 +14,8 @@ const socketiyoConnection = createConnection({
     reconnectionDelay,
     autoReconnect,
 });
+
+useDefaultLogging({socketiyoConnection});
 
 socketiyoConnection.on(DEFAULT_CHANNEL, (x) => {
     console.log(x);

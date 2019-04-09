@@ -1,5 +1,6 @@
 export {
-    createConnection,
+	createConnection,
+	RECONNECTING,
     CONNECT,
     DISCONNECT,
 	ERROR,
@@ -20,36 +21,32 @@ import {
 	DEFAULT_CHANNEL
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
-
+const RECONNECTING = Symbol();
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
 const createConnection = (options) => {
-	const {url, logger = console} = options;
+	const {url} = options;
 	const {reconnectionDelay} = options;
 	let {autoReconnect} = options;
 	let connection;
 	let delayedUntilOpen = [];
 	const facade = new RegularListener();
 	const reconnect = () => {
-		logger.log(`reconnecting`)
+		facade.emit(RECONNECTING);
 		connection = new WebSocket(url);
 		connection.addEventListener(`message`, x => {
-			logger.debug(`received message`);
-			logger.debug(x);
 			const parsed = unpackData(x.data);
 			facade.emit(parsed.channel, parsed.data);
 		});
 		connection.addEventListener(`close`, (x) => {
-			logger.debug(`connection closed`);
 			facade.emit(DISCONNECT, x);
 			if (autoReconnect) {
 				setTimeout(reconnect, reconnectionDelay);
 			}
 		});
 		connection.addEventListener(`error`, error => {
-			logger.error(error);
 			facade.emit(ERROR, error);
 			try {
 				connection.close();
@@ -58,8 +55,7 @@ const createConnection = (options) => {
 			}
 		});
 		connection.addEventListener(`open`, () => {
-			logger.log(`connection opened`);
-			facade.emit(CONNECT, undefined);
+			facade.emit(CONNECT);
 			facade.eventNamesStrings().forEach(eventName => {
 				facade.emit(onFirstSubscribeString, eventName);
 			});
@@ -90,7 +86,6 @@ const createConnection = (options) => {
 		if (eventName === DEFAULT_CHANNEL) {
 			return;
 		}
-		logger.log(`subscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,
 			action: SUBSCRIBE_CHANNEL_ACTION
@@ -100,7 +95,6 @@ const createConnection = (options) => {
 		if (eventName === DEFAULT_CHANNEL) {
 			return;
 		}
-		logger.log(`unsubscribing to channel ${eventName}`);
 		sendOrDrop(packData({
 			channel: eventName,
 			action: UNSUBSCRIBE_CHANNEL_ACTION

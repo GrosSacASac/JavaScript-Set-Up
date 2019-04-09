@@ -10,7 +10,7 @@ const validateFormat = parsedMessage => {
 	if (!Object.prototype.hasOwnProperty.call(parsedMessage, `channel`)) {
 		return 'message should have a channel';
 	}
-	if (!Object.prototype.hasOwnProperty.call(parsedMessage, `data`) ||
+	if (!Object.prototype.hasOwnProperty.call(parsedMessage, `data`) &&
 		!Object.prototype.hasOwnProperty.call(parsedMessage, `action`)) {
 		return 'message should have data or action';
 	}

@@ -3,7 +3,11 @@ export {
     CONNECT,
     DISCONNECT,
 	ERROR,
-	DEFAULT_CHANNEL
+	OVER_LOAD,
+	MESSAGE_FORMAT_ERROR,
+	VALIDATE_CHANNEL,
+	MAX_CHANNELS_ERROR,
+	DEFAULT_CHANNEL,
 };
 import {validateFormat, validateLength, validateChannel} from "./validate.js";
 import EventEmitter from "event-e3";
@@ -20,6 +24,11 @@ import {
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
+const OVER_LOAD = Symbol();
+const VALIDATE_MESSAGE_ERROR = Symbol();
+const MESSAGE_FORMAT_ERROR = Symbol();
+const VALIDATE_CHANNEL = Symbol();
+const MAX_CHANNELS_ERROR = Symbol();
 
 const isSocketInChannel = (socket, channel) => {
 	return channel === DEFAULT_CHANNEL || socket.channels.has(channel);
@@ -30,7 +39,7 @@ const enhanceSocket = socket => {
 };
 
 const attachWebSocketServer = (options) => {
-	const {httpServer, ws, logger=console} = options;
+	const {httpServer, ws} = options;
 	const {maxClients, maxLength, maxChannels, maxChannelLength} = options;
 
 	const wss = new ws.Server({ server: httpServer });
@@ -39,15 +48,12 @@ const attachWebSocketServer = (options) => {
 	const connectionsPool = new Set();
 
 	websocketServerFacade.send = (socket, data, channel=DEFAULT_CHANNEL) => {
-		logger.log(`Sending on channel: ${channel}\nData: ${data}`);
 		if (isSocketInChannel(socket, channel)) {
 			socket.send(formatSend(data, channel));
 		}
-		
 	};
 
 	websocketServerFacade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
-		logger.log(`Sending to all on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (isSocketInChannel(socket, channel)) {
@@ -57,7 +63,6 @@ const attachWebSocketServer = (options) => {
 	};
 
 	websocketServerFacade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
-		logger.log(`Sending to all except one on channel: ${channel}\nData: ${data}`);
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (socket !== exceptionSocket) {
@@ -70,7 +75,7 @@ const attachWebSocketServer = (options) => {
 
 	const connect = socket => {
 		if (connectionsPool.size >= maxClients) {
-			logger.warn(`${maxClients} connection limit reached, dropping websocket client`);
+			websocketServerFacade.emit(OVER_LOAD, maxClients);
 			socket.close();
 			return;
 		}
@@ -89,7 +94,7 @@ const attachWebSocketServer = (options) => {
 	const listen = (socket, message) => {
 		let error = validateLength(message, maxLength);
 		if (error) {
-			logger.error(error);
+			websocketServerFacade.emit(VALIDATE_MESSAGE_ERROR, error);
 			return;
 		}
 
@@ -97,38 +102,35 @@ const attachWebSocketServer = (options) => {
 		try {
 			parsed = unpackData(message);
 		} catch (error) {
-			logger.error(`invalid data received from websocket ${error}`);
-			logger.debug(message);
+			websocketServerFacade.emit(MESSAGE_FORMAT_ERROR, {error, message});
 			return;
 		}
 
 		error = validateFormat(parsed);
 		if (error) {
-			logger.error(error);
+			websocketServerFacade.emit(MESSAGE_FORMAT_ERROR, {error, parsed});
 			return;
 		}
 
 		const { channel, data, action } = parsed;
+
+		error = validateChannel(channel, maxChannelLength);
+		if (error) {
+			websocketServerFacade.emit(VALIDATE_CHANNEL, error);
+			return;
+		}
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {
-			error = validateChannel(channel, maxChannelLength);
-			if (error) {
-				logger.error(error);
-				return;
-			}
 			if (socket.channels.size >= maxChannels) {
-				logger.error(`Max channels subscription reached ${maxChannels}`);
+				websocketServerFacade.emit(MAX_CHANNELS_ERROR, maxChannels);
 				return;
 			}
-			logger.log(`subscribing to channel ${channel}`);
 			socket.channels.add(channel);
 			return;
 		}
 		if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
-			logger.log(`unsubscribing to channel ${channel}`);
 			socket.channels.delete(channel);
 			return;
 		}
-		logger.log(`receiving data: ${parsed}`);
 		websocketServerFacade.emit(channel, {
 			data,
 			socket,

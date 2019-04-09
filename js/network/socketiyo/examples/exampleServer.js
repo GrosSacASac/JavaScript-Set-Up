@@ -8,6 +8,7 @@ import {
 import {
     maxClients, maxLength, maxChannels, maxChannelLength
 } from "../source/defaultOptions.js";
+import {useDefaultLogging} from "../source/defaultLogging";
 import {createHttpServer} from "./createHttpServer.js";
 import ws from "ws";
 
@@ -18,6 +19,8 @@ const socketiYoServer = attachWebSocketServer({
     ws,
     maxClients, maxLength, maxChannels, maxChannelLength
 });
+
+useDefaultLogging(socketiYoServer);
 
 /* send the current time on the default channel to everyone */
 setInterval(() => {
@@ -30,20 +33,12 @@ setTimeout(() => {
 }, 10000);
 
 socketiYoServer.on(CONNECT, socket => {
-    console.log(`${socket} connected`);
     /* send welcome to the socket*/
     socketiYoServer.send(socket, {message: `welcome`});
     /* alert others as well */
     socketiYoServer.sendAllExceptOne(socket, {message: `new connection`});
 });
 
-socketiYoServer.on(DISCONNECT, socket => {
-    console.log(`${socket} disconnected`);
-});
-
-socketiYoServer.on(ERROR, error => {
-    console.error(error);
-});
 
 socketiYoServer.on(`game/input`, ({socket, data}) => {
     console.log(`${socket} send us ${data}`);

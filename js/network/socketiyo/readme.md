@@ -37,7 +37,7 @@ Does not decorate the sockets with custom methods, instead of having a broadcast
 
 the third argument is optional and could be any object that has at least `error, warn, log, debug`. It could be a winston instance.
 
-```
+```js
 import {
     attachWebSocketServer,
     CONNECT,
@@ -48,6 +48,8 @@ import {
 import {
     maxClients, maxLength, maxChannels, maxChannelLength
 } from "../source/defaultOptions.js";
+import {useDefaultLogging} from "../source/defaultLogging";
+
 
 /* httpServer, ws are not provided, see examples */
 const socketiYoServer = attachWebSocketServer({
@@ -56,6 +58,7 @@ const socketiYoServer = attachWebSocketServer({
     maxClients, maxLength, maxChannels, maxChannelLength
 });
 
+useDefaultLogging(socketiYoServer);
 
 /* send the current time on the default channel to everyone */
 setInterval(() => {
@@ -68,19 +71,10 @@ setTimeout(() => {
 }, 10000);
 
 socketiYoServer.on(CONNECT, socket => {
-    console.log(`${socket} connected`);
     /* send welcome to the socket*/
     socketiYoServer.send(socket, {message: `welcome`});
     /* alert others as well */
     socketiYoServer.sendAllExceptOne(socket, {message: `new connection`});
-});
-
-socketiYoServer.on(DISCONNECT, socket => {
-    console.log(`${socket} disconnected`);
-});
-
-socketiYoServer.on(ERROR, error => {
-    console.error(error);
 });
 
 socketiYoServer.on(`game/input`, ({socket, data}) => {

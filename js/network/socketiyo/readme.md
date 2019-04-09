@@ -58,7 +58,7 @@ const socketiYoServer = attachWebSocketServer({
     maxClients, maxLength, maxChannels, maxChannelLength
 });
 
-useDefaultLogging(socketiYoServer);
+useDefaultLogging({socketiYoServer});
 
 /* send the current time on the default channel to everyone */
 setInterval(() => {

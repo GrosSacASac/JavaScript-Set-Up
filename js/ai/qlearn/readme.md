@@ -56,7 +56,7 @@ Object.assign(intelligence, {
 });
 ```
 
-### `.decide()`
+### `decide()`
 
 The actionName will be random if this set of state and actions was never encountered before.
 
@@ -67,7 +67,7 @@ Will use `.qualityMap`.
 const actionName = decide(intelligence, stateAction, actionNames);
 ```
 
-### `.learn()`
+### `learn()`
 
 Use it as soon as reward is available after `.decide()`.
 

@@ -1,5 +1,6 @@
 export {randomDecide};
 
-const randomDecide = (actionNames) => {
-    return actionNames[Math.floor(Math.random() * actionNames.length)];
+
+const randomDecide = (actionNames, random = Math.random) => {
+    return actionNames[Math.floor(random() * actionNames.length)];
 };

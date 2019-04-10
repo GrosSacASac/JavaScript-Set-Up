@@ -140,6 +140,14 @@ It decides randomly.
 import {randomDecide} from "qlearn/source/randomDecide.js";
 ```
 
+### partialRandomDecide
+
+Same as `decide`, but it decides randomly 20% of the time.
+
+```
+import {partialRandomDecide} from "qlearn/source/partialRandomDecide.js";
+```
+
 ## Related
 
 https://github.com/acupajoe/node-qlearning

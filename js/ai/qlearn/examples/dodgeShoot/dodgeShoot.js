@@ -1,5 +1,5 @@
 import {randomDecide} from "../../source/randomDecide.js"
-import {createIntelligence} from "../../source/qlearn.js";
+import {createIntelligence, learn, decide} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
@@ -81,9 +81,9 @@ const step = () => {
     const scoreBefore = state.score;
     let actionName
     if (useIntelligence) {
-        actionName = intelligence.decide(stateActions, actionNames);
+        actionName = decide(intelligence, stateActions, actionNames);
     } else {
-        actionName = randomDecide(stateActions, actionNames);
+        actionName = randomDecide(actionNames);
     }
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
@@ -94,7 +94,7 @@ const step = () => {
     stateActions = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(previousStateActions, stateActions, actionName, actionNames, reward);
+    learn(intelligence, previousStateActions, stateActions, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

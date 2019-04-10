@@ -1,4 +1,4 @@
-import {createIntelligence} from "../../source/qlearn.js";
+import {createIntelligence, learn, decide} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
 import {initialState} from "./initialState.js";
 import {scheduleNext} from "./scheduleNext.js";
@@ -79,7 +79,7 @@ const actionNames = Object.keys(actions);
 const step = () => {
     const stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;
-    const actionName = intelligence.decide(stateActions, actionNames);
+    const actionName = decide(intelligence, stateActions, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
 	if (display) {
@@ -88,7 +88,7 @@ const step = () => {
     const stateActionsAfter = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    intelligence.learn(stateActions, stateActionsAfter, actionName, actionNames, reward);
+    learn(intelligence,stateActions, stateActionsAfter, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

@@ -32,8 +32,8 @@ npm i qlearn
 ## import
 
 ```
-import {createIntelligence} from "qlearn";
-import {createIntelligence} from "https://unpkg.com/qlearn/source/qlearn.js";
+import {createIntelligence, learn, decide} from "qlearn";
+import {createIntelligence, learn, decide} from "https://unpkg.com/qlearn/source/qlearn.js";
 ```
 
 ## usage
@@ -64,7 +64,7 @@ Will use `.qualityMap`.
 
 
 ```
-const actionName = intelligence.decide(stateAction, actionNames);
+const actionName = decide(intelligence, stateAction, actionNames);
 ```
 
 ### `.learn()`
@@ -78,7 +78,8 @@ Will update `.qualityMap`.
 Note: It is possible to learn even if the decision of the `previousAction` did not come from `.decide()`, for example: If a human decides, the `.learn()` can still be used.
 
 ```
-intelligence.learn(
+learn(
+    intelligence,
     previousStateActions, stateActions,
     previousAction, actionNames, reward
 );
@@ -133,7 +134,7 @@ intelligence.exploreBonus = 0.04;
 
 ### randomDecide
 
-Same interface as `intelligence.decide` it decides randomly
+It decides randomly.
 
 ```
 import {randomDecide} from "qlearn/source/randomDecide.js";

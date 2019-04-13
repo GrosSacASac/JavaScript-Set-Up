@@ -26,10 +26,6 @@ const learn = (intelligence, previousStateActions, stateActions, previousAction,
         return actionName === previousAction;
     });
     
-    if (previousStateActions === stateActions) {
-        qualityForState[previousActionIndex][0] += -intelligence.exploreBonus;
-        return;
-    }
     const nextQualityForState = intelligence.qualityMap[stateActions];
     let nextMaxQualityForState = intelligence.defaultQuality; 
     if (nextQualityForState) {

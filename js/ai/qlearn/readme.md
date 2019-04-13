@@ -16,7 +16,7 @@ The library expects as input a reduced set of state and action as a String. Crea
 
 ### actions
 
-An action that is taken should have an effect on the state, and sometimes a reward. `.decide() and .learn()` take an array of action names, not the actions themselves.
+An action that is taken should have an effect on the state, and sometimes a reward. `decide() and learn()` take an array of action names, not the actions themselves.
 
 ### reward
 

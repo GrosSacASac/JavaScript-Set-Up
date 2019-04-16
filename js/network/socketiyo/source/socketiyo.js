@@ -92,7 +92,6 @@ const attachWebSocketServer = (options) => {
 		}
 		enhanceSocket(socket);
 		connectionsPool.add(socket);
-		websocketServerFacade.emit(CONNECT, socket);
 		const listenBound = listen.bind(undefined, socket);
 		socket.on(`message`, listenBound);
 		socket.on(`close`, () => {
@@ -100,6 +99,7 @@ const attachWebSocketServer = (options) => {
 			connectionsPool.delete(socket);
 			websocketServerFacade.emit(DISCONNECT, socket);
 		});
+		websocketServerFacade.emit(CONNECT, socket);
 	};
 
 	const listen = (socket, message) => {

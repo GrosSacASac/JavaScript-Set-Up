@@ -3,6 +3,8 @@ export {
     CONNECT,
     DISCONNECT,
 	ERROR,
+	HIGH_LOAD,
+	AVAILABLE,
 	OVER_LOAD,
 	MESSAGE_FORMAT_ERROR,
 	VALIDATE_CHANNEL_ERROR,
@@ -21,11 +23,17 @@ import {
 	DEFAULT_CHANNEL
 } from "socketiyo-shared";
 
-
+// general
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
+
+// required infrastructure for scaling
+const HIGH_LOAD = Symbol();
+const AVAILABLE = Symbol();
 const OVER_LOAD = Symbol();
+
+// client errors
 const VALIDATE_MESSAGE_ERROR = Symbol();
 const MESSAGE_FORMAT_ERROR = Symbol();
 const VALIDATE_CHANNEL_ERROR = Symbol();
@@ -75,7 +83,9 @@ const attachWebSocketServer = (options) => {
 	};
 
 	const connect = socket => {
-		if (connectionsPool.size >= maxClients) {
+		if (connectionsPool.size === highClients) {
+			websocketServerFacade.emit(HIGH_LOAD, highClients);
+		} else if (connectionsPool.size >= maxClients) {
 			websocketServerFacade.emit(OVER_LOAD, maxClients);
 			socket.close();
 			return;

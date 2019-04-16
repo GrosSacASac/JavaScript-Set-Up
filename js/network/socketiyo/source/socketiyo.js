@@ -58,7 +58,13 @@ const send = (socket, data, channel=DEFAULT_CHANNEL) => {
 
 const attachWebSocketServer = (options) => {
 	const {httpServer, ws} = options;
-	const {maxClients, maxLength, maxChannels, maxChannelLength} = options;
+	const {
+		highClients,
+		maxClients,
+		maxLength,
+		maxChannels,
+		maxChannelLength,
+	} = options;
 
 	const wss = new ws.Server({ server: httpServer });
 

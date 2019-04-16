@@ -50,22 +50,24 @@ const enhanceSocket = socket => {
 	socket.channels = new Set();
 };
 
+const send = (socket, data, channel=DEFAULT_CHANNEL) => {
+	if (isSocketInChannel(socket, channel)) {
+		socket.send(formatSend(data, channel));
+	}
+};
+
 const attachWebSocketServer = (options) => {
 	const {httpServer, ws} = options;
 	const {maxClients, maxLength, maxChannels, maxChannelLength} = options;
 
 	const wss = new ws.Server({ server: httpServer });
 
-	const websocketServerFacade = EventEmitter({});
+	const facade = EventEmitter({});
 	const connectionsPool = new Set();
 
-	websocketServerFacade.send = (socket, data, channel=DEFAULT_CHANNEL) => {
-		if (isSocketInChannel(socket, channel)) {
-			socket.send(formatSend(data, channel));
-		}
-	};
+	facade.send = send
 
-	websocketServerFacade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
+	facade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (isSocketInChannel(socket, channel)) {
@@ -74,7 +76,7 @@ const attachWebSocketServer = (options) => {
 		});
 	};
 
-	websocketServerFacade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
+	facade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (socket !== exceptionSocket) {
@@ -87,9 +89,9 @@ const attachWebSocketServer = (options) => {
 
 	const connect = socket => {
 		if (connectionsPool.size === highClients) {
-			websocketServerFacade.emit(HIGH_LOAD, highClients);
+			facade.emit(HIGH_LOAD, highClients);
 		} else if (connectionsPool.size >= maxClients) {
-			websocketServerFacade.emit(OVER_LOAD, maxClients);
+			facade.emit(OVER_LOAD, maxClients);
 			socket.close();
 			return;
 		}
@@ -100,15 +102,15 @@ const attachWebSocketServer = (options) => {
 		socket.on(`close`, () => {
 			socket.off(`message`, listenBound);
 			connectionsPool.delete(socket);
-			websocketServerFacade.emit(DISCONNECT, socket);
+			facade.emit(DISCONNECT, socket);
 		});
-		websocketServerFacade.emit(CONNECT, socket);
+		facade.emit(CONNECT, socket);
 	};
 
 	const listen = (socket, message) => {
 		let error = validateLength(message, maxLength);
 		if (error) {
-			websocketServerFacade.emit(VALIDATE_MESSAGE_ERROR, error);
+			facade.emit(VALIDATE_MESSAGE_ERROR, error);
 			return;
 		}
 
@@ -116,13 +118,13 @@ const attachWebSocketServer = (options) => {
 		try {
 			parsed = unpackData(message);
 		} catch (error) {
-			websocketServerFacade.emit(MESSAGE_FORMAT_ERROR, {error, message});
+			facade.emit(MESSAGE_FORMAT_ERROR, {error, message});
 			return;
 		}
 
 		error = validateFormat(parsed);
 		if (error) {
-			websocketServerFacade.emit(MESSAGE_FORMAT_ERROR, {error, parsed});
+			facade.emit(MESSAGE_FORMAT_ERROR, {error, parsed});
 			return;
 		}
 
@@ -130,12 +132,12 @@ const attachWebSocketServer = (options) => {
 
 		error = validateChannel(channel, maxChannelLength);
 		if (error) {
-			websocketServerFacade.emit(VALIDATE_CHANNEL_ERROR, error);
+			facade.emit(VALIDATE_CHANNEL_ERROR, error);
 			return;
 		}
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {
 			if (socket[CHANNELS].size >= maxChannels) {
-				websocketServerFacade.emit(MAX_CHANNELS_ERROR, maxChannels);
+				facade.emit(MAX_CHANNELS_ERROR, maxChannels);
 				return;
 			}
 			socket[CHANNELS].add(channel);
@@ -145,11 +147,11 @@ const attachWebSocketServer = (options) => {
 			socket[CHANNELS].delete(channel);
 			return;
 		}
-		websocketServerFacade.emit(channel, {
+		facade.emit(channel, {
 			data,
 			socket,
 		});
 	};
 	wss.on(`connection`, connect);
-	return websocketServerFacade;
+	return facade;
 };

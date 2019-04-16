@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>HTML TEMPLATE</title>
+    <title>Example Client</title>
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
 
-    <main>
-        <p>Hi</p>
-    </main>
+<main>
+    <p>Open the console</p>
+</main>
     
-    <script type="module" src="./exampleClient.js"></script>
+<script type="module" src="./exampleClient.js">
+console.warn(`use socketiyo-client instead`);
+
+const connection = new WebSocket(`ws://localhost:8080/`);
+
+connection.addEventListener(`message`, (x) => {
+    console.log(x.data);
+});
+</script>
 </body>
 </html>

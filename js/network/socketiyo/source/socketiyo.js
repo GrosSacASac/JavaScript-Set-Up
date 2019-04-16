@@ -39,8 +39,11 @@ const MESSAGE_FORMAT_ERROR = Symbol();
 const VALIDATE_CHANNEL_ERROR = Symbol();
 const MAX_CHANNELS_ERROR = Symbol();
 
+// Private properties
+const CHANNELS = Symbol();
+
 const isSocketInChannel = (socket, channel) => {
-	return channel === DEFAULT_CHANNEL || socket.channels.has(channel);
+	return channel === DEFAULT_CHANNEL || socket[CHANNELS].has(channel);
 };
 
 const enhanceSocket = socket => {
@@ -131,15 +134,15 @@ const attachWebSocketServer = (options) => {
 			return;
 		}
 		if (action === SUBSCRIBE_CHANNEL_ACTION) {
-			if (socket.channels.size >= maxChannels) {
+			if (socket[CHANNELS].size >= maxChannels) {
 				websocketServerFacade.emit(MAX_CHANNELS_ERROR, maxChannels);
 				return;
 			}
-			socket.channels.add(channel);
+			socket[CHANNELS].add(channel);
 			return;
 		}
 		if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
-			socket.channels.delete(channel);
+			socket[CHANNELS].delete(channel);
 			return;
 		}
 		websocketServerFacade.emit(channel, {

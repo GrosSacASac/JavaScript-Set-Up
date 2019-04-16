@@ -27,6 +27,6 @@ const validateChannel = (channel, maxChannelLength) => {
 		return `channel length is above limit ${maxChannelLength}`;
 	}
 	if (channel === DEFAULT_CHANNEL) {
-		return `subscribing to the DEFAULT_CHANNEL is not usefull`;
+		return `subscribing to the DEFAULT_CHANNEL is not useful`;
 	}
 };

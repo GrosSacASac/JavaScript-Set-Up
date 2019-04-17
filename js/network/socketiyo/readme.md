@@ -46,7 +46,12 @@ import {
 	DEFAULT_CHANNEL,
 } from "../source/socketiyo.js";
 import {
-    maxClients, maxLength, maxChannels, maxChannelLength
+    maxClients,
+    highClients,
+    lowEnough,
+    maxLength,
+    maxChannels,
+    maxChannelLength,
 } from "../source/defaultOptions.js";
 import {useDefaultLogging} from "../source/defaultLogging";
 
@@ -55,7 +60,12 @@ import {useDefaultLogging} from "../source/defaultLogging";
 const socketiYoServer = attachWebSocketServer({
     httpServer,
     ws,
-    maxClients, maxLength, maxChannels, maxChannelLength
+    maxClients,
+    highClients,
+    lowEnough,
+    maxLength,
+    maxChannels,
+    maxChannelLength,
 });
 
 useDefaultLogging({socketiYoServer});
@@ -64,11 +74,6 @@ useDefaultLogging({socketiYoServer});
 setInterval(() => {
     socketiYoServer.sendAll(Date.now());
 }, 1500);
-
-/* send It is over to anyone on the game/end channel*/
-setTimeout(() => {
-    socketiYoServer.sendAll(`It is over`, `game/end`);
-}, 10000);
 
 socketiYoServer.on(CONNECT, socket => {
     /* send welcome to the socket*/

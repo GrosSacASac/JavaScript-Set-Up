@@ -6,7 +6,12 @@ import {
 	DEFAULT_CHANNEL,
 } from "../source/socketiyo.js";
 import {
-    maxClients, maxLength, maxChannels, maxChannelLength
+    maxClients,
+    highClients,
+    lowEnough,
+    maxLength,
+    maxChannels,
+    maxChannelLength,
 } from "../source/defaultOptions.js";
 import {useDefaultLogging} from "../source/defaultLogging";
 import {createHttpServer} from "./createHttpServer.js";
@@ -17,7 +22,12 @@ const httpServer = createHttpServer();
 const socketiYoServer = attachWebSocketServer({
     httpServer,
     ws,
-    maxClients, maxLength, maxChannels, maxChannelLength
+    maxClients,
+    highClients,
+    lowEnough,
+    maxLength,
+    maxChannels,
+    maxChannelLength,
 });
 
 useDefaultLogging({socketiYoServer});

@@ -64,6 +64,7 @@ const attachWebSocketServer = (options) => {
 		maxLength,
 		maxChannels,
 		maxChannelLength,
+		lowEnough,
 	} = options;
 
 	const wss = new ws.Server({ server: httpServer });
@@ -109,6 +110,9 @@ const attachWebSocketServer = (options) => {
 			socket.off(`message`, listenBound);
 			connectionsPool.delete(socket);
 			facade.emit(DISCONNECT, socket);
+			if (connectionsPool.size === lowEnough) {
+				facade.emit(AVAILABLE, lowEnough);
+			}
 		});
 		facade.emit(CONNECT, socket);
 	};

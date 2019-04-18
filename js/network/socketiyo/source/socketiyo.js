@@ -1,7 +1,7 @@
 export {
-    attachWebSocketServer,
-    CONNECT,
-    DISCONNECT,
+	attachWebSocketServer,
+	CONNECT,
+	DISCONNECT,
 	ERROR,
 	HIGH_LOAD,
 	AVAILABLE,
@@ -12,15 +12,15 @@ export {
 	MAX_CHANNELS_ERROR,
 	DEFAULT_CHANNEL,
 };
-import {validateFormat, validateLength, validateChannel} from "./validate.js";
+import { validateFormat, validateLength, validateChannel } from "./validate.js";
 import EventEmitter from "event-e3";
 import {
-	packData,
+    packData,
 	unpackData,
 	formatSend,
 	SUBSCRIBE_CHANNEL_ACTION,
 	UNSUBSCRIBE_CHANNEL_ACTION,
-	DEFAULT_CHANNEL
+	DEFAULT_CHANNEL,
 } from "socketiyo-shared";
 
 // general
@@ -50,14 +50,14 @@ const enhanceSocket = socket => {
 	socket.channels = new Set();
 };
 
-const send = (socket, data, channel=DEFAULT_CHANNEL) => {
+const send = (socket, data, channel = DEFAULT_CHANNEL) => {
 	if (isSocketInChannel(socket, channel)) {
 		socket.send(formatSend(data, channel));
 	}
 };
 
 const attachWebSocketServer = (options) => {
-	const {httpServer, ws} = options;
+	const { httpServer, ws } = options;
 	const {
 		highClients,
 		maxClients,
@@ -74,7 +74,7 @@ const attachWebSocketServer = (options) => {
 
 	facade.send = send
 
-	facade.sendAll = (data, channel=DEFAULT_CHANNEL) => {
+	facade.sendAll = (data, channel = DEFAULT_CHANNEL) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (isSocketInChannel(socket, channel)) {
@@ -83,7 +83,7 @@ const attachWebSocketServer = (options) => {
 		});
 	};
 
-	facade.sendAllExceptOne = (exceptionSocket, data, channel=DEFAULT_CHANNEL) => {
+	facade.sendAllExceptOne = (exceptionSocket, data, channel = DEFAULT_CHANNEL) => {
 		const toSend = formatSend(data, channel);
 		connectionsPool.forEach(socket => {
 			if (socket !== exceptionSocket) {
@@ -128,13 +128,13 @@ const attachWebSocketServer = (options) => {
 		try {
 			parsed = unpackData(message);
 		} catch (error) {
-			facade.emit(MESSAGE_FORMAT_ERROR, {error, message});
+			facade.emit(MESSAGE_FORMAT_ERROR, { error, message });
 			return;
 		}
 
 		error = validateFormat(parsed);
 		if (error) {
-			facade.emit(MESSAGE_FORMAT_ERROR, {error, parsed});
+			facade.emit(MESSAGE_FORMAT_ERROR, { error, parsed });
 			return;
 		}
 

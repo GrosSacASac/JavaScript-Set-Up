@@ -1,17 +1,17 @@
-export {useDefaultLogging};
+export { useDefaultLogging };
 import {
     CONNECT,
     DISCONNECT,
-	ERROR,
-	OVER_LOAD,
-	MESSAGE_FORMAT_ERROR,
-	VALIDATE_CHANNEL_ERROR,
-	VALIDATE_MESSAGE_ERROR,
-	MAX_CHANNELS_ERROR,
+    ERROR,
+    OVER_LOAD,
+    MESSAGE_FORMAT_ERROR,
+    VALIDATE_CHANNEL_ERROR,
+    VALIDATE_MESSAGE_ERROR,
+    MAX_CHANNELS_ERROR,
 } from "./socketiyo.js";
 
 
-const useDefaultLogging = ({socketiYoServer, logger=console}) => {
+const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
     socketiYoServer.on(CONNECT, socket => {
         logger.log(`${socket} connected`);
     });
@@ -28,16 +28,16 @@ const useDefaultLogging = ({socketiYoServer, logger=console}) => {
         logger.warn(`Server reached connection limit: ${maxClients},
          dropping websocket client`);
     });
-    
+
     socketiYoServer.on(VALIDATE_MESSAGE_ERROR, error => {
         logger.warn(error);
     });
-    
-    socketiYoServer.on(MESSAGE_FORMAT_ERROR, ({error, message}) => {
+
+    socketiYoServer.on(MESSAGE_FORMAT_ERROR, ({ error, message }) => {
         logger.warn(`invalid data received: ${error}`);
         logger.debug(message);
     });
-    
+
     socketiYoServer.on(VALIDATE_CHANNEL_ERROR, error => {
         logger.warn(error);
     });
@@ -52,5 +52,5 @@ const useDefaultLogging = ({socketiYoServer, logger=console}) => {
     logger.log(`unsubscribing to channel ${channel}`);
     logger.log(`receiving data: ${parsed}`);
     */
-    
+
 };

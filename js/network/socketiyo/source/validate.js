@@ -1,6 +1,6 @@
 export { validateFormat, validateLength, validateChannel };
-import {isObject} from "./isObject.js";
-import {DEFAULT_CHANNEL} from "socketiyo-shared";
+import { isObject } from "./isObject.js";
+import { DEFAULT_CHANNEL } from "socketiyo-shared";
 
 
 const validateFormat = parsedMessage => {

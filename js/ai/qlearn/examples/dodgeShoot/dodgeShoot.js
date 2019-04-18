@@ -1,3 +1,5 @@
+export {start};
+
 import {randomDecide} from "../../source/randomDecide.js"
 import {createIntelligence, learn, decide} from "../../source/qlearn.js";
 import {draw, report} from "./draw.js";
@@ -8,12 +10,6 @@ import {
     reduceStateAndActionSeeNearestOnly,
     reduceStateAndActionSeeAllDistance,
 } from "./reduceState.js";
-
-const reduceStateAndAction = reduceStateAndActionSeeAll;
-const useIntelligence = true;
-const MAX_FRAMES = 20000;
-const display = true;
-const collisionReward = 1 || -1
 
 let frame = 0;
 
@@ -76,32 +72,44 @@ const updateGame = (action, state) => {
 const state = initialState;
 const actionNames = Object.keys(actions);
 
-const step = () => {
-    let stateActions = reduceStateAndAction(state);
-    const scoreBefore = state.score;
-    let actionName
-    if (useIntelligence) {
-        actionName = decide(intelligence, stateActions, actionNames);
-    } else {
-        actionName = randomDecide(actionNames);
-    }
-    const action = actions[actionName];
-    updateGame(action, state); // reward and changes state
-	if (display) {
-        draw(state, frame);
-    }
-    const previousStateActions = stateActions;
-    stateActions = reduceStateAndAction(state);
-    const scoreAfter = state.score;
-    const reward = scoreAfter - scoreBefore;
-    learn(intelligence, previousStateActions, stateActions, actionName, actionNames, reward);
-    frame++;
-    if (frame < MAX_FRAMES) {
-        scheduleNext(step);
-    } else {
-        report(intelligence.qualityMap, state, frame);
-    }
+
+const reduceStateAndAction = reduceStateAndActionSeeAll;
+const useIntelligence = true;
+const MAX_FRAMES = 180;
+const display = true;
+const collisionReward = 1 || -1
+
+
+const start = (options)=> {
+    return new Promise((resolve, reject) => {
+        const step = () => {
+            let stateActions = reduceStateAndAction(state);
+            const scoreBefore = state.score;
+            let actionName
+            if (useIntelligence) {
+                actionName = decide(intelligence, stateActions, actionNames);
+            } else {
+                actionName = randomDecide(actionNames);
+            }
+            const action = actions[actionName];
+            updateGame(action, state); // reward and changes state
+            if (display) {
+                draw(state, frame);
+            }
+            const previousStateActions = stateActions;
+            stateActions = reduceStateAndAction(state);
+            const scoreAfter = state.score;
+            const reward = scoreAfter - scoreBefore;
+            learn(intelligence, previousStateActions, stateActions, actionName, actionNames, reward);
+            frame++;
+            if (frame < MAX_FRAMES) {
+                scheduleNext(step);
+            } else {
+                resolve([intelligence.qualityMap, state, frame]);
+            }
+        };
+        step();
+    });
 };
 
-
-step();
+start().then(report)

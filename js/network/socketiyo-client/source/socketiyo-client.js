@@ -1,16 +1,16 @@
 export {
 	createConnection,
 	RECONNECTING,
-    CONNECT,
-    DISCONNECT,
+	CONNECT,
+	DISCONNECT,
 	ERROR,
 	DEFAULT_CHANNEL
 };
 
 import {
 	RegularListener,
-    onFirstSubscribeString,
-    onLastUnsubscribeString,
+	onFirstSubscribeString,
+	onLastUnsubscribeString,
 } from "../node_modules/event-e3/source/RegularListener.js";
 import {
 	packData,
@@ -27,9 +27,9 @@ const DISCONNECT = Symbol();
 const ERROR = Symbol();
 
 const createConnection = (options) => {
-	const {url} = options;
-	const {reconnectionDelay} = options;
-	let {autoReconnect} = options;
+	const { url } = options;
+	const { reconnectionDelay } = options;
+	let { autoReconnect } = options;
 	let connection;
 	let delayedUntilOpen = [];
 	const facade = new RegularListener();
@@ -73,7 +73,7 @@ const createConnection = (options) => {
 			connection.send(x);
 		} /* else drop */
 	};
-	facade.send = (x, channel=DEFAULT_CHANNEL) => {
+	facade.send = (x, channel = DEFAULT_CHANNEL) => {
 		safeSend(formatSend(x, channel));
 	};
 	facade.close = () => {
@@ -101,7 +101,7 @@ const createConnection = (options) => {
 		}));
 	});
 	reconnect();
-    return facade;
+	return facade;
 };
 
 

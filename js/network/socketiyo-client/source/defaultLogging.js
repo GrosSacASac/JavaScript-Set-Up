@@ -1,15 +1,15 @@
-export {useDefaultLogging};
+export { useDefaultLogging };
 import {
-	RECONNECTING,
+    RECONNECTING,
     CONNECT,
     DISCONNECT,
-	ERROR,
+    ERROR,
 } from "./socketiyo-client.js";
 
 
-const useDefaultLogging = ({socketiyoConnection, logger=console}) => {
+const useDefaultLogging = ({ socketiyoConnection, logger = console }) => {
     socketiyoConnection.on(RECONNECTING, () => {
-		logger.log(`reconnecting`)
+        logger.log(`reconnecting`)
     });
 
     socketiyoConnection.on(DISCONNECT, x => {
@@ -24,7 +24,7 @@ const useDefaultLogging = ({socketiyoConnection, logger=console}) => {
     socketiyoConnection.on(CONNECT, () => {
         logger.log(`connection opened`);
     });
-    
+
 
     // candidates
     /*

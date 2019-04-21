@@ -1,4 +1,5 @@
-export { reconnectionDelay, autoReconnect };
+export { reconnectDelay, autoReconnect, randomReconnectDelay };
 
 const autoReconnect = true;
-const reconnectionDelay = 3000;
+const reconnectDelay = 2000;
+const randomReconnectDelay = 4000; // average will be half

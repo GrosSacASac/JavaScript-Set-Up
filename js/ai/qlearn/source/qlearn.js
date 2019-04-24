@@ -1,4 +1,4 @@
-export {createIntelligence, learn, decide};
+export { createIntelligence, learn, decide };
 
 const createIntelligence = () => {
     return {
@@ -25,9 +25,9 @@ const learn = (intelligence, previousStateActions, stateActions, previousAction,
     const previousActionIndex = qualityForState.findIndex(([, actionName]) => {
         return actionName === previousAction;
     });
-    
+
     const nextQualityForState = intelligence.qualityMap[stateActions];
-    let nextMaxQualityForState = intelligence.defaultQuality; 
+    let nextMaxQualityForState = intelligence.defaultQuality;
     if (nextQualityForState) {
         [nextMaxQualityForState] = nextQualityForState.sort(([qualityA], [qualityB]) => {
             return qualityB - qualityA;
@@ -37,7 +37,7 @@ const learn = (intelligence, previousStateActions, stateActions, previousAction,
     qualityForState[previousActionIndex][0] += intelligence.learnFactor * (
         reward +
         intelligence.discountFactor * (nextMaxQualityForState - qualityForState[0][0])
-    ) -intelligence.exploreBonus;
+    ) - intelligence.exploreBonus;
 };
 
 const decide = (intelligence, stateActions, actionNames) => {

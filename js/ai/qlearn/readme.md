@@ -69,13 +69,13 @@ const actionName = decide(intelligence, stateAction, actionNames);
 
 ### `learn()`
 
-Use it as soon as reward is available after `.decide()`.
+Use it as soon as reward is available after `decide()`.
 
 previous set of state and actions and set of state and actions may be equal if the action taken had no consequences.
 
 Will update `.qualityMap`.
 
-Note: It is possible to learn even if the decision of the `previousAction` did not come from `.decide()`, for example: If a human decides, the `.learn()` can still be used.
+Note: It is possible to learn even if the previous action did not come from `decide()`, for example: If a human decides, the `learn()` can still be used.
 
 ```
 learn(
@@ -87,15 +87,12 @@ learn(
 
 ### `.qualityMap`
 
-Note: save() and load() is not provided.
-
 ```
 const {qualityMap} = intelligence;
-save(qualityMap);
 ```
 
 ```
-intelligence.qualityMap = load(`qualityMap`);
+intelligence.qualityMap = {};
 ```
 
 ### `.defaultQuality`

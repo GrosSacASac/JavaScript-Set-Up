@@ -1,4 +1,4 @@
-export {randomDecide};
+export { randomDecide };
 
 
 const randomDecide = (actionNames, random = Math.random) => {

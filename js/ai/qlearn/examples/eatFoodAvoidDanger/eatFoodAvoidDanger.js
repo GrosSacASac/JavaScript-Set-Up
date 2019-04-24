@@ -1,7 +1,7 @@
-import {createIntelligence, learn, decide} from "../../source/qlearn.js";
-import {draw, report} from "./draw.js";
-import {initialState} from "./initialState.js";
-import {scheduleNext} from "./scheduleNext.js";
+import { createIntelligence, learn, decide } from "../../source/qlearn.js";
+import { draw, report } from "./draw.js";
+import { initialState } from "./initialState.js";
+import { scheduleNext } from "../scheduleNext.js";
 
 const MAX_FRAMES = 1000;
 const display = false;
@@ -16,7 +16,7 @@ const reduceStateAndAction = (state) => {
 };
 
 const isValidPosition = (w, max) => {
-  return w >=0 && w <= max;
+    return w >= 0 && w <= max;
 };
 
 const actions = {
@@ -60,14 +60,14 @@ const updateGame = (action, state) => {
     state.dangers.forEach(([dangerX, dangerY]) => {
         if (x === dangerX && y === dangerY) {
             state.score -= 1;
-            state.position = [0,0];
+            state.position = [0, 0];
             state.dangersTouched.push(frame)
         }
     });
     state.rewards.forEach(([X, Y]) => {
         if (x === X && y === Y) {
             state.score += 1;
-            state.position = [0,0];
+            state.position = [0, 0];
             state.rewardsTouched.push(frame);
         }
     });
@@ -82,13 +82,13 @@ const step = () => {
     const actionName = decide(intelligence, stateActions, actionNames);
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
-	if (display) {
+    if (display) {
         draw(state, frame);
-	}
+    }
     const stateActionsAfter = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    learn(intelligence,stateActions, stateActionsAfter, actionName, actionNames, reward);
+    learn(intelligence, stateActions, stateActionsAfter, actionName, actionNames, reward);
     frame++;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

@@ -1,10 +1,10 @@
-export {start};
+export { start };
 
-import {randomDecide} from "../../source/randomDecide.js"
-import {createIntelligence, learn, decide} from "../../source/qlearn.js";
-import {draw, report} from "./draw.js";
-import {initialState} from "./initialState.js";
-import {scheduleNext} from "./scheduleNext.js";
+import { randomDecide } from "../../source/randomDecide.js"
+import { createIntelligence, learn, decide } from "../../source/qlearn.js";
+import { draw, report } from "./draw.js";
+import { initialState } from "./initialState.js";
+import { scheduleNext } from "../scheduleNext.js";
 import {
     reduceStateAndActionSeeAll,
     reduceStateAndActionSeeNearestOnly,
@@ -14,10 +14,10 @@ import {
 let frame = 0;
 
 const intelligence = createIntelligence();
-    
+
 
 const isValidPosition = (w, max) => {
-  return w >=0 && w <= max;
+    return w >= 0 && w <= max;
 };
 
 const actions = {
@@ -80,7 +80,7 @@ const display = true;
 const collisionReward = 1 || -1
 
 
-const start = (options)=> {
+const start = (options) => {
     return new Promise((resolve, reject) => {
         const step = () => {
             let stateActions = reduceStateAndAction(state);

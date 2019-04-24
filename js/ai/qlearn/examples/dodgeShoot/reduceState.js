@@ -11,7 +11,7 @@ const distanceFromVector = (x, y) => {
 const reduceStateAndActionSeeNearestOnly = (state) => {
     // we omit actions because they are always the same 
     let missileInformation = state.missiles[0][1];
-    
+
     return `${state.position}${missileInformation}`;
 };
 

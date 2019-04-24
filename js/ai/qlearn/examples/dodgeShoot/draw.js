@@ -1,4 +1,4 @@
-export {draw, report};
+export { draw, report };
 
 
 const draw = (state, frame) => {
@@ -26,5 +26,5 @@ const report = ([qualityMap, state, frame]) => {
     console.log(JSON.stringify(qualityMap, null, 2));
     console.log(`qaulity map different set of states and actions ${Object.keys(qualityMap).length}`);
     console.log(`total frames ${frame}`);
-    console.log(`score ${state.score}` );
+    console.log(`score ${state.score}`);
 };

@@ -1,4 +1,4 @@
-export {draw, report};
+export { draw, report };
 
 
 const draw = (state, frame) => {

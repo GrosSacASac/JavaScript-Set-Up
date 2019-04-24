@@ -1,5 +1,6 @@
-import {start} from "./dodgeShoot.js";
+import { start } from "./dodgeShoot.js";
 
+// todo
 const reduceStateAndAction = reduceStateAndActionSeeAll;
 const useIntelligence = true;
 const MAX_FRAMES = 20000;

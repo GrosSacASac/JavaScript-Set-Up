@@ -15,12 +15,12 @@ const createIntelligence = () => {
 const maxQuality = (qualityForState) => {
     return qualityForState.sort(([qualityA], [qualityB]) => {
         return qualityB - qualityA;
-    })[0];
+    })[0][0];
 };
 
 const averageQuality = (qualityForState) => {
     const sumQualityForState = qualityForState.reduce((sumSoFar, [quality]) => {
-        return accumulutedSum + quality;
+        return sumSoFar + quality;
     }, 0);
     return sumQualityForState / (qualityForState.length || 1);
 };
@@ -41,16 +41,16 @@ const createLearn = (getNextQualityEstimation) => {
         });
 
         const nextQualityForState = intelligence.qualityMap[stateActions];
-        let nextMaxQualityForState;
+        let nextQualityEstimation;
         if (nextQualityForState) {
-            nextMaxQualityForState = getNextQualityEstimation(nextQualityForState);
+            nextQualityEstimation = getNextQualityEstimation(nextQualityForState);
         } else {
-            nextMaxQualityForState = intelligence.defaultQuality
+            nextQualityEstimation = intelligence.defaultQuality
         }
 
         qualityForState[previousActionIndex][0] += intelligence.learnFactor * (
             reward +
-            intelligence.discountFactor * (nextMaxQualityForState - qualityForState[0][0])
+            intelligence.discountFactor * (nextQualityEstimation - qualityForState[previousActionIndex][0])
         ) - intelligence.exploreBonus;
     }
 };

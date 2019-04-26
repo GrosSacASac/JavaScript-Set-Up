@@ -4,6 +4,7 @@ frames 2000, bordWidth 4:
 Perfect score 498
 qLearn(See first) 222
 qLearn(See all) 467
+qLearn(See all)(withAverage) 470
 qLearn(See all distance) 289
 random 137
 random 128
@@ -27,8 +28,11 @@ random 12569
 
 with negative reward:
 
+frames 2000:
+
 Perfect score 0
 qLearn(See all) -18
+qLearn(See all)(withAverage) -23
 qLearn(See first) -58
 qLearn(See all distance) -79
 random -138
@@ -39,6 +43,7 @@ frames 20000:
 
 Perfect score 0
 qLearn(See all) -189
+qLearn(See all)(withAverage) -252
 qLearn(See first) -586
 qLearn(See all distance) -497
 random -1277

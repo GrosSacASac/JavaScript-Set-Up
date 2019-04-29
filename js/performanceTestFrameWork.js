@@ -4,7 +4,7 @@ const xtest = {
 	code: (shared, finish) => {
                 // do something
 			finish(); // finishes the test
-		};
+		}
 	}
 };
 

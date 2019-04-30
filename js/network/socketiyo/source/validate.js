@@ -1,7 +1,7 @@
 export { validateFormat, validateLength, validateChannel };
 import { isObject } from "./isObject.js";
 import { DEFAULT_CHANNEL } from "socketiyo-shared";
-import { byteLengthFromString } from "utilsac";
+import { bytesLengthFromString } from "utilsac";
 
 
 const validateFormat = parsedMessage => {
@@ -18,13 +18,13 @@ const validateFormat = parsedMessage => {
 };
 
 const validateLength = (message, maxLength) => {
-    if (byteLengthFromString(message) >= maxLength) {
+    if (bytesLengthFromString(message) >= maxLength) {
         return `message length ${message.length} is above limit ${maxLength}`;
     }
 };
 
 const validateChannel = (channel, maxChannelLength) => {
-    if (byteLengthFromString(channel) >= maxChannelLength) {
+    if (bytesLengthFromString(channel) >= maxChannelLength) {
         return `channel length is above limit ${maxChannelLength}`;
     }
     if (channel === DEFAULT_CHANNEL) {

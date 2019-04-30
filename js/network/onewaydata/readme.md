@@ -27,7 +27,7 @@ import {
   RECONNECT_EVENT,
   CONNECT_EVENT,
   DISCONNECT_EVENT
-} from "onewaydata/sse.js";
+} from "onewaydata";
 
 const server = ...
 

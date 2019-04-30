@@ -5,7 +5,8 @@ export {
     CONNECT_EVENT,
     DISCONNECT_EVENT
 };
-import Emitter from "event-e3";
+import Emitter from "event-e3/EventEmitter3.mjs";
+
 
 const MIME = `text/event-stream`;
 const LAST_ID = `Last-Event-ID`;
@@ -48,8 +49,8 @@ const isValidRequestForServerSentEvents = (request, expectedPath) => {
 };
 
 const createEventStream = (server, options) => {
-    const {path} = options;
-    const eventStream = Emitter({lastEventId: 0});
+    const { path } = options;
+    const eventStream = Emitter({ lastEventId: 0 });
 
     let responses = [];
 
@@ -58,7 +59,7 @@ const createEventStream = (server, options) => {
             return;
         }
 
-        const {socket} = request;
+        const { socket } = request;
         socket.setTimeout(0);
         socket.setKeepAlive(true);
         socket.setNoDelay(true);
@@ -81,10 +82,10 @@ const createEventStream = (server, options) => {
             const index = responses.indexOf(response);
             if (index !== -1) {
                 responses.splice(index, 1);
-                eventStream.emit(DISCONNECT_EVENT, {response});
+                eventStream.emit(DISCONNECT_EVENT, { response });
             }
         });
-        eventStream.emit(CONNECT_EVENT, {response});
+        eventStream.emit(CONNECT_EVENT, { response });
     };
 
     const close = () => {

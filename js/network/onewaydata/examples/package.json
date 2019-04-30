@@ -1,10 +1,9 @@
 {
   "name": "examples",
-  "version": "1.0.0",
+  "type": "module",
+  "version": "1.1.0",
   "scripts": {
-    "start": "node start.js"
+    "start": "node --experimental-modules ./server.js"
   },
-  "dependencies": {
-    "esm": "^3.2.4"
-  }
+  "dependencies": {}
 }

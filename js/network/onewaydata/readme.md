@@ -15,8 +15,7 @@ npm i onewaydata
 
 ## todo
 
-send :keepaliveping every 15s ?
-make sure to disable chunking
+send :keepaliveping every 15s as option
 allow to send events (EVENT)
 
 ## usage
@@ -28,7 +27,7 @@ import {
   RECONNECT_EVENT,
   CONNECT_EVENT,
   DISCONNECT_EVENT
-} from "onewaydata";
+} from "onewaydata/sse.js";
 
 const server = ...
 

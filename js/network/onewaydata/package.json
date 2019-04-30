@@ -1,10 +1,11 @@
 {
   "name": "onewaydata",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "module": "sse.js",
+  "type": "module",
   "license": "CC0-1.0",
   "dependencies": {
-    "event-e3": "^7.0.3"
+    "event-e3": "^7.6.0"
   },
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
   "repository": {

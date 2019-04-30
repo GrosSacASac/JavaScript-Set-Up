@@ -1,7 +1,8 @@
 {
   "name": "socketiyo-shared",
-  "version": "1.1.1",
-  "module": "./source/socketiyo-shared.js",
+  "version": "1.1.2",
+  "type": "module",
+  "main": "./source/socketiyo-shared.js",
   "license": "CC0-1.0",
   "dependencies": {},
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo-shared",

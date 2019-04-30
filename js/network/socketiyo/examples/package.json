@@ -1,7 +1,9 @@
 {
   "name": "examples",
-  "version": "2.0.0",
+  "version": "3.0.0",
+  "type":"module",
   "scripts": {
+      "start": "node --experimental-modules exampleServer.js",
     "buildExampleServer": "rollup --config ./rollup.config.js",
     "exampleServer": "node ./built/exampleServerReady.js"
   },
@@ -11,7 +13,7 @@
     "rollup-plugin-node-resolve": "^4.0.1"
   },
   "dependencies": {
-    "ws": "^6.2.0"
+    "ws": "^7.0.0"
   },
   "private": true
 }

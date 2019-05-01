@@ -52,7 +52,7 @@ Object.assign(intelligence, {
     learnFactor: 0.5,
     discountFactor: 0.9,
     exploreBonus: 0.04,
-    qualityMap: {}
+    qualityMap: new Map()
 });
 ```
 
@@ -92,7 +92,7 @@ const {qualityMap} = intelligence;
 ```
 
 ```
-intelligence.qualityMap = {};
+intelligence.qualityMap = new Map();
 ```
 
 ### `.defaultQuality`

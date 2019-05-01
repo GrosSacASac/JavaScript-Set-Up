@@ -6,7 +6,7 @@
   "scripts": {
     "node-1": "node --experimental-modules ./eatFoodAvoidDanger/eatFoodAvoidDanger.js",
     "deno-1": "deno ./eatFoodAvoidDanger/eatFoodAvoidDanger.js",
-    "node-2": "node --experimental-modules ./dodgeShoot/dodgeShoot.js",
+    "node-2": "node --experimental-modules ./dodgeShoot/start.js",
     "deno-2": "deno ./dodgeShoot/dodgeShoot.js",
     "serve": "serve ../."
   },

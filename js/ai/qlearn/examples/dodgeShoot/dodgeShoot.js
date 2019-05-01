@@ -39,7 +39,7 @@ const actions = {
     },
 };
 
-const updateGame = (action, state) => {
+const updateGame = (action, state, collisionReward) => {
     action(state, state.position);
     const [x, y] = state.position;
     /* missiles go down, if they touch the player it is a hit,
@@ -73,12 +73,6 @@ const state = initialState;
 const actionNames = Object.keys(actions);
 
 
-const reduceStateAndAction = reduceStateAndActionSeeAll;
-const useIntelligence = true;
-const MAX_FRAMES = 20000;
-const display = false;
-const collisionReward = -1 || -1
-
 const learnWithAverage2 = (intelligence, previousStateActions, stateActions, previousAction, actionNames, reward) => {
     let qualityForState = intelligence.qualityMap[previousStateActions];
     if (!qualityForState) {
@@ -107,6 +101,14 @@ const learnWithAverage2 = (intelligence, previousStateActions, stateActions, pre
 };
 
 const start = (options) => {
+    const {
+        reduceStateAndAction = reduceStateAndActionSeeAll,
+        useIntelligence = true,
+        MAX_FRAMES = 20000,
+        display = false,
+        collisionReward = -1 || -1,
+    } = options;
+
     return new Promise((resolve, reject) => {
         const step = () => {
             let stateActions = reduceStateAndAction(state);
@@ -118,7 +120,7 @@ const start = (options) => {
                 actionName = randomDecide(actionNames);
             }
             const action = actions[actionName];
-            updateGame(action, state); // reward and changes state
+            updateGame(action, state, collisionReward); // reward and changes state
             if (display) {
                 draw(state, frame);
             }
@@ -137,5 +139,3 @@ const start = (options) => {
         step();
     });
 };
-
-start().then(report)

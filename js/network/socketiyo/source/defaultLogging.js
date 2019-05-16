@@ -46,11 +46,9 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
         logger.warn(`Client reached max channels subscription: ${maxChannels}`);
     });
 
-    // candidates
-    /*
+    /* candidates for future logging
     logger.log(`subscribing to channel ${channel}`);
     logger.log(`unsubscribing to channel ${channel}`);
     logger.log(`receiving data: ${parsed}`);
     */
-
 };

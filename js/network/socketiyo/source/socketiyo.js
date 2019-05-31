@@ -6,11 +6,15 @@ export {
     HIGH_LOAD,
     AVAILABLE,
     OVER_LOAD,
+    RECEIVE_MESSAGE,
+    RECEIVE_SUBSCRIBE,
+    RECEIVE_UNSUBSCRIBE,
     MESSAGE_FORMAT_ERROR,
     VALIDATE_CHANNEL_ERROR,
     VALIDATE_MESSAGE_ERROR,
     MAX_CHANNELS_ERROR,
     DEFAULT_CHANNEL,
+    LAST_CONNECTION_CHECK,
 };
 import { validateFormat, validateLength, validateChannel } from "./validate.js";
 import EventEmitter from "event-e3/EventEmitter3.mjs";
@@ -27,6 +31,9 @@ import {
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 const ERROR = Symbol();
+const RECEIVE_MESSAGE = Symbol();
+const RECEIVE_SUBSCRIBE = Symbol();
+const RECEIVE_UNSUBSCRIBE = Symbol();
 
 // required infrastructure for scaling
 const HIGH_LOAD = Symbol();
@@ -39,6 +46,9 @@ const MESSAGE_FORMAT_ERROR = Symbol();
 const VALIDATE_CHANNEL_ERROR = Symbol();
 const MAX_CHANNELS_ERROR = Symbol();
 
+// Public properties
+const LAST_CONNECTION_CHECK = Symbol();
+
 // Private properties
 const CHANNELS = Symbol();
 
@@ -48,11 +58,13 @@ const isSocketInChannel = (socket, channel) => {
 
 const enhanceSocket = socket => {
     socket[CHANNELS] = new Set();
+    socket[LAST_CONNECTION_CHECK] = Date.now();
 };
 
 const send = (socket, data, channel = DEFAULT_CHANNEL) => {
     if (isSocketInChannel(socket, channel)) {
         socket.send(formatSend(data, channel));
+        socket[LAST_CONNECTION_CHECK] = Date.now();
     }
 };
 
@@ -71,24 +83,29 @@ const attachWebSocketServer = (options) => {
 
     const facade = EventEmitter({});
     const connectionsPool = new Set();
-
+    
+    facade.connectionsPool = connectionsPool;
     facade.send = send
 
     facade.sendAll = (data, channel = DEFAULT_CHANNEL) => {
+        const now = Date.now();
         const toSend = formatSend(data, channel);
         connectionsPool.forEach(socket => {
             if (isSocketInChannel(socket, channel)) {
                 socket.send(toSend);
+                socket[LAST_CONNECTION_CHECK] = now;
             }
         });
     };
 
     facade.sendAllExceptOne = (exceptionSocket, data, channel = DEFAULT_CHANNEL) => {
+        const now = Date.now();
         const toSend = formatSend(data, channel);
         connectionsPool.forEach(socket => {
             if (socket !== exceptionSocket) {
                 if (isSocketInChannel(socket, channel)) {
                     socket.send(toSend);
+                    socket[LAST_CONNECTION_CHECK] = now;
                 }
             }
         });
@@ -151,12 +168,25 @@ const attachWebSocketServer = (options) => {
                 return;
             }
             socket[CHANNELS].add(channel);
+            facade.emit(RECEIVE_SUBSCRIBE, {
+                channel,
+                socket,
+            });
             return;
         }
         if (action === UNSUBSCRIBE_CHANNEL_ACTION) {
             socket[CHANNELS].delete(channel);
+            facade.emit(RECEIVE_UNSUBSCRIBE, {
+                channel,
+                socket,
+            });
             return;
         }
+        facade.emit(RECEIVE_MESSAGE, {
+            channel,
+            data,
+            socket,
+        });
         facade.emit(channel, {
             data,
             socket,

@@ -3,6 +3,9 @@ import {
     CONNECT,
     DISCONNECT,
     ERROR,
+    RECEIVE_MESSAGE,
+    RECEIVE_SUBSCRIBE,
+    RECEIVE_UNSUBSCRIBE,
     OVER_LOAD,
     MESSAGE_FORMAT_ERROR,
     VALIDATE_CHANNEL_ERROR,
@@ -46,9 +49,27 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
         logger.warn(`Client reached max channels subscription: ${maxChannels}`);
     });
 
-    /* candidates for future logging
-    logger.log(`subscribing to channel ${channel}`);
-    logger.log(`unsubscribing to channel ${channel}`);
-    logger.log(`receiving data: ${parsed}`);
-    */
+    socketiYoServer.on(RECEIVE_MESSAGE, ({
+        channel,
+        data,
+        socket,
+    }) => {
+        logger.log(`Receiving data from a socket
+        ${JSON.stringify(data, null, 4)}
+        at channel ${String(channel)}`);
+    });
+
+    socketiYoServer.on(RECEIVE_SUBSCRIBE, ({
+        channel,
+        socket,
+    }) => {
+        logger.log(`Socket subscribing to channel ${String(channel)}`);
+    });
+
+    socketiYoServer.on(RECEIVE_UNSUBSCRIBE, ({
+        channel,
+        socket,
+    }) => {
+        logger.log(`Socket unsubscribing from channel ${String(channel)}`);
+    });
 };

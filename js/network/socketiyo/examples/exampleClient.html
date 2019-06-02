@@ -1,24 +1,27 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Example Client</title>
     <meta name="viewport" content="width=device-width">
 </head>
+
 <body>
 
-<main>
-    <p>Open the console</p>
-</main>
-    
-<script type="module" src="./exampleClient.js">
-console.warn(`use socketiyo-client instead`);
+    <main>
+        <p>Open the console</p>
+    </main>
 
-const connection = new WebSocket(`ws://localhost:8080/`);
+    <script type="module">
+        console.warn(`use socketiyo-client instead`);
 
-connection.addEventListener(`message`, (x) => {
-    console.log(x.data);
-});
-</script>
+        const connection = new WebSocket(`ws://localhost:8080/`);
+
+        connection.addEventListener(`message`, (x) => {
+            console.log(x.data);
+        });
+    </script>
 </body>
+
 </html>

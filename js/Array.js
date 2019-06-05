@@ -60,3 +60,12 @@ const specificItemPosition = array.indexOf(itemToBeRemoved);
 if (specificItemPosition !== -1) {
     array.splice(specificItemPosition, 1);
 }
+
+// replace an item
+let array = [1, 2, 3, "removeMe", 10];
+const itemToBeRemoved = "removeMe";
+const itemToBeInserted = "I am new";
+const index = array.indexOf(itemToBeRemoved);
+if (index !== -1) {
+    array.splice(index, 1, itemToBeInserted);
+}

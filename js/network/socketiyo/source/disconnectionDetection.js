@@ -20,8 +20,9 @@ const useAdditionalDisconnectionDetection = ({
     socketiYoServer,
     disconnectionCheckInterval = 20000, /* the smaller, the faster disconnection are detected
     at a cost of bandwidth and cpu */
+    maximumTimeWithoutAsnwer = 2 * disconnectionCheckInterval,
 }) => {
-    /* slightly less to check every time, (setInterval is slightly time volatile) */
+    /* slightly less to check, (setInterval is slightly time volatile) */
     const minimumTimeBetweenChecks = Math.round(0.9 * disconnectionCheckInterval);
 
     socketiYoServer.on(RECEIVE_MESSAGE, markSocketLastConnectionCheckAdapter);
@@ -32,10 +33,14 @@ const useAdditionalDisconnectionDetection = ({
         const now = Date.now();
         socketiYoServer.connectionsPool.forEach(socket => {
             const timePassed = now - socket[LAST_CONNECTION_CHECK];
+            if (timePassed < minimumTimeBetweenChecks) {
+                return;
+            }
+            if (timePassed > maximumTimeWithoutAsnwer) {
+                socket.close();
+                return;
+            }
         });
-        if (timePassed < minimumTimeBetweenChecks) {
-            return;
-        }
         // todo check, ping
     }, disconnectionCheckInterval);
 };

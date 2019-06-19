@@ -1,4 +1,4 @@
-export {useAdditionalDisconnectionDetection};
+export { useAdditionalDisconnectionDetection };
 
 import {
     RECEIVE_MESSAGE,
@@ -12,12 +12,12 @@ const markSocketLastConnectionCheck = socket => {
     socket[LAST_CONNECTION_CHECK] = Date.now()
 };
 
-const markSocketLastConnectionCheckAdapter = ({socket}) => {
+const markSocketLastConnectionCheckAdapter = ({ socket }) => {
     markSocketLastConnectionCheck(socket);
 };
 
 const useAdditionalDisconnectionDetection = ({
-    socketiyoServer,
+    socketiYoServer,
     disconnectionCheckInterval = 20000, /* the smaller, the faster disconnection are detected
     at a cost of bandwidth and cpu */
 }) => {

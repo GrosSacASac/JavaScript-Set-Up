@@ -83,7 +83,7 @@ const attachWebSocketServer = (options) => {
 
     const facade = EventEmitter({});
     const connectionsPool = new Set();
-    
+
     facade.connectionsPool = connectionsPool;
     facade.send = send
 
@@ -109,6 +109,17 @@ const attachWebSocketServer = (options) => {
                 }
             }
         });
+    };
+
+    facade.close = () => {
+        /* remove all event listeners, close all the connections */
+        facade.off();
+        connectionsPool.forEach(socket => {
+            socket.off();
+            socket.close();
+        });
+        connectionsPool.clear();
+        wss.close();
     };
 
     const connect = socket => {

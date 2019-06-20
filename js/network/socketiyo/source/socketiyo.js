@@ -9,6 +9,7 @@ export {
     RECEIVE_MESSAGE,
     RECEIVE_SUBSCRIBE,
     RECEIVE_UNSUBSCRIBE,
+    PONG,
     MESSAGE_FORMAT_ERROR,
     VALIDATE_CHANNEL_ERROR,
     VALIDATE_MESSAGE_ERROR,
@@ -34,6 +35,7 @@ const ERROR = Symbol();
 const RECEIVE_MESSAGE = Symbol();
 const RECEIVE_SUBSCRIBE = Symbol();
 const RECEIVE_UNSUBSCRIBE = Symbol();
+const PONG = Symbol();
 
 // required infrastructure for scaling
 const HIGH_LOAD = Symbol();
@@ -134,6 +136,9 @@ const attachWebSocketServer = (options) => {
         connectionsPool.add(socket);
         const listenBound = listen.bind(undefined, socket);
         socket.on(`message`, listenBound);
+        socket.on(`pong`, () => {
+            facade.emit(PONG, { socket });
+        });
         socket.on(`close`, () => {
             socket.off(`message`, listenBound);
             connectionsPool.delete(socket);

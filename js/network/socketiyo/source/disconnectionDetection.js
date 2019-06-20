@@ -4,12 +4,13 @@ import {
     RECEIVE_MESSAGE,
     RECEIVE_SUBSCRIBE,
     RECEIVE_UNSUBSCRIBE,
+    PONG,
     LAST_CONNECTION_CHECK,
 } from "./socketiyo.js";
 
 
 const markSocketLastConnectionCheck = socket => {
-    socket[LAST_CONNECTION_CHECK] = Date.now()
+    socket[LAST_CONNECTION_CHECK] = Date.now();
 };
 
 const markSocketLastConnectionCheckAdapter = ({ socket }) => {
@@ -28,6 +29,7 @@ const useAdditionalDisconnectionDetection = ({
     socketiYoServer.on(RECEIVE_MESSAGE, markSocketLastConnectionCheckAdapter);
     socketiYoServer.on(RECEIVE_SUBSCRIBE, markSocketLastConnectionCheckAdapter);
     socketiYoServer.on(RECEIVE_UNSUBSCRIBE, markSocketLastConnectionCheckAdapter);
+    socketiYoServer.on(PONG, markSocketLastConnectionCheckAdapter);
 
     const intervalId = setInterval(() => {
         const now = Date.now();
@@ -40,7 +42,13 @@ const useAdditionalDisconnectionDetection = ({
                 socket.close();
                 return;
             }
+            socket.ping();
         });
-        // todo check, ping
     }, disconnectionCheckInterval);
+
+    const close = () => {
+        clearInterval(intervalId);
+    };
+
+    return close;
 };

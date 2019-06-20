@@ -35,12 +35,12 @@ useDefaultLogging({ socketiYoServer });
 const closeDisconnectionDetection = useAdditionalDisconnectionDetection({ socketiYoServer });
 
 /* send the current time on the default channel to everyone */
-setInterval(() => {
+const intervalId = setInterval(() => {
     socketiYoServer.sendAll(Date.now());
 }, 1500);
 
 /* send It is over to anyone on the game/end channel*/
-setTimeout(() => {
+const timeoutId = setTimeout(() => {
     socketiYoServer.sendAll(`It is over`, `game/end`);
 }, 10000);
 
@@ -55,3 +55,13 @@ socketiYoServer.on(CONNECT, socket => {
 socketiYoServer.on(`game/input`, ({ socket, data }) => {
     console.log(`${socket} send us ${data}`);
 });
+
+
+/* close after one hour*/
+setTimeout(() => {
+    clearInterval(intervalId);
+    clearTimeout(timeoutId);
+    closeDisconnectionDetection();
+    socketiYoServer.close();
+    httpServer.close();
+}, 60 * 60 * 1000);

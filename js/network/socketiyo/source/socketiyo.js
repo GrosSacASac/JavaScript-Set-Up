@@ -117,7 +117,7 @@ const attachWebSocketServer = (options) => {
         /* remove all event listeners, close all the connections */
         facade.off();
         connectionsPool.forEach(socket => {
-            socket.off();
+            socket.removeAllListeners();
             socket.close();
         });
         connectionsPool.clear();

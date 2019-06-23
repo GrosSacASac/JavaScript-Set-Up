@@ -1,5 +1,6 @@
 export { start };
 
+import { deepCopy } from "../node_modules/utilsac/utility.js";
 import { randomDecide } from "../../source/randomDecide.js"
 import { createIntelligence, learn, learnWithAverage, decide } from "../../source/qlearn.js";
 import { draw, report } from "./draw.js";
@@ -10,10 +11,6 @@ import {
     reduceStateAndActionSeeNearestOnly,
     reduceStateAndActionSeeAllDistance,
 } from "./reduceState.js";
-
-let frame = 0;
-
-const intelligence = createIntelligence();
 
 
 const isValidPosition = (w, max) => {
@@ -38,6 +35,7 @@ const actions = {
         actor[0] = futureX;
     },
 };
+const actionNames = Object.keys(actions);
 
 const updateGame = (action, state, collisionReward) => {
     action(state, state.position);
@@ -58,20 +56,16 @@ const updateGame = (action, state, collisionReward) => {
     });
 
     // the enemy emits a missile every n frames
-    if (frame % 4 === 0) {
+    if (state.frame % 4 === 0) {
         state.missiles.push(state.positionEnemy.slice());
     }
     // move enemy from left to right periodically
-    if (frame % 60 > 30) {
+    if (state.frame % 60 > 30) {
         actions.moveLeft(state, state.positionEnemy);
     } else {
         actions.moveRight(state, state.positionEnemy);
     }
 };
-
-const state = initialState;
-const actionNames = Object.keys(actions);
-
 
 const learnWithAverage2 = (intelligence, previousStateActions, stateActions, previousAction, actionNames, reward) => {
     let qualityForState = intelligence.qualityMap[previousStateActions];
@@ -109,11 +103,14 @@ const start = (options) => {
         collisionReward = -1 || -1,
     } = options;
 
+    const state = deepCopy(initialState);
+    const intelligence = createIntelligence();
+
     return new Promise((resolve, reject) => {
         const step = () => {
             let stateActions = reduceStateAndAction(state);
             const scoreBefore = state.score;
-            let actionName
+            let actionName;
             if (useIntelligence) {
                 actionName = decide(intelligence, stateActions, actionNames);
             } else {
@@ -122,18 +119,18 @@ const start = (options) => {
             const action = actions[actionName];
             updateGame(action, state, collisionReward); // reward and changes state
             if (display) {
-                draw(state, frame);
+                draw(state);
             }
             const previousStateActions = stateActions;
             stateActions = reduceStateAndAction(state);
             const scoreAfter = state.score;
             const reward = scoreAfter - scoreBefore;
             learnWithAverage2(intelligence, previousStateActions, stateActions, actionName, actionNames, reward);
-            frame++;
-            if (frame < MAX_FRAMES) {
+            state.frame++;
+            if (state.frame < MAX_FRAMES) {
                 scheduleNext(step);
             } else {
-                resolve([intelligence.qualityMap, state, frame]);
+                resolve([intelligence.qualityMap, state, state.frame]);
             }
         };
         step();

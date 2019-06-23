@@ -13,5 +13,8 @@
   "private": true,
   "devDependencies": {
     "serve": "^10.1.2"
+  },
+  "dependencies": {
+    "utilsac": "^10.4.1"
   }
 }

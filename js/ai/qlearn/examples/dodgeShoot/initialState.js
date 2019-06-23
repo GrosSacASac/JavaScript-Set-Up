@@ -8,4 +8,5 @@ const initialState = {
     missiles: [[3, 9]],
     score: 0,
     shotReceived: 0,
+    frame: 0,
 };

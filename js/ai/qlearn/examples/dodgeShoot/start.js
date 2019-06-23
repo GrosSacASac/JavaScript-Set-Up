@@ -3,12 +3,12 @@ import {
     reduceStateAndActionSeeNearestOnly,
     reduceStateAndActionSeeAllDistance,
 } from "./reduceState.js";
-import { start } from "./dodgeShoot.js";
 import { report } from "./draw.js";
+import { start } from "./dodgeShoot.js";
 
 const reduceStateAndAction = reduceStateAndActionSeeAll;
 const useIntelligence = true;
-const MAX_FRAMES = 2000;
+const MAX_FRAMES = 20;
 const display = false;
 const collisionReward = 1 || -1
 

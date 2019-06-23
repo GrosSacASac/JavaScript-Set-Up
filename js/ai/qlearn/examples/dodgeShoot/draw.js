@@ -1,8 +1,8 @@
 export { draw, report };
 
 
-const draw = (state, frame) => {
-    console.log(`-------- ${frame} -------- `);
+const draw = (state) => {
+    console.log(`-------- ${state.frame} -------- `);
     for (let y = state.maxY; y >= 0; y--) {
         let line = [`|`];
         for (let x = 0; x <= state.maxX; x++) {

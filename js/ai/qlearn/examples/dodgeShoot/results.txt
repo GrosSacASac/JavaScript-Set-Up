@@ -1,5 +1,5 @@
 score results
-frames 2000, bordWidth 4:
+frames 2000, borderWidth 4:
 
 Perfect score 498
 qLearn(See first) 222

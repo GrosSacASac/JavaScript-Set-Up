@@ -22,17 +22,37 @@ const draw = (state) => {
     }
 };
 
-const report = ([qualityMap, state, frame]) => {
+const report = ({ state, qualityMap }) => {
+    const { frame, score } = state;
     // todo find out why this works (it is a map not object, it should not work)
     console.log(JSON.stringify(qualityMap, null, 2));
     console.log(`qaulity map different set of states and actions ${qualityMap.size}`);
     console.log(`total frames ${frame}`);
-    console.log(`score ${state.score}`);
+    console.log(`score ${score}`);
 };
 
-const compactReport = ([qualityMap, state, frame]) => {
-    console.log(JSON.stringify(qualityMap, null, 2));
-    console.log(`qaulity map different set of states and actions ${qualityMap.size}`);
-    console.log(`total frames ${frame}`);
-    console.log(`score ${state.score}`);
+const compactReport = ({ state, qualityMap, reduceStateAndAction, useIntelligence, reward }) => {
+    const { frame, score } = state;
+
+    let intelligence;
+    let reduceStateName;
+    if (useIntelligence) {
+        intelligence = `qLearn`;
+        reduceStateName = `(${reduceStateAndAction.name})`;
+    } else {
+        intelligence = `random`;
+        reduceStateName = ``;
+    }
+
+    let rewardText;
+    if (reward === 1) {
+        rewardText = `positive reward`;
+    } else {
+        rewardText = `negative reward`;
+    }
+
+    const frameText = `${frame} frames`;
+    const scoreText = `score: ${score}`;
+    const compactMessage = `${intelligence}${reduceStateName} ${rewardText} ${frameText} ${scoreText}`;
+    console.log(compactMessage);
 };

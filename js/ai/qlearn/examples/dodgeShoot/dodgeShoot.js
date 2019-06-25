@@ -6,11 +6,6 @@ import { createIntelligence, learn, learnWithAverage, decide } from "../../sourc
 import { draw, report } from "./draw.js";
 import { initialState } from "./initialState.js";
 import { scheduleNext } from "../scheduleNext.js";
-import {
-    reduceStateAndActionSeeAll,
-    reduceStateAndActionSeeNearestOnly,
-    reduceStateAndActionSeeAllDistance,
-} from "./reduceState.js";
 
 
 const isValidPosition = (w, max) => {
@@ -37,7 +32,7 @@ const actions = {
 };
 const actionNames = Object.keys(actions);
 
-const updateGame = (action, state, collisionReward) => {
+const updateGame = (action, state, reward) => {
     action(state, state.position);
     const [x, y] = state.position;
     /* missiles go down, if they touch the player it is a hit,
@@ -45,7 +40,7 @@ const updateGame = (action, state, collisionReward) => {
     state.missiles.forEach(([dangerX, dangerY]) => {
         // todo volume based collision
         if (x === dangerX && y === dangerY) {
-            state.score += collisionReward;
+            state.score += reward;
         }
     });
     state.missiles = state.missiles.filter(([dangerX, dangerY]) => {
@@ -96,11 +91,11 @@ const learnWithAverage2 = (intelligence, previousStateActions, stateActions, pre
 
 const start = (options) => {
     const {
-        reduceStateAndAction = reduceStateAndActionSeeAll,
+        reduceStateAndAction,
         useIntelligence = true,
         MAX_FRAMES = 20000,
         display = false,
-        collisionReward = -1 || -1,
+        reward = -1,
     } = options;
 
     const state = deepCopy(initialState);
@@ -117,20 +112,27 @@ const start = (options) => {
                 actionName = randomDecide(actionNames);
             }
             const action = actions[actionName];
-            updateGame(action, state, collisionReward); // reward and changes state
+            updateGame(action, state, reward); // reward and changes state
             if (display) {
                 draw(state);
             }
             const previousStateActions = stateActions;
             stateActions = reduceStateAndAction(state);
             const scoreAfter = state.score;
-            const reward = scoreAfter - scoreBefore;
-            learnWithAverage2(intelligence, previousStateActions, stateActions, actionName, actionNames, reward);
+            const scoreDifference = scoreAfter - scoreBefore;
+            learnWithAverage2(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
             state.frame++;
             if (state.frame < MAX_FRAMES) {
                 scheduleNext(step);
             } else {
-                resolve([intelligence.qualityMap, state, state.frame]);
+                state.qualityMap = intelligence.qualityMap;
+                resolve({
+                    state,
+                    qualityMap: intelligence.qualityMap,
+                    reduceStateAndAction,
+                    useIntelligence,
+                    reward,
+                });
             }
         };
         step();

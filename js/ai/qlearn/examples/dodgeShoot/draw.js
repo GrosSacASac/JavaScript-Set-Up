@@ -31,17 +31,27 @@ const report = ({ state, qualityMap }) => {
     console.log(`score ${score}`);
 };
 
-const compactReport = ({ state, qualityMap, reduceStateAndAction, useIntelligence, reward }) => {
+const compactReport = ({
+    state,
+    qualityMap,
+    reduceStateAndAction,
+    useIntelligence,
+    reward,
+    learn,
+}) => {
     const { frame, score } = state;
 
     let intelligence;
     let reduceStateName;
+    let learnName;
     if (useIntelligence) {
         intelligence = `qLearn`;
         reduceStateName = `(${reduceStateAndAction.name})`;
+        learnName = `(${learn.name || learn.xname})`;
     } else {
         intelligence = `random`;
         reduceStateName = ``;
+        learnName = ``;
     }
 
     let rewardText;
@@ -52,7 +62,7 @@ const compactReport = ({ state, qualityMap, reduceStateAndAction, useIntelligenc
     }
 
     const frameText = `${frame} frames`;
-    const scoreText = `score: ${score}`;
-    const compactMessage = `${intelligence}${reduceStateName} ${rewardText} ${frameText} ${scoreText}`;
+    const scoreText = `score: ${score} `;
+    const compactMessage = `${intelligence}${reduceStateName}${learnName} ${rewardText} ${frameText} ${scoreText} `;
     console.log(compactMessage);
 };

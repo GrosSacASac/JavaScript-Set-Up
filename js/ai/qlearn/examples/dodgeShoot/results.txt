@@ -3,7 +3,7 @@ frames 2000, borderWidth 4:
 
 Perfect score 498
 qLearn(See first) 222
-qLearn(See all) 467
+qLearn(See all) 476
 qLearn(See all)(withAverage) 470
 qLearn(See all distance) 289
 random 137

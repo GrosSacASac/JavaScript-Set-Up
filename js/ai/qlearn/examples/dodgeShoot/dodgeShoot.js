@@ -2,7 +2,7 @@ export { start };
 
 import { deepCopy } from "../node_modules/utilsac/utility.js";
 import { randomDecide } from "../../source/randomDecide.js"
-import { createIntelligence, learn, learnWithAverage, decide } from "../../source/qlearn.js";
+import { createIntelligence, decide } from "../../source/qlearn.js";
 import { draw, report } from "./draw.js";
 import { initialState } from "./initialState.js";
 import { scheduleNext } from "../scheduleNext.js";
@@ -62,36 +62,10 @@ const updateGame = (action, state, reward) => {
     }
 };
 
-const learnWithAverage2 = (intelligence, previousStateActions, stateActions, previousAction, actionNames, reward) => {
-    let qualityForState = intelligence.qualityMap[previousStateActions];
-    if (!qualityForState) {
-        // there was no quality map for this set of state and actions
-        qualityForState = actionNames.map(actionName => {
-            return [intelligence.defaultQuality, actionName];
-        });
-        intelligence.qualityMap[previousStateActions] = qualityForState;
-    }
-
-    const nextQualityForState = intelligence.qualityMap[stateActions];
-    let nextAverageQualityForState = intelligence.defaultQuality;
-    if (nextQualityForState) {
-        const nextSumQualityForState = nextQualityForState.reduce((accumulutedSum, [quality]) => accumulutedSum + quality, 0);
-        nextAverageQualityForState = nextSumQualityForState / (nextQualityForState.length || 1);
-        // todo why put const above change the result to the better ?
-    }
-
-    const previousActionIndex = qualityForState.findIndex(([, actionName]) => {
-        return actionName === previousAction;
-    });
-    qualityForState[previousActionIndex][0] += intelligence.learnFactor * (
-        reward +
-        intelligence.discountFactor * (nextAverageQualityForState - qualityForState[previousActionIndex][0])
-    ) - intelligence.exploreBonus;
-};
-
 const start = (options) => {
     const {
         reduceStateAndAction,
+        learn,
         useIntelligence = true,
         MAX_FRAMES = 20000,
         display = false,
@@ -120,7 +94,7 @@ const start = (options) => {
             stateActions = reduceStateAndAction(state);
             const scoreAfter = state.score;
             const scoreDifference = scoreAfter - scoreBefore;
-            learnWithAverage2(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
+            learn(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
             state.frame++;
             if (state.frame < MAX_FRAMES) {
                 scheduleNext(step);
@@ -132,6 +106,7 @@ const start = (options) => {
                     reduceStateAndAction,
                     useIntelligence,
                     reward,
+                    learn,
                 });
             }
         };

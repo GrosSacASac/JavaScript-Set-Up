@@ -77,10 +77,11 @@ const start = (options) => {
 
     return new Promise((resolve, reject) => {
         const step = () => {
-            let stateActions = reduceStateAndAction(state);
             const scoreBefore = state.score;
+            let stateActions;
             let actionName;
             if (useIntelligence) {
+                stateActions = reduceStateAndAction(state);
                 actionName = decide(intelligence, stateActions, actionNames);
             } else {
                 actionName = randomDecide(actionNames);
@@ -90,11 +91,14 @@ const start = (options) => {
             if (display) {
                 draw(state);
             }
-            const previousStateActions = stateActions;
-            stateActions = reduceStateAndAction(state);
-            const scoreAfter = state.score;
-            const scoreDifference = scoreAfter - scoreBefore;
-            learn(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
+
+            if (useIntelligence) {
+                const previousStateActions = stateActions;
+                stateActions = reduceStateAndAction(state);
+                const scoreAfter = state.score;
+                const scoreDifference = scoreAfter - scoreBefore;
+                learn(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
+            }
             state.frame++;
             if (state.frame < MAX_FRAMES) {
                 scheduleNext(step);

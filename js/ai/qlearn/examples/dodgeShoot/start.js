@@ -35,7 +35,7 @@ const learnWithAverage2 = (intelligence, previousStateActions, stateActions, pre
     ) - intelligence.exploreBonus;
 };
 
-const reduceStateAndAction = reduceStateAndActionSeeAll;
+
 const useIntelligence = true;
 const MAX_FRAMES = 20;
 const display = false;
@@ -49,7 +49,6 @@ learn.xname = `learn`;
 learnWithAverage.xname = `learnWithAverage`;
 const learnTrials = [learn, learnWithAverage, learnWithAverage2];
 const reduceStateTrials = [
-    reduceStateAndAction,
     reduceStateAndActionSeeAll,
     reduceStateAndActionSeeAllDistance,
     reduceStateAndActionSeeNearestOnly,

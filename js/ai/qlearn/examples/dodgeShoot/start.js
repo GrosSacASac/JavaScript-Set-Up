@@ -36,13 +36,14 @@ const learnWithAverage2 = (intelligence, previousStateActions, stateActions, pre
 };
 
 
-const useIntelligence = true;
-const MAX_FRAMES = 20;
-const display = false;
+// const useIntelligence = true;
+// const MAX_FRAMES = 20;
 // const reward = 1;
+// const reduceStateAndAction = reduceStateAndActionSeeAll;
+// const learn = learn;
+const display = false;
 
 const rewardsTrials = [1, -1];
-const framesTrials3 = [2000, 20000];
 const framesTrials = [2000, 20000, 200000];
 // debugging 
 learn.xname = `learn`;
@@ -54,7 +55,7 @@ const reduceStateTrials = [
     reduceStateAndActionSeeNearestOnly,
 ];
 
-framesTrials3.forEach(frames => {
+framesTrials.forEach(frames => {
     rewardsTrials.forEach(reward => {
         const options = {
             reduceStateAndAction: undefined,

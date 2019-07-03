@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>reveal.js - dependency management</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="./css/reveal.min.css">
+		<link rel="stylesheet" href="./css/theme/night.css" id="theme">
+		<style>
+		.reveal pre code {
+			padding: 0;
+		}
+		.reveal pre {
+			font-size: 1.18em;
+        }          
+        .reveal dt {
+            font-weight: bold;
+        }
+        .reveal dd {
+            margin-bottom: 0.6em;
+        }
+		</style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h1>Dependency management</h1>
+					<p><strong>Cyril Walle</strong></p>
+				</section>
+                
+				<section>
+                    <ul>
+                        <li>What is dependency management</li>
+                        <li>How to publish a package</li>
+                        <li>How to use a package as a dependency</li>
+                        <li>How to evolve a package</li>
+                        <li>Security</li>
+                        <li>Private packages</li>
+                        <li>CI, non-js packages and other tips</li>
+                        <li>Comparison npm, yarn, pnpm, deno etc</li>
+                    </ul>
+				</section>
+
+				<section>
+                    <h3>What is dependency management</h3>
+                    <p>The natural evolution</p>
+                    <p>manual copy paste</p>
+                    <p>custom software</p>
+                    <p>industry common tool to publish, fetch and organize</p>
+				</section>
+
+				<section>
+                    <p>NPM will be used, many concept are the same with other tools</p>
+				</section>
+
+				<section>
+                    <p>NPM is</p>
+                    <dl>
+                        <dt>npm cli</dt>
+                        <dd>The software that comes installed with NodeJs</dd>
+                        <dt>npm registy</dt>
+                        <dd>A giant database available at https://registry.npmjs.org/</dd>
+                        <dt>npm website https://www.npmjs.com/</dt>
+                        <dd>Create account, search , docs/</dd>
+                        <dt>npm inc</dt>
+                        <dd>A private company that attracts investors</dd>
+                    </dl>
+				</section>
+
+				<section>
+                    <h2>Publish a package</h2>
+                    <ol>
+                        <li>Have an account</li>
+                        <li>Have something to publish</li>
+                        <li>type npm publish</li>
+                    </ol>
+				</section>
+
+				<section>
+                    <h2>Minimal requirements</h2>
+                    <ol>
+                        <li>package.json with name (lux-yo-2019)</li>
+                        <li>and version (1.0.0)</li>
+                        <li>at least one file</li>
+                    </ol>
+                    <a href="https://github.com/GrosSacASac/DOM99/blob/master/package.json">More complete example</a>
+				</section>
+                
+                <section>
+                    <h2>Use a package as a dependency</h2>
+                    <ol>
+                        <li>Have a project with a package.json</li>
+                        <li><code>npm i lux-yo-2019</code></li>
+                        <li>Use it in your code</li>
+                        <li><code>const luxYo2019 = require("lux-yo-2019");</code></li>
+                        <li>optional (-D -g)</li>
+                    </ol>
+				</section>
+                
+				<section>
+                    <h2>How to evolve a package</h2>
+                    <ol>
+                        <li>Install from file (it creates sys-link)</li>
+                        <li><code>npm i ../lux-yo-2019</code></li>
+                        <li>Make a change</li>
+                        <li>Changes are reflected instantly because it is a fs shortcut</li>
+                        <li>Publish as new version</li>
+                        <li>Document it</li>
+                        <li>Use new version <code>npm update</code></li>
+                    </ol>
+				</section>
+                
+				<section>
+                    <h2>How to evolve a package (from someone else)</h2>
+                    <ol>
+                        <li>Clone/fork repo</li>
+                        <li>Install from file (it creates sys-link)</li>
+                        <li><code>npm i ../external-dep</code></li>
+                        <li>Make a change</li>
+                        <li>Changes are reflected instantly because it is a fs shortcut</li>
+                        <li>Make a pull request</li>
+                        <li>Wait for new version</li>
+                        <li>Use new version</li>
+                    </ol>
+                </section>
+                
+				<section>
+                    <h2>How to evolve a package (from someone else)</h2>
+                    <h2>(It is urgent)</h2>
+                    <ol>
+                        <li><a href="https://github.com/ds300/patch-package">use patch-package</a></li>
+                        <li>In package.json
+<pre><code>"scripts": {
+    "postinstall": "patch-package"
+}</code></pre></li>
+                            <li>vim node_modules/some-package/brokenFile.js</li>
+                            <li>npx patch-package some-package</li>
+                            <li>git add + commit</li>
+                        </ol>
+                </section>
+                
+                <section>
+                    <h2>Security</h2>
+                    <p>Review dependencies</p>
+                    <p>Use a lockfile</p>
+                    <p>npm audit</p>
+                    <p><a href="https://github.com/dpc/crev">trusted packages with crev</a></p>
+                    <p><code>npm pack</code> to get preview</p>
+                    <p>files array</p>
+                    <p><code>npm i --ignore-scripts</code></p>
+                    <p>package-lock.json or shrinkwrap.json</p>
+                    <p>NPM DIFF</p>
+                    <p>https://diff.intrinsic.com/dom99/19.0.1/19.1.1</p>
+                </section>
+
+                <section>
+                    <h2>Private packages</h2>
+                    <ul>
+                        <li>npm enterprise</li>
+                        <li>nexus</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Continuous integration</h2>
+                    <p>Publish release branch</p>
+                    <p>post-version hooks</p>
+                    <p><a href="https://blog.npmjs.org/post/184553141742/easy-automatic-npm-publishes">npm blog</a></p>
+                </section>
+                
+                <section>
+                    <h2>Non-js packages</h2>
+                    <p>On npm allowed as long as it is not too big (videos ...)</p>
+                    <p>node require defaults to node_modules</p>
+                    <h3>example CSS</h3>
+                    <p><code>npm i tachyons</code></p>
+                    <p><code>@import '../node_modules/tachyons/css/tachyons.min.css';</code></p>
+                    <p>webpack rollup parcel to import any kind of files from js code</p>
+                </section>
+                
+                <section>
+                    <h2>Alternatives</h2>
+                    
+                    <dl>
+                        <dt>yarn</dt>
+                        <dd>additional features (workspaces), healthy competition, more emojis</dd>
+                        <dt>yarn PnP, npm tink</dt>
+                        <dd>Dev-tools only , break things and move fast</dd>
+                        <dt>pnpm</dt>
+                        <dd>Stores node_modules better for computer storage</dd>
+                        <dt>deno</dt>
+                        <dd>Alternative to NodeJs, uses direct URLs inside imports, default TS support</dd>
+                        <dt>entropic</dt>
+                        <dd>Federated registy, file based, not ready yet</dd>
+
+                    </dl>
+                </section>
+                <section>
+                    <h2>Alternatives outside of JS</h2>
+                    
+                    <dl>
+                        <dt>go modules</dt>
+                        <dd>recent addition, no immutable registry, URL based, everything global ?</dd>
+                        <dt>Rust cargo</dt>
+                        <dd>exactly the same as npm</dd>
+                        
+                    </dl>
+                </section>
+
+                <section>
+                    <h3>Thanks, Questions</h3>
+                    <p>Slides available at </p>
+					<p><a href="https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/general/npm">https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/general/npm</a></p>
+				</section>
+
+
+			</div>
+
+		</div>
+        <script src="./lib/js/head.min.js"></script>
+		<script src="./js/reveal.min.js"></script>
+		<script>
+			Reveal.initialize({
+				history: false,
+				transition: 'linear'
+			});
+		</script>		
+	</body>
+</html>

@@ -1,12 +1,12 @@
 {
   "name": "socketiyo-client",
-  "version": "4.0.1",
-  "type":"module",
+  "version": "4.1.0",
+  "type": "module",
   "main": "./source/socketiyo-client.js",
   "license": "CC0-1.0",
   "dependencies": {
     "event-e3": "^7.6.0",
-    "socketiyo-shared": "^1.1.2"
+    "socketiyo-shared": "^2.0.0"
   },
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "repository": {

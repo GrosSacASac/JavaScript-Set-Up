@@ -13,8 +13,8 @@ import {
     onLastUnsubscribeString,
 } from "../node_modules/event-e3/source/RegularListener.js";
 import {
-    packData,
-    unpackData,
+    defaultPackData,
+    defaultUnpackData,
     formatSend,
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
@@ -28,6 +28,7 @@ const ERROR = Symbol();
 
 const createConnection = (options) => {
     const { url } = options;
+    const { packData = defaultPackData, unpackData = defaultUnpackData } = options;
     const { reconnectDelay, randomReconnectDelay } = options;
     let { autoReconnect } = options;
     let connection;

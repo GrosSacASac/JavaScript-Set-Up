@@ -20,9 +20,8 @@ export {
 import { validateFormat, validateLength, validateChannel } from "./validate.js";
 import EventEmitter from "event-e3/EventEmitter3.mjs";
 import {
-    packData,
-    unpackData,
-    formatSend,
+    defaultPackData,
+    defaultUnpackData,
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
     DEFAULT_CHANNEL,
@@ -63,13 +62,6 @@ const enhanceSocket = socket => {
     socket[LAST_CONNECTION_CHECK] = Date.now();
 };
 
-const send = (socket, data, channel = DEFAULT_CHANNEL) => {
-    if (isSocketInChannel(socket, channel)) {
-        socket.send(formatSend(data, channel));
-        socket[LAST_CONNECTION_CHECK] = Date.now();
-    }
-};
-
 const attachWebSocketServer = (options) => {
     const { httpServer, ws } = options;
     const {
@@ -79,6 +71,8 @@ const attachWebSocketServer = (options) => {
         maxChannels,
         maxChannelLength,
         lowEnough,
+        packData = defaultPackData,
+        unpackData = defaultUnpackData,
     } = options;
 
     const wss = new ws.Server({ server: httpServer });
@@ -87,7 +81,18 @@ const attachWebSocketServer = (options) => {
     const connectionsPool = new Set();
 
     facade.connectionsPool = connectionsPool;
-    facade.send = send
+
+    const formatSend = (data, channel) => {
+        const toSend = { channel, data };
+        return packData(toSend);
+    };
+    facade.send = (socket, data, channel = DEFAULT_CHANNEL) => {
+        if (isSocketInChannel(socket, channel)) {
+            socket.send(formatSend(data, channel));
+            socket[LAST_CONNECTION_CHECK] = Date.now();
+        }
+    };
+
 
     facade.sendAll = (data, channel = DEFAULT_CHANNEL) => {
         const now = Date.now();

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+<script type="module">
+import { Ubjson } from './node_modules/@shelacek/ubjson/dist/ubjson.es.js';
+
+var x = Uint8Array.from([21, 31,43,41]);
+const o = { c: x }
+const b = Ubjson.encode(o, { optimizeArrays: 'onlyTypedArrays' })
+const o_2 = Ubjson.decode(b, { useTypedArrays: true })
+
+console.log(o)
+console.log(new Uint8Array(b))
+console.log(o_2)
+
+</script>
+</body>
+</html>

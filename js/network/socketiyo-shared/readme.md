@@ -1,6 +1,6 @@
 # socketiyo-shared
 
-Common files for socketiyo and socketiyo-client
+Common files for [socketiyo](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo) and socketiyo-client
 
 
 ### License

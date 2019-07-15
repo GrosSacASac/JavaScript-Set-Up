@@ -1,9 +1,9 @@
 export {
     createEventStream,
     sendOne,
-    RECONNECT_EVENT,
-    CONNECT_EVENT,
-    DISCONNECT_EVENT
+    RECONNECT,
+    CONNECT,
+    DISCONNECT
 };
 import Emitter from "event-e3/EventEmitter3.mjs";
 
@@ -15,9 +15,9 @@ const ID = `id`;
 const EVENT = `event`;
 const RETRY = `retry`;
 
-const RECONNECT_EVENT = Symbol();
-const CONNECT_EVENT = Symbol();
-const DISCONNECT_EVENT = Symbol();
+const RECONNECT = Symbol();
+const CONNECT = Symbol();
+const DISCONNECT = Symbol();
 
 const formatMessage = (x) => {
     return `${DATA}:${x}\n\n`;
@@ -72,7 +72,7 @@ const createEventStream = (server, options) => {
         const lastId = request.headers[LAST_ID];
         if (lastId) {
             // opportunity to resume with sendOne
-            eventStream.emit(RECONNECT_EVENT, {
+            eventStream.emit(RECONNECT, {
                 lastId,
                 response
             });
@@ -82,10 +82,10 @@ const createEventStream = (server, options) => {
             const index = responses.indexOf(response);
             if (index !== -1) {
                 responses.splice(index, 1);
-                eventStream.emit(DISCONNECT_EVENT, { response });
+                eventStream.emit(DISCONNECT, { response });
             }
         });
-        eventStream.emit(CONNECT_EVENT, { response });
+        eventStream.emit(CONNECT, { response });
     };
 
     const close = () => {

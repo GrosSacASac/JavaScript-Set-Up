@@ -1,7 +1,7 @@
 {
   "name": "onewaydata",
-  "version": "2.0.4",
-  "main": "sse.js",
+  "version": "3.0.0",
+  "main": "source/onewaydata.js",
   "type": "module",
   "license": "CC0-1.0",
   "dependencies": {
@@ -13,7 +13,7 @@
     "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
   },
   "files": [
-    "sse.js",
+    "source",
     "readme.md",
     "license.txt"
   ]

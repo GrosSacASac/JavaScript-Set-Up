@@ -4,10 +4,10 @@ import fs from "fs";
 import {
     createEventStream,
     sendOne,
-    RECONNECT_EVENT,
-    CONNECT_EVENT,
-    DISCONNECT_EVENT
-} from "../sse.js";
+    RECONNECT,
+    CONNECT,
+    DISCONNECT
+} from "../source/onewaydata.js";
 
 const PORT = 8080;
 const server = http.createServer((req, res) => {
@@ -18,13 +18,13 @@ const server = http.createServer((req, res) => {
 
 const eventStream = createEventStream(server, { path: `/sse` });
 
-eventStream.on(CONNECT_EVENT, () => {
+eventStream.on(CONNECT, () => {
     console.log(`someone connected`)
 });
-eventStream.on(DISCONNECT_EVENT, () => {
+eventStream.on(DISCONNECT, () => {
     console.log(`someone disconnected`)
 });
-eventStream.on(RECONNECT_EVENT, () => {
+eventStream.on(RECONNECT, () => {
     console.log(`someone reconnected`)
 });
 

@@ -24,22 +24,22 @@ allow to send events (EVENT)
 import {
   createEventStream,
   sendOne,
-  RECONNECT_EVENT,
-  CONNECT_EVENT,
-  DISCONNECT_EVENT
+  RECONNECT,
+  CONNECT,
+  DISCONNECT
 } from "onewaydata";
 
 const server = ...
 
 const eventStream = createEventStream(server, {path: `/sse`});
 
-eventStream.on(CONNECT_EVENT, () => {
+eventStream.on(CONNECT, () => {
   console.log(`someone connected`);
 });
-eventStream.on(DISCONNECT_EVENT, () => {
+eventStream.on(DISCONNECT, () => {
   console.log(`someone disconnected`);
 });
-eventStream.on(RECONNECT_EVENT, () => {
+eventStream.on(RECONNECT, () => {
   console.log(`someone reconnected`);
 });
 

@@ -15,11 +15,9 @@ The client is not served by default in the server. It has to be explicitly impor
 
 No fallback provided when WebSocket is not available. No background protocol upgrades.
 
-No disconnection detection on the server yet.
-
 Regular events and library events cannot be confused.
 
-Does not decorate the sockets with custom methods, instead of having a broadcast method on each socket, there is a static send all except one, that takes a socket as first argument.
+Does not decorate the sockets with custom methods
 
 ## Usage
 
@@ -35,7 +33,6 @@ Does not decorate the sockets with custom methods, instead of having a broadcast
 
 ### `attachWebSocketServer`
 
-the third argument is optional and could be any object that has at least `error, warn, log, debug`. It could be a winston instance.
 
 ```js
 import {

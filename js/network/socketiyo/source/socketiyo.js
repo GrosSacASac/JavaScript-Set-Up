@@ -18,7 +18,7 @@ export {
     LAST_CONNECTION_CHECK,
 };
 import { validateFormat, validateLength, validateChannel } from "./validate.js";
-import EventEmitter from "event-e3/EventEmitter3.mjs";
+import EventEmitter from "event-e3/event-e3.js";
 import {
     defaultPackData,
     defaultUnpackData,

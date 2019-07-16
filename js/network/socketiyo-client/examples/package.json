@@ -6,6 +6,9 @@
   },
   "private": true,
   "devDependencies": {
-    "serve": "^11.0.0"
+    "serve": "^11.1.0"
+  },
+  "dependencies": {
+    "@shelacek/ubjson": "^1.0.1"
   }
 }

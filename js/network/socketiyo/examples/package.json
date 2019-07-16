@@ -3,7 +3,8 @@
   "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-modules exampleServer.js"
+    "start": "node --experimental-modules exampleServer.js",
+    "start2": "node --experimental-modules exampleBinaryServer.js"
   },
   "dependencies": {
     "@shelacek/ubjson": "^1.0.1",

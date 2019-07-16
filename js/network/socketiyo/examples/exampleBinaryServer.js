@@ -17,7 +17,7 @@ import { useDefaultLogging } from "../source/defaultLogging.js";
 import { useAdditionalDisconnectionDetection } from "../source/disconnectionDetection.js";
 import { createHttpServer } from "./createHttpServer.js";
 import ws from "ws";
-import { encode, decode } from './node_modules/@shelacek/ubjson/dist/ubjson.es.js';
+import { encode, decode } from '@shelacek/ubjson/dist/ubjson.es.js';
 import { writeTextInFile } from "filesac";
 
 const httpServer = createHttpServer();

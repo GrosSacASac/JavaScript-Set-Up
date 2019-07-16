@@ -4,7 +4,7 @@ export { httpRequest, defaultOptions }
 const defaultOptions = {
     format: `text`,
     body: null,
-    method: `GET`
+    method: `GET`,
 };
 
 /* returns a promise that resolves with a string or an object 

@@ -54,22 +54,21 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
         data,
         socket,
     }) => {
-        logger.log(`Receiving data from a socket
-        ${JSON.stringify(data, null, 4)}
-        at channel ${String(channel)}`);
+        logger.log(`Receiving data from a socket at channel ${channel}`);
+        logger.log(data);
     });
 
     socketiYoServer.on(RECEIVE_SUBSCRIBE, ({
         channel,
         socket,
     }) => {
-        logger.log(`Socket subscribing to channel ${String(channel)}`);
+        logger.log(`Socket subscribing to channel ${channel}`);
     });
 
     socketiYoServer.on(RECEIVE_UNSUBSCRIBE, ({
         channel,
         socket,
     }) => {
-        logger.log(`Socket unsubscribing from channel ${String(channel)}`);
+        logger.log(`Socket unsubscribing from channel ${channel}`);
     });
 };

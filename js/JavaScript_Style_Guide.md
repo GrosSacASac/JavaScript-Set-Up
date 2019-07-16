@@ -86,7 +86,6 @@ Use `map`, `forEach` and other array methods to loop over an array.
 
 `{}` to create a new object.
 
-.
 Use the shorthand when possible , computed properties
 
 ```js

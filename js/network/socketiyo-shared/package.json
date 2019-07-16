@@ -1,6 +1,6 @@
 {
   "name": "socketiyo-shared",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "module",
   "main": "./source/socketiyo-shared.js",
   "license": "CC0-1.0",

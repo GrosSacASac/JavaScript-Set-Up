@@ -15,7 +15,6 @@ import {
 import {
     defaultPackData,
     defaultUnpackData,
-    formatSend,
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
     DEFAULT_CHANNEL
@@ -31,6 +30,10 @@ const createConnection = (options) => {
     const { packData = defaultPackData, unpackData = defaultUnpackData } = options;
     const { reconnectDelay, randomReconnectDelay } = options;
     let { autoReconnect } = options;
+    const formatSend = (data, channel) => {
+        const toSend = { channel, data };
+        return packData(toSend);
+    };
     let connection;
     let delayedUntilOpen = [];
     const facade = new RegularListener();

@@ -18,7 +18,7 @@ import { useAdditionalDisconnectionDetection } from "../source/disconnectionDete
 import { createHttpServer } from "./createHttpServer.js";
 import ws from "ws";
 import { encode, decode } from './node_modules/@shelacek/ubjson/dist/ubjson.es.js';
-
+import { writeTextInFile } from "filesac";
 
 const httpServer = createHttpServer();
 const socketiYoServer = attachWebSocketServer({
@@ -43,6 +43,5 @@ const closeDisconnectionDetection = useAdditionalDisconnectionDetection({ socket
 
 
 socketiYoServer.on(`file/upload`, ({ socket, data }) => {
-    console.log(data);
-    console.log(typeof data.file);
+    writeTextInFile(`./upload`, data.file);
 });

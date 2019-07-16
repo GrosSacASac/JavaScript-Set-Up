@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
-        <input type="file" id="1">
+<input type="file" id="1">
 <script type="module">
 import { encode, decode } from './node_modules/@shelacek/ubjson/dist/ubjson.es.js';
 import {
@@ -32,20 +32,19 @@ const socketiyoConnection = createConnection({
 });
 
 document.getElementById("1").addEventListener("input", (event) => {
-  console.log(event.target.files[0])
+    const file = event.target.files[0]; 
+    const { name } = file;
 
-  const reader = new FileReader();
-  reader.onload = (aaa) => {
-    var fileAsUint8Array = new Uint8Array(aaa.target.result);
-    const data = {file:fileAsUint8Array}
-    socketiyoConnection.send(data, `file/upload`);
-    console.log(data);
-    console.log(encode(data, { optimizeArrays: `onlyTypedArrays` }));
-    console.log(decode(encode(data, { optimizeArrays: `onlyTypedArrays` }), { useTypedArrays: true }));
-
-  };
-  reader.readAsArrayBuffer(event.target.files[0]);
-})
+    const reader = new FileReader();
+    reader.onload = (readEvent) => {
+        const fileAsUint8Array = new Uint8Array(readEvent.target.result);
+        socketiyoConnection.send({
+            name, 
+            file: fileAsUint8Array,
+        }, `file/upload`);
+    };
+    reader.readAsArrayBuffer(file);
+});
 </script>
 </body>
 </html>

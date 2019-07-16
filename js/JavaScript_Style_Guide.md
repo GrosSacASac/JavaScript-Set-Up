@@ -242,7 +242,7 @@ No clear way to add or substract functionality. Prefer default exports.
 
 ## getters and setters
 
-Prefer explicit functions.
+For setters that have additional functionality prefer explicit functions. Otherwise use public members.
 
 ## Implicit type conversion
 
@@ -258,7 +258,7 @@ Avoid  `==` and  `!=`, prefer `===` and `!==`
 
 ## try catch over everything
 
-Use `try catch` on individual statements that are expected to fail
+Use `try catch` on individual statements that are expected to fail. Generally avoid `try catch` entirely if possible.
 
 ## disable the linter on individual files, lines
 

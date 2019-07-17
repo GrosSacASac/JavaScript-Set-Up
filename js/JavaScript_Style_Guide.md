@@ -3,7 +3,7 @@
 ## Priorities
 
  1. Readability
- 2. Cristal clear way to add and substract functionality
+ 2. Crystal clear way to add and substract functionality
  3. Minimal vocabulary
  4. Modern
 

@@ -267,7 +267,7 @@ Do not use the special `arguments`, use rest arguments instead
 
 ## Soft equal
 
-Avoid  `==` and  `!=`, prefer `===` and `!==`.
+Avoid `==` and `!=`, prefer `===` and `!==`.
 
 ## Automatic semicolon insertion
 

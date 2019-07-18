@@ -177,6 +177,10 @@ import { x } from "./x.js";
 const y = 5;
 ```
 
+## promises
+
+Prefer promises over callbacks for one-time futures.
+
 -------------------
 
 
@@ -251,6 +255,27 @@ Prefer exporting new variables with different names.
 
 Prefer exporting variables individually via named exports. Three shake friendlier and less runtime overhead.
 
+Avoid
+
+```js
+export { constants };
+
+const constants = {
+    X: 1,
+    Y: 2,
+};
+```
+
+Prefer
+
+```js
+export { X, Y };
+
+const X = 1;
+const Y = 2;
+```
+
+
 ## default exports
 
 No clear way to add or substract functionality. Prefer default exports.
@@ -318,7 +343,8 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 
 ### Inspiration
 
-APIs: https://www.youtube.com/watch?v=gweY3L0YA1Y
+[APIs](https://www.youtube.com/watch?v=gweY3L0YA1Y)
+[Clean code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
 
 ### Contributors
 

@@ -9,12 +9,12 @@
 
 ## Outline
 
-1. features to use
-2. features to avoid
-3. features to never use
+1. Features to use
+2. Features to avoid
+3. Features to never use
 
 
-## 1. features to use
+## 1. Features to use
 
 ## general
 
@@ -177,7 +177,7 @@ import { x } from "./x.js";
 const y = 5;
 ```
 
-## 2. features to avoid
+## 2. Features to avoid
 
 ## `this`
 
@@ -262,11 +262,15 @@ Use `try catch` on individual statements that are expected to fail. Generally av
 
 ## disable the linter on individual files, lines
 
-## 3. features to never use
+## 3. Features to never use
 
 ## with
 
 Use object destructuring instead.
+
+## non-strict mode
+
+Strict mode throws error when doing things like assigning to `undefined` and will prevent mistakes. Strict mode is always enabled when using `import/export`.
 
 
 ## About

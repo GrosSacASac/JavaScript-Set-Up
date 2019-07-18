@@ -190,6 +190,16 @@ Avoid `this`. And assoiciated `bind`, `call`, `apply`, `class`, `prototype`, `su
 
 Prefer array spread syntax.
 
+```js
+const numbers = [4, 5];
+const max = Math.max.apply(undefined, numbers);
+```
+
+```js
+const numbers = [4, 5];
+const max = Math.max(...numbers);
+```
+
 ## `class`
 
 Prefer regular objects and functions. These can be exported from the same file and one can still use Object-oriented patterns without the `class` keyword.
@@ -219,13 +229,15 @@ Use a function that returns a function instead with closures.
 
 ## chained method calls
 
-Keep lines independent
+Keep lines independent.
 
 ## comma operator
 
+The comma operator is well known to write one-liners and hurts readability. Put each instruction on individual lines.
+
 ## for of, for in, for () loops
 
-
+Prefer array builtins for loops.
 
 ## global variables
 
@@ -255,15 +267,19 @@ Do not use the special `arguments`, use rest arguments instead
 
 ## Soft equal
 
-Avoid  `==` and  `!=`, prefer `===` and `!==`
+Avoid  `==` and  `!=`, prefer `===` and `!==`.
 
 ## Automatic semicolon insertion
+
+To be consistent and have less egde cases to remember.
 
 ## try catch over everything
 
 Use `try catch` on individual statements that are expected to fail. Generally avoid `try catch` entirely if possible.
 
 ## disable the linter on individual files, lines
+
+Be consistent.
 
 ## multi level destructuring
 

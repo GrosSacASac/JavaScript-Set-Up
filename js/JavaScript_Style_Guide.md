@@ -255,6 +255,10 @@ Prefer exporting variables individually via named exports. Three shake friendlie
 
 No clear way to add or substract functionality. Prefer default exports.
 
+## Meta-programming and Proxy
+
+Avoid whenever possible.
+
 ## getters and setters
 
 For setters that have additional functionality prefer explicit functions. Otherwise use public members.

@@ -177,6 +177,9 @@ import { x } from "./x.js";
 const y = 5;
 ```
 
+-------------------
+
+
 ## 2. Features to avoid
 
 ## `this`
@@ -262,6 +265,8 @@ Use `try catch` on individual statements that are expected to fail. Generally av
 
 ## disable the linter on individual files, lines
 
+-------------------
+
 ## 3. Features to never use
 
 ## with
@@ -279,3 +284,12 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 ### Inspiration
 
 APIs: https://www.youtube.com/watch?v=gweY3L0YA1Y
+
+### Contributors
+
+- GrosSacASacs
+- fschoenfeldt
+
+### License
+
+Public Domain

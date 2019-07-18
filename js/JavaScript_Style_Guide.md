@@ -265,6 +265,21 @@ Use `try catch` on individual statements that are expected to fail. Generally av
 
 ## disable the linter on individual files, lines
 
+## multi level destructuring
+
+Avoid,
+
+```js
+const { body: { className } } = document;
+```
+
+prefer 1 line per level.
+
+```js
+const { body } = document;
+const { className } = body;
+```
+
 -------------------
 
 ## 3. Features to never use

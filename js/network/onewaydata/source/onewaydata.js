@@ -3,7 +3,7 @@ export {
     sendOne,
     RECONNECT,
     CONNECT,
-    DISCONNECT
+    DISCONNECT,
 };
 import Emitter from "event-e3/event-e3.js";
 

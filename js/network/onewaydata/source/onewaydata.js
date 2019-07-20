@@ -5,7 +5,7 @@ export {
     CONNECT,
     DISCONNECT
 };
-import Emitter from "event-e3/EventEmitter3.mjs";
+import Emitter from "event-e3/event-e3.js";
 
 
 const MIME = `text/event-stream`;

@@ -402,8 +402,8 @@ TODO
 
 ### Inspiration
 
-[APIs](https://www.youtube.com/watch?v=gweY3L0YA1Y)
-[Clean code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
+ - [APIs](https://www.youtube.com/watch?v=gweY3L0YA1Y)
+ - [Clean code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
 
 ### Contributors
 

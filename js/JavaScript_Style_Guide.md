@@ -372,6 +372,31 @@ These have no real purpose other than introduce subtle bugs. Use `Boolean`, `Str
 
 ## Details
 
+### naming
+
+Use semantic long descriptive names for variables, etc.
+
+Camel case for regular variables and file names. No spaces.
+
+Optionally Pascal case for creator/constructors.
+
+Optionally all caps with underscores for top level constants that do not change across versions and runs.
+
+Package/module names and script names with lowercase with dashes. No dots.
+
+### indentation
+
+TODO
+
+### spacing
+
+TODO
+
+### unary operators ++ --
+
+TODO
+
+
 ## About
 
 

@@ -402,8 +402,10 @@ TODO
 
 ### Inspiration
 
- - [APIs](https://www.youtube.com/watch?v=gweY3L0YA1Y)
- - [Clean code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
+ - [APIs (video)](https://www.youtube.com/watch?v=gweY3L0YA1Y)
+ - [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
+ - [Avoid conditions](https://blog.sapegin.me/all/avoid-conditions/)
+ - [Return asap](https://margaine.com/2014/06/20/return-asap.html)
 
 ### Contributors
 

@@ -243,14 +243,6 @@ The comma operator is well known to write one-liners and hurts readability. Put 
 
 Prefer array builtins for loops.
 
-## global variables
-
-Prefer explicit exported variables.
-
-## Modifications of built-ins
-
-Prefer exporting new variables with different names.
-
 ## Export objects with multiple variables
 
 Prefer exporting variables individually via named exports. Three shake friendlier and less runtime overhead.
@@ -336,6 +328,14 @@ Use object destructuring instead.
 ## non-strict mode
 
 Strict mode throws error when doing things like assigning to `undefined` and will prevent mistakes. Strict mode is always enabled when using `import/export`.
+
+## global variables
+
+Prefer explicit exported variables.
+
+## Modifications of built-ins
+
+Prefer exporting new variables with different names.
 
 
 ## About

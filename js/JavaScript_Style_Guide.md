@@ -349,14 +349,6 @@ const { className } = body;
 
 ## 3. Features to never use
 
-## with
-
-Use object destructuring instead.
-
-## non-strict mode
-
-Strict mode throws error when doing things like assigning to `undefined` and will prevent mistakes. Strict mode is always enabled when using `import/export`.
-
 ## global variables
 
 Prefer explicit exported variables. With the exception of polyfills.
@@ -365,6 +357,17 @@ Prefer explicit exported variables. With the exception of polyfills.
 
 Prefer exporting new variables with different names.
 
+## with
+
+Use object destructuring instead.
+
+## non-strict mode
+
+Strict mode throws error when doing things like assigning to `undefined` and will prevent mistakes. Strict mode is always enabled when using `import/export`.
+
+## new Boolean, new String, new Array, new Object
+
+These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
 
 ## About
 

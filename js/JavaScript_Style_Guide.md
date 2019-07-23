@@ -12,6 +12,7 @@
 1. Features to use
 2. Features to avoid
 3. Features to never use
+4. Details
 
 
 ## 1. Features to use
@@ -312,7 +313,7 @@ For setters that have additional functionality prefer explicit functions. Otherw
 
 ## `arguments`
 
-Do not use the special `arguments`, use rest arguments instead
+Do not use the special `arguments`, use rest arguments instead.
 
 ## Soft equal
 
@@ -368,6 +369,8 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 ## new Boolean, new String, new Array, new Object
 
 These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
+
+## Details
 
 ## About
 

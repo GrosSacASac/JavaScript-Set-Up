@@ -54,6 +54,34 @@ Use an expression because:
  };
  ```
 
+## object lifecycle
+
+Declare all fields as soon as possible even if they don't have a value yet, put the creator/constructor function first. A seal on the object returned by the constructor (`return Object.seal(hero)`) should not throw any error.
+
+```js
+const createHero = ({ name }) => {
+    const hero = {
+        name,
+        hitPoints: 100,
+        location: [0, 0]
+        favouriteAttack: undefined,
+    };
+    
+    return hero;
+};
+
+const moveHero = (hero, [x, y]) => {
+    const [pastX, pastY] = hero.location;
+    hero.location = [pastX + x, pastY + y];
+};
+
+const teleportHero = (hero, location) => {
+    hero.location = location;
+};
+```
+
+
+
 ## array, object, import, export
 
 Use multiple lines for 3 or more items.

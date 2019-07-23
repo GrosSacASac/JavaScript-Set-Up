@@ -14,6 +14,7 @@
 3. Features to never use
 4. Details
 
+------------------------
 
 ## 1. Features to use
 
@@ -370,6 +371,8 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 
 These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
 
+--------------------
+
 ## Details
 
 ### naming
@@ -396,6 +399,7 @@ TODO
 
 TODO
 
+---------------------
 
 ## About
 

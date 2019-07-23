@@ -17,7 +17,7 @@
 
 ## 1. Features to use
 
-## general
+### general
 
 Use trailing commas.
 
@@ -29,7 +29,7 @@ Explicit type conversion with the functions `String`, `Boolean`, `Number`, `Arra
 
 Make every line of code independent if possible, do not use chain variable assignements.
 
-## function
+### function
 
 Use an expression because:
 
@@ -55,7 +55,7 @@ Use an expression because:
  };
  ```
 
-## object lifecycle
+### object lifecycle
 
 Declare all fields as soon as possible even if they don't have a value yet, put the creator/constructor function first. A seal on the object returned by the constructor (`return Object.seal(hero)`) should not throw any error.
 
@@ -83,11 +83,11 @@ const teleportHero = (hero, location) => {
 
 
 
-## array, object, import, export
+### array, object, import, export
 
 Use multiple lines for 3 or more items.
 
-## array
+### array
 
 `.length = 0` to reset it.
 
@@ -107,7 +107,7 @@ const array = [
 Use `map`, `forEach` and other array methods to loop over an array.
 ```Array.isArray``` for type checking.
 
-## object
+### object
 
 `object[key] = value;` to add a key value pair.
 
@@ -129,7 +129,7 @@ const object = [
 
 Use `Object.keys`, `Object.values`, `Object.entries` to convert it to an array, then use array methods to loop over an object. ```typeof x === `object` && x !== null``` for type checking
 
-## strings
+### strings
 
 Use backtick ``` ` ``` as they always work. `'` and `"` can be included directly. Concatenation is done via  ```${x}```. Adding line breaks just works. ```\n``` can also be used. There is no need to switch the delimiter.
 
@@ -140,11 +140,11 @@ const s2 = `Tom says: "That's my ${s}"`;
 
 ```typeof x === `string` ``` for type checking 
 
-## numbers
+### numbers
 
-Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for type checking.
+Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for type checking. It returns false if the number is `NaN`, `Infinity`, `-Infinity` or another type.
 
-## date
+### date
 
 Use numbers to store dates. Use the `Date` built-in to display them.
 
@@ -166,7 +166,7 @@ d.toLocaleDateString();
 // and other toString variants
 ```
 
-## if else
+### if else
 
 Always use multiline brackets.
 
@@ -194,7 +194,7 @@ if (condition) {
 }
 ```
 
-## import export
+### import export
 
 Put them at the top of the file as they will be executed first. Put exports before imports as they are executed before. Use named exports. Do not inline named exports in the middle of the file to make it obvious what is exported by reading the first line.
 
@@ -206,7 +206,7 @@ import { x } from "./x.js";
 const y = 5;
 ```
 
-## promises
+### promises
 
 Prefer promises over callbacks for one-time futures.
 
@@ -215,11 +215,11 @@ Prefer promises over callbacks for one-time futures.
 
 ## 2. Features to avoid
 
-## `this`
+### `this`
 
 Avoid `this`. And assoiciated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `__proto__`. Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions. `bind` can be still be useful for currying with undefined as first value.
 
-## `apply`
+### `apply`
 
 Prefer array spread syntax.
 
@@ -233,19 +233,19 @@ const numbers = [4, 5];
 const max = Math.max(...numbers);
 ```
 
-## `class`
+### `class`
 
 Prefer regular objects and functions. These can be exported from the same file and one can still use Object-oriented patterns without the `class` keyword.
 
-## ternary operator
+### ternary operator
 
 Prefer `if else`,  as they can be extended and are cleaner.
 
-## switch statements 
+### switch statements 
 
 Prefer `if else`. Forget about `switch`, `case`, `break`.
 
-## conditional assignement
+### conditional assignement
 
 Avoid
 
@@ -256,23 +256,23 @@ const r = z && u || w;
 
 Prefer `if else`
 
-## generators
+### generators
 
 Use a function that returns a function instead with closures.
 
-## chained method calls
+### chained method calls
 
 Keep lines independent.
 
-## comma operator
+### comma operator
 
 The comma operator is well known to write one-liners and hurts readability. Put each instruction on individual lines.
 
-## for of, for in, for () loops
+### for of, for in, for () loops
 
 Prefer array builtins for loops.
 
-## Export objects with multiple variables
+### Export objects with multiple variables
 
 Prefer exporting variables individually via named exports. Three shake friendlier and less runtime overhead.
 
@@ -297,41 +297,41 @@ const Y = 2;
 ```
 
 
-## default exports
+### default exports
 
 No clear way to add or substract functionality. Prefer default exports.
 
-## Meta-programming and Proxy
+### Meta-programming and Proxy
 
 Avoid whenever possible.
 
-## getters and setters
+### getters and setters
 
 For setters that have additional functionality prefer explicit functions. Otherwise use public members.
 
-## Implicit type conversion
+### Implicit type conversion
 
-## `arguments`
+### `arguments`
 
 Do not use the special `arguments`, use rest arguments instead.
 
-## Soft equal
+### Soft equal
 
 Avoid `==` and `!=`, prefer `===` and `!==`.
 
-## Automatic semicolon insertion
+### Automatic semicolon insertion
 
 To be consistent and have less egde cases to remember.
 
-## try catch over everything
+### try catch over everything
 
 Use `try catch` on individual statements that are expected to fail. Generally avoid `try catch` entirely if possible.
 
-## disable the linter on individual files, lines
+### disable the linter on individual files, lines
 
 Be consistent.
 
-## multi level destructuring
+### multi level destructuring
 
 Avoid,
 
@@ -350,23 +350,23 @@ const { className } = body;
 
 ## 3. Features to never use
 
-## global variables
+### global variables
 
 Prefer explicit exported variables. With the exception of polyfills.
 
-## Modifications of built-ins
+### Modifications of built-ins
 
 Prefer exporting new variables with different names.
 
-## with
+### with
 
 Use object destructuring instead.
 
-## non-strict mode
+### non-strict mode
 
 Strict mode throws error when doing things like assigning to `undefined` and will prevent mistakes. Strict mode is always enabled when using `import/export`.
 
-## new Boolean, new String, new Array, new Object
+### new Boolean, new String, new Array, new Object
 
 These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
 

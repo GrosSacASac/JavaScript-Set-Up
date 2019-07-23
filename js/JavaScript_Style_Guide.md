@@ -331,7 +331,7 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 
 ## global variables
 
-Prefer explicit exported variables.
+Prefer explicit exported variables. With the exception of polyfills.
 
 ## Modifications of built-ins
 

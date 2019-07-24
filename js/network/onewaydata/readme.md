@@ -1,22 +1,14 @@
 # onewaydata
 
-Server sent events for NodeJs
+[Server sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) for NodeJs
 
-Server Sent Events (EventSource client side)
-https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events
+to be used with [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource) client side
 
-Status: Draft
 
-See [examples](./examples)
 
 ## install
 
-npm i onewaydata
-
-## todo
-
-send :keepaliveping every 15s as option
-allow to send events (EVENT)
+[npm i onewaydata](https://https://www.npmjs.com/package/onewaydata)
 
 ## usage
 
@@ -38,6 +30,8 @@ useDefaultLogging({ eventStream });
 
 eventStream.send(`something`);
 ```
+
+See [examples](./examples)
 
 
 ### License

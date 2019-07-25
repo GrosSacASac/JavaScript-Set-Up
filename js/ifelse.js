@@ -68,7 +68,7 @@ can also use break, but things can get messy really fast when you
 forget to break or, have for loops that use break inside ...
 avoid switch if you can*/
 
-const result (function () {
+const result = (function () {
     switch (variable) {
 
         case CASE1_VAR: { // use these to make block scoping possible
@@ -95,7 +95,7 @@ result becomes a if input is truethy and b otherwise
 this can be abused by putting a function call instead of a and b effectively
  making it a full if else statement equivalent */
 
-const result = input ? a: b;
+const result = input ? a : b;
 
 /* if else using || and && for assignement*/
 
@@ -104,11 +104,11 @@ const variable = (condition && ifThing) || ElseThing;
 
 /* if else using || and && with function*/
 
-((boolean1 && functionIf()) || functionElse ());
+((boolean1 && functionIf()) || functionElse());
 
 /* if else using || and && and function wrap*/
 
-((boolean1 && (function () {/*statements1;*/}())) ||/*else*/
-    (function () {/*statements2;*/}()))
+((boolean1 && (function () {/*statements1;*/ }())) ||/*else*/
+    (function () {/*statements2;*/ }()))
 
 

@@ -63,8 +63,10 @@ const enhanceSocket = socket => {
 };
 
 const attachWebSocketServer = (options) => {
-    const { httpServer, ws } = options;
     const {
+        httpServer,
+        ws,
+        path,
         highClients,
         maxClients,
         maxLength,
@@ -75,7 +77,7 @@ const attachWebSocketServer = (options) => {
         unpackData = defaultUnpackData,
     } = options;
 
-    const wss = new ws.Server({ server: httpServer });
+    const wss = new ws.Server({ server: httpServer, path });
 
     const facade = EventEmitter({});
     const connectionsPool = new Set();

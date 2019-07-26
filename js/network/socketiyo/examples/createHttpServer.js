@@ -1,4 +1,4 @@
-export {createHttpServer};
+export { createHttpServer };
 
 import http from "http";
 
@@ -11,7 +11,7 @@ const createHttpServer = () => {
     });
 
     server.listen(PORT);
-    console.log(`listening on port ${PORT}, open`);
+    console.log(`http listening on port ${PORT}`);
 
     return server;
 };

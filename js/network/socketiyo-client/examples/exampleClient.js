@@ -10,7 +10,7 @@ import { useDefaultLogging } from "../source/defaultLogging.js";
 
 
 const socketiyoConnection = createConnection({
-    url: `ws://localhost:8080/`,
+    url: `ws://localhost:8080/socketiyo`,
     reconnectDelay,
     randomReconnectDelay,
     autoReconnect,

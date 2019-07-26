@@ -23,6 +23,7 @@ const httpServer = createHttpServer();
 const socketiYoServer = attachWebSocketServer({
     httpServer,
     ws,
+    path: `/socketiyo`,
     maxClients,
     highClients,
     lowEnough,

@@ -257,10 +257,6 @@ const r = z && u || w;
 
 Prefer `if else`.
 
-### generators
-
-Use a function that returns a function instead with closures.
-
 ### chained method calls
 
 Keep lines independent.

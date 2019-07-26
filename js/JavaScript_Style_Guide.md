@@ -403,6 +403,10 @@ TODO
 
 ## About
 
+### Lint set-up
+
+TODO HELP WANTED
+
 
 ### Inspiration
 

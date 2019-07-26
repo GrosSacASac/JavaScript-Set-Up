@@ -328,6 +328,10 @@ To be consistent and have less egde cases to remember.
 
 Use `try catch` on individual statements that are expected to fail. Generally avoid `try catch` entirely if possible.
 
+### try catch finally
+
+Avoid finally, in most cases, putting the statements after try catch has the same effect.
+
 ### disable the linter on individual files, lines
 
 Be consistent.

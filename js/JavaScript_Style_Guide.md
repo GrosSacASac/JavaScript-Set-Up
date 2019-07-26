@@ -336,6 +336,10 @@ Avoid finally, in most cases, putting the statements after try catch has the sam
 
 Avoid generators and associated `yield` keyword. Prefer functions that return a function with a closure.
 
+### side effect inside if
+
+Avoid any side effect inside the condition of an `if`. Same for `while` and `for`.
+
 ### disable the linter on individual files, lines
 
 Be consistent.

@@ -242,9 +242,9 @@ Prefer regular objects and functions. These can be exported from the same file a
 
 Prefer `if else`,  as they can be extended and are cleaner.
 
-### switch statements 
+### switch case break 
 
-Prefer `if else`. Forget about `switch`, `case`, `break`.
+Prefer `if else`.
 
 ### conditional assignement
 
@@ -255,7 +255,7 @@ const x = y || z;
 const r = z && u || w;
 ```
 
-Prefer `if else`
+Prefer `if else`.
 
 ### generators
 
@@ -312,7 +312,22 @@ For setters that have additional functionality prefer explicit functions. Otherw
 
 ### Implicit type conversion
 
-### `arguments`
+Prefer explicit type conversion
+
+```js
+const x = `1`;
+// const y = +x;
+const y = Number(x);
+```
+
+```js
+const y = 1;
+//const x = "" + y;
+const x = String(x);
+```
+
+
+### arguments
 
 Do not use the special `arguments`, use rest arguments instead.
 
@@ -359,6 +374,19 @@ const { body } = document;
 const { className } = body;
 ```
 
+### unary operators ++ --
+
+Avoid those. Prefer `+=` and `-=`.
+There is no need to remember the difference between `--a` and `a--`.
+The incremt value can be something else than 1. It can be any variable.
+It is consistent with other operators such as /= , *= , **= , %= etc
+
+```js
+let a = 1;
+a += 1;
+a /= 2;
+```
+
 -------------------
 
 ## 3. Features to never use
@@ -383,6 +411,8 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 
 These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
 
+
+
 --------------------
 
 ## Details
@@ -401,15 +431,13 @@ Package/module names and script names with lowercase with dashes. No dots.
 
 ### indentation
 
-TODO
+Indent with 4 spaces
 
 ### spacing
 
-TODO
+ATODO
 
-### unary operators ++ --
 
-TODO
 
 ---------------------
 

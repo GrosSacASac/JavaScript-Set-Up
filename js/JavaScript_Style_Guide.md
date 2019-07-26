@@ -332,6 +332,10 @@ Use `try catch` on individual statements that are expected to fail. Generally av
 
 Avoid finally, in most cases, putting the statements after try catch has the same effect.
 
+### generators, iterators
+
+Avoid generators and associated `yield` keyword. Prefer functions that return a function with a closure.
+
 ### disable the linter on individual files, lines
 
 Be consistent.

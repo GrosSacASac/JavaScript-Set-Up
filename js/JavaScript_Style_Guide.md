@@ -300,7 +300,7 @@ const Y = 2;
 
 ### default exports
 
-No clear way to add or substract functionality. Prefer default exports.
+No clear way to add or substract functionality. Prefer named exports.
 
 ### Meta-programming and Proxy
 

@@ -19,89 +19,83 @@ conclusion:
 * __or__ define getter + setter in the public exposure [2], makes composition harder
 * __or__ do not use Object.freeze and directly erase [3] WARNING: doing so will make your program less explicit, less pure, more error prone, harder to debug.
 * note because constructor are like normal function and do not require new write them like normal function first letter small caps
-* 
 */
+export { player, unfairPlayer };
 
-let [player, unfairPlayer] = (function () {
-    "use strict";
-    let player = function (spec) {
-        // let for everything
-        let secret = {},
-            {name, hitPoints} = spec, // unpacking
-            experience = 0, // default value
-            printCounter = 0;
 
-        // 1 new function for each instance ...
-        let toString = function () {
-            printCounter += 1;
-            return `\n${name}\n${hitPoints}\n${experience}
+const player = function (spec) {
+    const secret = {};
+    const { name, hitPoints } = spec; // unpacking
+    const experience = 0; // default value
+    const printCounter = 0;
+
+    // 1 new function for each instance ...
+    const toString = function () {
+        printCounter += 1;
+        return `\n${name}\n${hitPoints}\n${experience}
                     toStringCall = ${printCounter}`;
-        };
-        
-        // put in this new object only public members
-        // ES6 that lets you define object properties like this:
-        // {method, other}
-        // instead of
-        // { method : method, other : other}
-        return Object.freeze({ // immutable (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) [3]
-            name,
-            get hitPoints () { // [2]
-                return hitPoints;
-            },
-            set hitPoints (newValue) {
-                //console.log(`new value for ${name}: ${newValue}`); 
-                hitPoints = newValue;
-            },
-            experience,
-            toString/*,
+    };
+
+    // put in this new object only public members
+    // ES6 that lets you define object properties like this:
+    // {method, other}
+    // instead of
+    // { method : method, other : other}
+    return Object.freeze({ // immutable (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) [3]
+        name,
+        get hitPoints() { // [2]
+            return hitPoints;
+        },
+        set hitPoints(newValue) {
+            //console.log(`new value for ${name}: ${newValue}`); 
+            hitPoints = newValue;
+        },
+        experience,
+        toString/*,
             addHitPoints */
-        });
-    };
-    
-    // Create:
-    let player1 = player({name: "Gru", hitPoints: 100});
-    // Use:
-    console.log(player1.toString());
-    player1.hitPoints += -50; //ouch ! //[2]
-    // [1] or we can do
-    // player1 = player({name: "Gru", hitPoints: 100 - 50});
-    console.log(player1.toString());
+    });
+};
 
-    //------------------------------------
-    //inheritance do not copy at home
+const unfairPlayer = function (spec) {
+    const thisPlayer = player(spec);
 
-    let unfairPlayer = function (spec) {
-        let thisPlayer = player(spec);
-        
-        //modify property or [1]
-        thisPlayer.hitPoints *= 2;
-        
-        let toString = function () {//extend parent property
-            return "Warning, unfair:" + thisPlayer.toString();
-        };
-        
-        return Object.freeze({ 
-            name: thisPlayer.name, //fake inherited property
-            hitPoints: thisPlayer.hitPoints, 
-            experience: thisPlayer.experience,
-             
-            //add property
-            cheater: true,
-            toString, 
-            //disadvanteges of [2]
-            get hitPoints () { // [2]
-                return thisPlayer.hitPoints;
-            },
-            set hitPoints (newValue) {
-                thisPlayer.hitPoints = newValue;
-            }
-        });
+    //modify property or [1]
+    thisPlayer.hitPoints *= 2;
+
+    const toString = function () {//extend parent property
+        return "Warning, unfair:" + thisPlayer.toString();
     };
 
-    // Create:
-    let player2 = unfairPlayer({name: "Lord Zoo", hitPoints: 100});
-    // Use:
-    console.log(player2.toString());
-    player2.hitPoints += 20; //water is good !
-    return [player, unfairPlayer];
-}());
+    return Object.freeze({
+        name: thisPlayer.name,
+        hitPoints: thisPlayer.hitPoints,
+        experience: thisPlayer.experience,
+
+        //add property
+        cheater: true,
+        toString,
+        //disadvanteges of [2]
+        get hitPoints() { // [2]
+            return thisPlayer.hitPoints;
+        },
+        set hitPoints(newValue) {
+            thisPlayer.hitPoints = newValue;
+        }
+    });
+};
+
+// Create:
+const player1 = player({ name: "Gru", hitPoints: 100 });
+// Use:
+console.log(player1.toString());
+player1.hitPoints += -50; //ouch ! //[2]
+// [1] or we can do
+// player1 = player({name: "Gru", hitPoints: 100 - 50});
+console.log(player1.toString());
+
+// Create:
+const player2 = unfairPlayer({ name: "Lord Zoo", hitPoints: 100 });
+// Use:
+console.log(player2.toString());
+player2.hitPoints += 20; //water is good !
+return [player, unfairPlayer];

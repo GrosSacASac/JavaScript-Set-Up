@@ -427,11 +427,11 @@ Package/module names and script names with lowercase with dashes. No dots.
 
 ### indentation
 
-Indent with 4 spaces
+Indent with 4 spaces, or 1 tab.
 
 ### spacing
 
-ATODO
+TODO
 
 
 

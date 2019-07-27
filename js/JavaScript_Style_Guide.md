@@ -3,7 +3,7 @@
 ## Priorities
 
  1. Readability
- 2. Crystal clear way to add and substract functionality
+ 2. Crystal clear way to add and subtract functionality
  3. Minimal vocabulary
  4. Modern
 
@@ -28,7 +28,7 @@ Explicit type conversion with the functions `String`, `Boolean`, `Number`, `Arra
 
 `return`, `throw` as early as possible to avoid huge indentation levels.
 
-Make every line of code independent if possible, do not use chain variable assignements.
+Make every line of code independent if possible, do not use chain variable assignments.
 
 ### function
 
@@ -56,7 +56,7 @@ Use an expression because:
  };
  ```
 
-### object lifecycle
+### object life-cycle
 
 Declare all fields as soon as possible even if they don't have a value yet, put the creator/constructor function first. A seal on the object returned by the constructor (`return Object.seal(hero)`) should not throw any error.
 
@@ -169,7 +169,7 @@ d.toLocaleDateString();
 
 ### if else
 
-Always use multiline brackets.
+Always use multi-line brackets.
 
 ```
 if (condition) {
@@ -218,7 +218,7 @@ Prefer promises over callbacks for one-time futures.
 
 ### `this`
 
-Avoid `this`. And assoiciated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `__proto__`. Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions. `bind` can be still be useful for currying with undefined as first value.
+Avoid `this`. And associated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `__proto__`. Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions. `bind` can be still be useful for currying with undefined as first value.
 
 ### `apply`
 
@@ -246,7 +246,7 @@ Prefer `if else`,  as they can be extended and are cleaner.
 
 Prefer `if else`.
 
-### conditional assignement
+### conditional assignment
 
 Avoid
 
@@ -267,7 +267,7 @@ The comma operator is well known to write one-liners and hurts readability. Put 
 
 ### for of, for in, for () loops
 
-Prefer array builtins for loops.
+Prefer array built-ins for loops.
 
 ### Export objects with multiple variables
 
@@ -296,7 +296,7 @@ const Y = 2;
 
 ### default exports
 
-No clear way to add or substract functionality. Prefer named exports.
+No clear way to add or subtract functionality. Prefer named exports.
 
 ### Meta-programming and Proxy
 
@@ -333,7 +333,7 @@ Avoid `==` and `!=`, prefer `===` and `!==`.
 
 ### Automatic semicolon insertion
 
-To be consistent and have less egde cases to remember.
+To be consistent and have less edge cases to remember.
 
 ### try catch over everything
 
@@ -374,7 +374,7 @@ const { className } = body;
 
 Avoid those. Prefer `+=` and `-=`.
 There is no need to remember the difference between `--a` and `a--`.
-The incremt value can be something else than 1. It can be any variable.
+The increment amount can be something else than 1. It can be any variable.
 It is consistent with other operators such as /= , *= , **= , %= etc
 
 ```js

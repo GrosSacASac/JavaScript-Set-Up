@@ -211,6 +211,35 @@ const y = 5;
 
 Prefer promises over callbacks for one-time futures.
 
+### Limit variable reach
+
+Historically it has been done with an immediately invoked function expression, now that let and const are available and block scoped use a simple block. With an iife:
+
+```js
+// do not expose i
+let nextSquare;
+(function () {
+    let i = 0;
+    nextSquare = function () {
+        i += 1;
+        return i ** 2;
+    };
+}());
+```
+
+With a block:
+
+```js
+let nextSquare;
+{
+    let i = 0;
+    nextSquare = function () {
+        i += 1;
+        return i ** 2;
+    };
+}
+```
+
 -------------------
 
 

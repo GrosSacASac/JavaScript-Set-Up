@@ -5,7 +5,7 @@
   "type": "module",
   "license": "CC0-1.0",
   "dependencies": {
-    "event-e3": "^8.0.1"
+    "event-e3": "^8.0.2"
   },
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
   "repository": {

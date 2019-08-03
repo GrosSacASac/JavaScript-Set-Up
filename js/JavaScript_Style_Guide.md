@@ -240,6 +240,10 @@ let nextSquare;
 }
 ```
 
+### absence of value
+
+Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
+
 -------------------
 
 

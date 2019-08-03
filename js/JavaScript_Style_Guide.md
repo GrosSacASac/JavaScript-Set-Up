@@ -436,6 +436,10 @@ Strict mode throws error when doing things like assigning to `undefined` and wil
 
 These have no real purpose other than introduce subtle bugs. Use `Boolean`, `String` and array literal `[]` instead. `new Object()` is harmless but use the object literal shorthand `{}` for consistency.
 
+### void operator
+
+Don't use the void operator, use a dedicated minifier instead.
+
 
 
 --------------------

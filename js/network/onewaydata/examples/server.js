@@ -4,6 +4,7 @@ import fs from "fs";
 import {
     createEventStream,
     sendOne,
+    defaultChannel,
 } from "../source/onewaydata.js";
 import {
     useDefaultLogging
@@ -22,10 +23,16 @@ useDefaultLogging({ eventStream });
 
 
 server.listen(PORT);
-console.log(`listening on port ${PORT}, open`);
-console.log(`http:localhost:${PORT}/`);
+console.log(`open http:localhost:${PORT}/`);
 
 let i = 0;
 setInterval(() => {
-    eventStream.send(++i);
+    eventStream.send({ data: ++i });
 }, 3000);
+
+setInterval(() => {
+    eventStream.send({
+        event: `football/goal`,
+        data: `team 1`,
+    });
+}, 10000);

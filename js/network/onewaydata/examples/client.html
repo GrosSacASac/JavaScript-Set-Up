@@ -6,18 +6,28 @@
 
 <body>
 <div>
-  <h2>EventSource</h2>
-  <ol id="messages">
-  </ul>
+  <h1>EventSource</h1>
+
+  <h2>Last message on default channel</h2>
+  <p id="lastmessage"></p>
+
+  <h2>Goals</h2>
+  <ol id="goals"></ol>
 </div>
 
 <script>
-const ol = document.getElementById(`messages`);
+const lastmessage = document.getElementById(`lastmessage`);
+const goals = document.getElementById(`goals`);
 const eventSource = new EventSource(`./sse`);
+
 eventSource.addEventListener(`message`, function (event) {
-  const li = document.createElement(`li`);
-  li.appendChild(document.createTextNode(event.data));
-  ol.appendChild(li);
+    lastmessage.textContent = event.data;
+});
+
+eventSource.addEventListener(`football/goal`, function (event) {
+    const li = document.createElement(`li`);
+    li.textContent = `goal for ${event.data}`;
+    goals.appendChild(li);
 });     
 </script>
 </body>

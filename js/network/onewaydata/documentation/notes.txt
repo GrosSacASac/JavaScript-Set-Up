@@ -1,0 +1,12 @@
+event source format:
+:ignored
+or
+FIELD:(optional space)VALUE
+or
+FIELDNAME
+or
+empty line (end)
+
+FIELD can be
+event data id or retry
+

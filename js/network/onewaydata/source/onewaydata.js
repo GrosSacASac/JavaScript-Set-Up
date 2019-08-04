@@ -4,12 +4,16 @@ export {
     RECONNECT,
     CONNECT,
     DISCONNECT,
+    defaultChannel,
 };
 import Emitter from "event-e3/event-e3.js";
 
 
 const MIME = `text/event-stream`;
 const LAST_ID = `Last-Event-ID`;
+const defaultChannel = `message`;
+
+// fields
 const DATA = `data`;
 const ID = `id`;
 const EVENT = `event`;
@@ -19,7 +23,8 @@ const RECONNECT = Symbol();
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();
 
-const formatMessage = (x) => {
+
+const formatSimpleMessage = (x) => {
     return `${DATA}:${x}\n\n`;
 };
 
@@ -27,8 +32,28 @@ const formatId = (id) => {
     return `${ID}:${id}\n\n`;
 };
 
+const formatEvent = (x) => {
+    if (typeof x === `string`) {
+        return formatSimpleMessage(x);
+    }
+
+    const { id, event, data } = x;
+    let message = ``;
+    if (id) {
+        message = `${ID}:${id}\n`;
+    }
+    if (event) {
+        message = `${message}${EVENT}:${event}\n`;
+    }
+    if (data && data !== defaultChannel) {
+        message = `${message}${DATA}:${data}\n`;
+    }
+    message = `${message}\n`;
+    return message;
+};
+
 const sendOne = (response, x) => {
-    const message = formatMessage(x);
+    const message = formatEvent(x);
     response.write(message);
 };
 
@@ -105,7 +130,7 @@ const createEventStream = (server, options) => {
     };
 
     const send = (x) => {
-        const message = formatMessage(x);
+        const message = formatEvent(x);
         responses.forEach(response => {
             response.write(message);
         });
@@ -116,6 +141,6 @@ const createEventStream = (server, options) => {
     return Object.assign(eventStream, {
         send,
         setAndSendId,
-        close
+        close,
     });
 };

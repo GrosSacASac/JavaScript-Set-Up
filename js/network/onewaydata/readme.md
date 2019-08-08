@@ -13,11 +13,7 @@ to be used with [EventSource API](https://developer.mozilla.org/en-US/docs/Web/A
 ## usage
 
 ```js
-import {
-    createEventStream,
-    sendOne,
-    defaultChannel,
-} from "onewaydata";
+import { createEventStream } from "onewaydata";
 import { useDefaultLogging } from "onewaydata/source/defaultLogging.js";
 
 
@@ -27,7 +23,7 @@ const eventStream = createEventStream(server, {path: `/sse`});
 useDefaultLogging({ eventStream });
 
 
-eventStream.send({ data: `something`,  event: });
+eventStream.send({ data: `something`,  event: `eventName`});
 ```
 
 See [examples](./examples)

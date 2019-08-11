@@ -244,6 +244,29 @@ let nextSquare;
 
 Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
 
+### booleans
+
+`true` or `false`, use `Boolean` function to force cast to a boolean. Do not use `!!` to cast to a boolean. Leverage truthy values in `if` and `while`.
+
+### global built-ins
+
+Use direcly.
+
+```js
+setTimeout(() => {
+
+}, 1000);
+```
+
+avoid 
+
+```js
+window.setTimeout(() => {
+
+}, 1000);
+```
+
+
 -------------------
 
 
@@ -333,7 +356,7 @@ No clear way to add or subtract functionality. Prefer named exports.
 
 ### Meta-programming and Proxy
 
-Avoid whenever possible.
+Avoid whenever possible. Avoid the use of `Proxy`, `Object.defineProperty`, `Function.name` and  `Function.length`.
 
 ### getters and setters
 
@@ -468,8 +491,13 @@ Indent with 4 spaces, or 1 tab.
 
 ### spacing
 
-TODO
+Start with prettier.
 
+### Extensions
+
+If any non standard features are used, use should be documented. If any features are not in the standard track pipeline, the file extension should reflect that.
+
+Prefer to avoid use of features that have not reached stage 4.
 
 
 ---------------------

@@ -76,7 +76,7 @@ const createEventStream = (options) => {
     let responses = [];
     let onRequest;
 
-    const requestHandler = (request, response, responses) => {
+    const requestHandler = (request, response) => {
         if (!isValidRequestForServerSentEvents(request)) {
             return false;
         }

@@ -19,7 +19,7 @@ import { useDefaultLogging } from "onewaydata/source/defaultLogging.js";
 
 const server = ...
 
-const eventStream = createEventStream(server, {path: `/sse`});
+const eventStream = createEventStream({server, path: `/sse`});
 useDefaultLogging({ eventStream });
 
 

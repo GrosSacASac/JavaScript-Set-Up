@@ -57,12 +57,7 @@ const sendOne = (response, x) => {
     response.write(message);
 };
 
-const isValidRequestForServerSentEvents = (request, expectedPath) => {
-    const requestPath = request.url;
-    if (requestPath !== expectedPath) {
-        return;
-    }
-
+const isValidRequestForServerSentEvents = (request) => {
     if (request.method !== `GET`) {
         return;
     }
@@ -73,15 +68,17 @@ const isValidRequestForServerSentEvents = (request, expectedPath) => {
     return true;
 };
 
-const createEventStream = (server, options) => {
-    const { path } = options;
+
+const createEventStream = (options) => {
+    const { path, server, asMiddleWare } = options;
     const eventStream = Emitter({ lastEventId: 0 });
 
     let responses = [];
+    let onRequest;
 
-    const onRequest = (request, response) => {
-        if (!isValidRequestForServerSentEvents(request, path)) {
-            return;
+    const requestHandler = (request, response, responses) => {
+        if (!isValidRequestForServerSentEvents(request)) {
+            return false;
         }
 
         const { socket } = request;
@@ -111,10 +108,13 @@ const createEventStream = (server, options) => {
             }
         });
         eventStream.emit(CONNECT, { response });
+        return true;
     };
 
     const close = () => {
-        server.off(`request`, onRequest);
+        if (!asMiddleWare) {
+            server.off(`request`, onRequest);
+        }
         responses.forEach(response => {
             response.end();
         });
@@ -136,7 +136,23 @@ const createEventStream = (server, options) => {
         });
     };
 
-    server.on(`request`, onRequest);
+    if (asMiddleWare) {
+        eventStream.middleWare = (request, response, next) => {
+            const handled = requestHandler(request, response);
+            if (!handled) {
+                next();
+            }
+        };
+    } else {
+        onRequest = (request, response) => {
+            const requestPath = request.url;
+            if (requestPath !== path) {
+                return;
+            }
+            requestHandler(request, response, responses);
+        };
+        server.on(`request`, onRequest);
+    }
 
     return Object.assign(eventStream, {
         send,

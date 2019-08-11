@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
     }
 });
 
-const eventStream = createEventStream(server, { path: `/sse` });
+const eventStream = createEventStream({ server, path: `/sse` });
 useDefaultLogging({ eventStream });
 
 

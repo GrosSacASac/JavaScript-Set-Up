@@ -8,6 +8,7 @@
     "deno-1": "deno ./eatFoodAvoidDanger/eatFoodAvoidDanger.js",
     "node-2": "node --experimental-modules ./dodgeShoot/start.js",
     "deno-2": "deno ./dodgeShoot/start.js",
+    "visual": "deno ./dodgeShoot/visualDemo.js",
     "serve": "serve ../."
   },
   "private": true,

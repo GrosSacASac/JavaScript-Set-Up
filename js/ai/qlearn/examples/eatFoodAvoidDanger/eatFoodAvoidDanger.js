@@ -3,7 +3,7 @@ import { draw, report } from "./draw.js";
 import { initialState } from "./initialState.js";
 import { scheduleNext } from "../scheduleNext.js";
 
-const MAX_FRAMES = 1000;
+const MAX_FRAMES = 2000;
 const display = false;
 
 let frame = 0;

@@ -1,14 +1,14 @@
 {
   "name": "examples",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "scripts": {
     "start": "node --experimental-modules exampleServer.js",
     "start2": "node --experimental-modules exampleBinaryServer.js"
   },
   "dependencies": {
-    "@shelacek/ubjson": "^1.0.1",
     "filesac": "^11.0.0",
+    "majo-ubjson": "^1.0.0",
     "ws": "^7.0.0"
   },
   "private": true

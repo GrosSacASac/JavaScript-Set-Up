@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "filesac": "^11.0.0",
-    "majo-ubjson": "^1.0.0",
+    "majo-ubjson": "^1.0.1",
     "ws": "^7.0.0"
   },
   "private": true

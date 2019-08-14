@@ -9,6 +9,6 @@
     "serve": "^11.1.0"
   },
   "dependencies": {
-    "@shelacek/ubjson": "^1.0.1"
+    "majo-ubjson": "^1.0.1"
   }
 }

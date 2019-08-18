@@ -1,14 +1,16 @@
 {
   "name": "example",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "CC0-1.0",
   "scripts": {
     "node-1": "node --experimental-modules ./eatFoodAvoidDanger/eatFoodAvoidDanger.js",
     "deno-1": "deno ./eatFoodAvoidDanger/eatFoodAvoidDanger.js",
+
     "node-2": "node --experimental-modules ./dodgeShoot/start.js",
     "deno-2": "deno ./dodgeShoot/start.js",
     "visual": "deno ./dodgeShoot/visualDemo.js",
+
     "serve": "serve ../."
   },
   "private": true,

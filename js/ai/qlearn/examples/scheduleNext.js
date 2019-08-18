@@ -4,7 +4,7 @@ let scheduleNext;
 if (typeof requestAnimationFrame !== `undefined`) {
     scheduleNext = requestAnimationFrame;
 } else {
-    const DELAY = 150;
+    const DELAY = 0;
     scheduleNext = (callback, delay = DELAY) => {
         setTimeout(callback, delay);
     };

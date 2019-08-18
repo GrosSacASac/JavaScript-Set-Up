@@ -6,21 +6,48 @@ const createIntelligence = () => {
         learnFactor: 0.5,
         discountFactor: 0.9,
         exploreBonus: 0.04,
-        qualityMap: new Map(), // reducedStateAction: [[quality, actionName]]
+        qualityMap: new Map(), /* "reducedStateActionString" -> Map(
+            "actionName" -> quality
+            ) */
     };
 };
 
 const maxQuality = (qualityForState) => {
-    return qualityForState.sort(([qualityA], [qualityB]) => {
-        return qualityB - qualityA;
-    })[0][0];
+    let max = -Infinity;
+    qualityForState.forEach(quality => {
+        max = Math.max(max, quality);
+    });
+    return max;
+};
+
+const maxQualityActionName = (qualityForState) => {
+    let max = -Infinity;
+    let maxValueAction = ``;
+    qualityForState.forEach((quality, actionName) => {
+        if (quality > max) {
+            max = quality;
+            maxValueAction = actionName;
+        }
+    });
+    return maxValueAction;
 };
 
 const averageQuality = (qualityForState) => {
-    const sumQualityForState = qualityForState.reduce((sumSoFar, [quality]) => {
-        return sumSoFar + quality;
-    }, 0);
-    return sumQualityForState / (qualityForState.length || 1);
+    let total = 0;
+    qualityForState.forEach(quality => {
+        total += quality;
+    });
+    const average = total / (qualityForState.size || 1);
+    return average;
+};
+
+const decide = (intelligence, stateActions, actionNames) => {
+    let qualityForState = intelligence.qualityMap.get(stateActions);
+    if (!qualityForState) {
+        return actionNames[0] // take first (random)
+    }
+
+    return maxQualityActionName(qualityForState);
 };
 
 const createLearn = (getNextQualityEstimation) => {
@@ -28,15 +55,12 @@ const createLearn = (getNextQualityEstimation) => {
         let qualityForState = intelligence.qualityMap.get(previousStateActions);
         if (!qualityForState) {
             // there was no quality map for this set of state and actions
-            qualityForState = actionNames.map(actionName => {
-                return [intelligence.defaultQuality, actionName];
+            qualityForState = new Map();
+            actionNames.forEach(actionName => {
+                qualityForState.set(actionName, intelligence.defaultQuality);
             });
             intelligence.qualityMap.set(previousStateActions, qualityForState);
         }
-
-        const previousActionIndex = qualityForState.findIndex(([, actionName]) => {
-            return actionName === previousAction;
-        });
 
         const nextQualityForState = intelligence.qualityMap.get(stateActions);
         let nextQualityEstimation;
@@ -46,24 +70,13 @@ const createLearn = (getNextQualityEstimation) => {
             nextQualityEstimation = intelligence.defaultQuality
         }
 
-        qualityForState[previousActionIndex][0] += intelligence.learnFactor * (
+        const previousQuality = qualityForState.get(previousAction);
+        qualityForState.set(previousAction, previousQuality + intelligence.learnFactor * (
             reward +
-            intelligence.discountFactor * (nextQualityEstimation - qualityForState[previousActionIndex][0])
-        ) - intelligence.exploreBonus;
+            intelligence.discountFactor * (nextQualityEstimation - previousQuality)
+        ) - intelligence.exploreBonus);
     }
 };
 
 const learn = createLearn(maxQuality);
 const learnWithAverage = createLearn(averageQuality);
-
-const decide = (intelligence, stateActions, actionNames) => {
-    let qualityForState = intelligence.qualityMap.get(stateActions);
-    if (!qualityForState) {
-        return actionNames[0] // take first (random)
-    }
-    const [, highestQualityActionName] = qualityForState.sort(([qualityA], [qualityB]) => {
-        return qualityB - qualityA;
-    })[0];
-
-    return highestQualityActionName;
-};

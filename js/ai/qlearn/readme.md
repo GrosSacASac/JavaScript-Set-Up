@@ -67,6 +67,14 @@ Will use `.qualityMap`.
 const actionName = decide(intelligence, stateAction, actionNames);
 ```
 
+Alternatively use partial random decide. It is the same function, except it randomly decides 20% of the time
+
+```
+import { partialRandomDecide } from "qlearn/source/partialRandomDecide.js";
+
+const actionName = partialRandomDecide(intelligence, stateAction, actionNames);
+```
+
 ### `learn()`
 
 Use it as soon as reward is available after `decide()`.

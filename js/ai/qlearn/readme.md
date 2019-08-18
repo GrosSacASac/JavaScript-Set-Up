@@ -31,28 +31,28 @@ npm i qlearn
 
 ## import
 
-```
-import {createIntelligence, learn, decide} from "qlearn";
-import {createIntelligence, learn, decide} from "https://unpkg.com/qlearn/source/qlearn.js";
+```js
+import { createIntelligence, learn, decide } from "qlearn";
+import { createIntelligence, learn, decide } from "https://unpkg.com/qlearn/source/qlearn.js";
 ```
 
 ## usage
 
 ### creation
 
-```
+```js
 const intelligence = createIntelligence();
 ```
 
 ### override all options
 
-```
+```js
 Object.assign(intelligence, {
     defaultQuality: 0,
     learnFactor: 0.5,
     discountFactor: 0.9,
     exploreBonus: 0.04,
-    qualityMap: new Map()
+    qualityMap: new Map(),
 });
 ```
 
@@ -63,13 +63,13 @@ The actionName will be random if this set of state and actions was never encount
 Will use `.qualityMap`.
 
 
-```
+```js
 const actionName = decide(intelligence, stateAction, actionNames);
 ```
 
 Alternatively use partial random decide. It is the same function, except it randomly decides 20% of the time
 
-```
+```js
 import { partialRandomDecide } from "qlearn/source/partialRandomDecide.js";
 
 const actionName = partialRandomDecide(intelligence, stateAction, actionNames);
@@ -85,7 +85,7 @@ Will update `.qualityMap`.
 
 Note: It is possible to learn even if the previous action did not come from `decide()`, for example: If a human decides, the `learn()` can still be used.
 
-```
+```js
 learn(
     intelligence,
     previousStateActions, stateActions,
@@ -95,17 +95,17 @@ learn(
 
 ### `.qualityMap`
 
-```
-const {qualityMap} = intelligence;
+```js
+const { qualityMap } = intelligence;
 ```
 
-```
+```js
 intelligence.qualityMap = new Map();
 ```
 
 ### `.defaultQuality`
 
-```
+```js
 intelligence.defaultQuality = 0;
 ```
 
@@ -113,7 +113,7 @@ intelligence.defaultQuality = 0;
 
 `0 < learnFactor < 1 `
 
-```
+```js
 intelligence.learnFactor = 0.5;
 ```
 
@@ -122,7 +122,7 @@ intelligence.learnFactor = 0.5;
 
 `0 < discountFactor < 1 `
 
-```
+```js
 intelligence.discountFactor = 0.9;
 ```
 
@@ -131,7 +131,7 @@ intelligence.discountFactor = 0.9;
 A positive number to encourage exploration, a negative number to discourage exploration.
 Ideally orders of magnitude smaller than a normal reward.
 
-```
+```js
 intelligence.exploreBonus = 0.04;
 ```
 
@@ -141,17 +141,10 @@ intelligence.exploreBonus = 0.04;
 
 It decides randomly.
 
-```
-import {randomDecide} from "qlearn/source/randomDecide.js";
+```js
+import { randomDecide } from "qlearn/source/randomDecide.js";
 ```
 
-### partialRandomDecide
-
-Same as `decide`, but it decides randomly 20% of the time.
-
-```
-import {partialRandomDecide} from "qlearn/source/partialRandomDecide.js";
-```
 
 ## Related
 

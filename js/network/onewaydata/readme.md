@@ -2,7 +2,7 @@
 
 [Server sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events) for NodeJs, works with raw http, express and polka.
 
-to be used with [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource) client side
+to be used with [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource) client side.
 
 
 
@@ -44,6 +44,13 @@ eventStream.send({ data: `something`,  event: `eventName`});
 ```
 
 See [examples](./examples)
+
+
+## Extras
+
+### More information
+
+https://hpbn.co/server-sent-events-sse/
 
 
 ### License

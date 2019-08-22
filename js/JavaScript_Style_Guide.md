@@ -486,7 +486,37 @@ Optionally Pascal case for creator/constructors.
 
 Optionally all caps with underscores for top level constants that do not change across versions and runs.
 
-Package/module names and script names with lowercase with dashes. No dots.
+Package/module names and script names with lowercase with dashes. No dots. 
+
+`majo-ubjson` as package name
+
+`majoUbjson.js` entry file (not index.js)
+
+`bundle`, `minify-html` as script names
+
+
+```js
+// ALWAYS the same
+const { PI } = Math;
+const HALF_PI = PI / 2;
+
+// regular variables that can be changed
+const radius = 1;
+const volumeSphere = (4 / 3) * PI * radius ** 3;
+
+// constructor
+const BookStore = class {
+
+};
+
+// creator Pacal (CreateHero) or camel case (createHero)
+const createHero = function () {
+    const hero = {};
+    return hero;
+};
+```
+
+
 
 ### indentation
 

@@ -326,7 +326,7 @@ The comma operator is well known to write one-liners and hurts readability. Put 
 
 ### for of, for in, for () loops
 
-Prefer array built-ins for loops.
+Prefer array built-ins to iterate.
 
 ### Export objects with multiple variables
 

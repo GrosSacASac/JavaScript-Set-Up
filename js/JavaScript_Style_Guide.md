@@ -202,6 +202,7 @@ Put them at the top of the file as they will be executed first. Put exports befo
 ```js
 export { y };
 import { x } from "./x.js";
+import * as z from "./z.js";
 
 
 const y = 5;

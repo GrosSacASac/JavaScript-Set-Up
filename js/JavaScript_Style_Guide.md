@@ -479,7 +479,7 @@ Don't use the void operator, use a dedicated minifier instead.
 
 ### naming
 
-Use semantic long descriptive names for variables, etc.
+Use semantic long descriptive names for variables. Do not use names that are already used by built-in globals or [special keywords](https://github.com/rollup/rollup/blob/master/src/utils/reservedNames.ts).
 
 Camel case for regular variables and file names. No spaces.
 
@@ -515,6 +515,12 @@ const createHero = function () {
     const hero = {};
     return hero;
 };
+
+// No !
+// confusing 
+const await = 2;
+// overshadows built-in
+const Date = { year: 2019 };
 ```
 
 

@@ -518,7 +518,6 @@ const createHero = function () {
 ```
 
 
-
 ### indentation
 
 Indent with 4 spaces, or 1 tab.
@@ -536,6 +535,10 @@ Prefer to avoid use of features that have not reached stage 4.
 ### Empty if else bodies
 
 Yes when it helps document the code, for example by acknowledging a given situation.
+
+### magic numbers
+
+Use constants at the top of the scope.
 
 ---------------------
 

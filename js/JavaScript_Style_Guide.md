@@ -272,9 +272,15 @@ window.setTimeout(() => {
 
 ## 2. Features to avoid
 
-### `this`
+### `this` and `class`
 
-Avoid `this`. And associated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `__proto__`. Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions. `bind` can be still be useful for currying with undefined as first value.
+Avoid `this`. And associated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `Object.getPrototypeOf`, `__proto__`, `instanceof`, `typeof`, `.prototype.isPrototypeOf`.
+
+Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions.
+
+Prefer regular objects and functions over `class`. These can be exported from the same file and one can still use Object-oriented patterns without the `class` keyword.
+
+`bind` can still be useful for currying with undefined as first value.
 
 ### `apply`
 
@@ -290,9 +296,6 @@ const numbers = [4, 5];
 const max = Math.max(...numbers);
 ```
 
-### `class`
-
-Prefer regular objects and functions. These can be exported from the same file and one can still use Object-oriented patterns without the `class` keyword.
 
 ### ternary operator
 

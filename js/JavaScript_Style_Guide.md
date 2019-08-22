@@ -209,7 +209,7 @@ const y = 5;
 
 ### promises
 
-Prefer promises over callbacks for one-time futures.
+Prefer promises over callbacks for one-time futures. Use `async`, `await` , `Promise.all`.
 
 ### Limit variable reach
 

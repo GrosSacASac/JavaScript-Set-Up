@@ -392,7 +392,7 @@ Avoid `==` and `!=`, prefer `===` and `!==`.
 
 ### Automatic semicolon insertion
 
-To be consistent and have less edge cases to remember.
+Avoid relying on asi to be consistent and have less edge cases to remember.
 
 ### try catch over everything
 

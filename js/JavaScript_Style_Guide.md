@@ -502,6 +502,9 @@ If any non standard features are used, use should be documented. If any features
 
 Prefer to avoid use of features that have not reached stage 4.
 
+### Empty if else bodies
+
+Yes when it helps document the code, for example by acknowledging a given situation.
 
 ---------------------
 

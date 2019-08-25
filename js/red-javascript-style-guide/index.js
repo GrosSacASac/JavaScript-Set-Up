@@ -13,7 +13,6 @@ module.exports = {
         "no-extra-bind": 2,
         "no-extra-label": 2,
         "no-implicit-coercion": 2,
-
         "no-lone-blocks": 2,
         "no-magic-numbers": 1,
         "no-multi-str": 2,
@@ -26,13 +25,13 @@ module.exports = {
         "no-unmodified-loop-condition": 2,
         "no-unused-expressions": 2,
         "no-useless-call": 2,
-
         "no-void": 2,
-        "no-shadow": [1, { "builtinGlobals": true, hoist: "all" }],
+        // disable builtinGlobals for now because it also protects deprecated globals
+        // https://github.com/eslint/eslint/issues/12167
+        "no-shadow": [1, { "builtinGlobals": false, hoist: "all" }],
         "max-params": [1, { max: 6 }],
         "max-depth": [1, { max: 10 }],
         "max-statements-per-line": [2, { max: 1 }],
-        "new-cap": 2,
         "new-parens": 2,
         "no-array-constructor": 2,
         "no-multi-assign": 2,
@@ -67,7 +66,7 @@ const x = function () {
         "arrow-body-style": [2, "always"],
         "no-var": 2,
         "object-shorthand": [2, "properties"],
-        "perfer-const": [2, { "ignoreReadBeforeAssign": false }],
+        "prefer-const": [2, { "ignoreReadBeforeAssign": false }],
         "prefer-destructuring": [1, {
             "array": false,
             "object": true

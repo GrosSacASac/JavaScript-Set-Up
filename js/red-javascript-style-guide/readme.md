@@ -559,14 +559,14 @@ Use constants at the top of the scope.
 Install eslint 6+ and eslint-red rules
 
 ```
-npm i -D eslint eslint-red
+npm i -D eslint eslint-config-red
 ```
 
 Inside package.json
 
 ```
 "eslintConfig": {
-    "extends": ["eslint:recommended", "eslint-red"],
+    "extends": ["eslint:recommended", "red"],
     "parserOptions": {
       "ecmaVersion": 2020,
       "sourceType": "module",

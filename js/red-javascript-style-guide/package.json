@@ -1,7 +1,6 @@
 {
-    "name": "eslint-red",
+    "name": "eslint-config-red",
     "version": "1.0.0",
-    "main": "./eslint/eslintRed.js",
     "license": "CC0-1.0",
     "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide",
     "keywords": [

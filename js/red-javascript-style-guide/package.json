@@ -2,9 +2,20 @@
     "name": "eslint-red",
     "version": "1.0.0",
     "main": "./eslint/eslintRed.js",
+    "license": "CC0-1.0",
+    "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide",
     "keywords": [
         "red",
         "eslint",
         "eslintconfig"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+      "directory": "js/red-javascript-style-guide"
+    },
+    "files": [
+      "eslint",
+      "readme.md"
     ]
 }

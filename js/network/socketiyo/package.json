@@ -1,6 +1,6 @@
 {
   "name": "socketiyo",
-  "version": "6.5.0",
+  "version": "6.5.1",
   "main": "./source/socketiyo.js",
   "type": "module",
   "license": "CC0-1.0",
@@ -12,7 +12,8 @@
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "repository": {
     "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/network/onewaydata"
   },
   "files": [
     "source",

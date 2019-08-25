@@ -1,14 +1,14 @@
 {
   "name": "socketiyo-shared",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "type": "module",
   "main": "./source/socketiyo-shared.js",
   "license": "CC0-1.0",
-  "dependencies": {},
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo-shared",
   "repository": {
     "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/network/onewaydata"
   },
   "files": [
     "source",

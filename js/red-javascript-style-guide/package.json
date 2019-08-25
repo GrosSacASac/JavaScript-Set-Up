@@ -1,0 +1,10 @@
+{
+    "name": "eslint-red",
+    "version": "1.0.0",
+    "main": "./eslint/eslintRed.js",
+    "keywords": [
+        "red",
+        "eslint",
+        "eslintconfig"
+    ]
+}

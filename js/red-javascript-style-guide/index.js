@@ -4,6 +4,7 @@
 2 "error"
 */
 module.exports = {
+    "extends": "eslint:recommended",
     "rules": {
         "curly": 2,
         "eqeqeq": 2,

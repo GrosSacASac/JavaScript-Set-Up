@@ -566,13 +566,14 @@ Inside package.json
 
 ```
 "eslintConfig": {
-    "extends": ["eslint:recommended", "red"],
+    "extends": ["red"],
     "parserOptions": {
       "ecmaVersion": 2020,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
+      "es6": true,  
       "browser": true
     },
     "rules": {}

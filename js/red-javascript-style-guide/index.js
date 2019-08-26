@@ -15,7 +15,7 @@ module.exports = {
         "no-extra-label": 2,
         "no-implicit-coercion": 2,
         "no-lone-blocks": 2,
-        "no-magic-numbers": 1,
+        "no-magic-numbers": [1, { "ignore": [-2, -1, 0, 1, 2] }],
         "no-multi-str": 2,
         "no-new-wrappers": 2,
         "no-octal-escape": 2,

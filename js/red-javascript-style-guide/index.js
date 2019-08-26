@@ -57,7 +57,9 @@ const x = function () {
                 "message": "Use regular functions that return a functions that closes over a variable instead of generators"
             },
             "WithStatement",
-            "BinaryExpression[operator='in']"
+            "BinaryExpression[operator='in']",
+            "ClassDeclaration",
+            "ClassExpression",
         ]
         ,
         "quotes": [2, "backtick", { "avoidEscape": false }],

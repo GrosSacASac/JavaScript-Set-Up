@@ -56,6 +56,8 @@ const x = function () {
                 "selector": "YieldExpression",
                 "message": "Use regular functions that return a functions that closes over a variable instead of generators"
             },
+            "WithStatement",
+            "BinaryExpression[operator='in']"
         ]
         ,
         "quotes": [2, "backtick", { "avoidEscape": false }],

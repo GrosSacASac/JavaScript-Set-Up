@@ -1,6 +1,6 @@
 # JavaScript Red Style Guide
 
-<img src="./images/red.jpg" alt="red">
+<img src="https://raw.githubusercontent.com/GrosSacASac/JavaScript-Set-Up/master/js/red-javascript-style-guide/images/red.jpg" alt="red">
 
 _red is life passion fire_
 

@@ -60,6 +60,8 @@ const x = function () {
             "BinaryExpression[operator='in']",
             "ClassDeclaration",
             "ClassExpression",
+            "SwitchStatement",
+            "ThisExpression",
         ]
         ,
         "quotes": [2, "backtick", { "avoidEscape": false }],

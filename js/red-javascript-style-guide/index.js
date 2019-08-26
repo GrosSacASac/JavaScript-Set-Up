@@ -6,6 +6,9 @@
 module.exports = {
     "extends": "eslint:recommended",
     "rules": {
+        // overwrite
+        "no-unused-vars": 1,
+
         "curly": 2,
         "eqeqeq": 2,
         "no-caller": 2,

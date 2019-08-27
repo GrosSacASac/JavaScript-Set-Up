@@ -86,5 +86,6 @@ const x = function () {
 
         "prefer-rest-params": 2,
         "prefer-spread": 2,
+        "comma-dangle": [2, "always-multiline"]
     }
 };

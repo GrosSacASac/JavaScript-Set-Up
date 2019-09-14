@@ -1,5 +1,12 @@
 # socketiyo
 
+WebSocket-based, bi-directional events in between client and server.
+
+ * WebSocket
+ * Events
+ * Auto-reconnect
+ * Light-weight
+ * Modern
 
 ## Usage
 
@@ -109,6 +116,37 @@ socketiYoServer.sendAllExceptOne(exceptionSocket, data, channel = DEFAULT_CHANNE
 socketiYoServer.close()
 ```
 
+### Client
+
+```js
+import {
+    createConnection,
+    CONNECT,
+    DISCONNECT,
+    ERROR,
+    DEFAULT_CHANNEL
+} from "socketiyo-client/source/socketiyo-client.js";
+import { reconnectDelay, randomReconnectDelay, autoReconnect } from "socketiyo-client/source/defaultOptions.js";
+import { useDefaultLogging } from "socketiyo-client/source/defaultLogging.js";
+
+
+const socketiyoConnection = createConnection({
+    url: `ws://localhost:8080/socketiyo`,
+    reconnectDelay,
+    randomReconnectDelay,
+    autoReconnect,
+});
+
+useDefaultLogging({ socketiyoConnection });
+
+socketiyoConnection.on(DEFAULT_CHANNEL, (x) => {
+    console.log(x);
+});
+
+socketiyoConnection.on(`game/end`, (x) => {
+    console.log(`game/end ${x}`);
+});
+```
 
 ### Client APIs
 

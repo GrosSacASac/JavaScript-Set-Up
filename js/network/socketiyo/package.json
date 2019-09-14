@@ -1,6 +1,7 @@
 {
   "name": "socketiyo",
-  "version": "6.5.2",
+  "version": "6.5.3",
+  "description": "WebSocket-based, bi-directional events in between client and server",
   "main": "./source/socketiyo.js",
   "type": "module",
   "license": "CC0-1.0",
@@ -19,5 +20,13 @@
     "source",
     "readme.md",
     "license.txt"
+  ],
+  "keywords": [
+    "WebSocket",
+    "event",
+    "reconnect",
+    "real",
+    "time",
+    "light"
   ]
 }

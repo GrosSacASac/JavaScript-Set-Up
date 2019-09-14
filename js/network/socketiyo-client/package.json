@@ -1,6 +1,6 @@
 {
   "name": "socketiyo-client",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "type": "module",
   "main": "./source/socketiyo-client.js",
   "license": "CC0-1.0",

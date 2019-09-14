@@ -12,13 +12,13 @@ WebSocket-based, bi-directional events in between client and server.
 
 ### Install
 
-#### client side
-
-`npm i socketiyo-client`
-
 #### server side
 
-`npm i socketiyo`
+[`npm i socketiyo`](https://www.npmjs.com/package/socketiyo)
+
+#### client side
+
+[`npm i socketiyo-client`](https://www.npmjs.com/package/socketiyo-client)
 
 ### Server
 

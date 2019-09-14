@@ -1,24 +1,6 @@
 # socketiyo
 
 
-Concept inspired by socket.io
-
-What are the differences from socketiyo ?
-
-Rooms and events are combined and called channels. These channels are hidden. When a client subscibes to an event, it will be listening on that channel with the same event name, that can only emit this event name.
-
-Namespaces are handled outside of the library by creating more instances with different options.
-
-The WebSocket server implementation is not provided, instead socketiyo expects a peer dependency to be injected at runtime.
-
-The client is not served by default in the server. It has to be explicitly imported in the client code instead.
-
-No fallback provided when WebSocket is not available. No background protocol upgrades.
-
-Regular events and library events cannot be confused.
-
-Does not decorate the sockets with custom methods
-
 ## Usage
 
 ### Install
@@ -31,7 +13,7 @@ Does not decorate the sockets with custom methods
 
 `npm i socketiyo`
 
-### `attachWebSocketServer`
+### Server
 
 
 ```js
@@ -41,7 +23,7 @@ import {
     DISCONNECT,
 	ERROR,
 	DEFAULT_CHANNEL,
-} from "../source/socketiyo.js";
+} from "socketiyo";
 import {
     maxClients,
     highClients,
@@ -49,8 +31,8 @@ import {
     maxLength,
     maxChannels,
     maxChannelLength,
-} from "../source/defaultOptions.js";
-import {useDefaultLogging} from "../source/defaultLogging";
+} from "socketiyo/source/defaultOptions.js";
+import {useDefaultLogging} from "socketiyo/source/defaultLogging";
 
 
 /* httpServer, ws are not provided, see examples */
@@ -74,9 +56,9 @@ setInterval(() => {
 
 socketiYoServer.on(CONNECT, socket => {
     /* send welcome to the socket*/
-    socketiYoServer.send(socket, {message: `welcome`});
+    socketiYoServer.send(socket, { message: `welcome` });
     /* alert others as well */
-    socketiYoServer.sendAllExceptOne(socket, {message: `new connection`});
+    socketiYoServer.sendAllExceptOne(socket, { message: `new connection` });
 });
 
 socketiYoServer.on(`game/input`, ({socket, data}) => {
@@ -84,6 +66,94 @@ socketiYoServer.on(`game/input`, ({socket, data}) => {
 });
 ```
 
-### License
+### Server APIs
+
+```js
+socketiYoServer = attachWebSocketServer({
+    httpServer,
+    ws,
+    path,
+    highClients,
+    maxClients,
+    maxLength,
+    maxChannels,
+    maxChannelLength,
+    lowEnough,
+    packData = defaultPackData,
+    unpackData = defaultUnpackData,
+})
+```
+
+```js
+socketiYoServer.on(eventName, callback)
+```
+
+```js
+socketiYoServer.off(eventName, callback)
+```
+
+```js
+socketiYoServer.send(socket, data, channel = DEFAULT_CHANNEL)
+```
+
+```js
+socketiYoServer.sendAll(data, channel = DEFAULT_CHANNEL)
+```
+
+```js
+socketiYoServer.sendAllExceptOne(exceptionSocket, data, channel = DEFAULT_CHANNEL)
+```
+
+
+```js
+socketiYoServer.close()
+```
+
+
+### Client APIs
+
+
+```js
+
+socketiyoConnection = createConnection({
+    url,
+    packData = defaultPackData,
+    unpackData = defaultUnpackData,
+    reconnectDelay,
+    randomReconnectDelay,
+})
+```
+
+```js
+socketiyoConnection.on(eventName, callback)
+```
+
+```js
+socketiyoConnection.off(eventName, callback)
+```
+
+```js
+socketiyoConnection.send(data, channel = DEFAULT_CHANNEL)
+```
+
+```js
+socketiyoConnection.close()
+```
+
+### About
+
+Concept inspired by socket.io
+
+#### What are the differences between socketiyo and socket.io ?
+
+ * Rooms and events are combined and called channels.
+ * Namespaces are handled outside of the library by creating more instances with different options.
+ * The WebSocket http server implementation is not provided, instead socketiyo expects a peer dependency to be injected at runtime.
+ * The client is not served by default in the server. It has to be explicitly imported in the client code instead.
+ * No fallback provided when WebSocket is not available. No background protocol upgrades.
+ * Regular events and library events cannot be confused.
+ * Does not decorate the sockets with custom methods
+
+#### License
 
 [CC0](./license.txt)

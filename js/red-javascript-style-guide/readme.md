@@ -310,6 +310,8 @@ window.setTimeout(() => {
 
 ### `this` and `class`
 
+[Read Why disallow the class keyword](https://github.com/GrosSacASac/JavaScript-Set-Up/blob/master/js/red-javascript-style-guide/why-disallow-class.md)
+
 Avoid `this`. And associated `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `Object.getPrototypeOf`, `__proto__`, `instanceof`, `typeof`, `.prototype.isPrototypeOf`.
 
 Any function can return an object, any function can take an object as first argument and operate on it.  Every function can compose or combine results of other functions.

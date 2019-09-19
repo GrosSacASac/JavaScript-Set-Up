@@ -1,4 +1,4 @@
-# Why disallow the class keyword in the style guide ?
+# Why disallow the class keyword ?
 
 ## Problems with the class keywords
 

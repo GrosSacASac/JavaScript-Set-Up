@@ -86,6 +86,26 @@ const teleportHero = (hero, location) => {
 };
 ```
 
+#### Export and import as a namespace
+
+Alternatively omit "Hero" in function names to avoid renaming.
+```js
+export { 
+    createHero as create,
+    moveHero as move,
+    teleportHero as teleport,
+};
+```
+
+```js
+import * as Hero from "./hero.js";
+
+
+const hero = Hero.create({ name: `Superjhemp` });
+Hero.move(hero, [5, 20]);
+Hero.teleport(hero, [100, 100]);
+```
+
 
 
 ### array, object, import, export
@@ -132,7 +152,7 @@ const object = [
 ];
 ```
 
-Use `Object.keys`, `Object.values`, `Object.entries` to convert it to an array, then use array methods to loop over an object. ```typeof x === `object` && x !== null``` for type checking
+Use `Object.keys`, `Object.values`, `Object.entries` to convert it to an array, then use array methods to loop over an object. ```typeof x === `object` && x !== null``` for type checking.
 
 ### strings
 
@@ -143,11 +163,11 @@ const s = `string`;
 const s2 = `Tom says: "That's my ${s}"`;
 ```
 
-```typeof x === `string` ``` for type checking 
+```typeof x === `string` ``` for type checking .
 
 ### numbers
 
-Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for type checking. It returns false if the number is `NaN`, `Infinity`, `-Infinity` or another type.
+Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for type checking. It returns false if the number is `NaN`, `Infinity`, `-Infinity` or another type. ```typeof x === `number` ``` will return true if `x` is `NaN`, `Infinity`, `-Infinity` as well.
 
 ### date
 
@@ -493,6 +513,8 @@ Optionally all caps with underscores for top level constants that do not change 
 
 Package/module names and script names with lowercase with dashes. No dots. 
 
+#### Examples
+
 `majo-ubjson` as package name
 
 `majoUbjson.js` entry file (not index.js)
@@ -586,7 +608,8 @@ Inside package.json
  - [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
  - [Avoid conditions](https://blog.sapegin.me/all/avoid-conditions/)
  - [Return asap](https://margaine.com/2014/06/20/return-asap.html)
-  - [tabs instead of spaces](https://dev.to/alexandersandberg/why-we-should-default-to-tabs-instead-of-spaces-for-an-accessible-first-environment-101f)
+ - [Tabs instead of spaces](https://dev.to/alexandersandberg/why-we-should-default-to-tabs-instead-of-spaces-for-an-accessible-first-environment-101f)
+ - [JSLint](https://jslint.com/help.html)
 
 ### Contributors
 

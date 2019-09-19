@@ -69,7 +69,7 @@ const createHero = ({ name }) => {
     const hero = {
         name,
         hitPoints: 100,
-        location: [0, 0]
+        location: [0, 0],
         favouriteAttack: undefined,
     };
     

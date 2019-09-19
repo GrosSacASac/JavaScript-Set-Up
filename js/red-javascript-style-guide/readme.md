@@ -174,7 +174,7 @@ Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for ty
 
 ```js
 const mySymbol = Symbol();
-const yourSymbol = Symbol(`A meaningfull description`);
+const yourSymbol = Symbol(`A meaningful description`);
 yourSymbol.description;
 ```
 

@@ -169,6 +169,17 @@ const s2 = `Tom says: "That's my ${s}"`;
 
 Prefer `Number.isFinite` over `isNaN`. `Number.isFinite` can also be used for type checking. It returns false if the number is `NaN`, `Infinity`, `-Infinity` or another type. ```typeof x === `number` ``` will return true if `x` is `NaN`, `Infinity`, `-Infinity` as well.
 
+### symbols
+
+
+```js
+const mySymbol = Symbol();
+const yourSymbol = Symbol(`A meaningfull description`);
+yourSymbol.description;
+```
+
+Do not use `Symbol.for` because they are disguised globals. ``` typeof mySymbol === `symbol` ``` for type checking.
+
 ### date
 
 Use numbers to store dates. Use the `Date` built-in to display them.

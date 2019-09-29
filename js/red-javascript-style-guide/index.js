@@ -18,7 +18,18 @@ module.exports = {
         "no-extra-label": 2,
         "no-implicit-coercion": 2,
         "no-lone-blocks": 2,
-        "no-magic-numbers": [1, { "ignore": [-2, -1, 0, 1, 2] }],
+        "no-magic-numbers": [1, {
+            "ignore": [
+                -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                10, 11, 12, 13, 14, 15, 16,
+                32,
+                64,
+                128,
+                256,
+                512,
+                1024
+            ]
+        }],
         "no-multi-str": 2,
         "no-new-wrappers": 2,
         "no-octal-escape": 2,

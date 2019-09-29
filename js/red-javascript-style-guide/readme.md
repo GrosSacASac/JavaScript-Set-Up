@@ -599,7 +599,7 @@ npm i -D eslint eslint-config-red
 
 Inside package.json
 
-```
+```json
 "eslintConfig": {
     "extends": ["red"],
     "parserOptions": {
@@ -613,6 +613,13 @@ Inside package.json
     },
     "rules": {}
 }
+```
+
+Inside package.json>scripts
+
+```
+    "lint-fix": "eslint --ignore-path .gitignore --fix source",
+    "lint": "eslint --ignore-path .gitignore source",
 ```
 
 ### Inspiration

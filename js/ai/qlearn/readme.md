@@ -64,10 +64,10 @@ Will use `.qualityMap`.
 
 
 ```js
-const actionName = decide(intelligence, stateAction, actionNames);
+const actionName = decide({intelligence, stateAction, actionNames});
 ```
 
-Alternatively use partial random decide. It is the same function, except it randomly decides 20% of the time
+Alternatively use partial random decide. It is the same function, except it randomly decides 20% of the time.
 
 ```js
 import { partialRandomDecide } from "qlearn/source/partialRandomDecide.js";
@@ -86,11 +86,14 @@ Will update `.qualityMap`.
 Note: It is possible to learn even if the previous action did not come from `decide()`, for example: If a human decides, the `learn()` can still be used.
 
 ```js
-learn(
+learn({
     intelligence,
-    previousStateActions, stateActions,
-    previousAction, actionNames, reward
-);
+    previousStateActions,
+    stateActions,
+    previousAction,
+    actionNames,
+    reward,
+});
 ```
 
 ### `.qualityMap`

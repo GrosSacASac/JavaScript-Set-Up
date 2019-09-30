@@ -82,9 +82,9 @@ const start = (options) => {
             let actionName;
             if (useIntelligence) {
                 stateActions = reduceStateAndAction(state);
-                actionName = decide(intelligence, stateActions, actionNames);
+                actionName = decide({ intelligence, stateActions, actionNames });
             } else {
-                actionName = randomDecide(actionNames);
+                actionName = randomDecide({ actionNames });
             }
             const action = actions[actionName];
             updateGame(action, state, reward); // reward and changes state
@@ -97,7 +97,14 @@ const start = (options) => {
                 stateActions = reduceStateAndAction(state);
                 const scoreAfter = state.score;
                 const scoreDifference = scoreAfter - scoreBefore;
-                learn(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
+                learn({
+                    intelligence,
+                    previousStateActions,
+                    stateActions,
+                    previousAction: actionName,
+                    actionNames,
+                    reward: scoreDifference,
+                });
             }
             state.frame += 1;
             if (state.frame < MAX_FRAMES) {

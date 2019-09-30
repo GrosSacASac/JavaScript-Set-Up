@@ -41,7 +41,7 @@ const averageQuality = (qualityForState) => {
     return average;
 };
 
-const decide = (intelligence, stateActions, actionNames) => {
+const decide = ({ intelligence, stateActions, actionNames }) => {
     const qualityForState = intelligence.qualityMap.get(stateActions);
     if (!qualityForState) {
         return actionNames[0]; // take first (random)
@@ -51,7 +51,14 @@ const decide = (intelligence, stateActions, actionNames) => {
 };
 
 const createLearn = (getNextQualityEstimation) => {
-    return (intelligence, previousStateActions, stateActions, previousAction, actionNames, reward) => {
+    return ({
+        intelligence,
+        previousStateActions,
+        stateActions,
+        previousAction,
+        actionNames,
+        reward,
+    }) => {
         let qualityForState = intelligence.qualityMap.get(previousStateActions);
         if (!qualityForState) {
             // there was no quality map for this set of state and actions

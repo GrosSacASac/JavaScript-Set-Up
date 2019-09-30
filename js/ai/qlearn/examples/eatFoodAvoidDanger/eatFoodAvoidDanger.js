@@ -79,7 +79,7 @@ const step = () => {
     const state = initialState;
     const stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;
-    const actionName = decide(intelligence, stateActions, actionNames);
+    const actionName = decide({ intelligence, stateActions, actionNames });
     const action = actions[actionName];
     updateGame(action, state); // reward and changes state
     if (display) {
@@ -88,7 +88,14 @@ const step = () => {
     const stateActionsAfter = reduceStateAndAction(state);
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
-    learn(intelligence, stateActions, stateActionsAfter, actionName, actionNames, reward);
+    learn({
+        intelligence,
+        previousStateActions: stateActions,
+        stateActions: stateActionsAfter,
+        previousAction: actionName,
+        actionNames,
+        reward,
+    });
     frame += 1;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);

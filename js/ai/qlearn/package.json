@@ -1,19 +1,40 @@
 {
   "name": "qlearn",
-  "version": "4.0.4",
+  "version": "5.0.0",
   "type": "module",
   "module": "./source/qlearn.js",
   "license": "CC0-1.0",
-  "dependencies": {},
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
   "repository": {
-    "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/ai/qlearn"
+      "type": "git",
+      "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+      "directory": "js/ai/qlearn"
+    },
+    "files": [
+        "source",
+        "readme.md",
+        "license.txt"
+    ],
+    "scripts": {
+        "lint-fix": "eslint --fix source examples",
+        "lint": "eslint source examples"
+    },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.5.0",
+    "eslint-config-red": "^1.4.1"
   },
-  "files": [
-    "source",
-    "readme.md",
-    "license.txt"
-  ]
+  "eslintConfig": {
+    "extends": ["red"],
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {}
+    },
+    "env": {
+      "es6": true,  
+      "browser": true
+    },
+    "rules": {}
+}
 }

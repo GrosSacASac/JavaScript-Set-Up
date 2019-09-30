@@ -1,7 +1,7 @@
 import {
     reduceStateAndActionSeeAll,
 } from "./reduceState.js";
-import { report, compactReport } from "./draw.js";
+import { report } from "./draw.js";
 import { start } from "./dodgeShoot.js";
 import { learn, learnWithAverage } from "../../source/qlearn.js";
 

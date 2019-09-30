@@ -3,7 +3,7 @@ import {
     reduceStateAndActionSeeNearestOnly,
     reduceStateAndActionSeeAllDistance,
 } from "./reduceState.js";
-import { report, compactReport } from "./draw.js";
+import { compactReport } from "./draw.js";
 import { start } from "./dodgeShoot.js";
 import { learn, learnWithAverage } from "../../source/qlearn.js";
 
@@ -11,7 +11,11 @@ import { learn, learnWithAverage } from "../../source/qlearn.js";
 const display = false;
 
 const rewardsTrials = [1, -1];
-const framesTrials = [2000, 20000, 200000];
+const framesTrials = [
+    2 * 10 ** 3,
+    2 * 10 ** 4,
+    2 * 10 ** 5,
+];
 // debugging 
 learn.xname = `learn`;
 learnWithAverage.xname = `learnWithAverage`;
@@ -24,7 +28,9 @@ const reduceStateTrials = [
 
 framesTrials.forEach(frames => {
     rewardsTrials.forEach(reward => {
-        const options = {
+        // do not include random in the big loop 
+        // as it will not change based on the algorithm
+        const randomOptions = {
             reduceStateAndAction: undefined,
             learn: undefined,
             MAX_FRAMES: frames,
@@ -32,12 +38,12 @@ framesTrials.forEach(frames => {
             display,
             reward,
         };
-        start(options).then(compactReport);
+        start(randomOptions).then(compactReport);
         reduceStateTrials.forEach(reduceStateAction => {
-            learnTrials.forEach(learn => {
+            learnTrials.forEach(learnAlgorithm => {
                 const options = {
                     reduceStateAndAction: reduceStateAction,
-                    learn,
+                    learn: learnAlgorithm,
                     MAX_FRAMES: frames,
                     useIntelligence: true,
                     display,

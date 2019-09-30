@@ -1,13 +1,13 @@
 export { start };
 
 import { deepCopy } from "../node_modules/utilsac/utility.js";
-import { randomDecide } from "../../source/randomDecide.js"
+import { randomDecide } from "../../source/randomDecide.js";
 import { createIntelligence, decide } from "../../source/qlearn.js";
-import { draw, report } from "./draw.js";
+import { draw } from "./draw.js";
 import { initialState } from "./initialState.js";
 import { scheduleNext } from "../scheduleNext.js";
 
-
+const framesASecond = 60;
 const isValidPosition = (w, max) => {
     return w >= 0 && w <= max;
 };
@@ -43,11 +43,11 @@ const updateGame = (action, state, reward) => {
             state.score += reward;
         }
     });
-    state.missiles = state.missiles.filter(([dangerX, dangerY]) => {
+    state.missiles = state.missiles.filter(([, dangerY]) => {
         return isValidPosition(dangerY, state.maxY);
     });
     state.missiles.forEach(missile => {
-        missile[1] -= 1
+        missile[1] -= 1;
     });
 
     // the enemy emits a missile every n frames
@@ -55,7 +55,7 @@ const updateGame = (action, state, reward) => {
         state.missiles.push(state.positionEnemy.slice());
     }
     // move enemy from left to right periodically
-    if (state.frame % 60 > 30) {
+    if (state.frame % framesASecond > (framesASecond / 2)) {
         actions.moveLeft(state, state.positionEnemy);
     } else {
         actions.moveRight(state, state.positionEnemy);
@@ -67,7 +67,7 @@ const start = (options) => {
         reduceStateAndAction,
         learn,
         useIntelligence = true,
-        MAX_FRAMES = 20000,
+        MAX_FRAMES = 2 * 10 ** 4,
         display = false,
         reward = -1,
     } = options;
@@ -75,7 +75,7 @@ const start = (options) => {
     const state = deepCopy(initialState);
     const intelligence = createIntelligence();
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const step = () => {
             const scoreBefore = state.score;
             let stateActions;
@@ -99,7 +99,7 @@ const start = (options) => {
                 const scoreDifference = scoreAfter - scoreBefore;
                 learn(intelligence, previousStateActions, stateActions, actionName, actionNames, scoreDifference);
             }
-            state.frame++;
+            state.frame += 1;
             if (state.frame < MAX_FRAMES) {
                 scheduleNext(step);
             } else {

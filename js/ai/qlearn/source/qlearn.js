@@ -42,9 +42,9 @@ const averageQuality = (qualityForState) => {
 };
 
 const decide = (intelligence, stateActions, actionNames) => {
-    let qualityForState = intelligence.qualityMap.get(stateActions);
+    const qualityForState = intelligence.qualityMap.get(stateActions);
     if (!qualityForState) {
-        return actionNames[0] // take first (random)
+        return actionNames[0]; // take first (random)
     }
 
     return maxQualityActionName(qualityForState);
@@ -67,7 +67,7 @@ const createLearn = (getNextQualityEstimation) => {
         if (nextQualityForState) {
             nextQualityEstimation = getNextQualityEstimation(nextQualityForState);
         } else {
-            nextQualityEstimation = intelligence.defaultQuality
+            nextQualityEstimation = intelligence.defaultQuality;
         }
 
         const previousQuality = qualityForState.get(previousAction);
@@ -75,7 +75,7 @@ const createLearn = (getNextQualityEstimation) => {
             reward +
             intelligence.discountFactor * (nextQualityEstimation - previousQuality)
         ) - intelligence.exploreBonus);
-    }
+    };
 };
 
 const learn = createLearn(maxQuality);

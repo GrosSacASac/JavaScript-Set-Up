@@ -37,7 +37,7 @@ const actions = {
         state.position[0] = futureX;
     },
     moveUp: (state) => {
-        const [x, y] = state.position;
+        const [, y] = state.position;
         const futureY = y + 1;
         if (!isValidPosition(futureY, state.maxY)) {
             return;
@@ -45,7 +45,7 @@ const actions = {
         state.position[1] = futureY;
     },
     moveDown: (state) => {
-        const [x, y] = state.position;
+        const [, y] = state.position;
         const futureY = y - 1;
         if (!isValidPosition(futureY, state.maxY)) {
             return;
@@ -61,7 +61,7 @@ const updateGame = (action, state) => {
         if (x === dangerX && y === dangerY) {
             state.score -= 1;
             state.position = [0, 0];
-            state.dangersTouched.push(frame)
+            state.dangersTouched.push(frame);
         }
     });
     state.rewards.forEach(([X, Y]) => {
@@ -74,9 +74,9 @@ const updateGame = (action, state) => {
 };
 
 
-const state = initialState;
 const actionNames = Object.keys(actions);
 const step = () => {
+    const state = initialState;
     const stateActions = reduceStateAndAction(state);
     const scoreBefore = state.score;
     const actionName = decide(intelligence, stateActions, actionNames);
@@ -89,7 +89,7 @@ const step = () => {
     const scoreAfter = state.score;
     const reward = scoreAfter - scoreBefore;
     learn(intelligence, stateActions, stateActionsAfter, actionName, actionNames, reward);
-    frame++;
+    frame += 1;
     if (frame < MAX_FRAMES) {
         scheduleNext(step);
     } else {

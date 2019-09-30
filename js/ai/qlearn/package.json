@@ -6,35 +6,46 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
   "repository": {
-      "type": "git",
-      "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-      "directory": "js/ai/qlearn"
-    },
-    "files": [
-        "source",
-        "readme.md",
-        "license.txt"
-    ],
-    "scripts": {
-        "lint-fix": "eslint --fix source examples",
-        "lint": "eslint source examples"
-    },
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/ai/qlearn"
+  },
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ],
+  "scripts": {
+    "lint-fix": "eslint --fix source examples",
+    "lint": "eslint source examples",
+    "node-1": "node --experimental-modules examples/eatFoodAvoidDanger/eatFoodAvoidDanger.js",
+    "deno-1": "deno examples/eatFoodAvoidDanger/eatFoodAvoidDanger.js",
+    "node-2": "node --experimental-modules examples/dodgeShoot/start.js",
+    "deno-2": "deno examples/dodgeShoot/start.js",
+    "visual": "deno examples/dodgeShoot/visualDemo.js",
+    "serve": "serve ."
+  },
   "dependencies": {},
   "devDependencies": {
     "eslint": "^6.5.0",
-    "eslint-config-red": "^1.4.1"
+    "eslint-config-red": "^1.4.1",
+    "utilsac": "^11.0.0",
+    "serve": "^11.2.0"
   },
   "eslintConfig": {
-    "extends": ["red"],
+    "root": true,
+    "extends": [
+      "red"
+    ],
     "parserOptions": {
       "ecmaVersion": 2020,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,  
+      "es6": true,
       "browser": true
     },
     "rules": {}
-}
+  }
 }

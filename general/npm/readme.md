@@ -47,3 +47,10 @@ Get an overwiew of the package "pac", latest versions, published dates, tags, et
 ## `npm uninstall`
 
 `npm uninstall pac` removes pac from node_modules and package.json and packagelock. Alternatively remove a package from package.json manually and `npm prune` to remove it from node_modules after.
+
+## `what is lock file`
+
+`npm install` installs all the dependencies in your application and all the sub-dependencies, on which your applicaiton dependencies depends upon and so on. But the problem is, `package.json` does not contain the version of these installed sub-dependencies. If The verison of these installed sub-dependencies are not mentioned, then the system compatiable version are installed. So in this way it can cause a problem in different system. So there is need to store verison of these sub-dependencies and their sub-dependencies and so on. So this problem is solved by `lock file`.
+
+
+`lock file` makes the `tree of these dependencies and sub-dependencies and their version` and whenever you run `npm install` it check the tree form `lock file` and install all the dependencies of specified verison. **Do not forget to commit this file.**

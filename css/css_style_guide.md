@@ -2,7 +2,7 @@
 
 ## Semantics first
 
-Want to make text look big ? Think about the reason first, maybe it is a title and `<h1-6>` should be used. Maybe it is an important word, use `<strong>`. Once the correct semantic is used, you may have a selector ready.
+Want to make text look big ? Think about the reason first, maybe it is a title and `<h1-6>` should be used. Maybe it is an important word, use `<strong>`. If it is a subtitle, use `body` and `overline` variant. Once the correct semantic is used, you may have a selector ready. Read the full Material Design guideline to design [Typogrrphy](https://material.io/design/typography/the-type-system.html#)
 
 ## Sub-categorize CSS
 

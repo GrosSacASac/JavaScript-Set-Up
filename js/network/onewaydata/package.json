@@ -25,5 +25,18 @@
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-red": "^1.4.1"
+  },
+  "eslintConfig": {
+    "extends": ["red"],
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {}
+    },
+    "env": {
+      "es6": true,  
+      "browser": true
+    },
+    "rules": {}
   }
 }

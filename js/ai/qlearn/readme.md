@@ -64,7 +64,7 @@ Will use `.qualityMap`.
 
 
 ```js
-const actionName = decide({intelligence, stateAction, actionNames});
+const actionName = decide({intelligence, stateActions, actionNames});
 ```
 
 Alternatively use partial random decide. It is the same function, except it randomly decides 20% of the time.
@@ -72,7 +72,7 @@ Alternatively use partial random decide. It is the same function, except it rand
 ```js
 import { partialRandomDecide } from "qlearn/source/partialRandomDecide.js";
 
-const actionName = partialRandomDecide(intelligence, stateAction, actionNames);
+const actionName = partialRandomDecide(intelligence, stateActions, actionNames);
 ```
 
 ### `learn()`

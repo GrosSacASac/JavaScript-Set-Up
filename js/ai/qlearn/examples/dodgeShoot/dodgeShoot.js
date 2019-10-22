@@ -1,6 +1,6 @@
 export { start };
 
-import { deepCopy } from "../../node_modules/utilsac/utility.js";
+import { deepCopy } from "../../node_modules/utilsac/deep.js";
 import { randomDecide } from "../../source/randomDecide.js";
 import { createIntelligence, decide } from "../../source/qlearn.js";
 import { draw } from "./draw.js";

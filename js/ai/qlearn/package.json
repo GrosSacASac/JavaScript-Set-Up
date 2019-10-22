@@ -1,6 +1,6 @@
 {
   "name": "qlearn",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "type": "module",
   "module": "./source/qlearn.js",
   "license": "CC0-1.0",
@@ -29,8 +29,8 @@
   "devDependencies": {
     "eslint": "^6.5.0",
     "eslint-config-red": "^1.4.1",
-    "utilsac": "^11.0.0",
-    "serve": "^11.2.0"
+    "serve": "^11.2.0",
+    "utilsac": "^12.1.0"
   },
   "eslintConfig": {
     "root": true,

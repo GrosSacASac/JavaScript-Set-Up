@@ -202,6 +202,48 @@ d.toLocaleDateString();
 // and other toString variants
 ```
 
+### sets
+
+Yes
+
+```js
+new Set();
+```
+
+#### When to use sets over arrays
+
+ * No duplicates are wanted
+ * The order is irrelevant
+
+
+### maps
+
+Yes
+
+```js
+new Map();
+```
+
+#### When to use maps over objects
+
+In the following situations:
+
+ * Keys are something else than string or symbol
+ * Continuous adding and removal of key-value pairs
+ * Keys are unknown or can be anything
+ 
+### absence of value
+
+Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
+
+### booleans
+
+`true` or `false`, use `Boolean` function to force cast to a boolean. Do not use `!!` to cast to a boolean. Leverage truthy values in `if` and `while`.
+
+### promises
+
+Prefer promises over callbacks for one-time futures. Use `async`, `await` , `Promise.all`.
+
 ### if else
 
 Always use multi-line brackets.
@@ -243,10 +285,6 @@ import * as z from "./z.js";
 const y = 5;
 ```
 
-### promises
-
-Prefer promises over callbacks for one-time futures. Use `async`, `await` , `Promise.all`.
-
 ### Limit variable reach
 
 Historically it has been done with an immediately invoked function expression, now that let and const are available and block scoped use a simple block. With an iife:
@@ -275,14 +313,6 @@ let nextSquare;
     };
 }
 ```
-
-### absence of value
-
-Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
-
-### booleans
-
-`true` or `false`, use `Boolean` function to force cast to a boolean. Do not use `!!` to cast to a boolean. Leverage truthy values in `if` and `while`.
 
 ### global built-ins
 

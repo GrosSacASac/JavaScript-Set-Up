@@ -110,7 +110,7 @@ Hero.teleport(hero, [100, 100]);
 
 ### array, object, import, export
 
-Use multiple lines for 3 or more items.
+Use multiple lines for 4 or more items and consider it at 3 items.
 
 ### array
 

@@ -6,6 +6,11 @@ if (typeof requestAnimationFrame !== `undefined`) {
 } else {
     const DELAY = 0;
     scheduleNext = (callback, delay = DELAY) => {
+        // exceeds call stack
+        // if (delay === 0) {
+        //     callback();
+        // } else {
         setTimeout(callback, delay);
+        // }
     };
 }

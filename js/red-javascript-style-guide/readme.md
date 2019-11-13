@@ -642,6 +642,7 @@ Yes when it helps document the code, for example by acknowledging a given situat
 
 Use constants at the top of the scope.
 
+
 ---------------------
 
 ## About

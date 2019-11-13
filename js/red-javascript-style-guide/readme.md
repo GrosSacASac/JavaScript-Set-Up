@@ -280,7 +280,7 @@ Put them at the top of the file as they will be executed first. Put exports befo
 export { y };
 import { x } from "./x.js";
 import * as z from "./z.js";
-
+import FastAverageColor from "fast-average-color/dist/index.esm.js";
 
 const y = 5;
 ```
@@ -554,7 +554,9 @@ Optionally Pascal case for creator/constructors.
 
 Optionally all caps with underscores for top level constants that do not change across versions and runs.
 
-Package/module names and script names with lowercase with dashes. No dots. 
+Package/module names and script names with lowercase with dashes. No dots.
+
+Default imports use the same letters as the package name.
 
 #### Examples
 

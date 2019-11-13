@@ -552,9 +552,9 @@ Camel case for regular variables and file names. No spaces.
 
 Optionally Pascal case for creator/constructors.
 
-Optionally all caps with underscores for top level constants that do not change across versions and runs.
+Optionally MACRO_CASE (all caps with underscores) for top level constants that do not change across versions and runs.
 
-Package/module names and script names with lowercase with dashes. No dots.
+Package/module names and script names with Kebab case (lowercase with dashes). No dots.
 
 Default imports use the same letters as the package name.
 

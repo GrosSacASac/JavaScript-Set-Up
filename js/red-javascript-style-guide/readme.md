@@ -365,6 +365,31 @@ const max = Math.max(...numbers);
 ```
 
 
+### regular expressions
+
+Avoid when possible. Regular expression is a powerfull language that overlaps with JS constructs. Often a single line can obscure recursive and complex instructions. The tooling to debug and assess perfomance of regexs are lower than JS. 
+
+Avoid the constructor syntax. Use named groups. 
+
+```js
+let r = /[a-z]+/;
+```
+
+#### Alternatives
+
+##### Use regular objects
+
+Regex are sometimes used to extract informations out of a big string. Consider using an object instead that can be extracted with JSON for example.
+
+##### Raw String 
+
+ * `String.prototype.includes`
+ * `String.prototype.indexOf`
+ * `String.prototype.replace`
+ * `String.prototype.endsWith`
+ * `String.prototype.startsWith`
+
+
 ### ternary operator
 
 Prefer `if else`,  as they can be extended and are cleaner.

@@ -28,8 +28,8 @@ import {
     attachWebSocketServer,
     CONNECT,
     DISCONNECT,
-	ERROR,
-	DEFAULT_CHANNEL,
+    ERROR,
+    DEFAULT_CHANNEL,
 } from "socketiyo";
 import {
     maxClients,

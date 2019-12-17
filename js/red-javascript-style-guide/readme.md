@@ -666,19 +666,23 @@ Inside package.json
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,  
+      "es2020": true,  
       "browser": true
     },
     "rules": {}
 }
 ```
 
-Inside package.json>scripts
+If code is meant for other environments other than browser, [add them to "env"](https://eslint.org/docs/user-guide/configuring#specifying-environments)
+
+Inside package.json > scripts
 
 ```
     "lint-fix": "eslint --ignore-path .gitignore --fix source",
     "lint": "eslint --ignore-path .gitignore source",
 ```
+
+where source is the folder containing all the files to lint.
 
 ### Inspiration
 

@@ -1,5 +1,4 @@
 // draft
-// todo use https://github.com/felixge/node-formidable/
 import http from "http";
 import fs from "fs";
 

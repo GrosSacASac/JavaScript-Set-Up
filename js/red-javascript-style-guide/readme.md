@@ -489,7 +489,7 @@ Avoid relying on asi to be consistent and have less edge cases to remember.
 
 ### try catch over everything
 
-Use `try catch` on individual statements that are expected to fail. Generally avoid `try catch` entirely if possible.
+Use `try catch` on individual statements that are expected to fail for code clarity it makes it obvious which one is expected to fail. Generally avoid `try catch` entirely if possible. Validate input as early as possible to avoid potential error management in the middle of the function body.
 
 ### try catch finally
 

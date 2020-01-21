@@ -642,6 +642,35 @@ Yes when it helps document the code, for example by acknowledging a given situat
 
 Use constants at the top of the scope.
 
+### package.json (when used)
+
+### Order by what you want to see the most.
+
+1. Name, version, description, license, author (What is it ?)
+2. type, main, module (What is the entry file ?)
+3. scripts (What commands  are available ?)
+4. dependencies, optionalDependencies, peerDependencies devDependencies (What does it use ?)
+5. configs (How is it configured ?)
+6. files, repository, keywords (Meta, publishing, distribution)
+
+Avoid peerDependencies because they create more problems than they solve, instead specify them in the documentation.
+
+### Minimal example
+
+```json
+{
+  "name": "utilsac-example",
+  "version": "15.0.0",
+  "description": "Utility functions",
+  "license": "CC0-1.0",
+  "type": "module",
+  "main": "utility.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/utilsac-example.git"
+  }
+}
+```
 
 ---------------------
 

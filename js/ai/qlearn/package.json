@@ -1,20 +1,10 @@
 {
   "name": "qlearn",
-  "version": "5.0.2",
-  "type": "module",
-  "module": "./source/qlearn.js",
+  "version": "5.0.3",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/ai/qlearn"
-  },
-  "files": [
-    "source",
-    "readme.md",
-    "license.txt"
-  ],
+  "type": "module",
+  "module": "./source/qlearn.js",
   "scripts": {
     "lint-fix": "eslint --fix source examples",
     "lint": "eslint source examples",
@@ -52,5 +42,15 @@
       "browser": true
     },
     "rules": {}
+  },
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/ai/qlearn"
   }
 }

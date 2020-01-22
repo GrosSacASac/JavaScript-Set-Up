@@ -1,9 +1,10 @@
 {
   "name": "onewaydata",
-  "version": "5.0.1",
-  "main": "source/onewaydata.js",
-  "type": "module",
+  "version": "5.0.2",
   "license": "CC0-1.0",
+  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
+  "type": "module",
+  "main": "source/onewaydata.js",
   "scripts": {
     "lint-fix": "eslint --ignore-path .gitignore --fix source",
     "lint": "eslint --ignore-path .gitignore source"
@@ -11,17 +12,6 @@
   "dependencies": {
     "event-e3": "^8.0.2"
   },
-  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/network/onewaydata"
-  },
-  "files": [
-    "source",
-    "readme.md",
-    "license.txt"
-  ],
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-red": "^1.4.1"
@@ -38,5 +28,15 @@
       "browser": true
     },
     "rules": {}
+  },
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/network/onewaydata"
   }
 }

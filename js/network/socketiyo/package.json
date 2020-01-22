@@ -1,34 +1,20 @@
 {
   "name": "socketiyo",
-  "version": "6.5.3",
+  "version": "6.5.4",
   "description": "WebSocket-based, bi-directional events in between client and server",
-  "main": "./source/socketiyo.js",
-  "type": "module",
   "license": "CC0-1.0",
+  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
+  "type": "module",
+  "main": "./source/socketiyo.js",
+  "scripts": {
+    "lint-fix": "eslint --ignore-path .gitignore --fix source",
+    "lint": "eslint --ignore-path .gitignore source"
+  },
   "dependencies": {
     "event-e3": "^8.0.0",
     "socketiyo-shared": "^2.0.3",
     "utilsac": "^10.4.1"
   },
-  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/network/onewaydata"
-  },
-  "files": [
-    "source",
-    "readme.md",
-    "license.txt"
-  ],
-  "keywords": [
-    "WebSocket",
-    "event",
-    "reconnect",
-    "real",
-    "time",
-    "light"
-  ],
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-red": "^1.4.1"
@@ -46,8 +32,22 @@
     },
     "rules": {}
   },
-  "scripts": {
-    "lint-fix": "eslint --ignore-path .gitignore --fix source",
-    "lint": "eslint --ignore-path .gitignore source"
-  }
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/network/onewaydata"
+  },
+  "keywords": [
+    "WebSocket",
+    "event",
+    "reconnect",
+    "real",
+    "time",
+    "light"
+  ]
 }

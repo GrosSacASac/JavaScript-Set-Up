@@ -1,9 +1,10 @@
 {
   "name": "socketiyo-client",
-  "version": "4.1.4",
+  "version": "4.1.5",
+  "license": "CC0-1.0",
+  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "type": "module",
   "main": "./source/socketiyo-client.js",
-  "license": "CC0-1.0",
   "scripts": {
     "lint-fix": "eslint --ignore-path .gitignore --fix source",
     "lint": "eslint --ignore-path .gitignore source"
@@ -12,17 +13,6 @@
     "event-e3": "^8.0.0",
     "socketiyo-shared": "^2.0.3"
   },
-  "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/network/onewaydata"
-  },
-  "files": [
-    "source",
-    "readme.md",
-    "license.txt"
-  ],
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-red": "^1.4.1"
@@ -41,5 +31,15 @@
       "browser": true
     },
     "rules": {}
+  },
+  "files": [
+    "source",
+    "readme.md",
+    "license.txt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+    "directory": "js/network/onewaydata"
   }
 }

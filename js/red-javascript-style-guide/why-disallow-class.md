@@ -6,7 +6,7 @@
 
 `this`, `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `Object.getPrototypeOf`, `__proto__`, `instanceof`, `typeof`, `.prototype.isPrototypeOf` The mental overhead is there.
 
-### Not transerrable in between realms
+### Not transferrable in between realms
 
 Web Worker, Local Storage, Browser, Server. An instance of a class transferred will lose its prototype chain. In order to use the class methods with the instance one has to reinstanciate which requires extra code compared to the plain object alternative.
 

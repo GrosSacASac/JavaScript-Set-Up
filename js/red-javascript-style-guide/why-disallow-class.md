@@ -22,7 +22,9 @@ Explicit code is generally easier to read and understand.
 
 When using the class keyword I tend to think in an everything-is-an-object mental model, which is less flexible than the data-oriented mental model.
 
+### class makes it harder to split methods
 
+across several files.
 
 ### class forces the calling code to use new
 

@@ -2,7 +2,7 @@
 
 ## Slides
 
-Original slides in ./presentation/dm.html
+Original slides in [./presentation/dm.html](./presentation/dm.html)
 
 ## What
 

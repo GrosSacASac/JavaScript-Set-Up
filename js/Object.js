@@ -20,6 +20,8 @@ anObject = {
 
 // assign simple
 anObject["key"] = "value";
+// alternative syntax
+anObject.key = "value";
 
 // assign multiple
 Object.assign(anObject, {

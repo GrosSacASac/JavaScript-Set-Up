@@ -16,6 +16,7 @@ anObject = Object.create(null);
 anObject = {
     "key1": "value1",
     "key2": "value2",
+    "key3": "value3",
 };
 
 // assign simple
@@ -28,6 +29,17 @@ Object.assign(anObject, {
     "key1": "value1",
     "key2": "value2"
 });
+
+// shallow clone
+const clone = Object.assign({}, anObject);
+
+// partial shallow clone by inclusion
+const partialClone = (({key1, key3}) => {
+    return {key1, key3};
+})(anObject);
+
+// partial shallow clone by exclusion
+const {key2, ...partialClone} = anObject;
 
 // get a specific value
 anObject["key"];

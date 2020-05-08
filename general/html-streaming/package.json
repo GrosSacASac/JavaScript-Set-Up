@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "dom99": "^17.3.2",
-    "express": "^4.16.4"
+    "polka": "^0.5.2"
   },
   "devDependencies": {
     "rollup": "^1.1.2"

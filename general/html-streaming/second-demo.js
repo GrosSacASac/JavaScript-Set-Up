@@ -1,4 +1,5 @@
-import express from "express";
+import polka from "polka";
+import { makeSendFileAvailable } from "./sendFile.js";
 import { dirname } from "path";
 import url from "url";
 
@@ -6,9 +7,8 @@ import url from "url";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const {json} = express;
-const app = express();
-const jsonMiddleWare = json({strict: false});
+const app = polka();
+app.use(makeSendFileAvailable);
 
 const PORT = 8081;
 const TIME_OUT_LIMIT = 1000 * 60 * 60;
@@ -53,13 +53,21 @@ app.get('/viewer', function (request, response) {
     // call this to close response.end(htmlEnd);
 });
 
-app.put('/updateNumber', jsonMiddleWare, function (request, response) {
-    number = request.body;
-    subScribers.forEach(function (responseSubscriber) {
-        responseSubscriber.write(`<p>${number}</p>`);
+app.put('/updateNumber', function (request, response) {
+    let body = ``;
+    request.on(`data`, function (x) {
+        body = `${body}${x}`;
     });
-    response.writeHead(204);
-    response.end();
+    request.on(`end`, function () {
+        number = Number(body);
+        if (!Object.is(number, NaN)) {
+            subScribers.forEach(function (responseSubscriber) {
+                responseSubscriber.write(`<p>${number}</p>`);
+            });
+        }    
+        response.writeHead(204);
+        response.end();
+    });
 });
 
 const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));

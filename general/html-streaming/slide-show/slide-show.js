@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
-import express from "express";
+import polka from "polka";
+import { makeSendFileAvailable } from "../sendFile.js";
 import { dirname } from "path";
 import url from "url";
 
@@ -8,8 +9,8 @@ const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 
-const app = express();
-
+const app = polka();
+app.use(makeSendFileAvailable);
 
 const PORT = 8080;
 const TIME_OUT_LIMIT = 1000 * 60 * 60;

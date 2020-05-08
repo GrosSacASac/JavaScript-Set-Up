@@ -1,5 +1,4 @@
-"use strict";
-const http = require(`http`);
+import { createServer } from "http";
 
 const PORT = 8080;
 
@@ -52,7 +51,7 @@ const htmlInsideBody = `<h1 id="html-streaming">HTML Streaming</h1>
 <a href="https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page">https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page</a></p>`.split(``);
 
 const INTERVAL = 25; // ms
-const server = http.createServer((request, response) => {
+const server = createServer((request, response) => {
   response.setHeader(`Content-Type`, `text/html`);
   response.writeHead(200);
   response.write(htmlStart);

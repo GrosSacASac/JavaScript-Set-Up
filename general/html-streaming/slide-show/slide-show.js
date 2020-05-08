@@ -1,19 +1,25 @@
-"use strict";
+import { readFileSync } from "fs";
+import express from "express";
+import { dirname } from "path";
+import url from "url";
 
-const fs = require(`fs`);
-const express = require(`express`);
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 const app = express();
 
 
 const PORT = 8080;
 const TIME_OUT_LIMIT = 1000 * 60 * 60;
 
-const css = fs.readFileSync(`./slide-show/css.css`);
+const css = readFileSync(`./slide-show/css.css`);
 
-const headLoaded = fs.readFileSync(`./slide-show/headLoaded.js`);
+const headLoaded = readFileSync(`./slide-show/headLoaded.js`);
 
-const withSVG = fs.readFileSync(`./diagrams/with.svg`);
-const withoutSVG = fs.readFileSync(`./diagrams/without.svg`);
+const withSVG = readFileSync(`./diagrams/with.svg`);
+const withoutSVG = readFileSync(`./diagrams/without.svg`);
 
 const htmlStart = `<!doctype html>
 <html lang="en">

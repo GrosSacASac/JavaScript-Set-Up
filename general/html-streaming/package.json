@@ -1,7 +1,7 @@
 {
   "name": "html-streaming",
-  "version": "2.0.0",
-  "description": "",
+  "version": "2.0.1",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,13 +10,12 @@
     "build-demo3": "rollup slide-show/slide-controller.js --output.format es --name \"slidecontroller\" --output.file slide-show/built-slide-controller.js",
     "demo3": "node slide-show/slide-show.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "dom99": "^17.3.2",
     "express": "^4.16.4"
   },
   "devDependencies": {
     "rollup": "^1.1.2"
-  }
+  },
+  "private": true
 }

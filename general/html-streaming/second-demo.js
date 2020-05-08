@@ -1,8 +1,14 @@
-"use strict";
+import express from "express";
+import { dirname } from "path";
+import url from "url";
 
-const express = require('express');
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const {json} = express;
 const app = express();
-const jsonMiddleWare = express.json({strict: false});
+const jsonMiddleWare = json({strict: false});
 
 const PORT = 8081;
 const TIME_OUT_LIMIT = 1000 * 60 * 60;

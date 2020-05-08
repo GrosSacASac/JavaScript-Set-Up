@@ -42,7 +42,7 @@ const subScribers = [];
 app.get('/', (request, response) => response.sendFile(`${__dirname}/controller.html`));
 app.get('/controller.js', (request, response) => response.sendFile(`${__dirname}/controller.js`));
 app.get('/dom99.js',
-    (request, response) => response.sendFile(`${__dirname}/node_modules/dom99/built/dom99ES.js`));
+    (request, response) => response.sendFile(`${__dirname}/node_modules/dom99/built/dom99.es.js`));
 
 app.get('/viewer', function (request, response) {
     response.setHeader(`Content-Type`, `text/html`);

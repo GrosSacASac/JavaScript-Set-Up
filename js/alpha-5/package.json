@@ -1,0 +1,53 @@
+{
+    "name": "alpha-5",
+    "version": "1.0.0",
+    "description": "",
+    "license": "CC0-1.0",
+    "type": "module",
+    "main": "alpha-5.js",
+    "scripts": {
+      "test": "ava"
+    },
+    "devDependencies": {
+      "ava": "^3.4.0"
+    },
+    "eslintConfig": {
+      "extends": [
+        "red"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {}
+      },
+      "env": {
+        "es2020": true
+      }
+    },
+    "ava": {
+      "nodeArguments": [
+        "--experimental-modules"
+      ],
+      "files": [
+        "tests/specification/**"
+      ]
+    },
+    "files": [
+      "alpha-5.js",
+      "readme.md",
+      "license.txt",
+      "changelog.md"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git"
+    },
+    "keywords": [
+      "5",
+      "bit",
+      "encode",
+      "decode",
+      "compact"
+    ]
+  }
+  

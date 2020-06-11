@@ -1,4 +1,9 @@
-export { encode, decode };
+export { 
+    encode, decode, BIT_LENGTH, ALPHABET_LENGTH,// public
+    _0To31NumberFromCharacter,
+    _0To31NumbersFromString,
+    _compactUInt8ArrayFrom0To31Numbers,
+};
 
 
 const UTF_OFFSET_A = 97;
@@ -14,17 +19,19 @@ const EXTRAS = [
 const BIT_LENGTH = 5;
 const BYTE = 8;
 
-const _0To31NumbersFromString = string => {
-    return string.split(``).map(character => {
-        const numberRepresentation = character.charCodeAt(0) - UTF_OFFSET_A;
-        if (numberRepresentation >= ALPHABET_LENGTH || numberRepresentation < 0) {
-            if (EXTRAS.includes(character)) {
-                return EXTRAS.indexOf(character) + ALPHABET_LENGTH;
-            }
-            return undefined;
+const _0To31NumberFromCharacter = character => {
+    const numberRepresentation = character.charCodeAt(0) - UTF_OFFSET_A;
+    if (numberRepresentation >= ALPHABET_LENGTH || numberRepresentation < 0) {
+        if (EXTRAS.includes(character)) {
+            return EXTRAS.indexOf(character) + ALPHABET_LENGTH;
         }
-        return numberRepresentation;
-    }).filter(number => {
+        return undefined;
+    }
+    return numberRepresentation;
+};
+
+const _0To31NumbersFromString = string => {
+    return string.split(``).map(_0To31NumberFromCharacter).filter(number => {
         return number !== undefined;
     });
 };
@@ -38,7 +45,11 @@ const stringFrom0To31Numbers = numbers => {
     }).join(``);
 };
 
-const compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
+const addNumberIntoByte = (number, existingByte = 0, offset, BitLength = BIT_LENGTH) => {
+
+};
+
+const _compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
     const byteLength = Math.ceil((_0To31Numbers.length * BIT_LENGTH) / BYTE);
     const compactUInt8Array = new Uint8Array(byteLength);
     const enoughSpace = BYTE - BIT_LENGTH;
@@ -53,9 +64,9 @@ const compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
             offset += BIT_LENGTH;
             lastPrintNeeded = true;
         } else {
-            const toShift = BIT_LENGTH - (BYTE - offset);
+            const toShift = BYTE - BIT_LENGTH - offset;
             const nextOffset = BIT_LENGTH - toShift;
-            const toAdd = number >> toShift;
+            const toAdd = number << toShift;
             remainder += toAdd;
 
             compactUInt8Array[byteIndex] = remainder;
@@ -127,7 +138,7 @@ const _0To31NumbersFromCompactUInt8Array = compactUInt8Array => {
 
 const encode = string => {
     const _0To31Numbers = _0To31NumbersFromString(string);
-    const uInt8Array = compactUInt8ArrayFrom0To31Numbers(_0To31Numbers);
+    const uInt8Array = _compactUInt8ArrayFrom0To31Numbers(_0To31Numbers);
     return uInt8Array;
 };
 

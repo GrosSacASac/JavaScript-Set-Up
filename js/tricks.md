@@ -127,3 +127,9 @@ const handler = {
 
 ```
 
+## Two dots to access number prototype
+
+240.toString(2) -> SyntaxError
+240..toString(2) -> '11110000'
+
+The parser expects a number after the first dot. And omitting the 0 is a shorthand.

@@ -10,7 +10,7 @@ array = Array(); // avoid because it is unsafe
 // set
 array[5] = "Hi";
 
-//get
+// get
 const seventhItem = array[6];
 
 // get the length
@@ -61,7 +61,7 @@ if (specificItemPosition !== -1) {
     array.splice(specificItemPosition, 1);
 }
 
-// replace an item
+// replace an item, safe
 let array = [1, 2, 3, "removeMe", 10];
 const itemToBeRemoved = "removeMe";
 const itemToBeInserted = "I am new";

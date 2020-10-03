@@ -1,5 +1,8 @@
-export { 
-    encode, decode, BIT_LENGTH, ALPHABET_LENGTH,// public
+export {
+    // public
+    encode, decode,
+    BIT_LENGTH, ALPHABET_LENGTH,
+    // private
     _0To31NumberFromCharacter,
     _0To31NumbersFromString,
     _compactUInt8ArrayFrom0To31Numbers,
@@ -54,47 +57,47 @@ const _compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
     const compactUInt8Array = new Uint8Array(byteLength);
 
     let bitPosition = 0;
-    let currentByte = 0;
+    let currentNumberToBeSaved = 0;
     let byteIndex = 0;
-    let lastPrintNeeded = false;
+    
     const saveByte = (number) => {
-        console.log(`save ${number} (${number.toString(2)})`)
+        console.log(`save ${number} (${number.toString(2).padStart(8, "0")})`)
         compactUInt8Array[byteIndex] = number;
         byteIndex += 1;
-        currentByte = 0;
+        currentNumberToBeSaved = 0;
         bitPosition = 0;
     };
     _0To31Numbers.forEach(number => {
-        if (bitPosition + BIT_LENGTH < BYTE) { // can fit at once
+        if (bitPosition + BIT_LENGTH <= BYTE) { // can fit at once
             const toShift = BYTE - BIT_LENGTH - bitPosition;
-            currentByte += number << toShift;
+            currentNumberToBeSaved += number << toShift;
             bitPosition += BIT_LENGTH;
             
             if (bitPosition === BYTE) {
-                saveByte(currentByte);
+                saveByte(currentNumberToBeSaved);
             }
         } else { // cannot fit at once
             const shiftRight = -BYTE + bitPosition + BIT_LENGTH; // 2
             const missedBits = BIT_LENGTH - shiftRight; // 3
             const clamped = number >> shiftRight;
-            currentByte += clamped;
+            currentNumberToBeSaved += clamped;
             
-            saveByte(currentByte);
+            saveByte(currentNumberToBeSaved);
             
             const substractHead = clamped << shiftRight;
             const rest = number - substractHead;
-            currentByte += rest << (BYTE+1) - missedBits;
-            bitPosition += missedBits;
+            currentNumberToBeSaved += rest << (BYTE+1) - missedBits;
+            bitPosition += missedBits-1; //3
         }
     });
     // todo handle all cases
-    console.log(90,currentByte)
-    if (currentByte) {
-        saveByte(currentByte);
+    // console.log(90,currentNumberToBeSaved)
+    if (currentNumberToBeSaved) {
+        saveByte(currentNumberToBeSaved);
     } //else {
         //     compactUInt8Array[byteIndex] = remainder;
         // }
-        console.log(96,compactUInt8Array)
+    console.log("3_compactUInt8ArrayFrom0To31Numbers RESULT",compactUInt8Array)
     return compactUInt8Array;
 };
 
@@ -148,12 +151,62 @@ const _0To31NumbersFromCompactUInt8Array = compactUInt8Array => {
     return _0To31Numbers;
 };
 
-const encode = string => {
-    const _0To31Numbers = _0To31NumbersFromString(string);
-    const uInt8Array = _compactUInt8ArrayFrom0To31Numbers(_0To31Numbers);
-    return uInt8Array;
+const _bytesRequiredToSaveNumber = number => {
+    // maybe there is a simpler way
+    let bits = 0;
+    let divided = number;
+    while (divided > 0) {
+        bits += 1;
+        divided = divided >> 1;
+    }
+    const bytesRequired = Math.ceil(bits / BYTE);
+    console.log("bits required", bits);
+    console.log("bytes required", bytesRequired);
+    return bytesRequired;
 };
 
+const _initializeUint8WithLength = characters => {
+    const textBitLength = characters * BIT_LENGTH;
+    const textByteLength = Math.ceil(textBitLength / BYTE);
+    const bytesRequiredForTextByteLength = _bytesRequiredToSaveNumber(textByteLength);
+    let totalByteLength = 1 + bytesRequiredForTextByteLength + textByteLength;
+    let ArrayConstructor;
+    if (bytesRequiredForTextByteLength === 1) {
+        ArrayConstructor = Uint8Array;
+    } else if (bytesRequiredForTextByteLength === 2) {
+        ArrayConstructor = Uint16Array;
+        totalByteLength += 1; // see todo
+    } else if (bytesRequiredForTextByteLength === 3) {
+        console.warn(`unhandled case byte ${Byte} === 3`);
+    } else if (bytesRequiredForTextByteLength === 4) {
+        ArrayConstructor = Uint32Array;
+        totalByteLength += 3; // see todo
+    } else if (bytesRequiredForTextByteLength > 4) {
+        console.warn(`unhandled case byte ${Byte} > 4`);
+    }
+    const uInt8WithLength = new Uint8Array(totalByteLength);
+    uInt8WithLength[0] = bytesRequiredForTextByteLength;
+    const tempArray = new ArrayConstructor(uInt8WithLength.buffer);
+    // todo : solve problem this can leave empty spaces
+    tempArray[1] = textByteLength;
+    const offset = totalByteLength - textByteLength;
+    return [uInt8WithLength, offset];
+    
+};
+
+
+const _joinUint8Array = function (target, copyInto, byteOffset) {
+    target.set(copyInto, byteOffset);
+    return target;
+};
+
+const encode = string => {
+    const { length } = string;
+    const _0To31Numbers = _0To31NumbersFromString(string);
+    const [uInt8WithLength, offset] = _initializeUint8WithLength(length);
+    const uInt8Array = _compactUInt8ArrayFrom0To31Numbers(_0To31Numbers);
+    return _joinUint8Array(uInt8WithLength, uInt8Array, offset);
+};
 
 const decode = uInt8Array => {
     const _0To31Numbers = _0To31NumbersFromCompactUInt8Array(uInt8Array);

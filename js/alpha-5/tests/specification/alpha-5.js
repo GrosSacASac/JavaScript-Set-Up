@@ -68,7 +68,7 @@ test(`_compactUInt8ArrayFrom0To31Numbers
             0b10011000, // 5-6-7
             0b11101000, // 7-8
         ]))
-        
+
     t.deepEqual(_compactUInt8ArrayFrom0To31Numbers([1,2,3,4,5,6,7,8
     ]), Uint8Array.from([
         0b00001000, // 1-2

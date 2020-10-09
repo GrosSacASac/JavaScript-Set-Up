@@ -6,7 +6,7 @@
     "type": "module",
     "main": "alpha-5.js",
     "scripts": {
-      "test": "ava --timeout 1000h"
+      "test": "ava --timeout 24h"
     },
     "devDependencies": {
       "ava": "^3.4.0"

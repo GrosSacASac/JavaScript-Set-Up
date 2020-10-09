@@ -61,33 +61,33 @@ const _compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
     let byteIndex = 0;
     
     const saveByte = (number) => {
-        console.log(`save ${number} (${number.toString(2).padStart(8, "0")})`)
+        //console.log(`save ${number} (${number.toString(2).padStart(8, "0")})`)
         compactUInt8Array[byteIndex] = number;
         byteIndex += 1;
         numberToBeSaved = 0;
         bitPosition = 0;
     };
     _0To31Numbers.forEach(number => {
-        if (bitPosition + LETTER_LENGTH <= BYTE_LENGTH) { // can fit at once
+        if (bitPosition + LETTER_LENGTH < BYTE_LENGTH) { // can fit at once
             const toShift = BYTE_LENGTH - LETTER_LENGTH - bitPosition;
             numberToBeSaved += number << toShift;
             bitPosition += LETTER_LENGTH;
             
-            if (bitPosition === BYTE_LENGTH) {
+            if (bitPosition +1 === BYTE_LENGTH) {
                 saveByte(numberToBeSaved);
             }
         } else { // cannot fit at once
-            const shiftRight = -BYTE_LENGTH + bitPosition + LETTER_LENGTH; // 2
-            const missedBits = LETTER_LENGTH - shiftRight; // 3
-            const clamped = number >> shiftRight;
-            numberToBeSaved += clamped;
+            const shiftRight = -BYTE_LENGTH + LETTER_LENGTH + bitPosition; // 2
+            const spaceLeft = LETTER_LENGTH - shiftRight; // 3
+            
+            const firstHalfToAdd = number >> shiftRight;
+            const secondHalf = number - (firstHalfToAdd << shiftRight)
+            numberToBeSaved += firstHalfToAdd;
             
             saveByte(numberToBeSaved);
             
-            const substractHead = clamped << shiftRight;
-            const rest = number - substractHead;
-            numberToBeSaved += rest << (BYTE_LENGTH+1) - missedBits;
-            bitPosition += missedBits-1; //3
+            numberToBeSaved += secondHalf << (BYTE_LENGTH -LETTER_LENGTH + spaceLeft);
+            bitPosition += LETTER_LENGTH-spaceLeft; //3
         }
     });
     // todo handle all cases
@@ -97,7 +97,7 @@ const _compactUInt8ArrayFrom0To31Numbers = _0To31Numbers => {
     } //else {
         //     compactUInt8Array[byteIndex] = remainder;
         // }
-    console.log("3_compactUInt8ArrayFrom0To31Numbers RESULT",compactUInt8Array)
+    // console.log("3_compactUInt8ArrayFrom0To31Numbers RESULT",compactUInt8Array)
     return compactUInt8Array;
 };
 
@@ -214,11 +214,11 @@ const decode = uInt8Array => {
     return string;
 };
 
-console.log(37,_compactUInt8ArrayFrom0To31Numbers([1,2,3]))
-console.log(38,Uint8Array.from([
-    0b00001000, // 1-2
-    0b10000110, // 2-3
-]))
+// console.log(37,_compactUInt8ArrayFrom0To31Numbers([1,2,3]))
+// console.log(38,Uint8Array.from([
+    // 0b00001000, // 1-2
+    // 0b10000110, // 2-3
+// ]))
 // console.log(encode('abc def zxw aaa zzz'));
 // console.log(encode('a - z'));
 // console.log(encode('a'));

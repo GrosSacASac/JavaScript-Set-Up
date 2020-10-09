@@ -1,11 +1,10 @@
 import test from "ava";
 import { 
-    encode, decode, BIT_LENGTH,// public
+    encode, decode,// public
     _0To31NumberFromCharacter,
     _0To31NumbersFromString,
     _compactUInt8ArrayFrom0To31Numbers,
 } from "../../alpha-5.js";
-import { deepEqualAdded } from "../../deep.js";
 
 
 test(`_0To31NumberFromCharacter a`, t => {
@@ -47,6 +46,28 @@ test(`_compactUInt8ArrayFrom0To31Numbers
         0b10000110, // 2-3
         
     ]));
+});
+
+test(`_compactUInt8ArrayFrom0To31Numbers 
+    1, 00001
+    2, 00010
+    3, 00011
+    4, 00100`, t => {
+
+        console.log(56,_compactUInt8ArrayFrom0To31Numbers([1,2,3,4,]))
+        console.log(58,Uint8Array.from([
+            0b00001000, // 1-2
+            0b10000110, // 2-3-4
+            0b01000000, // 4
+        ]))
+
+    t.deepEqual(_compactUInt8ArrayFrom0To31Numbers([1,2,3,4,
+    ]), Uint8Array.from([
+        0b00001000, // 1-2
+        0b10000110, // 2-3-4
+        0b01000000, // 4
+    ]));
+    
 });
 
 test(`_compactUInt8ArrayFrom0To31Numbers 

@@ -98,6 +98,11 @@ anObject["key"] = undefined;
 // completly remove a property (key and value)
 delete anObject["key"];
 
+// completly remove multiple properties on a copy
+delete anObject["key"];
+let { key1, key2, ...rest } = anObject;
+// rest is now a partial copy of anObject
+
 // prevent future extensions
 Object.preventExtensions(anObject);
 anObject["newThing"] = 2; // Error in strict mode

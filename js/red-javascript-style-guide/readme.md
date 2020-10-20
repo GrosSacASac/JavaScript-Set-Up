@@ -699,6 +699,7 @@ Inside package.json
       "browser": true,
       "node": true,
       "serviceworker": true,
+      "worker": true
     },
     "rules": {}
 }

@@ -678,7 +678,7 @@ Avoid peerDependencies because they create more problems than they solve, instea
 
 ### Lint set-up
 
-Install eslint 6+ and eslint-red rules
+Install eslint and eslint-red rules
 
 ```
 npm i -D eslint eslint-config-red
@@ -690,17 +690,21 @@ Inside package.json
 "eslintConfig": {
     "extends": ["red"],
     "parserOptions": {
-      "ecmaVersion": 2020,
+      "ecmaVersion": 2021,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es2020": true,  
-      "browser": true
+      "es2021": true,  
+      "browser": true,
+      "node": true,
+      "serviceworker": true,
     },
     "rules": {}
 }
 ```
+
+Below es2021, remove unused evnironment.
 
 If code is meant for other environments other than browser, [add them to "env"](https://eslint.org/docs/user-guide/configuring#specifying-environments)
 

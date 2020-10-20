@@ -5,7 +5,8 @@
     "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide",
     "files": [
       "index.js",
-      "readme.md"
+      "readme.md",
+      "license.txt"
     ],
     "repository": {
       "type": "git",

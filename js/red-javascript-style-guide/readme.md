@@ -647,7 +647,7 @@ Use constants at the top of the scope.
 ### Order by what you want to see the most.
 
 1. Name, version, description, license, author, homepage (What is it ?)
-2. type, main, module, browser, bin (What is the entry file ?)
+2. type, main, module, browser, exports, bin (What is the entry file ?)
 3. scripts (What commands  are available ?)
 4. dependencies, optionalDependencies, peerDependencies devDependencies (What does it use ?)
 5. configs, engines, os, cpu (How is it configured ?)

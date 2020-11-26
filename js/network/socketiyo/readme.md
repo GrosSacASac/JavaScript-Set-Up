@@ -8,6 +8,11 @@ WebSocket-based, bi-directional events in between client and server.
  * Light-weight
  * Modern
 
+## Platforms
+
+ - socketiyo (server): NodeJs
+ - socketiyo-client: NodeJs, Web, Deno
+
 ## Usage
 
 ### Install
@@ -118,6 +123,10 @@ socketiYoServer.close()
 
 ### Client
 
+#### Import
+
+##### Node
+
 ```js
 import {
     createConnection,
@@ -128,7 +137,27 @@ import {
 } from "socketiyo-client/source/socketiyo-client.js";
 import { reconnectDelay, randomReconnectDelay, autoReconnect } from "socketiyo-client/source/defaultOptions.js";
 import { useDefaultLogging } from "socketiyo-client/source/defaultLogging.js";
+```
 
+##### Deno and Web
+
+
+```js
+import {
+    createConnection,
+    CONNECT,
+    DISCONNECT,
+    ERROR,
+    DEFAULT_CHANNEL
+} from "https://unpkg.com/socketiyo-client/source/socketiyo-client.js";
+import { reconnectDelay, randomReconnectDelay, autoReconnect } from "https://unpkg.com/socketiyo-client/source/defaultOptions.js";
+import { useDefaultLogging } from "https://unpkg.com/socketiyo-client/source/defaultLogging.js";
+```
+
+
+#### usage
+
+```js
 
 const socketiyoConnection = createConnection({
     url: `ws://localhost:8080/socketiyo`,

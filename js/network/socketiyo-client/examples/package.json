@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "serve": "serve ../.",
-    "node-client": "node  exampleNodeClient.js"
+    "node": "node  exampleNodeClient.js",
+    "deno": "deno run --allow-net exampleClient.js"
   },
   "devDependencies": {
       "serve": "^11.3.2"

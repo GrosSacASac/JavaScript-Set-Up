@@ -6,28 +6,28 @@
   "type": "module",
   "main": "./source/socketiyo-client.js",
   "scripts": {
-    "lint-fix": "eslint --ignore-path .gitignore --fix source",
-    "lint": "eslint --ignore-path .gitignore source"
+    "lint-fix": "eslint --ignore-path ../../../.gitignore --fix source",
+    "lint": "eslint --ignore-path ../../../.gitignore source"
   },
   "dependencies": {
     "event-e3": "^8.0.2",
     "socketiyo-shared": "^2.0.4"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
-    "eslint-config-red": "^1.4.1"
+    "eslint": "^7.14.0",
+    "eslint-config-red": "^1.8.1"
   },
   "eslintConfig": {
     "extends": [
       "red"
     ],
     "parserOptions": {
-      "ecmaVersion": 2020,
+      "ecmaVersion": 2021,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,
+      "es2021": true,
       "browser": true
     },
     "rules": {}

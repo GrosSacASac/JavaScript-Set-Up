@@ -9,7 +9,7 @@ import {
 
 const useDefaultLogging = ({ socketiyoConnection, logger = console }) => {
     socketiyoConnection.on(RECONNECTING, () => {
-        logger.log(`reconnecting`)
+        logger.log(`reconnecting`);
     });
 
     socketiyoConnection.on(DISCONNECT, x => {

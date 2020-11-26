@@ -20,10 +20,8 @@ useDefaultLogging({ socketiyoConnection });
 
 socketiyoConnection.on(DEFAULT_CHANNEL, (x) => {
     console.log(x);
-    document.body.textContent += x;
 });
 
 socketiyoConnection.on(`game/end`, (x) => {
     console.log(`game/end ${x}`);
-    document.body.textContent += x;
 });

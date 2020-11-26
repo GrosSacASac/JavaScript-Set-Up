@@ -4,7 +4,7 @@ export {
     CONNECT,
     DISCONNECT,
     ERROR,
-    DEFAULT_CHANNEL
+    DEFAULT_CHANNEL,
 };
 
 import {
@@ -17,7 +17,7 @@ import {
     defaultUnpackData,
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
-    DEFAULT_CHANNEL
+    DEFAULT_CHANNEL,
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
 const RECONNECTING = Symbol();
@@ -70,7 +70,7 @@ const createConnection = (options) => {
         if (connection.readyState === WebSocket.OPEN) {
             connection.send(x);
         } else {
-            delayedUntilOpen.push(x)
+            delayedUntilOpen.push(x);
         }
     };
     const sendOrDrop = (x) => {
@@ -93,7 +93,7 @@ const createConnection = (options) => {
         }
         sendOrDrop(packData({
             channel: eventName,
-            action: SUBSCRIBE_CHANNEL_ACTION
+            action: SUBSCRIBE_CHANNEL_ACTION,
         }));
     });
     facade.on(onLastUnsubscribeString, eventName => {
@@ -102,7 +102,7 @@ const createConnection = (options) => {
         }
         sendOrDrop(packData({
             channel: eventName,
-            action: UNSUBSCRIBE_CHANNEL_ACTION
+            action: UNSUBSCRIBE_CHANNEL_ACTION,
         }));
     });
     reconnect();

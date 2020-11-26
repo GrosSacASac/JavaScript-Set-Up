@@ -7,8 +7,8 @@
   "type": "module",
   "main": "./source/socketiyo.js",
   "scripts": {
-    "lint-fix": "eslint --ignore-path .gitignore --fix source",
-    "lint": "eslint --ignore-path .gitignore source"
+    "lint-fix": "eslint --ignore-path ../../../.gitignore --fix source",
+    "lint": "eslint --ignore-path ../../../.gitignore source"
   },
   "dependencies": {
     "event-e3": "^8.0.2",

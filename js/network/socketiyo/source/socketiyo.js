@@ -158,31 +158,31 @@ const attachWebSocketServer = (options) => {
     };
 
     const listen = (socket, message) => {
-        let error = validateLength(message, maxLength);
-        if (error) {
-            facade.emit(VALIDATE_MESSAGE_ERROR, error);
+        const validationError = validateLength(message, maxLength);
+        if (validationError) {
+            facade.emit(VALIDATE_MESSAGE_ERROR, validationError);
             return;
         }
 
         let parsed;
         try {
             parsed = unpackData(message);
-        } catch (error) {
-            facade.emit(MESSAGE_FORMAT_ERROR, { error, message });
+        } catch (parseError) {
+            facade.emit(MESSAGE_FORMAT_ERROR, { error: parseError, message });
             return;
         }
 
-        error = validateFormat(parsed);
-        if (error) {
-            facade.emit(MESSAGE_FORMAT_ERROR, { error, parsed });
+        const formatError = validateFormat(parsed);
+        if (formatError) {
+            facade.emit(MESSAGE_FORMAT_ERROR, { error: formatError, parsed });
             return;
         }
 
         const { channel, data, action } = parsed;
 
-        error = validateChannel(channel, maxChannelLength);
-        if (error) {
-            facade.emit(VALIDATE_CHANNEL_ERROR, error);
+        const validChannelError = validateChannel(channel, maxChannelLength);
+        if (validChannelError) {
+            facade.emit(VALIDATE_CHANNEL_ERROR, validChannelError);
             return;
         }
         if (action === SUBSCRIBE_CHANNEL_ACTION) {

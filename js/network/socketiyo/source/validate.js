@@ -6,14 +6,14 @@ import { bytesLengthFromString } from "utilsac";
 
 const validateFormat = parsedMessage => {
     if (!isObject(parsedMessage)) {
-        return 'message should be an object';
+        return `message should be an object`;
     }
     if (!Object.prototype.hasOwnProperty.call(parsedMessage, `channel`)) {
-        return 'message should have a channel';
+        return `message should have a channel`;
     }
     if (!Object.prototype.hasOwnProperty.call(parsedMessage, `data`) &&
         !Object.prototype.hasOwnProperty.call(parsedMessage, `action`)) {
-        return 'message should have data or action';
+        return `message should have data or action`;
     }
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "socketiyo-shared",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo-shared",
   "type": "module",
@@ -13,6 +13,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/network/onewaydata"
+    "directory": "js/network/socketiyo-shared"
   }
 }

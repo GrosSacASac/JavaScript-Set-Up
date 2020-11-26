@@ -40,6 +40,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-    "directory": "js/network/onewaydata"
+    "directory": "js/network/socketiyo-client"
   }
 }

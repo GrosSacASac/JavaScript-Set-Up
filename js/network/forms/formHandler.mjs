@@ -1,15 +1,21 @@
 // draft
 import http from "http";
+import formidable from "formidable";
 import fs from "fs";
+import url from "url";
+import path from "path";
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = 8000;
-const staticsPath = `./`;
+const upload = `upload`
+const staticsPath = `/`;
 const FORM_URLENCODED = `application/x-www-form-urlencoded`;
 const FORM_BYTES = `multipart/form-data`;
 
 const staticResponses = {
     [`/form.html`]: {
-        [`file`]: `${staticsPath}/form.html`,
+        [`file`]: `${__dirname}${staticsPath}form.html`,
         [`Content-Type`]: `text/html`
     },
 };
@@ -54,7 +60,24 @@ const server = http.createServer((request, response) => {
       handleSubmit(request, response);
       return;
   }
-    console.log(request.url);
+  if (request.method === `POST` && request.url === `/submitFormidable`) {
+      console.log(`make sure to create ${__dirname}/${upload} before`)
+    const form = formidable({ 
+        multiples: true,
+        uploadDir: `${__dirname}/${upload}`,
+        keepExtensions: true,
+        maxFileSize: 10**6,
+        maxFields: 0, // 0 makes it infinite,
+        maxFieldsSize: 10 ** 6
+    });
+
+    form.parse(request, (err, fields, files) => {
+        response.writeHead(200, { 'content-type': 'text/plain' });
+        response.end(JSON.stringify({ fields, files }, null, 2));
+    });
+    return;
+  }
+  console.log(request.url);
   response.setHeader(`Content-Type`, `text/plain`);
   response.writeHead(405);
   response.end(`Only use GET please`);

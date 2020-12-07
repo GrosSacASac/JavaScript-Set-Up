@@ -1,0 +1,12 @@
+{
+  "name": "forms",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "form": "node formHandler.mjs"
+  },
+  "private": true,
+  "dependencies": {
+    "formidable": "github:node-formidable/formidable"
+  }
+}

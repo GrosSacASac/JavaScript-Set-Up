@@ -87,7 +87,8 @@ const server = http.createServer((request, response) => {
 
 const start = function () {
     server.listen(PORT);
-    console.log(`Listening on ${PORT}`);
+    console.log(`Listening on ${PORT} try
+http://localhost:8000/form.html`);
 };
 
 start();

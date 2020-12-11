@@ -66,7 +66,7 @@ const server = http.createServer((request, response) => {
         multiples: true,
         uploadDir: `${__dirname}/${upload}`,
         keepExtensions: true,
-        maxFileSize: 10**6,
+        maxFileSize: 10**10,
         maxFields: 0, // 0 makes it infinite,
         maxFieldsSize: 10 ** 6
     });

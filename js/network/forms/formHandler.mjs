@@ -72,7 +72,7 @@ const server = http.createServer((request, response) => {
     });
 
     form.parse(request, (err, fields, files) => {
-        response.writeHead(200, { 'content-type': 'text/plain' });
+        response.writeHead(200, { 'Content-Type': 'text/plain' });
         response.end(JSON.stringify({ fields, files }, null, 2));
     });
     return;

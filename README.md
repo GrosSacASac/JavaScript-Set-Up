@@ -8,9 +8,11 @@ Have a look at the files inside
 
 ### JavaScript linting
 
+Follow a good [JavaScript Red Style Guide](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide)
+
 Use eslint or jslint
 
-make sure objects are what you think with https://github.com/sbansal6/schema-enforcer or Typescript.
+Make sure objects are what you think with https://github.com/sbansal6/schema-enforcer or Typescript.
 
 ### JavaScript tests
 

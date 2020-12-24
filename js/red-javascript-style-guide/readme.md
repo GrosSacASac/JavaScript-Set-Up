@@ -196,9 +196,9 @@ To display the date.
 const date = new Date();
 date.setTime(time);
 
-d.toLocaleString();
-d.toLocaleTimeString();
-d.toLocaleDateString();
+date.toLocaleString();
+date.toLocaleTimeString();
+date.toLocaleDateString();
 // and other toString variants
 ```
 

@@ -26,7 +26,7 @@ const report = ({ state, qualityMap }) => {
     const { frame, score } = state;
     // todo find out why this works (it is a map not object, it should not work)
     console.log(JSON.stringify(qualityMap, null, 2));
-    console.log(`qaulity map different set of states and actions ${qualityMap.size}`);
+    console.log(`quality map different set of states and actions ${qualityMap.size}`);
     console.log(`total frames ${frame}`);
     console.log(`score ${score}`);
 };

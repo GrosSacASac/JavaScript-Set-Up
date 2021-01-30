@@ -9,13 +9,13 @@
     "lint-fix": "eslint --fix source examples",
     "lint": "eslint source examples",
 
-    "node-1": "node --experimental-modules examples/eatFoodAvoidDanger/start.js",
-    "node-1-visual": "node --experimental-modules examples/eatFoodAvoidDanger/visualDemo.js",
+    "node-1": "node examples/eatFoodAvoidDanger/start.js",
+    "node-1-visual": "node examples/eatFoodAvoidDanger/visualDemo.js",
     "deno-1": "deno examples/eatFoodAvoidDanger/start.js",
     "deno-1-visual": "deno examples/eatFoodAvoidDanger/visualDemo.js",
     
-    "node-2": "node --experimental-modules examples/dodgeShoot/start.js",
-    "node-2-visual": "node --experimental-modules examples/dodgeShoot/visualDemo.js",
+    "node-2": "node examples/dodgeShoot/start.js",
+    "node-2-visual": "node examples/dodgeShoot/visualDemo.js",
     "deno-2": "deno examples/dodgeShoot/start.js",
     "deno-2-visual": "deno examples/dodgeShoot/visualDemo.js",
     "serve": "serve ."

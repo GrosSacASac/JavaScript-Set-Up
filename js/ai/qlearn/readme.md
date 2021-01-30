@@ -72,7 +72,7 @@ Alternatively use partial random decide. It is the same function, except it rand
 ```js
 import { partialRandomDecide } from "qlearn/source/partialRandomDecide.js";
 
-const actionName = partialRandomDecide(intelligence, stateActions, actionNames);
+const actionName = partialRandomDecide({intelligence, stateActions, actionNames});
 ```
 
 ### `learn()`

@@ -2,7 +2,7 @@
 
 ## Slides
 
-Original slides in [./presentation/dm.html](./presentation/dm.html)
+Original slides in [./presentation/dm.html](https://github.com/GrosSacASac/JavaScript-Set-Up/blob/master/general/npm/presentation/dm.html)
 
 ## What
 
@@ -10,9 +10,9 @@ Dependency management is the natural evolution of copy pasting code.
 
 First we write software, then we start a new project. We copy code from the first project. Ok now we fix a bug. we copy the fix back to the first project. Then we start a new project. It has some common parts of first and second project. We evolve those "internal dependencies". We manually copy paste. Be it with CLI or GUI it does not scale and is error prone.
 
-To solve this solution we make a simple scripts that copies everything for us. Then we scale the team. Maybe someone uses linux, another uses windows. The path are differents. It does not scale across team members. And how does a team-mate copy updated dependency utils or http to your project 1, which they don't have access to.
+To solve this solution we make a simple scripts that copies everything for us. Then we scale the team. Maybe someone uses Linux, another uses windows. The path are different. It does not scale across team members. And how does a team-mate copy updated dependency utils or http to your project 1, which they don't have access to.
 
-Thus arrises an industry standard tool to manage dependencies in a self contained, independently upgradable, versioned way. Enter npm, pip cargo area.
+Thus arises an industry standard tool to manage dependencies in a self contained, independently upgradable, versioned way. Enter npm, pip cargo area.
 
 Individual projects have a manifest file (package.json) that declares dependency+version couples. Each dependency is a self contained project. Other project depend on a certain version or version range. It scales across teams, only business logic agnostic dependencies are shared.
 
@@ -24,7 +24,7 @@ Using npm as an example, but almost everything is the same with others.
 
 ### npm cli
 
-The software that comes installed with NodeJs, it allows to run commands to install, uninstall, update dependencies against a given registry.
+The software that comes installed with Node.js, it allows to run commands to install, uninstall, update dependencies against a given registry.
 
 ### npm registry
 
@@ -77,7 +77,7 @@ This allows to patch dependencies, those patches themselves can be shared. It do
 
 These tools makes us so productive that we can forget that with one command we can install thousands of packages. But it still is only glorified copy paste. And pasted code should be reviewed.
 
-A lockfile describes the exact versions we have. The manifest file describes version ranges that we want. A lockfile prevents to accidently install a new version without manually doing so. Especially useful in teams. Updating a dependency should be reviewed with the same scrutinity than an install. There are tools to show the diff between two versions. To install a package safely for inspection purposes use the --ignore-scripts flag.
+A lockfile describes the exact versions we have. The manifest file describes version ranges that we want. A lockfile prevents to accidently install a new version without manually doing so. Especially useful in teams. Updating a dependency should be reviewed with the same scrutiny than an install. There are tools to show the diff between two versions. To install a package safely for inspection purposes use the --ignore-scripts flag.
 
 Once a package is reviewed consider using https://github.com/dpc/crev to mark it as safe for your trusted network.
 
@@ -110,7 +110,7 @@ To fully lock dependencies inside a package use shrinkwrap.json instead of packa
     Alternative to NodeJs, uses direct URLs inside imports, default TS support
     
 ### entropic
-    Federated registy, file based, not ready yet
+    Federated registry, file based, not ready yet
     
 ###  Bit https://bit.dev/components
     Opinionated and goal focused

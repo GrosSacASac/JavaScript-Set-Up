@@ -40,3 +40,25 @@ No units with `0` as value.
 
 
 ## Media Queries
+
+### Color scheme
+
+```css
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #eee0d9;
+    }
+}
+```
+
+### Size
+
+Mobile first
+
+```css
+@media only screen and (min-width:1200px) {
+  body {
+    font-size: 19px;
+  }
+}
+```

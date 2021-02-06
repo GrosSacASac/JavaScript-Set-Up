@@ -1,14 +1,16 @@
 # HTML Streaming
 
-HTML streaming is a browser feature. Streaming in programming is a gerneral purpose word to define a continous process as opposed to a long stand alone blocking one. Streaming with video means playing the first seconds while the rest is still downloading. In HTML it means that while the HTML document is still being downloaded, the first parts are already parsed and executed. That is why it is generally a good idea to put `<style>` as early as possible in the HTML document. From an user's persective, that is very convenient, the user can already read the first paragraph, while the rest of the document is still being downloaded. Nowadays, to experience the benefits of this feature, visit a page with a big document on a low brandwidth connection.
+[Code Examples on Github](https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/general/html-streaming)
 
-## Downloading is a Multy Party Process
+HTML streaming is a browser feature. Streaming in programming is a general purpose word to define a continuous process as opposed to a long stand alone blocking one. Streaming with video means playing the first seconds while the rest is still downloading. In HTML it means that while the HTML document is still being downloaded, the first parts are already parsed and executed. That is why it is generally a good idea to put `<style>` as early as possible in the HTML document. From an user's perspective, that is very convenient, the user can already read the first paragraph, while the rest of the document is still being downloaded. Nowadays, to experience the benefits of this feature, visit a page with a big document on a low bandwidth connection.
+
+## Downloading is a Multi Party Process
 
 There is a sender and a receiver. The receiver, in our case, a web browser can process received information before having received all of it. It can also pause, resume and cancel the process. The sender, a web server, can also pause, resume and cancel the process. The implication is that the sender can precisely control the timing.
 
 ## Timing Controls
 
-The web server can control the timings, in other words, control when a HTML tag is being displayed. To demonstrade this capability: `npm run demo1`. In this example the response is split into individual letters with ```.split(``)```. They are then send one by one with a delay using `setInterval()`. The visual effect is living text being written, streamed.
+The web server can control the timings, in other words, control when a HTML tag is being displayed. To demonstrate this capability: `npm run demo1`. In this example the response is split into individual letters with ```.split(``)```. They are then send one by one with a delay using `setInterval()`. The visual effect is living text being written, streamed.
 
 ## Leveraging HTML Streaming for Real Time Web Apps
 
@@ -58,7 +60,7 @@ HTTP streaming stops after a certain amount of time, for example after 120 secon
 
 One solution could be to listen for the document loaded event and when it occurs do refresh with js `location.href = location.href;`, or with html `<meta http-equiv="refresh" content="230"`.
 
-In NodeJS the HTTP timeout can be extedend with `server.timeout = TIME_OUT_LIMIT;`
+In NodeJS the HTTP timeout can be extended with `server.timeout = TIME_OUT_LIMIT;`
 
 
 ## Sources

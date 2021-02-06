@@ -42,7 +42,7 @@ Use an expression because:
  * as parameter for another function
  * as IIFE
  * compatible with arrow and original function syntax
- * ability to mark as const
+ * ability to mark as constant
  * easy to alias
  * easy to decorate
  * no hoisting
@@ -236,7 +236,7 @@ In the following situations:
 
 Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
 
-### booleans
+### Booleans
 
 `true` or `false`, use `Boolean` function to force cast to a boolean. Do not use `!!` to cast to a boolean. Leverage truthy values in `if` and `while`.
 
@@ -316,7 +316,7 @@ let nextSquare;
 
 ### global built-ins
 
-Use direcly.
+Use directly.
 
 ```js
 setTimeout(() => {
@@ -367,7 +367,7 @@ const max = Math.max(...numbers);
 
 ### regular expressions
 
-Avoid when possible. Regular expression is a powerfull language that overlaps with JS constructs. Often a single line can obscure recursive and complex instructions. The tooling to debug and assess perfomance of regexs are lower than JS. 
+Avoid when possible. Regular expression is a powerful language that overlaps with JS constructs. Often a single line can obscure recursive and complex instructions. The tooling to debug and assess performance of regexs are lower than JS. 
 
 Avoid the constructor syntax. Use named groups. 
 
@@ -379,7 +379,7 @@ let r = /[a-z]+/;
 
 ##### Use regular objects
 
-Regex are sometimes used to extract informations out of a big string. Consider using an object instead that can be extracted with JSON for example.
+Regex are sometimes used to extract information out of a big string. Consider using an object instead that can be extracted with JSON for example.
 
 ##### Raw String 
 
@@ -705,7 +705,7 @@ Inside package.json
 }
 ```
 
-Below es2021, remove unused evnironment.
+Below es2021, remove unused environment.
 
 If code is meant for other environments other than browser, [add them to "env"](https://eslint.org/docs/user-guide/configuring#specifying-environments)
 

@@ -735,3 +735,7 @@ where source is the folder containing all the files to lint.
 ### License
 
 Public Domain
+
+### See also
+
+[CSS Style Guide](https://github.com/GrosSacASac/JavaScript-Set-Up/blob/master/css/css_style_guide.md)

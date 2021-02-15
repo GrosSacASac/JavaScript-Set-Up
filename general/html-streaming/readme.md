@@ -65,9 +65,9 @@ In NodeJS the HTTP timeout can be extended with `server.timeout = TIME_OUT_LIMIT
 
 ## Sources
 
-https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/
-https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page
-https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading
+ - https://www.ebayinc.com/stories/blogs/tech/async-fragments-rediscovering-progressive-html-rendering-with-marko/
+ - https://stackoverflow.com/questions/42589522/why-is-facebooks-html-wrapped-inside-a-table-mobile-login-page
+ - https://stackoverflow.com/questions/49515634/css-last-of-type-does-not-match-while-still-loading
 
 ## Going Beyond
 

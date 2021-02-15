@@ -20,7 +20,7 @@ Extending the previous example, it is possible to display any real time data tha
 
 The following CSS hides all but the last paragraph:
 
-```
+```css
 p:not(:last-of-type) {
     display: none;
 }

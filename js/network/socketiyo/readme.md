@@ -29,6 +29,7 @@ WebSocket-based, bi-directional events in between client and server.
 
 
 ```js
+import ws from "ws";
 import {
     attachWebSocketServer,
     CONNECT,
@@ -47,7 +48,9 @@ import {
 import {useDefaultLogging} from "socketiyo/source/defaultLogging.js";
 
 
-/* httpServer, ws are not provided, see examples */
+
+
+import { createHttpServer } from "./createHttpServer.js"; // see examples
 const socketiYoServer = attachWebSocketServer({
     httpServer,
     ws,

@@ -44,7 +44,7 @@ import {
     maxChannels,
     maxChannelLength,
 } from "socketiyo/source/defaultOptions.js";
-import {useDefaultLogging} from "socketiyo/source/defaultLogging";
+import {useDefaultLogging} from "socketiyo/source/defaultLogging.js";
 
 
 /* httpServer, ws are not provided, see examples */

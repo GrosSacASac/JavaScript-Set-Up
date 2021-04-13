@@ -150,11 +150,15 @@ import {
     createConnection,
     CONNECT,
     DISCONNECT,
+    RECONNECTING,
     ERROR,
-    DEFAULT_CHANNEL
-} from "https://unpkg.com/socketiyo-client/source/socketiyo-client.js";
-import { reconnectDelay, randomReconnectDelay, autoReconnect } from "https://unpkg.com/socketiyo-client/source/defaultOptions.js";
-import { useDefaultLogging } from "https://unpkg.com/socketiyo-client/source/defaultLogging.js";
+    DEFAULT_CHANNEL,
+    reconnectDelay,
+    randomReconnectDelay,
+    autoReconnect,
+    useDefaultLogging,
+} from "./node_modules/socketiyo-client/built/socketiyo-client.es.js";
+// or } from "https://unpkg.com/socketiyo-client/built/socketiyo-client.es.js";
 ```
 
 

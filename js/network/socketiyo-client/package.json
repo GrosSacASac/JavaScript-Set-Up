@@ -1,13 +1,15 @@
 {
   "name": "socketiyo-client",
-  "version": "4.1.6",
+  "version": "5.0.0",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "type": "module",
   "main": "./source/socketiyo-client.js",
   "scripts": {
     "lint-fix": "eslint --ignore-path ../../../.gitignore --fix source",
-    "lint": "eslint --ignore-path ../../../.gitignore source"
+    "lint": "eslint --ignore-path ../../../.gitignore source",
+    "bundle": "rollup --config ./tools/rollup.config.js",
+    "prepublishOnly": "npm run bundle"
   },
   "dependencies": {
     "event-e3": "^8.0.2",
@@ -15,7 +17,8 @@
   },
   "devDependencies": {
     "eslint": "^7.14.0",
-    "eslint-config-red": "^1.8.1"
+    "eslint-config-red": "^1.8.1",
+    "rollup": "^2.45.2"
   },
   "eslintConfig": {
     "extends": [
@@ -33,6 +36,7 @@
     "rules": {}
   },
   "files": [
+    "built",
     "source",
     "readme.md",
     "license.txt"

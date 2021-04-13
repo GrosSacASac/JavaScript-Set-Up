@@ -20,6 +20,9 @@ import {
     DEFAULT_CHANNEL,
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
+export * from "./defaultLogging.js"
+export * from "./defaultOptions.js"
+
 const RECONNECTING = Symbol();
 const CONNECT = Symbol();
 const DISCONNECT = Symbol();

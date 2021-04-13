@@ -18,6 +18,7 @@ import {
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
     DEFAULT_CHANNEL,
+    CLIENT_READY,
 } from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
 
 export * from "./defaultLogging.js"
@@ -67,6 +68,7 @@ const createConnection = (options) => {
             facade.eventNamesStrings().forEach(eventName => {
                 facade.emit(onFirstSubscribeString, eventName);
             });
+            sendOrDrop(packData({action: CLIENT_READY, channel: ``})); 
         });
     };
     const safeSend = (x) => {

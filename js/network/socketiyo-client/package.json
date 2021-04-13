@@ -1,6 +1,6 @@
 {
   "name": "socketiyo-client",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "type": "module",
@@ -12,11 +12,11 @@
     "prepublishOnly": "npm run bundle"
   },
   "dependencies": {
-    "event-e3": "^8.0.2",
-    "socketiyo-shared": "^2.0.4"
+    "event-e3": "^8.1.0",
+    "socketiyo-shared": "^2.0.7"
   },
   "devDependencies": {
-    "eslint": "^7.14.0",
+    "eslint": "^7.24.0",
     "eslint-config-red": "^1.8.1",
     "rollup": "^2.45.2"
   },

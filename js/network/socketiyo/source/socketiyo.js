@@ -25,7 +25,9 @@ import {
     SUBSCRIBE_CHANNEL_ACTION,
     UNSUBSCRIBE_CHANNEL_ACTION,
     DEFAULT_CHANNEL,
+    CLIENT_READY,
 } from "socketiyo-shared";
+
 
 // general
 const CONNECT = Symbol();
@@ -46,6 +48,7 @@ const VALIDATE_MESSAGE_ERROR = Symbol();
 const MESSAGE_FORMAT_ERROR = Symbol();
 const VALIDATE_CHANNEL_ERROR = Symbol();
 const MAX_CHANNELS_ERROR = Symbol();
+const IS_READY = Symbol();
 
 // Public properties
 const LAST_CONNECTION_CHECK = Symbol();
@@ -58,6 +61,7 @@ const isSocketInChannel = (socket, channel) => {
 };
 
 const enhanceSocket = socket => {
+    socket[IS_READY] = false;
     socket[CHANNELS] = new Set();
     socket[LAST_CONNECTION_CHECK] = Date.now();
 };
@@ -89,6 +93,8 @@ const attachWebSocketServer = (options) => {
         return packData(toSend);
     };
     facade.send = (socket, data, channel = DEFAULT_CHANNEL) => {
+        console.log(socket[CHANNELS], data, channel)
+        console.log((isSocketInChannel(socket, channel)))
         if (isSocketInChannel(socket, channel)) {
             socket.send(formatSend(data, channel));
             socket[LAST_CONNECTION_CHECK] = Date.now();
@@ -154,7 +160,7 @@ const attachWebSocketServer = (options) => {
                 facade.emit(AVAILABLE, lowEnough);
             }
         });
-        facade.emit(CONNECT, socket);
+        // facade.emit(CONNECT, socket);
     };
 
     const listen = (socket, message) => {
@@ -179,7 +185,14 @@ const attachWebSocketServer = (options) => {
         }
 
         const { channel, data, action } = parsed;
-
+        
+        if (action === CLIENT_READY) {
+            if (!socket[IS_READY]) {
+                facade.emit(CONNECT, socket);
+                socket[IS_READY] = true;
+            }
+            return;
+        }
         const validChannelError = validateChannel(channel, maxChannelLength);
         if (validChannelError) {
             facade.emit(VALIDATE_CHANNEL_ERROR, validChannelError);

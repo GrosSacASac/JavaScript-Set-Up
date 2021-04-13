@@ -16,11 +16,11 @@ import {
 
 const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
     socketiYoServer.on(CONNECT, socket => {
-        logger.log(`${socket} connected`);
+        logger.log(`websocket connected`);
     });
 
     socketiYoServer.on(DISCONNECT, socket => {
-        logger.log(`${socket} disconnected`);
+        logger.log(`websocket disconnected`);
     });
 
     socketiYoServer.on(ERROR, error => {

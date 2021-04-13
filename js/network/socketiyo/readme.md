@@ -124,6 +124,22 @@ socketiYoServer.sendAllExceptOne(exceptionSocket, data, channel = DEFAULT_CHANNE
 socketiYoServer.close()
 ```
 
+### Extensions
+
+#### Disconnection detection
+
+By default a TCP connection can stay open for an indefinite amount of time. And WebSockets are built on top of TCP.
+If one end of the connection disconnects abruptly it will not properly send the end connection message. The server will not know it disconnected and may keep the connection information in memory. If this happens too much the memory leak may eventually crash the application. The disconnection detection is an extension that will periodically send PING and expect a PONG response, to confirm that the connection that the server has in memory are indeed still alive.
+
+```js
+import { useAdditionalDisconnectionDetection } from "socketiyo/extensions/disconnectionDetection.js";
+
+
+const closeDisconnectionDetection = useAdditionalDisconnectionDetection({ socketiYoServer });
+```
+
+The closeDisconnectionDetection is a function that should be called before the websocket server is closed.
+
 ### Client
 
 #### Import

@@ -14,7 +14,7 @@ import {
     maxChannelLength,
 } from "../source/defaultOptions.js";
 import { useDefaultLogging } from "../source/defaultLogging.js";
-import { useAdditionalDisconnectionDetection } from "../source/disconnectionDetection.js";
+import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js";
 import { createHttpServer } from "./createHttpServer.js";
 import ws from "ws";
 

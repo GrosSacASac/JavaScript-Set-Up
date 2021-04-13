@@ -6,7 +6,7 @@ import {
     RECEIVE_UNSUBSCRIBE,
     PONG,
     LAST_CONNECTION_CHECK,
-} from "./socketiyo.js";
+} from "../source/socketiyo.js";
 
 
 const markSocketLastConnectionCheck = socket => {

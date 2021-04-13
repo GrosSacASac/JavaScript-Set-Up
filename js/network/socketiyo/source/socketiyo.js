@@ -93,8 +93,6 @@ const attachWebSocketServer = (options) => {
         return packData(toSend);
     };
     facade.send = (socket, data, channel = DEFAULT_CHANNEL) => {
-        console.log(socket[CHANNELS], data, channel)
-        console.log((isSocketInChannel(socket, channel)))
         if (isSocketInChannel(socket, channel)) {
             socket.send(formatSend(data, channel));
             socket[LAST_CONNECTION_CHECK] = Date.now();

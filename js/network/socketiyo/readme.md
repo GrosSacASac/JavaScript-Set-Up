@@ -152,14 +152,17 @@ import {
     CONNECT,
     DISCONNECT,
     ERROR,
-    DEFAULT_CHANNEL
+    DEFAULT_CHANNEL,
+    reconnectDelay, randomReconnectDelay, autoReconnect,
+    useDefaultLogging,
 } from "socketiyo-client/source/socketiyo-client.js";
-import { reconnectDelay, randomReconnectDelay, autoReconnect } from "socketiyo-client/source/defaultOptions.js";
-import { useDefaultLogging } from "socketiyo-client/source/defaultLogging.js";
 ```
+
+
 
 ##### Deno and Web
 
+**Use the node import if you are using a bundler**
 
 ```js
 import {

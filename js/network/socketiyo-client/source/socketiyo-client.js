@@ -11,7 +11,7 @@ import {
     RegularListener,
     onFirstSubscribeString,
     onLastUnsubscribeString,
-} from "../node_modules/event-e3/source/RegularListener.js";
+} from "event-e3/source/RegularListener.js";
 import {
     defaultPackData,
     defaultUnpackData,
@@ -19,7 +19,7 @@ import {
     UNSUBSCRIBE_CHANNEL_ACTION,
     DEFAULT_CHANNEL,
     CLIENT_READY,
-} from "../node_modules/socketiyo-shared/source/socketiyo-shared.js";
+} from "socketiyo-shared";
 
 export * from "./defaultLogging.js"
 export * from "./defaultOptions.js"

@@ -1,4 +1,4 @@
-// import resolve from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 
 const name = `socketiyoClient`;
 
@@ -34,7 +34,7 @@ const commonOutputOptions = {
 export default { // can be an array (for multiple inputs)
     // core input options
     input: `source/socketiyo-client.js`,     // required
-    // plugins: [resolve()],
+    plugins: [resolve()],
     
     // external: [],
 

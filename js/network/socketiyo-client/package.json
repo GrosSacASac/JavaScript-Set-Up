@@ -1,6 +1,6 @@
 {
   "name": "socketiyo-client",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "socketiyo",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "WebSocket-based, bi-directional events in between client and server",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",
@@ -30,7 +30,7 @@
     },
     "env": {
       "es2021": true,
-      "browser": true
+      "node": true
     },
     "rules": {}
   },

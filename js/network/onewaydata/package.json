@@ -1,6 +1,6 @@
 {
   "name": "onewaydata",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/onewaydata",
   "type": "module",
@@ -10,21 +10,23 @@
     "lint": "eslint --ignore-path .gitignore source"
   },
   "dependencies": {
-    "event-e3": "^8.0.2"
+    "event-e3": "^8.1.0"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
-    "eslint-config-red": "^1.4.1"
+    "eslint": "^7.24.0",
+    "eslint-config-red": "^1.8.1"
   },
   "eslintConfig": {
-    "extends": ["red"],
+    "extends": [
+      "red"
+    ],
     "parserOptions": {
       "ecmaVersion": 2020,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,  
+      "es6": true,
       "browser": true
     },
     "rules": {}

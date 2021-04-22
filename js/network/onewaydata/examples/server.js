@@ -1,6 +1,8 @@
 
 import http from "http";
 import fs from "fs";
+import url from "url";
+import path from "path";
 import {
     createEventStream,
     sendOne,
@@ -10,11 +12,13 @@ import {
     useDefaultLogging
 } from "../source/defaultLogging.js";
 
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = 8080;
 const server = http.createServer((req, res) => {
     if (req.url === `/`) {
-        fs.createReadStream(`./client.html`).pipe(res);
+        fs.createReadStream(`${__dirname}/client.html`).pipe(res);
     }
 });
 

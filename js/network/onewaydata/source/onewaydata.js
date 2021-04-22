@@ -12,12 +12,12 @@ import Emitter from "event-e3/event-e3.js";
 const MIME = `text/event-stream`;
 const LAST_ID = `Last-Event-ID`;
 const defaultChannel = `message`;
+const HTTP_OK = 200;
 
 // fields
 const DATA = `data`;
 const ID = `id`;
 const EVENT = `event`;
-const RETRY = `retry`;
 
 const RECONNECT = Symbol();
 const CONNECT = Symbol();
@@ -86,8 +86,8 @@ const createEventStream = (options) => {
         socket.setKeepAlive(true);
         socket.setNoDelay(true);
 
-        response.writeHead(200, {
-            [`Content-Type`]: MIME
+        response.writeHead(HTTP_OK, {
+            [`Content-Type`]: MIME,
         });
         responses.push(response);
 
@@ -96,7 +96,7 @@ const createEventStream = (options) => {
             // opportunity to resume with sendOne
             eventStream.emit(RECONNECT, {
                 lastId,
-                response
+                response,
             });
         }
 

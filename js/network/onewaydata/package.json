@@ -21,13 +21,13 @@
       "red"
     ],
     "parserOptions": {
-      "ecmaVersion": 2020,
+      "ecmaVersion": 2021,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,
-      "browser": true
+      "es2021": true,
+      "node": true
     },
     "rules": {}
   },

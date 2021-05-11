@@ -527,7 +527,7 @@ const { className } = body;
 Avoid those. Prefer `+=` and `-=`.
 There is no need to remember the difference between `--a` and `a--`.
 The increment amount can be something else than 1. It can be any variable.
-It is consistent with other operators such as /= , *= , **= , %= etc
+It is consistent with other operators such as `/= , *= , **= , %=` etc
 
 ```js
 let a = 1;

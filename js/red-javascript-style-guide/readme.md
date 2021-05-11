@@ -130,7 +130,7 @@ const array = [
 ```
 
 Use `map`, `forEach` and other array methods to loop over an array.
-```Array.isArray``` for type checking.
+`Array.isArray` for type checking.
 
 ### object
 

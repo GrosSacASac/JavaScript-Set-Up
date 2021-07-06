@@ -274,7 +274,7 @@ if (condition) {
 
 ### import export
 
-Put them at the top of the file as they will be executed first. Put exports before imports as they are executed before. Use named exports. Do not inline named exports in the middle of the file to make it obvious what is exported by reading the first line.
+Put them at the top of the file as they will be executed first. Put exports before imports as they are executed before. Use named exports, as they allow for extension and are always live bindings. Do not inline named exports in the middle of the file to make it obvious what is exported by reading the first line.
 
 ```js
 export { y };

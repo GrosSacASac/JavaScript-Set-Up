@@ -17,5 +17,9 @@ const defaultPackData = (data) => {
 };
 
 const defaultUnpackData = (data) => {
+    if (data.fill) {
+        // buffer
+        data = String(data);
+    }
     return JSON.parse(data);
 };

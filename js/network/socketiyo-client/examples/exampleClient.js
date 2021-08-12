@@ -1,12 +1,13 @@
+
 import {
+    reconnectDelay, randomReconnectDelay, autoReconnect,
+    useDefaultLogging,
     createConnection,
     CONNECT,
     DISCONNECT,
     ERROR,
     DEFAULT_CHANNEL
-} from "../source/socketiyo-client.js";
-import { reconnectDelay, randomReconnectDelay, autoReconnect } from "../source/defaultOptions.js";
-import { useDefaultLogging } from "../source/defaultLogging.js";
+} from "../built/socketiyo-client.es.js";
 
 
 const socketiyoConnection = createConnection({

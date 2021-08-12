@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node  exampleServer.js",
+    "deno": "deno run --allow-net --unstable deno.js",
     "start2": "node  exampleBinaryServer.js"
   },
   "dependencies": {

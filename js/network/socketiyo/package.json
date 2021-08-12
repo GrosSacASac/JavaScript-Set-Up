@@ -8,7 +8,9 @@
   "main": "./source/socketiyo.js",
   "scripts": {
     "lint-fix": "eslint --ignore-path ../../../.gitignore --fix source",
-    "lint": "eslint --ignore-path ../../../.gitignore source"
+    "lint": "eslint --ignore-path ../../../.gitignore source",
+    "bundle": "rollup --config ./tools/rollup.config.js",
+    "prepublishOnly": "npm run bundle"
   },
   "dependencies": {
     "event-e3": "^8.1.0",
@@ -16,8 +18,10 @@
     "utilsac": "^14.2.1"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "eslint": "^7.32.0",
-    "eslint-config-red": "^1.8.1"
+    "eslint-config-red": "^1.8.1",
+    "rollup": "^2.56.2"
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +39,7 @@
     "rules": {}
   },
   "files": [
+    "built",
     "source",
     "extensions",
     "readme.md",

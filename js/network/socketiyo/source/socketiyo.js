@@ -68,9 +68,7 @@ const enhanceSocket = socket => {
 
 const attachWebSocketServer = (options) => {
     const {
-        httpServer,
-        ws,
-        path,
+        webSocketServer,
         highClients,
         maxClients,
         maxLength,
@@ -81,7 +79,7 @@ const attachWebSocketServer = (options) => {
         unpackData = defaultUnpackData,
     } = options;
 
-    const wss = new ws.Server({ server: httpServer, path });
+    
 
     const facade = EventEmitter({});
     const connectionsPool = new Set();
@@ -132,7 +130,10 @@ const attachWebSocketServer = (options) => {
             socket.close();
         });
         connectionsPool.clear();
-        wss.close();
+        webSocketServer.close();
+        for (const ws of webSocketServer.clients) {
+            ws.terminate();
+        }
     };
 
     const connect = socket => {
@@ -161,8 +162,8 @@ const attachWebSocketServer = (options) => {
         // facade.emit(CONNECT, socket);
     };
 
-    const listen = (socket, message) => {
-        const validationError = validateLength(message, maxLength);
+    const listen = (socket, messageBuffer) => {
+        const validationError = validateLength(messageBuffer, maxLength);
         if (validationError) {
             facade.emit(VALIDATE_MESSAGE_ERROR, validationError);
             return;
@@ -170,9 +171,9 @@ const attachWebSocketServer = (options) => {
 
         let parsed;
         try {
-            parsed = unpackData(message);
+            parsed = unpackData(messageBuffer);
         } catch (parseError) {
-            facade.emit(MESSAGE_FORMAT_ERROR, { error: parseError, message });
+            facade.emit(MESSAGE_FORMAT_ERROR, { error: parseError, message: messageBuffer});
             return;
         }
 
@@ -226,6 +227,6 @@ const attachWebSocketServer = (options) => {
             socket,
         });
     };
-    wss.on(`connection`, connect);
+    webSocketServer.on(`connection`, connect);
     return facade;
 };

@@ -9,7 +9,7 @@
   "dependencies": {
     "filesac": "^13.0.0",
     "majo-ubjson": "^1.1.0",
-    "ws": "^7.4.0"
+    "ws": "^8.1.0"
   },
   "private": true
 }

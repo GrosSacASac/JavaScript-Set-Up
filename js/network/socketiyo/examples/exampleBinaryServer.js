@@ -14,16 +14,16 @@ import {
     maxChannelLength,
 } from "../source/defaultOptions.js";
 import { useDefaultLogging } from "../source/defaultLogging.js";
-import { useAdditionalDisconnectionDetection } from "../source/disconnectionDetection.js";
+import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js";
 import { createHttpServer } from "./createHttpServer.js";
-import ws from "ws";
+import { WebSocketServer } from "ws";
 import { encode, decode } from "majo-ubjson";
 import { writeTextInFile } from "filesac";
 
 const httpServer = createHttpServer();
+const webSocketServer = new WebSocketServer({ server: httpServer, path: undefined });
 const socketiYoServer = attachWebSocketServer({
-    httpServer,
-    ws,
+    webSocketServer,
     maxClients,
     highClients,
     lowEnough,

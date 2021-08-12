@@ -16,14 +16,13 @@ import {
 import { useDefaultLogging } from "../source/defaultLogging.js";
 import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js";
 import { createHttpServer } from "./createHttpServer.js";
-import ws from "ws";
+import { WebSocketServer } from "ws";
 
 
 const httpServer = createHttpServer();
+const webSocketServer = new WebSocketServer({ server: httpServer, path: `/socketiyo` });
 const socketiYoServer = attachWebSocketServer({
-    httpServer,
-    ws,
-    path: `/socketiyo`,
+    webSocketServer,
     maxClients,
     highClients,
     lowEnough,

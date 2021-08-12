@@ -49,11 +49,10 @@ import {useDefaultLogging} from "socketiyo/source/defaultLogging.js";
 
 
 
-
-import { createHttpServer } from "./createHttpServer.js"; // see examples
+// see https://github.com/GrosSacASac/JavaScript-Set-Up/blob/master/js/network/socketiyo/examples/exampleServer.js
+// to view example on how to create the variable webSocketServer
 const socketiYoServer = attachWebSocketServer({
-    httpServer,
-    ws,
+    webSocketServer
     maxClients,
     highClients,
     lowEnough,
@@ -85,9 +84,7 @@ socketiYoServer.on(`game/input`, ({socket, data}) => {
 
 ```js
 socketiYoServer = attachWebSocketServer({
-    httpServer,
-    ws,
-    path,
+    webSocketServer,
     highClients,
     maxClients,
     maxLength,

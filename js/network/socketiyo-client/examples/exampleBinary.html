@@ -9,13 +9,13 @@
 <script type="module">
 import { encode, decode } from "./node_modules/majo-ubjson/source/majoUbjson.js";
 import {
+    reconnectDelay, randomReconnectDelay, autoReconnect,
     createConnection,
     CONNECT,
     DISCONNECT,
     ERROR,
     DEFAULT_CHANNEL
-} from "../source/socketiyo-client.js";
-import { reconnectDelay, randomReconnectDelay, autoReconnect } from "../source/defaultOptions.js";
+} from "../built/socketiyo-client.es.js";
 
 
 const socketiyoConnection = createConnection({

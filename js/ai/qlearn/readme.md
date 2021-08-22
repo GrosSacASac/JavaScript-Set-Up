@@ -12,7 +12,7 @@ If a situation is not going to happen twice. Or if the set of actions is infinit
 
 ### Set of state and actions
 
-The library expects as input a reduced set of state and action as a String. Create a value that is minimal, sorted and canonical. When the set of actions are always the same omit it. Two situation where the possible actions are the same, and the observed state is the same, should have the same set of state and actions. Short is `stateActions`
+The library expects as input a reduced set of state and actions as a String. Create a value that is canonical (For example: When the set of actions are always the same omit actions). Two situations where the possible actions are the same, and the observed state is the same, should result to the same set of state and actions. Short is `stateActions`
 
 ### actions
 

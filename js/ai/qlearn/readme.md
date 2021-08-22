@@ -155,7 +155,7 @@ https://github.com/acupajoe/node-qlearning
 
  * full flow integrated (state, reward, etc)
  * includes state hasher
- * more opionated, less flexible
+ * more opinionated, less flexible
 
 ### License
 

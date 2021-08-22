@@ -1,6 +1,6 @@
 {
   "name": "qlearn",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
   "type": "module",

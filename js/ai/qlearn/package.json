@@ -33,12 +33,12 @@
       "red"
     ],
     "parserOptions": {
-      "ecmaVersion": 2020,
+      "ecmaVersion": 2021,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,
+      "es2021": true,
       "browser": true
     },
     "rules": {}
@@ -46,7 +46,8 @@
   "files": [
     "source",
     "readme.md",
-    "license.txt"
+    "license.txt",
+    "changelog.md"
   ],
   "repository": {
     "type": "git",

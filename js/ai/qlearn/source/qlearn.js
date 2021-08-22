@@ -77,7 +77,10 @@ const createLearn = (getNextQualityEstimation) => {
             nextQualityEstimation = intelligence.defaultQuality;
         }
 
-        const previousQuality = qualityForState.get(previousAction);
+        let previousQuality = qualityForState.get(previousAction);
+        if (previousQuality === undefined) {
+            previousQuality = intelligence.defaultQuality;
+        }
         qualityForState.set(previousAction, previousQuality + intelligence.learnFactor * (
             reward +
             intelligence.discountFactor * (nextQualityEstimation - previousQuality)

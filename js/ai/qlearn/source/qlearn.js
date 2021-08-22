@@ -83,7 +83,7 @@ const createLearn = (getNextQualityEstimation) => {
         }
         qualityForState.set(previousAction, previousQuality + intelligence.learnFactor * (
             reward +
-            intelligence.discountFactor * (nextQualityEstimation - previousQuality)
+            intelligence.discountFactor * nextQualityEstimation - previousQuality
         ) - intelligence.exploreBonus);
     };
 };

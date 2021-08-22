@@ -56,14 +56,14 @@ const createLearn = (getNextQualityEstimation) => {
         previousStateActions,
         stateActions,
         previousAction,
-        actionNames,
+        previousActions,
         reward,
     }) => {
         let qualityForState = intelligence.qualityMap.get(previousStateActions);
         if (!qualityForState) {
             // there was no quality map for this set of state and actions
             qualityForState = new Map();
-            actionNames.forEach(actionName => {
+            previousActions.forEach(actionName => {
                 qualityForState.set(actionName, intelligence.defaultQuality);
             });
             intelligence.qualityMap.set(previousStateActions, qualityForState);

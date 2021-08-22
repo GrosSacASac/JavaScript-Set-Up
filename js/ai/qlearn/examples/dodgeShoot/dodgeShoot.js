@@ -30,6 +30,7 @@ const actions = {
         actor[0] = futureX;
     },
 };
+// do not change over time
 const actionNames = Object.keys(actions);
 
 const updateGame = (action, state, reward) => {
@@ -102,7 +103,7 @@ const start = (options) => {
                     previousStateActions,
                     stateActions,
                     previousAction: actionName,
-                    actionNames,
+                    previousActions: actionNames,
                     reward: scoreDifference,
                 });
             }

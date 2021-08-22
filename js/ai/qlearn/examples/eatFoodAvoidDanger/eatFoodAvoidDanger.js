@@ -93,7 +93,7 @@ const start = ({ display, MAX_FRAMES }) => {
             previousStateActions: stateActions,
             stateActions: stateActionsAfter,
             previousAction: actionName,
-            actionNames,
+            previousActions: actionNames,
             reward,
         });
         frame += 1;

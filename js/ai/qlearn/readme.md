@@ -91,7 +91,7 @@ learn({
     previousStateActions,
     stateActions,
     previousAction,
-    actionNames,
+    previousActions,
     reward,
 });
 ```

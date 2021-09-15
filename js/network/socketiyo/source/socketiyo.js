@@ -1,19 +1,5 @@
 export {
     attachWebSocketServer,
-    CONNECT,
-    DISCONNECT,
-    ERROR,
-    HIGH_LOAD,
-    AVAILABLE,
-    OVER_LOAD,
-    RECEIVE_MESSAGE,
-    RECEIVE_SUBSCRIBE,
-    RECEIVE_UNSUBSCRIBE,
-    PONG,
-    MESSAGE_FORMAT_ERROR,
-    VALIDATE_CHANNEL_ERROR,
-    VALIDATE_MESSAGE_ERROR,
-    MAX_CHANNELS_ERROR,
     DEFAULT_CHANNEL,
     LAST_CONNECTION_CHECK,
 };
@@ -27,31 +13,44 @@ import {
     DEFAULT_CHANNEL,
     CLIENT_READY,
 } from "socketiyo-shared";
+import {
+    CONNECT,
+    DISCONNECT,
+    HIGH_LOAD,
+    AVAILABLE,
+    OVER_LOAD,
+    RECEIVE_MESSAGE,
+    RECEIVE_SUBSCRIBE,
+    RECEIVE_UNSUBSCRIBE,
+    PONG,
+    ERROR,
+    MESSAGE_FORMAT_ERROR,
+    VALIDATE_CHANNEL_ERROR,
+    VALIDATE_MESSAGE_ERROR,
+    MAX_CHANNELS_ERROR,
+    LAST_CONNECTION_CHECK,
+    IS_READY,
+} from "./eventNames.js";
+export {
+    CONNECT,
+    DISCONNECT,
+    HIGH_LOAD,
+    AVAILABLE,
+    OVER_LOAD,
+    RECEIVE_MESSAGE,
+    RECEIVE_SUBSCRIBE,
+    RECEIVE_UNSUBSCRIBE,
+    PONG,
+    ERROR,
+    MESSAGE_FORMAT_ERROR,
+    VALIDATE_CHANNEL_ERROR,
+    VALIDATE_MESSAGE_ERROR,
+    MAX_CHANNELS_ERROR,
+}
 
 
-// general
-const CONNECT = Symbol();
-const DISCONNECT = Symbol();
-const ERROR = Symbol();
-const RECEIVE_MESSAGE = Symbol();
-const RECEIVE_SUBSCRIBE = Symbol();
-const RECEIVE_UNSUBSCRIBE = Symbol();
-const PONG = Symbol();
 
-// required infrastructure for scaling
-const HIGH_LOAD = Symbol();
-const AVAILABLE = Symbol();
-const OVER_LOAD = Symbol();
 
-// client errors
-const VALIDATE_MESSAGE_ERROR = Symbol();
-const MESSAGE_FORMAT_ERROR = Symbol();
-const VALIDATE_CHANNEL_ERROR = Symbol();
-const MAX_CHANNELS_ERROR = Symbol();
-const IS_READY = Symbol();
-
-// Public properties
-const LAST_CONNECTION_CHECK = Symbol();
 
 // Private properties
 const CHANNELS = Symbol();
@@ -137,6 +136,7 @@ const attachWebSocketServer = (options) => {
     };
 
     const connect = socket => {
+        socket = socket.detail || socket;
         if (connectionsPool.size === highClients) {
             facade.emit(HIGH_LOAD, highClients);
         } else if (connectionsPool.size >= maxClients) {

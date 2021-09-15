@@ -2,16 +2,15 @@ export { useDefaultLogging };
 import {
     CONNECT,
     DISCONNECT,
-    ERROR,
+    OVER_LOAD,
     RECEIVE_MESSAGE,
     RECEIVE_SUBSCRIBE,
     RECEIVE_UNSUBSCRIBE,
-    OVER_LOAD,
     MESSAGE_FORMAT_ERROR,
     VALIDATE_CHANNEL_ERROR,
     VALIDATE_MESSAGE_ERROR,
     MAX_CHANNELS_ERROR,
-} from "./socketiyo.js";
+} from "./eventNames.js";
 
 
 const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
@@ -23,9 +22,9 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
         logger.log(`websocket disconnected`);
     });
 
-    socketiYoServer.on(ERROR, error => {
-        logger.error(error);
-    });
+    // socketiYoServer.on(ERROR, error => {
+    //     logger.error(error);
+    // });
 
     socketiYoServer.on(OVER_LOAD, maxClients => {
         logger.warn(`Server reached connection limit: ${maxClients},

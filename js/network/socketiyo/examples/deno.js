@@ -4,6 +4,7 @@ import {
     DISCONNECT,
     ERROR,
     DEFAULT_CHANNEL,
+    
 } from "../built/socketiyo.es.js";
 import {
     maxClients,
@@ -13,41 +14,70 @@ import {
     maxChannels,
     maxChannelLength,
 } from "../source/defaultOptions.js";
-
-
+import {useDefaultLogging,} from "../source/defaultLogging.js";
+import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js";
 class WebSocketServer extends EventTarget {
+    constructor (options = { port: 8080 })  {
+        super();
+        this.listen(options);
+        
+    }
+    async listen (options) {
+        
+        const listener = Deno.listen(options);
+        console.log(`listening on http://localhost:${options.port}`);
+        for await (const conn of listener) {
+            this.handleConn(conn);
+        }
+    }
 
+    handle(req) {
+        if (req.headers.get("upgrade") !== "websocket") {
+          return new Response("not trying to upgrade as websocket.");
+        }
+        
+        const x = Deno.upgradeWebSocket(req);
+        const { response} = x;
+        const websocket = x.socket;
+        if (!websocket) {
+            return response;
+        }
+        websocket.on = websocket.addEventListener
+        
+        this.dispatchEvent(new CustomEvent(`connection`, {detail: websocket}));
+        websocket.onopen = () => {
+            
+            console.log("socket opened");
+        }
+        // websocket.onmessage = (e) => {
+        //   console.log("socket message:", e.data);
+        //   websocket.send(new Date().toString());
+        // };
+        websocket.onerror = (e) => console.log("socket errored:", e.message);
+        // websocket.onclose = () => console.log("socket closed");
+        return response;
+    }
+
+    async handleConn(conn) {
+        const httpConn = Deno.serveHttp(conn);
+        for await (const e of httpConn) {
+          e.respondWith(this.handle(e.request));
+        }
+    }
+      
+    close() {
+
+    }
+
+    on(eventName, callback) {
+        this.addEventListener(eventName, callback);
+    }
 }
 const webSocketServer = new WebSocketServer();
-async function handleConn(conn) {
-    const httpConn = Deno.serveHttp(conn);
-    for await (const e of httpConn) {
-      e.respondWith(handle(e.request));
-    }
-}
+
+
   
-function handle(req) {
-    if (req.headers.get("upgrade") != "websocket") {
-      return new Response("not trying to upgrade as websocket.");
-    }
-    console.log(req)
-    const { websocket, response } = Deno.upgradeWebSocket(req);
-    // webSocketServer.dispatchEvent(new Event("connection", websocket))
-    // websocket.onopen = () => console.log("socket opened");
-    // websocket.onmessage = (e) => {
-    //   console.log("socket message:", e.data);
-    //   websocket.send(new Date().toString());
-    // };
-    // websocket.onerror = (e) => console.log("socket errored:", e.message);
-    // websocket.onclose = () => console.log("socket closed");
-    return response;
-}
-  
-const listener = Deno.listen({ port: 8080 });
-console.log("listening on http://localhost:8080");
-for await (const conn of listener) {
-    handleConn(conn);
-}
+
 
 
 
@@ -68,7 +98,7 @@ const closeDisconnectionDetection = useAdditionalDisconnectionDetection({ socket
 /* send the current time on the default channel to everyone */
 const intervalId = setInterval(() => {
     socketiYoServer.sendAll(Date.now());
-}, 1500);
+}, 5000);
 
 /* send It is over to anyone on the game/end channel*/
 const timeoutId = setTimeout(() => {

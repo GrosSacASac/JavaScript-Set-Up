@@ -35,7 +35,7 @@ class WebSocketServer extends EventTarget {
         if (req.headers.get("upgrade") !== "websocket") {
           return new Response("not trying to upgrade as websocket.");
         }
-        
+        // todo socket.off is not a function
         const x = Deno.upgradeWebSocket(req);
         const { response} = x;
         const websocket = x.socket;

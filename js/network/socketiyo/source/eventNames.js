@@ -18,6 +18,7 @@ export {
 };
 // todo now that eventNames are string, they can be once again with app event names
 // Public properties
+// todo symbol also does not equal itself if one file import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js"; and another socketiyo.es is imported differently
 const LAST_CONNECTION_CHECK = Symbol();
 // general
 const CONNECT = "CONNECT";

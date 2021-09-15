@@ -42,7 +42,7 @@ const useAdditionalDisconnectionDetection = ({
                 socket.close();
                 return;
             }
-            socket.ping();
+            socket?.ping?.();
         });
     }, disconnectionCheckInterval);
 

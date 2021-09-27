@@ -20,7 +20,7 @@ with [Jasmine](https://github.com/jasmine/jasmine) or Ava or mocha/chai
 
 ### HTML tests 
 
-Basic syntax https://validator.w3.org/ or https://html5.validator.nu/
+Basic syntax https://validator.w3.org/ or https://html5.validator.nu/ or https://validator.w3.org/nu/#textarea
 
 User experience with light-house
 

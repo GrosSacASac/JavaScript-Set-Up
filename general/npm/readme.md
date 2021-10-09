@@ -1,4 +1,4 @@
-# npm 6
+# npm 8
 
 latest is the default tag for the latest version of a package on npm.
 

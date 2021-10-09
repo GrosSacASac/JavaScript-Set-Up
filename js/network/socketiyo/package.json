@@ -15,7 +15,7 @@
   "dependencies": {
     "event-e3": "^8.1.0",
     "socketiyo-shared": "^2.0.7",
-    "utilsac": "^14.2.1"
+    "utilsac": "^14.2.3"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.4",

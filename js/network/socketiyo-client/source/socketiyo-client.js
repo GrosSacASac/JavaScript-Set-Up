@@ -21,8 +21,8 @@ import {
     CLIENT_READY,
 } from "socketiyo-shared";
 
-export * from "./defaultLogging.js"
-export * from "./defaultOptions.js"
+export * from "./defaultLogging.js";
+export * from "./defaultOptions.js";
 
 const RECONNECTING = Symbol();
 const CONNECT = Symbol();
@@ -60,7 +60,7 @@ const createConnection = (options) => {
             try {
                 connection.close();
             } catch (connectionCloseError) {
-
+                // eslint-disable-line
             }
         });
         connection.addEventListener(`open`, () => {

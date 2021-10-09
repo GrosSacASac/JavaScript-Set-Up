@@ -1,6 +1,6 @@
 {
   "name": "socketiyo",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "WebSocket-based, bi-directional events in between client and server",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/network/socketiyo",

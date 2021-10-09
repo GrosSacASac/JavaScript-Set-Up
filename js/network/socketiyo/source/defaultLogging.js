@@ -15,11 +15,11 @@ import {
 
 
 const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
-    socketiYoServer.on(CONNECT, socket => {
+    socketiYoServer.on(CONNECT, (/* socket */) => {
         logger.log(`websocket connected`);
     });
 
-    socketiYoServer.on(DISCONNECT, socket => {
+    socketiYoServer.on(DISCONNECT, (/* socket */) => {
         logger.log(`websocket disconnected`);
     });
 
@@ -52,7 +52,7 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
     socketiYoServer.on(RECEIVE_MESSAGE, ({
         channel,
         data,
-        socket,
+        /* socket, */
     }) => {
         logger.log(`Receiving data from a socket at channel ${channel}`);
         logger.log(data);
@@ -60,14 +60,14 @@ const useDefaultLogging = ({ socketiYoServer, logger = console }) => {
 
     socketiYoServer.on(RECEIVE_SUBSCRIBE, ({
         channel,
-        socket,
+        /* socket, */
     }) => {
         logger.log(`Socket subscribing to channel ${channel}`);
     });
 
     socketiYoServer.on(RECEIVE_UNSUBSCRIBE, ({
         channel,
-        socket,
+        /* socket, */
     }) => {
         logger.log(`Socket unsubscribing from channel ${channel}`);
     });

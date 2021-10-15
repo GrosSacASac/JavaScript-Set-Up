@@ -69,3 +69,11 @@ const index = array.indexOf(itemToBeRemoved);
 if (index !== -1) {
     array.splice(index, 1, itemToBeInserted);
 }
+
+// concat 2 arrays
+const arrayA = [1, 2, 3];
+const arrayB = [4, 5, 6];
+const array_AandB = arrayA.concat(arrayB);
+// alterantive 
+const array_AandB = [...arrayA, ...arrayB];
+

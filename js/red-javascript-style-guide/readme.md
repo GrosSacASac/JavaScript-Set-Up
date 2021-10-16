@@ -278,12 +278,25 @@ Put them at the top of the file as they will be executed first. Put exports befo
 
 ```js
 export { y };
+
+import FastAverageColor from "fast-average-color/dist/index.esm.js";
 import { x } from "./x.js";
 import * as z from "./z.js";
-import FastAverageColor from "fast-average-color/dist/index.esm.js";
+
 
 const y = 5;
 ```
+
+#### import/export order
+
+ 1. exports with optional line break
+ 2. imports of standard library 
+ 3. imports of runtime library (NodeJS, Deno, etc)
+ 4. imports of external dependencies
+ 5. imports of local files
+ 6. optional line break
+ 7. declaration of constants that are import related (some libraries only export default)
+ 8. optional two line breaks then begin of code
 
 ### Limit variable reach
 

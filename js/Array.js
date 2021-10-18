@@ -70,6 +70,13 @@ if (index !== -1) {
     array.splice(index, 1, itemToBeInserted);
 }
 
+// remove duplicates in another array
+const a = [0, 1];
+const b = [1, 2];
+// a and b can be the same
+const c = [...new Set([...a, ...b])]; // [0, 1, 2]
+
+
 // concat 2 arrays
 const arrayA = [1, 2, 3];
 const arrayB = [4, 5, 6];

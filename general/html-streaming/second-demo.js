@@ -1,7 +1,7 @@
+import { dirname } from "node:path";
+import url from "node:url";
 import polka from "polka";
 import { makeSendFileAvailable } from "./sendFile.js";
-import { dirname } from "path";
-import url from "url";
 
 
 const __filename = url.fileURLToPath(import.meta.url);

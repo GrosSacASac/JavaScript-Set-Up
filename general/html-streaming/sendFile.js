@@ -1,7 +1,8 @@
 /* from worka/example */
 export { makeSendFileAvailable };
-import { createReadStream } from "fs";
-import path from "path";
+
+import { createReadStream } from "node:fs";
+import path from "node:path";
 
 
 /* from 3D-realtime-editor */

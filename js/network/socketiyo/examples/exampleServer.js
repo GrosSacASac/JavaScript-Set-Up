@@ -1,3 +1,4 @@
+import { WebSocketServer } from "ws";
 import {
     attachWebSocketServer,
     CONNECT,
@@ -16,7 +17,6 @@ import {
 import { useDefaultLogging } from "../source/defaultLogging.js";
 import { useAdditionalDisconnectionDetection } from "../extensions/disconnectionDetection.js";
 import { createHttpServer } from "./createHttpServer.js";
-import { WebSocketServer } from "ws";
 
 
 const httpServer = createHttpServer();

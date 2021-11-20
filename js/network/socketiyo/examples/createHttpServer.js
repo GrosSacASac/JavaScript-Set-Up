@@ -1,6 +1,6 @@
 export { createHttpServer };
 
-import http from "http";
+import http from "node:http";
 
 
 const PORT = 8080;

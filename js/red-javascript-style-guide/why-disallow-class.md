@@ -4,15 +4,15 @@
 
 ### A certain amount of additional vocabulary
 
-`this`, `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `Object.getPrototypeOf`, `__proto__`, `instanceof`, `typeof`, `.prototype.isPrototypeOf` The mental overhead is there.
+`this`, `bind`, `call`, `apply`, `class`, `prototype`, `super`, `new`, `extends`, `Object.create`, `Object.setPrototypeOf`, `Object.getPrototypeOf`, `__proto__`, `instanceof`, `typeof`, `.prototype.isPrototypeOf` The mental overhead is there. The question "what is this in js" has millions of views, which hints at a source of confusion.
 
 ### Not transferrable in between realms
 
-Web Worker, Local Storage, Browser, Server. An instance of a class transferred will lose its prototype chain. In order to use the class methods with the instance one has to reinstanciate which requires extra code compared to the plain object alternative.
+Web Worker, Local Storage, Browser, Server. An instance of a class transferred will lose its prototype chain. In order to use the class methods with the instance one has to re-instantiate which requires extra code compared to the plain object alternative.
 
-### Compatibilty with higher-order functions
+### Compatibility with higher-order functions
 
-It is harder to use higher-order function with the class keyword than it is with regular functions. Regular functions can be mixed, composed, curried etc. Overall it results in a implentation flexibility loss.
+It is harder to use higher-order function with the class keyword than it is with regular functions. Regular functions can be mixed, composed, curried etc. Overall it results in a implantation flexibility loss.
 
 ### class and implicit code 
 
@@ -39,7 +39,7 @@ I don't consider using the old syntax (e.g with .prototype) a good alternative a
 
 First, there needs to be a true viable alternative.
 
-### contructor/creator
+### constructor/creator
 
 With the class keyword an empty object is implicitly created and the `this` becomes it, and `this` is implicitly returned. It turns out, that any function can create an object and return it too. A creator function can also return a `Map` or a `Set` etc.
 
@@ -91,7 +91,7 @@ const createCar = ({ id }) => {
 
 ### inheritance (subtype-of)
 
-Call the parent creator then, add, change and remove properties. Do not remove properties to respect the subsitution principle.
+Call the parent creator then, add, change and remove properties. Do not remove properties to respect the substitution principle.
 
 
 ```js

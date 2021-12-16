@@ -10,7 +10,7 @@ Dependency management is the natural evolution of copy pasting code.
 
 First we write software, then we start a new project. We copy code from the first project. Ok now we fix a bug. we copy the fix back to the first project. Then we start a new project. It has some common parts of first and second project. We evolve those "internal dependencies". We manually copy paste. Be it with CLI or GUI it does not scale and is error prone.
 
-To solve this solution we make a simple scripts that copies everything for us. Then we scale the team. Maybe someone uses Linux, another uses windows. The path are different. It does not scale across team members. And how does a team-mate copy updated dependency utils or http to your project 1, which they don't have access to.
+To solve this solution we make a simple scripts that copies everything for us. Then we scale the team. Maybe someone uses Linux, another uses windows. The path are different. It does not scale across team members. And how does a team-mate copy updated dependency utility or http to your project 1, which they don't have access to.
 
 Thus arises an industry standard tool to manage dependencies in a self contained, independently upgradable, versioned way. Enter npm, pip cargo area.
 
@@ -55,7 +55,7 @@ A private company that attracts investors
  * Have a project with a package.json
  * npm i lux-yo-2019
  * Use it in your code
- * const luxYo2019 = require("lux-yo-2019");
+ * `const luxYo2019 = require("lux-yo-2019");`
  * optional (-D -g)
 
 ## Evolve a package locally
@@ -77,7 +77,11 @@ This allows to patch dependencies, those patches themselves can be shared. It do
 
 These tools makes us so productive that we can forget that with one command we can install thousands of packages. But it still is only glorified copy paste. And pasted code should be reviewed.
 
-A lockfile describes the exact versions we have. The manifest file describes version ranges that we want. A lockfile prevents to accidently install a new version without manually doing so. Especially useful in teams. Updating a dependency should be reviewed with the same scrutiny than an install. There are tools to show the diff between two versions. To install a package safely for inspection purposes use the --ignore-scripts flag.
+A lockfile describes the exact versions we have. The manifest file describes version ranges that we want. A lockfile prevents to accidently install a new version without manually doing so. Especially useful in teams. Updating a dependency should be reviewed with the same scrutiny than an install. There are tools to show the diff between two versions.
+
+To install a package safely for inspection purposes use the --ignore-scripts flag.
+
+Alternative is to use a npm diff-tool. For example npmfs is a service that allows to git-diff 2 different versions of a package. https://npmfs.com/compare/adm-zip/0.5.7/0.5.9/ for example will show the difference between 0.5.7 and 0.5.9 of the adm-zip package
 
 Once a package is reviewed consider using https://github.com/dpc/crev to mark it as safe for your trusted network.
 

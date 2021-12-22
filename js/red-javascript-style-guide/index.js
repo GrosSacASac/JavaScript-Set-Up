@@ -1,25 +1,23 @@
-/* eslint config to be used with eslint:recommended
-0 "off"
-1 "warning"
-2 "error"
-*/
+const off = 0;
+const warning = 1;
+const error = 2;
 module.exports = {
     "extends": "eslint:recommended",
     "rules": {
         // overwrite
-        "no-unused-vars": 1,
+        "no-unused-vars": warning,
 
-        "prefer-object-has-own": 2,
-        "curly": 2,
-        "eqeqeq": 2,
-        "no-caller": 2,
-        "no-else-return": [2, { allowElseIf: false }],
-        "no-extend-native": 2,
-        "no-extra-bind": 2,
-        "no-extra-label": 2,
-        "no-implicit-coercion": 2,
-        "no-lone-blocks": 2,
-        "no-magic-numbers": [1, {
+        "prefer-object-has-own": error,
+        "curly": error,
+        "eqeqeq": error,
+        "no-caller": error,
+        "no-else-return": [error, { allowElseIf: false }],
+        "no-extend-native": error,
+        "no-extra-bind": error,
+        "no-extra-label": error,
+        "no-implicit-coercion": error,
+        "no-lone-blocks": error,
+        "no-magic-numbers": [warning, {
             "ignore": [
                 -0.5, 0.5,
                 -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -35,28 +33,28 @@ module.exports = {
                 -90, -180, -360,
             ]
         }],
-        "no-multi-str": 2,
-        "no-new-wrappers": 2,
-        "no-octal-escape": 2,
-        "no-proto": 2,
-        "no-return-assign": [2, "always"],
-        "no-return-await": 2,
-        "no-sequences": 2,
-        "no-unmodified-loop-condition": 2,
-        "no-unused-expressions": 2,
-        "no-useless-call": 2,
-        "no-void": 2,
+        "no-multi-str": error,
+        "no-new-wrappers": error,
+        "no-octal-escape": error,
+        "no-proto": error,
+        "no-return-assign": [error, "always"],
+        "no-return-await": error,
+        "no-sequences": error,
+        "no-unmodified-loop-condition": error,
+        "no-unused-expressions": error,
+        "no-useless-call": error,
+        "no-void": error,
         // disable builtinGlobals for now because it also protects deprecated globals
         // https://github.com/eslint/eslint/issues/12167
-        "no-shadow": [1, { "builtinGlobals": false, hoist: "all" }],
-        "max-params": [1, { max: 6 }],
-        "max-depth": [1, { max: 10 }],
-        "max-statements-per-line": [2, { max: 1 }],
-        "new-parens": 2,
-        "no-array-constructor": 2,
-        "no-multi-assign": 2,
-        "no-ternary": 2,
-        "no-plusplus": 2,
+        "no-shadow": [warning, { "builtinGlobals": false, hoist: "all" }],
+        "max-params": [warning, { max: 6 }],
+        "max-depth": [warning, { max: 10 }],
+        "max-statements-per-line": [error, { max: 1 }],
+        "new-parens": error,
+        "no-array-constructor": error,
+        "no-multi-assign": error,
+        "no-ternary": error,
+        "no-plusplus": error,
         "no-restricted-syntax": [
             "error",
             {
@@ -83,25 +81,25 @@ const x = function () {
             "ThisExpression",
         ]
         ,
-        "quotes": [2, "backtick", { "avoidEscape": false }],
+        "quotes": [error, "backtick", { "avoidEscape": false }],
 
-        "semi": [2, "always"],
+        "semi": [error, "always"],
 
-        "semi-style": [2, "last"],
-        "space-infix-ops": [2, { "int32Hint": false }],
-        "arrow-body-style": [2, "always"],
-        "no-var": 2,
-        "object-shorthand": [2, "properties"],
-        "prefer-const": [2, { "ignoreReadBeforeAssign": false }],
-        "prefer-destructuring": [1, {
+        "semi-style": [error, "last"],
+        "space-infix-ops": [error, { "int32Hint": false }],
+        "arrow-body-style": [error, "always"],
+        "no-var": error,
+        "object-shorthand": [error, "properties"],
+        "prefer-const": [error, { "ignoreReadBeforeAssign": false }],
+        "prefer-destructuring": [warning, {
             "array": false,
             "object": true
         }, {
                 "enforceForRenamedProperties": false
             }],
 
-        "prefer-rest-params": 2,
-        "prefer-spread": 2,
-        "comma-dangle": [2, "always-multiline"]
+        "prefer-rest-params": error,
+        "prefer-spread": error,
+        "comma-dangle": [error, "always-multiline"]
     }
 };

@@ -9,6 +9,7 @@ module.exports = {
         // overwrite
         "no-unused-vars": 1,
 
+        "prefer-object-has-own": 2,
         "curly": 2,
         "eqeqeq": 2,
         "no-caller": 2,

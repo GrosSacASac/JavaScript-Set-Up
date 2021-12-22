@@ -152,7 +152,11 @@ const object = [
 ];
 ```
 
-Use `Object.keys`, `Object.values`, `Object.entries` to convert it to an array, then use array methods to loop over an object. ```typeof x === `object` && x !== null``` for type checking.
+Use `Object.keys`, `Object.values`, `Object.entries` to convert it to an array, then use array methods to loop over an object.
+
+```typeof x === `object` && x !== null``` for type checking.
+
+`Object.hasOwn` to check the existence of a property-value pair.
 
 ### strings
 

@@ -707,12 +707,12 @@ Inside package.json
 "eslintConfig": {
     "extends": ["red"],
     "parserOptions": {
-      "ecmaVersion": 2021,
+      "ecmaVersion": "latest",
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es2021": true,  
+      "es2022": true,  
       "browser": true,
       "node": true,
       "serviceworker": true,

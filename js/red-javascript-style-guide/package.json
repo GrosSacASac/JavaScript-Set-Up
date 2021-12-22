@@ -1,17 +1,17 @@
 {
     "name": "eslint-config-red",
-    "version": "1.8.3",
+    "version": "1.9.0",
     "license": "CC0-1.0",
     "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide",
     "files": [
-      "index.js",
-      "readme.md",
-      "license.txt"
+        "index.js",
+        "readme.md",
+        "license.txt"
     ],
     "repository": {
-      "type": "git",
-      "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
-      "directory": "js/red-javascript-style-guide"
+        "type": "git",
+        "url": "git://github.com/GrosSacASac/JavaScript-Set-Up.git",
+        "directory": "js/red-javascript-style-guide"
     },
     "keywords": [
         "red",

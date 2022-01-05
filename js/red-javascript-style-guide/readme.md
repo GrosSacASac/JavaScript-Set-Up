@@ -712,7 +712,7 @@ Inside package.json
       "ecmaFeatures": {}
     },
     "env": {
-      "es2022": true,  
+      "es2022": true,
       "browser": true,
       "node": true,
       "serviceworker": true,

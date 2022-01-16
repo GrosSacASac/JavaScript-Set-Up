@@ -6,7 +6,7 @@ module.exports = {
     "rules": {
         // overwrite
         "no-unused-vars": warning,
-        
+        "prefer-template": error,
         "no-promise-executor-return": error,
         "no-unreachable-loop": error,
         "prefer-object-has-own": error,

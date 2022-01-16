@@ -92,7 +92,7 @@ const x = function () {
         "arrow-body-style": [error, "always"],
         "no-var": error,
         "object-shorthand": [error, "properties"],
-        "prefer-const": [error, { "ignoreReadBeforeAssign": false }],
+        "prefer-const": [warning, { "ignoreReadBeforeAssign": false }],
         "prefer-destructuring": [warning, {
             "array": false,
             "object": true

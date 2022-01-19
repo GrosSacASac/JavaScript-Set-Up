@@ -242,7 +242,7 @@ Use `undefined`, avoid `null`. `undefined` is the default that is already used b
 
 ### Booleans
 
-`true` or `false`, use `Boolean` function to force cast to a boolean. Do not use `!!` to cast to a boolean. Leverage truthy values in `if` and `while`.
+`true` or `false`, use `Boolean` function to force cast to a Boolean. Do not use `!!` to cast to a Boolean. Leverage truthy values in `if` and `while`.
 
 ### promises
 

@@ -240,6 +240,26 @@ In the following situations:
 
 Use `undefined`, avoid `null`. `undefined` is the default that is already used by the language, for example: destructuring when missing, default return value, unassigned variable etc.
 
+#### Optional chaining
+
+Yes.
+
+The chain stops when expecting a value from undefined.
+Know the difference between those:
+
+```js
+(undefined)?.startsWith(`a`); // undefined
+{}?.startsWith(`b${1+2}`); // TypeError and what is inside the parentheses is computed
+{}?.startsWith?.(`c`); // undefined
+
+{}.a?.b?.c?.["d"] // undefined
+```
+In the second example we expect a value from undefined and the chain immediately stops.
+
+In the second  example we expect a value from an object (startsWith), which resolves to undefined, and then we call it (cannot call undefined). 
+
+In the third example we also use an optional call (?. + parentheses) to only call it if it is callable.
+
 ### Booleans
 
 `true` or `false`, use `Boolean` function to force cast to a Boolean. Do not use `!!` to cast to a Boolean. Leverage truthy values in `if` and `while`.

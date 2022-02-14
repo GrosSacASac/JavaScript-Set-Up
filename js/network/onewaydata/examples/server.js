@@ -22,8 +22,6 @@ const PORT = 8080;
 const server = http.createServer((req, res) => {
     if (req.url === `/`) {
         fs.createReadStream(`${__dirname}/client.html`).pipe(res);
-    } else {
-        console.log(req.headers);
     }
 });
 

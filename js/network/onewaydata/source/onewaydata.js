@@ -112,7 +112,7 @@ const createEventStream = (options) => {
             const index = responses.indexOf(response);
             if (index !== -1) {
                 responses.splice(index, 1);
-                requests.push(index, 1);
+                requests.splice(index, 1);
                 eventStream.emit(DISCONNECT, { response });
             }
         });

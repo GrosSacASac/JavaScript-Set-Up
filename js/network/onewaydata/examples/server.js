@@ -54,13 +54,14 @@ console.log(`open http:localhost:${PORT}/`);
 
 let i = 0;
 setInterval(() => {
-    eventStream.send({ data: ++i });
+    eventStream.send({ data: String(++i) });
 }, 1000);
 
 setInterval(() => {
     eventStream.send({
         event: `football/goal`,
-        data: `team 1`,
+        data: `team 1
+team 2`,
         id: String(Date.now()),
     });
 }, 5000);

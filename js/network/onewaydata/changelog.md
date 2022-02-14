@@ -1,3 +1,8 @@
+# 6.0.1
+
+ * data must be a string
+ * handle multi line messages
+
 # 6.0.0
 
  * Start Changelog

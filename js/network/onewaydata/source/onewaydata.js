@@ -46,7 +46,9 @@ const formatEvent = (x) => {
         message = `${message}${EVENT}:${event}\n`;
     }
     if (data) {
-        message = `${message}${DATA}:${data}\n`;
+        data.split(`\n`).filter(Boolean).forEach(line => {
+            message = `${message}${DATA}:${line}\n`;
+        });
     }
     message = `${message}\n`;
     return message;

@@ -48,6 +48,7 @@ eventStream.sendWithCondition({
     data: `latitude434521, longitude`,
     event: "fire"},
     function (request, response) {
+        // assumes some request have this property set before hand
         return request.isFirefighter; // only send to isFirefighter === true
 });
 ```

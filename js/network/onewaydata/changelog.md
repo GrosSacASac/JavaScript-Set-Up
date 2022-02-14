@@ -10,12 +10,9 @@
 # 6.0.0
 
  * Start Changelog
- * Use node protocol
- * Completed Readme
  * Better handling of badly formatted requests
  * Set reconnection time to 10000ms
  * Add possibility to change reconnection time with reconnectionTime
- * Removed a weird condition
  * Simplify code with optional chaining
  * Fix reconnection
  * Replaced path option with general purpose condition

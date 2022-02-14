@@ -13,17 +13,34 @@ to be used with [EventSource API](https://developer.mozilla.org/en-US/docs/Web/A
 ## usage
 
 ```js
-import { createEventStream } from "onewaydata";
+import { 
+    createEventStream,
+    sendOne,
+    RECONNECT,
+    CONNECT,
+    DISCONNECT,
+    defaultChannel,
+} from "onewaydata";
 import { useDefaultLogging } from "onewaydata/source/defaultLogging.js";
 
 
 const server = ...
-
-const eventStream = createEventStream({server, path: `/sse`});
+const path = `/sse`;
+const condition = (request) => {
+    request.url === path;
+};
+const eventStream = createEventStream({server, condition, reconnectionTime: 5000 });
 useDefaultLogging({ eventStream });
 
 
-eventStream.send({ data: `something`,  event: `eventName`});
+eventStream.send({ data: `data only`)});
+eventStream.send({ data: `something`,  event: `eventName`, id: String(Date.now())});
+eventStream.on(RECONNECT, ({lastId, response}) => {
+    if (lastId) {
+        // opportunity to resume with sendOne
+        sendOne(response, `here is what you missed since last disconnection`)
+    }
+})
 ```
 
 ### with express/polka
@@ -52,6 +69,10 @@ See [examples](./examples)
 
 https://hpbn.co/server-sent-events-sse/
 
+
+### Changelog
+
+[changelog.md](./changelog.md)
 
 ### License
 

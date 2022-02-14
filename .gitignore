@@ -74,4 +74,4 @@ js/network/socketiyo/examples/upload
 js/network/forms/upload/
 js/network/socketiyo-client/built/
 js/network/socketiyo/built/socketiyo.es.js
-.vscode/settings.json
+**/.vscode/settings.json

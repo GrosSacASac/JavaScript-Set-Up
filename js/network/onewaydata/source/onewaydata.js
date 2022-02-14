@@ -13,11 +13,13 @@ const MIME = `text/event-stream`;
 const LAST_ID = `Last-Event-ID`;
 const defaultChannel = `message`;
 const HTTP_OK = 200;
+const HTTP_PROBLEM = 400;
 
-// fields
+// SSE fields 
 const DATA = `data`;
 const ID = `id`;
 const EVENT = `event`;
+const RETRY = `retry`;
 
 const RECONNECT = Symbol();
 const CONNECT = Symbol();
@@ -70,7 +72,7 @@ const isValidRequestForServerSentEvents = (request) => {
 
 
 const createEventStream = (options) => {
-    const { path, server, asMiddleWare } = options;
+    const { condition, server, asMiddleWare, reconnectionTime = 10 ** 4 } = options;
     const eventStream = Emitter({ lastEventId: 0 });
 
     let responses = [];
@@ -78,6 +80,8 @@ const createEventStream = (options) => {
 
     const requestHandler = (request, response) => {
         if (!isValidRequestForServerSentEvents(request)) {
+            response.writeHead(HTTP_PROBLEM);
+            response.end();
             return false;
         }
 
@@ -98,6 +102,8 @@ const createEventStream = (options) => {
                 lastId,
                 response,
             });
+        } else {
+            response.write(`${RETRY}: ${reconnectionTime}\n\n`)
         }
 
         socket.once(`close`, () => {
@@ -145,11 +151,9 @@ const createEventStream = (options) => {
         };
     } else {
         onRequest = (request, response) => {
-            const requestPath = request.url;
-            if (requestPath !== path) {
-                return;
+            if (condition(request)) {
+                requestHandler(request, response, responses);
             }
-            requestHandler(request, response, responses);
         };
         server.on(`request`, onRequest);
     }

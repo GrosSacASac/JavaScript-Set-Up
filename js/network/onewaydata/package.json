@@ -35,7 +35,8 @@
   "files": [
     "source",
     "readme.md",
-    "license.txt"
+    "license.txt",
+    "changelog.md"
   ],
   "repository": {
     "type": "git",

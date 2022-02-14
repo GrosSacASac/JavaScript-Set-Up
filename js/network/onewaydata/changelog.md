@@ -1,3 +1,7 @@
+# 6.2.0
+
+ * add .sendWithCondition(messageObject, condition)
+
 # 6.1.0
 
  * data must be a string
@@ -10,7 +14,7 @@
  * Completed Readme
  * Better handling of badly formatted requests
  * Set reconnection time to 10000ms
- * Add possibility to change reconnection time with reconnectionTimeh
+ * Add possibility to change reconnection time with reconnectionTime
  * Removed a weird condition
  * Simplify code with optional chaining
  * Fix reconnection

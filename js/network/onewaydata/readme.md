@@ -39,6 +39,17 @@ eventStream.on(RECONNECT, ({lastId, response}) => {
         sendOne(response, `here is what you missed since last disconnection`);
     }
 });
+
+// eventStream.off(RECONNECT); // unsubscribe
+// eventStream.close(); // closes all eventStream 
+// eventStream.setAndSendId(); // shorthand to send id only and saving lastEventId
+// same as send but takes a filter function 
+eventStream.sendWithCondition({
+    data: `latitude434521, longitude`,
+    event: "fire"},
+    function (request, response) {
+        return request.isFirefighter; // only send to isFirefighter === true
+});
 ```
 
 ### with express/polka

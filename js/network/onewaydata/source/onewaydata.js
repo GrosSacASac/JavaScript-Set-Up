@@ -76,6 +76,7 @@ const createEventStream = (options) => {
     const eventStream = Emitter({ lastEventId: 0 });
 
     let responses = [];
+    let requests = [];
     let onRequest;
 
     const requestHandler = (request, response) => {
@@ -94,6 +95,7 @@ const createEventStream = (options) => {
             [`Content-Type`]: MIME,
         });
         responses.push(response);
+        requests.push(request);
 
         const lastId = request.headers[LAST_ID];
         if (lastId) {
@@ -110,6 +112,7 @@ const createEventStream = (options) => {
             const index = responses.indexOf(response);
             if (index !== -1) {
                 responses.splice(index, 1);
+                requests.push(index, 1);
                 eventStream.emit(DISCONNECT, { response });
             }
         });
@@ -124,7 +127,9 @@ const createEventStream = (options) => {
         responses.forEach(response => {
             response.end();
         });
-        responses = [];
+        responses = undefined;
+        requests = undefined;
+        eventStream.off()
     };
 
     const setAndSendId = (id) => {
@@ -142,6 +147,15 @@ const createEventStream = (options) => {
         });
     };
 
+    const sendWithCondition = (messageObject, condition) => {
+        const message = formatEvent(messageObject);
+        responses.forEach((response, i) => {
+            if (condition(requests[i], response)) {
+                response.write(message);
+            }
+        });
+    };
+
     if (asMiddleWare) {
         eventStream.middleWare = (request, response, next) => {
             const handled = requestHandler(request, response);
@@ -152,7 +166,7 @@ const createEventStream = (options) => {
     } else {
         onRequest = (request, response) => {
             if (condition(request)) {
-                requestHandler(request, response, responses);
+                requestHandler(request, response);
             }
         };
         server.on(`request`, onRequest);
@@ -160,6 +174,7 @@ const createEventStream = (options) => {
 
     return Object.assign(eventStream, {
         send,
+        sendWithCondition,
         setAndSendId,
         close,
     });

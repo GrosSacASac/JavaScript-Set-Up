@@ -4,14 +4,12 @@ export {
     RECONNECT,
     CONNECT,
     DISCONNECT,
-    defaultChannel,
 };
 import Emitter from "event-e3/event-e3.js";
 
 
 const MIME = `text/event-stream`;
-const LAST_ID = `Last-Event-ID`;
-const defaultChannel = `message`;
+const LAST_ID = (`Last-Event-ID`).toLowerCase(); // node request.headers is lower cased
 const HTTP_OK = 200;
 const HTTP_PROBLEM = 400;
 
@@ -47,15 +45,15 @@ const formatEvent = (x) => {
     if (event) {
         message = `${message}${EVENT}:${event}\n`;
     }
-    if (data && data !== defaultChannel) {
+    if (data) {
         message = `${message}${DATA}:${data}\n`;
     }
     message = `${message}\n`;
     return message;
 };
 
-const sendOne = (response, x) => {
-    const message = formatEvent(x);
+const sendOne = (response, messageObject) => {
+    const message = formatEvent(messageObject);
     response.write(message);
 };
 
@@ -64,7 +62,7 @@ const isValidRequestForServerSentEvents = (request) => {
         return;
     }
 
-    if (request.headers.accept && !request.headers.accept.includes(MIME)) {
+    if (!request.headers?.accept.includes(MIME)) {
         return;
     }
     return true;
@@ -135,8 +133,8 @@ const createEventStream = (options) => {
         });
     };
 
-    const send = (x) => {
-        const message = formatEvent(x);
+    const send = (messageObject) => {
+        const message = formatEvent(messageObject);
         responses.forEach(response => {
             response.write(message);
         });

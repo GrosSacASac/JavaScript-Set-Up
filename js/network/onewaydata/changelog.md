@@ -8,10 +8,12 @@
  * Add possibility to change reconnection time with reconnectionTime
  * Replaced path option with general purpose condition
  * Use the following to keep using path
+ * Removed a weird condition
+ * Simplify code with optional chaining
+ * Fix reconnection
 
 ```js
-const path = ...
 const condition = (request) => {
-    request.url === path;
+    return request.url === `/sse`;
 };
 ```

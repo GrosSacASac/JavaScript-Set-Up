@@ -10,12 +10,13 @@
  * Completed Readme
  * Better handling of badly formatted requests
  * Set reconnection time to 10000ms
- * Add possibility to change reconnection time with reconnectionTime
- * Replaced path option with general purpose condition
- * Use the following to keep using path
+ * Add possibility to change reconnection time with reconnectionTimeh
  * Removed a weird condition
  * Simplify code with optional chaining
  * Fix reconnection
+ * Replaced path option with general purpose condition
+
+Use the following to keep using path:
 
 ```js
 const condition = (request) => {

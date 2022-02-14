@@ -1,4 +1,4 @@
-# 6.0.1
+# 6.1.0
 
  * data must be a string
  * handle multi line messages

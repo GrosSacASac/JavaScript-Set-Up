@@ -24,7 +24,7 @@ import { useDefaultLogging } from "onewaydata/source/defaultLogging.js";
 
 
 const server = ...
-const condition = (request) => {
+const condition = (request, response) => {
     return request.url === `/sse`;
 };
 const eventStream = createEventStream({server, condition, reconnectionTime: 5000 });

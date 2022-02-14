@@ -165,7 +165,7 @@ const createEventStream = (options) => {
         };
     } else {
         onRequest = (request, response) => {
-            if (condition(request)) {
+            if (condition(request, response)) {
                 requestHandler(request, response);
             }
         };

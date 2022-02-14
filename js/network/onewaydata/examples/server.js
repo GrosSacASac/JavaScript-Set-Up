@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
 });
 
 
-const condition = (request) => {
+const condition = (request, response) => {
     return request.url === `/sse`;
 };
 const eventStream = createEventStream({ server, condition });

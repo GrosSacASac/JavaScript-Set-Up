@@ -1,3 +1,7 @@
+# 6.3.0
+
+ * connection condition also has access to response
+
 # 6.2.0
 
  * add .sendWithCondition(messageObject, condition)
@@ -20,7 +24,7 @@
 Use the following to keep using path:
 
 ```js
-const condition = (request) => {
+const condition = (request, response) => {
     return request.url === `/sse`;
 };
 ```

@@ -45,12 +45,14 @@ eventStream.on(RECONNECT, ({lastId, response}) => {
 // eventStream.setAndSendId(); // shorthand to send id only and saving lastEventId
 // same as send but takes a filter function 
 eventStream.sendWithCondition({
-    data: `latitude434521, longitude`,
-    event: "fire"},
+    data: `latitude=434521, longitude=23213`,
+    event: "fire started",
     function (request, response) {
+        // request and response are from http because SSE is built on top of HTTP protocol
         // assumes some request have this property set before hand
         return request.isFirefighter; // only send to isFirefighter === true
-});
+    },
+);
 ```
 
 ### with express/polka

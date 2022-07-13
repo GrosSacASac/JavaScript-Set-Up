@@ -1,6 +1,15 @@
 import { dataSet, dataSet2 } from "./data.js";
 
 
+import {
+    randomPositiveInt,
+    randomInt,
+    randomFloat,
+    randomShuffle,
+} from "randomsac/random.js";
+
+
+
 let weight = 0.5;
 const learningFactor = 0.001;
 

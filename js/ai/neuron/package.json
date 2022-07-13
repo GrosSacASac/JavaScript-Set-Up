@@ -4,6 +4,6 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "randomsac": "^10.1.0"
+    "randomsac": "^10.1.3"
   }
 }

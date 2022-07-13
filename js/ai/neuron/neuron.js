@@ -6,7 +6,7 @@ import {
     randomInt,
     randomFloat,
     randomShuffle,
-} from "randomsac/random.js";
+} from "randomsac";
 
 
 

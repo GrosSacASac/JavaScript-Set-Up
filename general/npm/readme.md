@@ -6,16 +6,21 @@ latest is the default tag for the latest version of a package on npm.
 
 installs everything from package-lock or package if not found, package.json has priority if in conflict with lock file (in that case package-lock will be updated as well)
 
- - `--ignore-scripts` disables running scripts like postinstall defined in the target package.json, download only
- - `--production` install only production dependencies (not devDependencies)
-
+- `--ignore-scripts` disables running scripts like postinstall defined in the target package.json, download only
+- `--production` install only production dependencies (not devDependencies)
 
 ## `npm i pac`
 
 installs or updates "pac" at highest compatible version according to package.json defined range or latest if it is not there yet and will be saved in package.json package-lock
 
- - `-D` as devDependency
- - `-g` run command globally
+- `-D` as devDependency
+- `-g` run command globally
+
+### install as an alias
+
+`npm i alias@npm:actualused`
+
+Allows you to import "alias" in your code while actually importing the "actualused"
 
 ## `npm update pac`
 

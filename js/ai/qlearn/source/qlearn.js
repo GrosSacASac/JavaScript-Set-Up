@@ -56,14 +56,14 @@ const createLearn = (getNextQualityEstimation) => {
         previousStateActions,
         stateActions,
         previousAction,
-        actionNames,
+        previousActions,
         reward,
     }) => {
         let qualityForState = intelligence.qualityMap.get(previousStateActions);
         if (!qualityForState) {
             // there was no quality map for this set of state and actions
             qualityForState = new Map();
-            actionNames.forEach(actionName => {
+            previousActions.forEach(actionName => {
                 qualityForState.set(actionName, intelligence.defaultQuality);
             });
             intelligence.qualityMap.set(previousStateActions, qualityForState);
@@ -77,10 +77,13 @@ const createLearn = (getNextQualityEstimation) => {
             nextQualityEstimation = intelligence.defaultQuality;
         }
 
-        const previousQuality = qualityForState.get(previousAction);
+        let previousQuality = qualityForState.get(previousAction);
+        if (previousQuality === undefined) {
+            previousQuality = intelligence.defaultQuality;
+        }
         qualityForState.set(previousAction, previousQuality + intelligence.learnFactor * (
             reward +
-            intelligence.discountFactor * (nextQualityEstimation - previousQuality)
+            intelligence.discountFactor * nextQualityEstimation - previousQuality
         ) - intelligence.exploreBonus);
     };
 };

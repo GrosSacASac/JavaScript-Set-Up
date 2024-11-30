@@ -1,6 +1,6 @@
 {
   "name": "qlearn",
-  "version": "5.0.5",
+  "version": "6.0.0",
   "license": "CC0-1.0",
   "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/ai/qlearn",
   "type": "module",
@@ -8,12 +8,10 @@
   "scripts": {
     "lint-fix": "eslint --fix source examples",
     "lint": "eslint source examples",
-
     "node-1": "node examples/eatFoodAvoidDanger/start.js",
     "node-1-visual": "node examples/eatFoodAvoidDanger/visualDemo.js",
     "deno-1": "deno run examples/eatFoodAvoidDanger/start.js",
     "deno-1-visual": "deno run examples/eatFoodAvoidDanger/visualDemo.js",
-    
     "node-2": "node examples/dodgeShoot/start.js",
     "node-2-visual": "node examples/dodgeShoot/visualDemo.js",
     "deno-2": "deno run examples/dodgeShoot/start.js",
@@ -22,10 +20,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^6.5.0",
-    "eslint-config-red": "^1.4.1",
-    "serve": "^11.2.0",
-    "utilsac": "^12.1.0"
+    "eslint": "^7.32.0",
+    "eslint-config-red": "^1.8.2",
+    "serve": "^12.0.0",
+    "utilsac": "^14.2.1"
   },
   "eslintConfig": {
     "root": true,
@@ -33,12 +31,12 @@
       "red"
     ],
     "parserOptions": {
-      "ecmaVersion": 2020,
+      "ecmaVersion": 2021,
       "sourceType": "module",
       "ecmaFeatures": {}
     },
     "env": {
-      "es6": true,
+      "es2021": true,
       "browser": true
     },
     "rules": {}
@@ -46,7 +44,8 @@
   "files": [
     "source",
     "readme.md",
-    "license.txt"
+    "license.txt",
+    "changelog.md"
   ],
   "repository": {
     "type": "git",

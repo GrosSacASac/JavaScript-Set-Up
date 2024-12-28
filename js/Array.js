@@ -7,6 +7,13 @@ array = [];
 array = Array.of();
 array = Array(); // avoid because it is unsafe
 
+/* How to create an array filled with a given value */
+const value = 0;
+const wantedLength = 15;
+const filled = [];
+filled.length = wantedLength;
+filled.fill(value);
+
 // set
 array[5] = "Hi";
 
@@ -44,9 +51,10 @@ array.length = newLength;
 // remove the first thing and store it
 const removedFirstPart = array.shift();
 
-// remove at a specific position
+// remove at a specific position, changes the original array
 const specificPosition = 5; // remove the 6th element in the array
-array.splice(specificPosition, 1);
+array.splice(specificPosition, 1); // returns an array with that element
+
 
 // remove a specific item once, if the item is not there it removes the last 
 const itemToBeRemoved = "removeMe";
@@ -83,4 +91,9 @@ const arrayB = [4, 5, 6];
 const array_AandB = arrayA.concat(arrayB);
 // alterantive 
 const array_AandB = [...arrayA, ...arrayB];
+
+// duplicate array
+let copy = Array.from(arrayA);
+// only works with primitives,
+// for a deep copy see deepCopy from utilsac package
 

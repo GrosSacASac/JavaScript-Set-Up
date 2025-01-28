@@ -3,7 +3,7 @@ export { httpRequest, defaultOptions }
 
 const defaultOptions = {
     format: `text`,
-    body: null,
+    body: null, // body can be a FormData instance
     method: `GET`,
 };
 

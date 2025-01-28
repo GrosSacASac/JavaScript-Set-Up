@@ -8,13 +8,13 @@ const options = {
     headers: headers,
     body: `` /*//Blob or BufferSource or FormData or URLSearchParams or USVString
     referrer: ``,//string
-   referrerPolicy: ``, 
-   //https://w3c.github.io/webappsec-referrer-policy/#enumdef-referrerpolicy
-   mode: RequestMode,
-   credentials: RequestCredentials,
-   cache: RequestCache,
-   redirect: RequestRedirect,
-   integrity: String,
+    referrerPolicy: ``, 
+    //https://w3c.github.io/webappsec-referrer-policy/#enumdef-referrerpolicy
+    mode: RequestMode,
+    credentials: RequestCredentials,
+    cache: RequestCache,
+    redirect: RequestRedirect,
+    integrity: String,
     keepalive: false,
 */
 };

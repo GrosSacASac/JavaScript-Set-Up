@@ -115,15 +115,15 @@ const multiverseHero = createMultiverseHero({ name: `Jace` });
 
 // add methods
 const changeUniverse = (multiverseHero, universe) => {
-    hero.concentrationLevel -= 20;
-    hero.currentUniverse = universe;
+    multiverseHero.concentrationLevel -= 20;
+    multiverseHero.currentUniverse = universe;
 };
 
 // change existing
 const moveMultiverseHero = (multiverseHero, position) => {
     // do something before or after
     moveHero(multiverseHero, position);
-    hero.concentrationLevel -= 1;
+    multiverseHero.concentrationLevel -= 1;
 };
 
 changeUniverse(multiverseHero, 2);

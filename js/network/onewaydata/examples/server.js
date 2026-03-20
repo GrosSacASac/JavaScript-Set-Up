@@ -19,9 +19,12 @@ const __dirname = path.dirname(__filename);
 const PORT = 8080;
 
 
-const server = http.createServer((req, res) => {
-    if (req.url === `/`) {
-        fs.createReadStream(`${__dirname}/client.html`).pipe(res);
+const server = http.createServer((request, response) => {
+
+    request.on(`error`, console.error.bind(console, `request error`));
+    response.on(`error`, console.error.bind(console, `response error`));
+    if (request.url === `/`) {
+        fs.createReadStream(`${__dirname}/client.html`).pipe(response);
     }
 });
 

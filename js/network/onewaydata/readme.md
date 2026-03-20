@@ -72,7 +72,7 @@ polkaServer.listen(PORT);
 eventStream.send({ data: `something`,  event: `eventName`});
 ```
 
-See [examples](./examples)
+See [examples](./examples) for a simple client example.
 
 
 ## Extras

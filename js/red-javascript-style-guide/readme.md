@@ -718,7 +718,7 @@ Avoid peerDependencies because they create more problems than they solve, instea
 Install eslint and eslint-red rules
 
 ```
-npm i -D eslint eslint-config-red
+npm i -D eslint @eslint/js eslint-config-red
 ```
 
 Inside package.json

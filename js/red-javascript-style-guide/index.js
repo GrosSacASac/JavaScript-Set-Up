@@ -1,8 +1,7 @@
 const off = 0;
 const warning = 1;
 const error = 2;
-module.exports = {
-    "extends": "eslint:recommended",
+export default [{
     "rules": {
         // overwrite
         "no-unused-vars": warning,
@@ -104,4 +103,4 @@ const x = function () {
         "prefer-spread": error,
         "comma-dangle": [error, "always-multiline"]
     }
-};
+}];

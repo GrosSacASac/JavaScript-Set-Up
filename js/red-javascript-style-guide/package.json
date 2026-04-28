@@ -1,8 +1,13 @@
 {
     "name": "eslint-config-red",
-    "version": "1.9.2",
+    "version": "2.0.0",
     "license": "CC0-1.0",
+    "main": "index.js",
+    "type": "module",
     "homepage": "https://github.com/GrosSacASac/JavaScript-Set-Up/tree/master/js/red-javascript-style-guide",
+    "peerDependencies": {
+		"eslint": ">= 9"
+	},
     "files": [
         "index.js",
         "readme.md",

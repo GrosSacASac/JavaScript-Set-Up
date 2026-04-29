@@ -106,7 +106,7 @@ const createEventStream = (options) => {
             });
         } else {
             const randomDelay = Math.ceil(Math.random() * reconnectionTime);
-            response.write(`${RETRY}: ${reconnectionTime + randomDelay}\n\n`)
+            response.write(`${RETRY}: ${reconnectionTime + randomDelay}\n\n`);
         }
 
         socket.once(`close`, () => {
@@ -130,7 +130,7 @@ const createEventStream = (options) => {
         });
         responses = undefined;
         requests = undefined;
-        eventStream.off()
+        eventStream.off();
     };
 
     const setAndSendId = (id) => {
@@ -148,10 +148,10 @@ const createEventStream = (options) => {
         });
     };
 
-    const sendWithCondition = (messageObject, condition) => {
+    const sendWithCondition = (messageObject, localFilter) => {
         const message = formatEvent(messageObject);
         responses.forEach((response, i) => {
-            if (condition(requests[i], response)) {
+            if (localFilter(requests[i], response)) {
                 response.write(message);
             }
         });

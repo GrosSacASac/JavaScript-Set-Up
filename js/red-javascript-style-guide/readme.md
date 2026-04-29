@@ -718,42 +718,22 @@ Avoid peerDependencies because they create more problems than they solve, instea
 Install eslint and eslint-red rules
 
 ```
-npm i -D eslint @eslint/js eslint-config-red
+npm i -D eslint @eslint/js eslint-config-red globals @stylistic/eslint-plugin
 ```
 
-Inside package.json
+Inside your root folder copy [eslint.config.js](./eslint.config.js)
 
-```json
-"eslintConfig": {
-    "extends": ["red"],
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module",
-      "ecmaFeatures": {}
-    },
-    "env": {
-      "es2022": true,
-      "browser": true,
-      "node": true,
-      "serviceworker": true,
-      "worker": true
-    },
-    "rules": {}
-}
-```
 
-Below es2021, remove unused environment.
 
-If code is meant for other environments other than browser, [add them to "env"](https://eslint.org/docs/user-guide/configuring#specifying-environments)
+If code is meant for other environments other than browser, add them after ...globals.browser
 
 Inside package.json > scripts
 
 ```
-    "lint-fix": "eslint --ignore-path .gitignore --fix source",
-    "lint": "eslint --ignore-path .gitignore source",
+    "lint-fix": "eslint --fix",
+    "lint": "eslint",
 ```
 
-where source is the folder containing all the files to lint.
 
 ### Inspiration
 

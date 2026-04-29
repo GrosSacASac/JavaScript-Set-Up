@@ -82,7 +82,7 @@ const x = function () {
             "ThisExpression",
         ]
         ,
-        "quotes": [error, "backtick", { "avoidEscape": false }],
+        "@stylistic/quotes": [error, "backtick", { "avoidEscape": false }],
 
         "semi": [error, "always"],
 

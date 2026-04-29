@@ -27,7 +27,7 @@ const server = ...
 const condition = (request, response) => {
     return request.url === `/sse`;
 };
-const eventStream = createEventStream({server, condition, reconnectionTime: 5000 });
+const eventStream = createEventStream({server, condition, reconnectionTime: 3500 });
 useDefaultLogging({ eventStream });
 
 

@@ -72,7 +72,7 @@ const isValidRequestForServerSentEvents = (request) => {
 
 
 const createEventStream = (options) => {
-    const { condition, server, asMiddleWare, reconnectionTime = 10 ** 4 } = options;
+    const { condition, server, asMiddleWare, reconnectionTime = 6.6 * 10 ** 3 } = options;
     const eventStream = Emitter({ lastEventId: 0 });
 
     let responses = [];
@@ -105,7 +105,8 @@ const createEventStream = (options) => {
                 response,
             });
         } else {
-            response.write(`${RETRY}: ${reconnectionTime}\n\n`)
+            const randomDelay = Math.ceil(Math.random() * reconnectionTime);
+            response.write(`${RETRY}: ${reconnectionTime + randomDelay}\n\n`)
         }
 
         socket.once(`close`, () => {

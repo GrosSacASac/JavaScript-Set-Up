@@ -1,3 +1,7 @@
+# 6.3.3
+
+* add a random reconnection delay
+
 # 6.3.0
 
  * connection condition also has access to response

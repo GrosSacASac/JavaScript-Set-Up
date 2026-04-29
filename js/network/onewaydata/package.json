@@ -6,31 +6,19 @@
   "type": "module",
   "main": "source/onewaydata.js",
   "scripts": {
-    "lint-fix": "eslint --ignore-path ../../../.gitignore --fix source",
-    "lint": "eslint --ignore-path ../../../.gitignore source",
+    "lint-fix": "eslint --fix",
+    "lint": "eslint",
     "example": "node examples/server.js"
   },
   "dependencies": {
     "event-e3": "^8.1.3"
   },
   "devDependencies": {
-    "eslint": "^8.9.0",
-    "eslint-config-red": "^1.9.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "red"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module",
-      "ecmaFeatures": {}
-    },
-    "env": {
-      "es2021": true,
-      "node": true
-    },
-    "rules": {}
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^8.57.1",
+    "eslint-config-red": "^3.0.0",
+    "globals": "^17.5.0"
   },
   "files": [
     "source",

@@ -87,6 +87,8 @@ anObject.hasOwnProperty("key");
 // has safe, works even when anObject has a key "hasOwnProperty"
 // also works for Objects without prototype
 Object.prototype.hasOwnProperty.call(anObject, "key");
+// same but shorter syntax (was introduced later)
+Object.hasOwn(anObject, "key");
 
 // has a key, or it can be found in the prototype chain
 "key" in anObject;
@@ -99,7 +101,6 @@ anObject["key"] = undefined;
 delete anObject["key"];
 
 // completly remove multiple properties on a copy
-delete anObject["key"];
 let { key1, key2, ...rest } = anObject;
 // rest is now a partial copy of anObject
 

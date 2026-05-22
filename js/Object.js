@@ -38,6 +38,15 @@ const partialClone = (({key1, key3}) => {
     return {key1, key3};
 })(anObject);
 
+// reusalbe partial clone by inclusion without repeating the keys
+const copyObjectOnlyWithKeys = (keys, source) => {
+    const copy = {};
+    keys.forEach(key => {
+        copy[key] = source[key];
+    })
+    return copy;
+};
+
 // partial shallow clone by exclusion
 const {key2, ...partialClone} = anObject;
 

@@ -91,7 +91,7 @@ learn({
     previousStateActions,
     stateActions,
     previousAction,
-    actionNames,
+    previousActions,
     reward,
 });
 ```
@@ -148,8 +148,11 @@ It decides randomly.
 import { randomDecide } from "qlearn/source/randomDecide.js";
 ```
 
+### Changelog
 
-## Related
+[changelog.md](./changelog.md)
+
+### Related
 
 https://github.com/acupajoe/node-qlearning
 
